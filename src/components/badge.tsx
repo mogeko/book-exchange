@@ -1,4 +1,4 @@
-import { MessageContext } from "@/layouts/providers/msgProvider";
+import { MessageContext } from "@/providers/msgProvider";
 import { useContext } from "react";
 
 const Badge: React.FC<BadgeProps> = ({ badgeKey, className }) => {

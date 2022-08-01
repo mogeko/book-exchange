@@ -4,7 +4,7 @@ import Logo from "@/components/base/logo";
 import User from "@/components/user";
 import Badge from "@/components/badge";
 import logoImage from "@/public/images/logo.svg";
-import { MenusContext } from "@/layouts/providers/menusProvider";
+import { MenusContext } from "@/providers/menusProvider";
 import Link from "next/link";
 import { useContext } from "react";
 

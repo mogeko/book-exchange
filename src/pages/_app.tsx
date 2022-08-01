@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import "@/styles/globals.css";
-import WrapProvider from "@/layouts/providers";
+import WrapProvider from "@/providers/providers";
 
 // Setup MSW for development and demo environment
 if (

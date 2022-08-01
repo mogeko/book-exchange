@@ -1,6 +1,6 @@
 import { render, renderHook } from "@testing-library/react";
 import type { RenderOptions, RenderHookOptions } from "@testing-library/react";
-import WrapProvider from "@/layouts/providers";
+import WrapProvider from "@/providers/providers";
 
 function renderWithProvider(ui: React.ReactElement, options?: RenderOptions) {
   return render(ui, { wrapper: WrapProvider, ...options });

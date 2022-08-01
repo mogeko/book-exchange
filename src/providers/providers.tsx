@@ -1,5 +1,5 @@
-import MessageProvider from "@/layouts/providers/msgProvider";
-import MenusProvider from "@/layouts/providers/menusProvider";
+import MessageProvider from "@/providers/msgProvider";
+import MenusProvider from "@/providers/menusProvider";
 import { SWRConfig } from "swr";
 
 const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {

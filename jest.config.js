@@ -16,6 +16,7 @@ const customJestConfig = {
     "^@/layouts/(.*)$": "<rootDir>/src/layouts/$1",
     "^@/lib/(.*)$": "<rootDir>/lib/$1",
     "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+    "^@/providers/(.*)$": "<rootDir>/src/providers/$1",
     "^@/public/(.*)$": "<rootDir>/public/$1",
     "^@/styles/(.*)$": "<rootDir>/src/styles/$1",
   },

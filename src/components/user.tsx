@@ -1,6 +1,6 @@
 import { VscError, VscLoading } from "react-icons/vsc";
 import { useUser } from "@/lib/hooks/useUsers";
-import { MenusContext } from "@/layouts/providers/menusProvider";
+import { MenusContext } from "@/providers/menusProvider";
 import Skeleton from "@/components/base/skeleton";
 import Badge from "@/components/badge";
 import { HiUser } from "react-icons/hi";
