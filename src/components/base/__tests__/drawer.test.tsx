@@ -1,19 +1,10 @@
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import useBadgeMock from "@/__mocks__/useBadgesMock";
+import { render, screen } from "@/lib/test-utils";
 import { DrawerButton, withDrawer } from "@/components/base/drawer";
 
 const ExampleDrawer = withDrawer((prop) => <div {...prop} />);
 
 describe("Drawer", () => {
-  beforeEach(() => {
-    useBadgeMock.returnResult();
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("renders a globale menu", () => {
     const { container } = render(
       <ExampleDrawer toggleId="menu-test">test</ExampleDrawer>

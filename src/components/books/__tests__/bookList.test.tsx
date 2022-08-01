@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import useBooksInfiniteMock from "@/__mocks__/useBooksInfiniteMock";
 import useOnScreenMock from "@/__mocks__/useOnScreenMock";
-import BookList from "@/components/contexts/bookList";
+import BookList from "@/components/books/bookList";
 
 describe("bookList", () => {
   beforeEach(() => {

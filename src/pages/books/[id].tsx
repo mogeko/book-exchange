@@ -4,7 +4,7 @@ import { useBook } from "@/lib/hooks/useBooks";
 import Alert from "@/components/base/alert";
 import Skeleton from "@/components/base/skeleton";
 import withReadMore from "@/components/readMore";
-import BookInfo, { BookInfoSkeleton } from "@/components/contexts/bookInfoBox";
+import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 
@@ -27,10 +27,10 @@ export const BookView: React.FC<BookViewProps> = ({ id }) => {
       <Box.Header>{data?.title}</Box.Header>
       <BookInfo title={data?.title} cover={data?.cover} mate={data?.mate} />
       <Box.SubBox title="About this book">
-        <BookDesc foldedData={data?.desc} url={`/books/${id}/desc`} />
+        <BookDesc foldedData={data?.desc} url={`/api/books/${id}/desc`} />
       </Box.SubBox>
       <Box.SubBox title="Popular Highlights in this book">
-        <BookDesc foldedData={data?.digest} url={`/books/${id}/digest`} />
+        <BookDesc foldedData={data?.digest} url={`/api/books/${id}/digest`} />
       </Box.SubBox>
     </Box>
   );

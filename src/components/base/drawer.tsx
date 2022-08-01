@@ -1,4 +1,4 @@
-import { MenusContext } from "@/layouts/providers/menusProvider";
+import { MenusContext } from "@/providers/menusProvider";
 import Badge from "@/components/badge";
 import { HiMenu } from "react-icons/hi";
 import Link from "next/link";

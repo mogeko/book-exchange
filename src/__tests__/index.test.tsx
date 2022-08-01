@@ -1,29 +1,19 @@
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@/lib/test-utils";
 import Home from "@/pages/index";
-import * as tagsCotroller from "@/layouts/tagsCotroller";
-import * as bookGrid from "@/components/contexts/bookGrid";
 
 describe("Home", () => {
-  beforeAll(() => {
-    jest.spyOn(tagsCotroller, "default").mockImplementation(() => <></>);
-    jest.spyOn(bookGrid, "default").mockImplementation(() => <></>);
-  });
-
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
-
   it("renders a home page", () => {
-    const { container } = render(<Home />);
+    render(<Home />);
 
-    expect(tagsCotroller.default).toBeCalled();
-    expect(bookGrid.default).toBeCalled();
     expect(
-      screen.getByRole("heading", {
-        name: /Bookworm/i,
-      })
+      screen.getByRole("heading", { name: "Bookworm" })
     ).toBeInTheDocument();
-    expect(container.querySelectorAll("h1.text-2xl").length).toBe(2);
+    expect(
+      screen.getByRole("heading", { name: "Recently Popular" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Unpopular but Highly Rated" })
+    ).toBeInTheDocument();
   });
 });

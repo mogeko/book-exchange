@@ -29,6 +29,8 @@ jobs:
 
       - name: Build SSG site
         run: pnpm build.ssg
+        env:
+          NEXT_PUBLIC_DEMO: true
 
       - name: Push SSG site to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

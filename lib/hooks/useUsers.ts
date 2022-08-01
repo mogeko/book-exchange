@@ -1,11 +1,11 @@
 import useQuery, { type Opts } from "@/lib/hooks/useQuery";
 
 function useUsers(param: ParamProps = {}, opts?: Opts<UsersType>) {
-  return useQuery<UsersType>("/users", param, opts);
+  return useQuery<UsersType>("/api/users", param, opts);
 }
 
 export function useUser(uid?: string, opts?: Opts<UserType>) {
-  return useQuery<UserType>(uid ? `/users/${uid}` : null, {}, opts);
+  return useQuery<UserType>(uid ? `/api/users/${uid}` : null, {}, opts);
 }
 
 interface ParamProps {

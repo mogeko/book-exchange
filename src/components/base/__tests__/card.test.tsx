@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@/lib/test-utils";
 import { exampleData } from "@/__mocks__/useBooksMock";
 import Card, { LongCard } from "@/components/base/card";
 

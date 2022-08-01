@@ -1,7 +1,7 @@
 import useQuery, { type Opts } from "./useQuery";
 
 function useMessage(opts?: Opts<MessageType>) {
-  return useQuery<MessageType>("/msg", {}, opts);
+  return useQuery<MessageType>("/api/msg", {}, opts);
 }
 
 export type MessageType = Partial<{

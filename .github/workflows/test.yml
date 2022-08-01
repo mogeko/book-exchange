@@ -34,5 +34,5 @@ jobs:
       - name: Run test
         run: pnpm run test.ci
 
-      - name: Update test result to Codecov
-        uses: codecov/codecov-action@v3
+      # - name: Update test result to Codecov
+      #   uses: codecov/codecov-action@v3

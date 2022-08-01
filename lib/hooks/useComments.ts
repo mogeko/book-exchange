@@ -1,11 +1,11 @@
 import useQuery, { type Opts } from "./useQuery";
 
 function useComments(param: ParamProps = {}, opts?: Opts<CommentsType>) {
-  return useQuery<CommentsType>("/comments", param, opts);
+  return useQuery<CommentsType>("/api/comments", param, opts);
 }
 
 export function useComment(id?: string, opts?: Opts<CommentType>) {
-  return useQuery<CommentType>(id ? `/comments/${id}` : null, {}, opts);
+  return useQuery<CommentType>(id ? `/api/comments/${id}` : null, {}, opts);
 }
 
 export type CommentsType = ({

@@ -7,11 +7,11 @@ import handleQuery from "@/lib/utils/queryTools";
 import { type XOR } from "@/lib/utils/typeTools";
 
 function useBooks(param: ParamProps = {}, opts?: Opts<BooksType>) {
-  return useQuery<BooksType>("/books", param, opts);
+  return useQuery<BooksType>("/api/books", param, opts);
 }
 
 export function useBook(id?: string, opts?: Opts<BookType>) {
-  return useQuery<BookType>(id ? `/books/${id}` : null, {}, opts);
+  return useQuery<BookType>(id ? `/api/books/${id}` : null, {}, opts);
 }
 
 export function useBooksInfinite(
@@ -20,7 +20,7 @@ export function useBooksInfinite(
 ) {
   return useQueryInfinite<BooksType>((index, previous) => {
     if (previous && !previous.length) return null;
-    return handleQuery("/books", { page: index + page, ...other });
+    return handleQuery("/api/books", { page: index + page, ...other });
   }, opts);
 }
 

@@ -3,7 +3,7 @@ import useSWR, { type SWRConfiguration } from "swr";
 import useSWRInfinite, { type SWRInfiniteConfiguration } from "swr/infinite";
 
 function useQuery<T, E = any>(
-  url: `/${string}` | null,
+  url: `/api/${string}` | null,
   param = {},
   opts: SWRConfiguration<T, E> = {}
 ) {

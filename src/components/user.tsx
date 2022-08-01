@@ -1,6 +1,6 @@
 import { VscError, VscLoading } from "react-icons/vsc";
 import { useUser } from "@/lib/hooks/useUsers";
-import { MenusContext } from "@/layouts/providers/menusProvider";
+import { MenusContext } from "@/providers/menusProvider";
 import Skeleton from "@/components/base/skeleton";
 import Badge from "@/components/badge";
 import { HiUser } from "react-icons/hi";
@@ -35,8 +35,8 @@ const UserBar: React.FC = () => {
       </Link>
     );
   return (
-    <div className="btn btn-link btn-xs text-base-content">
-      Hi!&nbsp;<b>{data.username}</b>
+    <div className="btn btn-link btn-xs text-base-content w-40 flex-nowrap">
+      Hi!&nbsp;<b className="truncate">{data.username}</b>
     </div>
   );
 };
@@ -67,6 +67,9 @@ const UserMenu: React.FC = () => {
           </Link>
         </li>
       ))}
+      <li>
+        <button>Sign out</button>
+      </li>
     </ul>
   );
 };
