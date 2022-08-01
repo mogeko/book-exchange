@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { exampleData } from "@/__mocks__/useBookMock";
-import BookInfo from "@/components/contexts/bookInfoBox";
+import BookInfo from "@/components/books/bookInfoBox";
 
 describe("BookInfo", () => {
   it("renders a BookInfo without meta data", () => {

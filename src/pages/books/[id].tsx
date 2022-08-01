@@ -4,7 +4,7 @@ import { useBook } from "@/lib/hooks/useBooks";
 import Alert from "@/components/base/alert";
 import Skeleton from "@/components/base/skeleton";
 import withReadMore from "@/components/readMore";
-import BookInfo, { BookInfoSkeleton } from "@/components/contexts/bookInfoBox";
+import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 

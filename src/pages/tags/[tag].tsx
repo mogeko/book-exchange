@@ -1,6 +1,6 @@
 import TagsCotroller from "@/layouts/tagsCotroller";
 import { DefaultLayout } from "@/layouts/layout";
-import BookList from "@/components/contexts/bookList";
+import BookList from "@/components/books/bookList";
 import Box from "@/layouts/boxes";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";

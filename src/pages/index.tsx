@@ -1,5 +1,5 @@
 import TagsCotroller from "@/layouts/tagsCotroller";
-import BookGrid from "@/components/contexts/bookGrid";
+import BookGrid from "@/components/books/bookGrid";
 import Box from "@/layouts/boxes";
 import { DefaultLayout } from "@/layouts/layout";
 import type { NextPage } from "next";
