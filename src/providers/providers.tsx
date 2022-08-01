@@ -1,5 +1,6 @@
 import MessageProvider from "@/providers/msgProvider";
 import MenusProvider from "@/providers/menusProvider";
+import fetcher, { type NetworkError } from "@/lib/fetcher";
 import { SWRConfig } from "swr";
 
 const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {
@@ -12,24 +13,22 @@ const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {
   );
 };
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
-
 const swrConfig = {
-  fetcher,
   // Disable automatic re-request
   // https://swr.bootcss.com/docs/revalidation
   revalidateIfStale: false,
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   revalidateFirstPage: false,
+  // Global fetcher
+  fetcher,
+  // Global Error handler
+  onError: (err: NetworkError) => {
+    console.error(err);
+  },
 };
 
 interface WrapProviderProps {
-  children: React.ReactNode;
-}
-
-interface _WrapProviderProps {
-  wrapers: [React.JSXElementConstructor<React.PropsWithChildren<any>>, any][];
   children: React.ReactNode;
 }
 
