@@ -11,7 +11,7 @@ const RandomPage: NextPage = () => {
 
   useEffect(() => {
     if (data) {
-      cache.delete("/random");
+      cache.delete("/api/random");
       router.push(data.url);
     }
   }, [router, data, cache]);

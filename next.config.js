@@ -9,6 +9,9 @@ const nextConfig = {
       unoptimized: true,
     },
   },
+  webpack: (config) => {
+    return Object.assign(config, { experiments: { topLevelAwait: true } });
+  },
 };
 
 module.exports = nextConfig;

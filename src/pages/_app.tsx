@@ -9,7 +9,13 @@ if (
   process.env.NODE_ENV === "development" ||
   process.env.NEXT_PUBLIC_DEMO === "true"
 ) {
-  require("@/lib/mocks/init");
+  if (typeof window === "undefined") {
+    const { server } = await import("@/lib/mocks/server");
+    server.listen();
+  } else {
+    const { worker } = await import("@/lib/mocks/browser");
+    worker.start();
+  }
 }
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());

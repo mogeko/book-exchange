@@ -19,7 +19,7 @@ describe("RandomPage", () => {
 
     expect(screen.getByText("We will jump to")).toBeInTheDocument();
     expect(screen.getByText("/books/bk1")).toBeInTheDocument();
-    expect(useQueryMock.target).toBeCalledWith("/random", {});
+    expect(useQueryMock.target).toBeCalledWith("/api/random", {});
     expect(useRouterMock.target).toBeCalledWith();
   });
 
