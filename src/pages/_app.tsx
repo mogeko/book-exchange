@@ -1,8 +1,6 @@
-import MessageProvider from "@/layouts/providers/msgProvider";
-import MenusProvider from "@/layouts/providers/menusProvider";
 import type { AppProps } from "next/app";
-import { SWRConfig } from "swr";
 import "@/styles/globals.css";
+import WrapProvider from "@/layouts/providers";
 
 // Setup MSW for development and demo environment
 if (
@@ -18,18 +16,6 @@ if (
   }
 }
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
-
-const swrConfig = {
-  fetcher,
-  // Disable automatic re-request
-  // https://swr.bootcss.com/docs/revalidation
-  revalidateIfStale: false,
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  revalidateFirstPage: false,
-};
-
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <WrapProvider>
@@ -37,19 +23,5 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     </WrapProvider>
   );
 };
-
-export const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {
-  return (
-    <SWRConfig value={swrConfig}>
-      <MessageProvider>
-        <MenusProvider>{children}</MenusProvider>
-      </MessageProvider>
-    </SWRConfig>
-  );
-};
-
-interface WrapProviderProps {
-  children: React.ReactNode;
-}
 
 export default App;

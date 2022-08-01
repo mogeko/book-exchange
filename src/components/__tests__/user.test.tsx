@@ -34,7 +34,7 @@ describe("User", () => {
   });
 });
 
-describe("User with abnormal state", () => {
+describe.skip("User with abnormal state", () => {
   it("renders user menu when error occurred", () => {
     server.use(
       rest.get("/api/users/:uid", (_, res, ctx) => {

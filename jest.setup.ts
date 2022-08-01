@@ -2,6 +2,7 @@
 // If you delete this file, remove `setupFilesAfterEnv` from `jest.config.js`
 
 import "@testing-library/jest-dom/extend-expect";
+import "whatwg-fetch"; // Setup fetch for testing
 import { server } from "./lib/mocks/server";
 import { faker } from "@faker-js/faker";
 

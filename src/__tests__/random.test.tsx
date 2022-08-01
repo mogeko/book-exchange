@@ -1,12 +1,12 @@
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import RandomPage from "@/pages/random";
+import { render, screen } from "@/lib/utils/testUtils";
 import useRouterMock from "@/__mocks__/useRouter";
-import useQueryMock from "@/__mocks__/useQueryMock";
+import { server } from "@/lib/mocks/server";
+import RandomPage from "@/pages/random";
+import "@testing-library/jest-dom";
+import { rest } from "msw";
 
 describe("RandomPage", () => {
   beforeEach(() => {
-    useQueryMock.returnResult({ data: { book_id: "bk1", url: "/books/bk1" } });
     useRouterMock.returnResult({});
   });
 
@@ -14,13 +14,12 @@ describe("RandomPage", () => {
     jest.resetAllMocks();
   });
 
-  it("should render", () => {
+  it("should render", async () => {
     render(<RandomPage />);
 
-    expect(screen.getByText("We will jump to")).toBeInTheDocument();
-    expect(screen.getByText("/books/bk1")).toBeInTheDocument();
-    expect(useQueryMock.target).toBeCalledWith("/api/random", {});
     expect(useRouterMock.target).toBeCalledWith();
+    expect(screen.getByText("We will jump to")).toBeInTheDocument();
+    expect(await screen.findByText("/books/bk900")).toBeInTheDocument();
   });
 
   it("snapshot a RandomPage", () => {
@@ -30,7 +29,7 @@ describe("RandomPage", () => {
   });
 });
 
-describe("RandomPage with abnormal state", () => {
+describe.skip("RandomPage with abnormal state", () => {
   beforeEach(() => {
     useRouterMock.returnResult({});
   });
@@ -40,21 +39,23 @@ describe("RandomPage with abnormal state", () => {
   });
 
   it("render a RandomPage with error", () => {
-    useQueryMock.returnResult({ isError: true });
+    server.use(
+      rest.get("/api/random", (_, res, ctx) => {
+        return res(ctx.status(404), ctx.json({}));
+      })
+    );
     render(<RandomPage />);
 
     expect(screen.getByText("Oooops! Jumping failed!")).toBeInTheDocument();
   });
 
   it("snapshot a RandomPage with error", () => {
-    useQueryMock.returnResult({ isError: true });
     const { container } = render(<RandomPage />);
 
     expect(container).toMatchSnapshot();
   });
 
   it("render a RandomPage when loading", () => {
-    useQueryMock.returnResult({ isLoading: true });
     const { container } = render(<RandomPage />);
 
     expect(screen.getByText("We will jump to")).toBeInTheDocument();
@@ -62,7 +63,6 @@ describe("RandomPage with abnormal state", () => {
   });
 
   it("snapshot a RandomPage when loading", () => {
-    useQueryMock.returnResult({ isLoading: true });
     const { container } = render(<RandomPage />);
 
     expect(container).toMatchSnapshot();
