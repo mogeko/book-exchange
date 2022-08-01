@@ -67,6 +67,9 @@ const UserMenu: React.FC = () => {
           </Link>
         </li>
       ))}
+      <li>
+        <button>Sign out</button>
+      </li>
     </ul>
   );
 };
