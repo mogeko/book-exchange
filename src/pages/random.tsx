@@ -5,7 +5,7 @@ import { useSWRConfig } from "swr";
 import { useEffect } from "react";
 
 const RandomPage: NextPage = () => {
-  const { data, isError, isLoading } = useQuery<ResType>("/random", {});
+  const { data, isError, isLoading } = useQuery<ResType>("/api/random", {});
   const { cache } = useSWRConfig();
   const router = useRouter();
 
@@ -25,7 +25,7 @@ const RandomPage: NextPage = () => {
 };
 
 interface ResType {
-  book_id: `bk${number}`;
+  id: `bk${number}`;
   url: `/books/bk${number}`;
 }
 

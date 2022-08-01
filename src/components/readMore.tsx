@@ -52,7 +52,7 @@ interface WripComponentProps {
     text: string;
     is_folded: boolean;
   };
-  url: `/${string}`;
+  url: `/api/${string}`;
 }
 
 interface ComponentProps {

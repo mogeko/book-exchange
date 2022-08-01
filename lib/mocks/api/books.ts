@@ -21,7 +21,7 @@ const booksHandlers = [
             author: faker.name.firstName(),
           },
           desc: {
-            text: faker.lorem.paragraph(50),
+            text: faker.lorem.paragraph(10),
           },
         }))
       )
@@ -53,13 +53,33 @@ const booksHandlers = [
           paperback: faker.datatype.number({ min: 100, max: 1000 }),
         },
         desc: {
-          text: faker.lorem.paragraph(50),
+          text: faker.lorem.paragraph(10),
           is_folded: faker.datatype.boolean(),
         },
         digest: {
-          text: faker.lorem.paragraph(50),
+          text: faker.lorem.paragraph(10),
           is_folded: faker.datatype.boolean(),
         },
+      })
+    );
+  }),
+  rest.get("/api/books/:bkid/desc", (req, res, ctx) => {
+    const { bkid } = req.params;
+
+    return res(
+      ctx.json({
+        id: bkid as `bk${number}`,
+        text: faker.lorem.paragraph(50),
+      })
+    );
+  }),
+  rest.get("/api/books/:bkid/digest", (req, res, ctx) => {
+    const { bkid } = req.params;
+
+    return res(
+      ctx.json({
+        id: bkid as `bk${number}`,
+        text: faker.lorem.paragraph(50),
       })
     );
   }),
