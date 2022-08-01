@@ -35,8 +35,8 @@ const UserBar: React.FC = () => {
       </Link>
     );
   return (
-    <div className="btn btn-link btn-xs text-base-content">
-      Hi!&nbsp;<b>{data.username}</b>
+    <div className="btn btn-link btn-xs text-base-content w-40 flex-nowrap">
+      Hi!&nbsp;<b className="truncate">{data.username}</b>
     </div>
   );
 };
