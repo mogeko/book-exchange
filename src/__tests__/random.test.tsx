@@ -1,4 +1,4 @@
-import { render, screen } from "@/lib/utils/testUtils";
+import { render, screen } from "@/lib/test-utils";
 import useRouterMock from "@/__mocks__/useRouter";
 import { server } from "@/lib/mocks/server";
 import RandomPage from "@/pages/random";

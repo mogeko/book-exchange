@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@/lib/utils/testUtils";
+import { render, screen } from "@/lib/test-utils";
 import Header from "@/layouts/header";
 
 describe("Header", () => {

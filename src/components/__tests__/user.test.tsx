@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { rest } from "msw";
-import { render, screen } from "@/lib/utils/testUtils";
+import { render, screen } from "@/lib/test-utils";
 import { server } from "@/lib/mocks/server";
 import User from "@/components/user";
 
