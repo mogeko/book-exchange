@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home snapshot a Display Box with Header 1`] = `
+exports[`Home renders a Display Box with Header 1`] = `
 <div>
   <div
     class="flex flex-col"
@@ -14,7 +14,7 @@ exports[`Home snapshot a Display Box with Header 1`] = `
 </div>
 `;
 
-exports[`Home snapshot a SubBox 1`] = `
+exports[`Home renders a SubBox 1`] = `
 <div>
   <div
     class="flex flex-col items-start my-2"

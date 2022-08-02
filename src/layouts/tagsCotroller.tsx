@@ -1,13 +1,11 @@
-import Alert from "@/components/base/alert";
 import Skeleton from "@/components/base/skeleton";
 import useTags from "@/lib/hooks/useTags";
 import Box from "@/layouts/boxes";
 import Link from "next/link";
 
 const TagsCotroller: React.FC = () => {
-  const { data, isLoading, isError } = useTags();
+  const { data, isLoading } = useTags();
 
-  if (isError) return <Alert.Error message="Network Error!" />;
   return (
     <Box title="Tags">
       {isLoading ? (
@@ -34,7 +32,9 @@ const TagsCotroller: React.FC = () => {
 const TagItem: React.FC<TagProps> = ({ size, name, href }) => {
   return (
     <Link href={href!}>
-      <a className={`btn btn-${size ?? "xs"} normal-case`}>{name}</a>
+      <a className={`btn btn-${size ?? "xs"} normal-case`} aria-label="tag">
+        {name}
+      </a>
     </Link>
   );
 };
