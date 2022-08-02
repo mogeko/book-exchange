@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/__mocks__/useRouter";
+import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
 import RandomPage from "@/pages/random";
 import "@testing-library/jest-dom";
 

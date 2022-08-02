@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/__mocks__/useRouter";
-import useOnScreenMock from "@/__mocks__/useOnScreenMock";
+import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
+import useOnScreenMock from "@/lib/hooks/__mocks__/useOnScreenMock";
 import Tags from "@/pages/tags/[tag]";
 
 describe("Tags", () => {

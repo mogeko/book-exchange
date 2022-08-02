@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/__mocks__/useRouter";
+import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
 import BookPage, { BookView } from "@/pages/books/[id]";
 
 describe("Books Page", () => {

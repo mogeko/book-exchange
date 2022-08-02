@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, waitFor, screen } from "@/lib/test-utils";
-import useOnScreenMock from "@/__mocks__/useOnScreenMock";
+import useOnScreenMock from "@/lib/hooks/__mocks__/useOnScreenMock";
 import BookList from "@/components/books/bookList";
 
 describe("bookList", () => {
