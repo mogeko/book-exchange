@@ -16,12 +16,6 @@ describe("useBooks", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data).toHaveLength(10);
     });
-  });
-
-  it("snapshot books", async () => {
-    const { result } = renderHook(() => useBooks());
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     expect(result.current).toMatchSnapshot();
   });
@@ -41,6 +35,8 @@ describe("useBook", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data?.id).toBe("bk1000");
     });
+
+    expect(result.current).toMatchSnapshot();
   });
 
   it("return null when book ID is undefined", async () => {
@@ -49,14 +45,6 @@ describe("useBook", () => {
     expect(result.current.data).toBeUndefined();
 
     await waitFor(() => expect(result.current.data).toBeUndefined());
-  });
-
-  it("snapshot a book", async () => {
-    const { result } = renderHook(() => useBook("bk1000"));
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current).toMatchSnapshot();
   });
 });
 
@@ -74,6 +62,8 @@ describe("useBooksInfinite", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data?.[0]).toHaveLength(10);
     });
+
+    expect(result.current).toMatchSnapshot();
   });
 
   it("return books when query has param", async () => {
@@ -83,13 +73,5 @@ describe("useBooksInfinite", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data?.[0]).toHaveLength(5);
     });
-  });
-
-  it("snapshot books", async () => {
-    const { result } = renderHook(() => useBooksInfinite());
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current).toMatchSnapshot();
   });
 });

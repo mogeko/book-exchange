@@ -16,6 +16,8 @@ describe("useUsers", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data?.uid).toBe("1000");
     });
+
+    expect(result.current).toMatchSnapshot();
   });
 
   it("return data if uid is empty", async () => {
@@ -26,13 +28,5 @@ describe("useUsers", () => {
     await waitFor(() => {
       expect(result.current.data).toBeUndefined();
     });
-  });
-
-  it("snapshot data", async () => {
-    const { result } = renderHook(() => useUser("1000"));
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current).toMatchSnapshot();
   });
 });

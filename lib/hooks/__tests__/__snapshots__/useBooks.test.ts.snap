@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useBook snapshot a book 1`] = `
+exports[`useBook should return book 1`] = `
 Object {
   "data": Object {
     "cover": "https://loremflickr.com/1280/1910/animals",
@@ -41,7 +41,7 @@ Object {
 }
 `;
 
-exports[`useBooks snapshot books 1`] = `
+exports[`useBooks should return books 1`] = `
 Object {
   "data": Array [
     Object {
@@ -246,7 +246,7 @@ Object {
 }
 `;
 
-exports[`useBooksInfinite snapshot books 1`] = `
+exports[`useBooksInfinite should return books 1`] = `
 Object {
   "data": Array [
     Array [

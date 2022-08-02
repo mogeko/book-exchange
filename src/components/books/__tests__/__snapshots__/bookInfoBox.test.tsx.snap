@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BookInfo snapshot a BookInfo 1`] = `
+exports[`BookInfo renders a BookInfo without meta data 1`] = `
 <div>
   <div
     class="my-4 flex w-full gap-3"
   >
     <figure
+      aria-label="Cover Image"
       class="flex items-center justify-center"
     >
       <div

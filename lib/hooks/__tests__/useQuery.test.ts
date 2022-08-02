@@ -20,12 +20,6 @@ describe("useQuery", () => {
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBeUndefined();
     });
-  });
-
-  it("snapshot data", async () => {
-    const { result } = renderHook(() => useQuery("/api/books"));
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     expect(result.current).toMatchSnapshot();
   });
@@ -51,14 +45,6 @@ describe("useBooksInfinite", () => {
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBeUndefined();
     });
-  });
-
-  it("snapshot data", async () => {
-    const { result } = renderHook(() =>
-      useQueryInfinite((index) => `/api/books?page=${index}`)
-    );
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     expect(result.current).toMatchSnapshot();
   });

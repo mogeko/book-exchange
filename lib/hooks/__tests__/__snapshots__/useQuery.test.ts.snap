@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useBooksInfinite snapshot data 1`] = `
+exports[`useBooksInfinite should return data 1`] = `
 Object {
   "data": Array [
     Array [
@@ -209,7 +209,7 @@ Object {
 }
 `;
 
-exports[`useQuery snapshot data 1`] = `
+exports[`useQuery should return data 1`] = `
 Object {
   "data": Array [
     Object {

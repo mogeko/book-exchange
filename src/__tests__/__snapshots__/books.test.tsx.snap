@@ -14,6 +14,7 @@ exports[`BookView snapshot a BookView 1`] = `
       class="my-4 flex w-full gap-3"
     >
       <figure
+        aria-label="Cover Image"
         class="flex items-center justify-center"
       >
         <div
