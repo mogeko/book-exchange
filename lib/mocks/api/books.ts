@@ -45,7 +45,7 @@ const booksHandlers = [
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
           language: "English",
-          publication_date: faker.date.past().toISOString(),
+          publication_date: "2021-10-14T11:31:41.496Z",
           isbn: `978-${faker.datatype.number({
             min: 1000000000,
             max: 1999999999,

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useMessage snapshot message 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "id": "msg2243376510",
+      "key": "MENUS_QUOTE",
+    },
+    Object {
+      "id": "msg8508058944",
+      "key": "MENUS_QUOTE",
+    },
+    Object {
+      "id": "msg5337060048",
+      "key": "MENUS_QUOTE",
+    },
+    Object {
+      "id": "msg2576458715",
+      "key": "MENUS_QUOTE",
+    },
+    Object {
+      "id": "msg1256522742",
+      "key": "MENUS_QUOTE",
+    },
+  ],
+  "isError": undefined,
+  "isLoading": false,
+  "isValidating": false,
+  "mutate": [Function],
+}
+`;

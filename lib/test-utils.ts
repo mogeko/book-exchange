@@ -15,19 +15,18 @@ function renderHookWithProvider<Result, Props>(
   return renderHook(render, { wrapper: WrapProviderForTest, ...options });
 }
 
-const WrapProviderForTest: React.FC<{
-  children: React.ReactNode;
-}> = ({ children }) => {
+function WrapProviderForTest({ children }: { children: React.ReactNode }) {
   return React.createElement(
     WrapProvider,
     null,
     React.createElement(
       SWRConfig,
+      // Remake the cache of swr after each test
       { value: { provider: () => new Map() } },
       children
     )
   );
-};
+}
 
 export * from "@testing-library/react";
 export { renderHookWithProvider as renderHook };

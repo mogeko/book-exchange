@@ -20,6 +20,10 @@ const customJestConfig = {
     "^@/public/(.*)$": "<rootDir>/public/$1",
     "^@/styles/(.*)$": "<rootDir>/src/styles/$1",
   },
+  coveragePathIgnorePatterns: [
+    "<rootDir>/lib/mocks/",
+    "<rootDir>/lib/test-utils.ts",
+  ],
   testEnvironment: "jest-environment-jsdom",
 };
 
