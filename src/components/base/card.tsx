@@ -7,7 +7,10 @@ import Link from "next/link";
 const CardRoot: React.FC<CardProps> = ({ title, cover, mate, id }) => {
   return (
     <div className="relative flex flex-col w-28">
-      <figure className="flex justify-center items-center">
+      <figure
+        className="flex justify-center items-center"
+        aria-label="Cover Image"
+      >
         <Link href={`/books/${id}`}>
           <a className="relative w-28 h-[calc(7rem/2*3)]">
             <Image src={cover!} layout="fill" alt={title} />
@@ -38,7 +41,10 @@ const LongCardRoot: React.FC<CardProps> = (props) => {
   const { title, cover, mate, desc, id, rates } = props;
   return (
     <div className="flex py-4 gap-3">
-      <figure className="flex justify-center items-center">
+      <figure
+        className="flex justify-center items-center"
+        aria-label="Cover Image"
+      >
         <Link href={`/books/${id}`}>
           <a className="relative w-28 h-[calc(7rem/2*3)]">
             <Image src={cover!} layout="fill" alt={title} />

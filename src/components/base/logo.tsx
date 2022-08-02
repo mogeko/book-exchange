@@ -6,7 +6,7 @@ const Logo: React.FC<LogoProps> = ({ href, src, children }) => {
     <div className="flex justify-start">
       <Link href={href ?? "/"}>
         <a className="btn gap-1 btn-ghost normal-case">
-          <span className="sr-only">{children ?? "Logo"}</span>
+          <span className="sr-only">Logo</span>
           {src ? <Image src={src} alt="logo" /> : null}
           <h1 className="text-xl font-bold text-base-content">{children}</h1>
         </a>

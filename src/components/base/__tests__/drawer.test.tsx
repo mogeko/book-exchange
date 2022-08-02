@@ -10,27 +10,22 @@ describe("Drawer", () => {
       <ExampleDrawer toggleId="menu-test">test</ExampleDrawer>
     );
 
-    expect(screen.getByText("My library")).toBeInTheDocument();
-    expect(container.querySelector(".drawer-content div")?.textContent).toEqual(
-      "test"
-    );
-  });
-
-  it("snapshot a globale menu", () => {
-    const { container } = render(
-      <ExampleDrawer toggleId="menu-test">test</ExampleDrawer>
-    );
+    expect(
+      screen.getByRole("menu", { name: "Drawer Menu" })
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("menuitem")).toHaveLength(3);
+    expect(screen.getAllByRole("link")).toHaveLength(3);
 
     expect(container).toMatchSnapshot();
-    expect(container.querySelector(".drawer-toggle")).toMatchSnapshot();
-    expect(container.querySelector(".drawer-content")).toMatchSnapshot();
-    expect(container.querySelector(".drawer-side")).toMatchSnapshot();
   });
 
-  it("snapshot a DrawerButton", () => {
+  it("renders a DrawerButton", () => {
     const { container } = render(<DrawerButton toggleId="menu-test" />);
 
-    expect(container.querySelector("svg")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Drawer Button" })
+    ).toBeInTheDocument();
+
     expect(container).toMatchSnapshot();
   });
 });

@@ -12,6 +12,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -56,6 +57,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -100,6 +102,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -144,6 +147,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -188,6 +192,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -232,6 +237,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -276,6 +282,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -320,6 +327,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -364,6 +372,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
@@ -408,6 +417,7 @@ exports[`bookGrid snapshot a BookGrid 1`] = `
         class="relative flex flex-col w-28"
       >
         <figure
+          aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
