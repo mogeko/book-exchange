@@ -12,7 +12,7 @@ Object {
     "uid": "1000",
     "username": "Britney.Skiles",
   },
-  "isError": undefined,
+  "error": undefined,
   "isLoading": false,
   "isValidating": false,
   "mutate": [Function],

@@ -2,8 +2,8 @@ async function fetcher(url: string, init?: RequestInit): Promise<Response> {
   const res = await fetch(url, init);
 
   if (!res.ok) {
-    const error = new NetworkError("No Content");
-    error.info = await res.json();
+    const error = new NetworkError("No connection!");
+    error.info = await res.text();
     error.status = res.status;
     throw error;
   }

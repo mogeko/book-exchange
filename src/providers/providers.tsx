@@ -1,11 +1,15 @@
 import MenusProvider from "@/providers/menusProvider";
 import fetcher, { type NetworkError } from "@/lib/fetcher";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
+import type { SnackbarOrigin } from "notistack";
 import { SWRConfig } from "swr";
 
 const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {
   return (
     <SWRConfig value={swrConfig}>
-      <MenusProvider>{children}</MenusProvider>
+      <SnackbarProvider anchorOrigin={snackbarOrigin}>
+        <MenusProvider>{children}</MenusProvider>
+      </SnackbarProvider>
     </SWRConfig>
   );
 };
@@ -21,8 +25,13 @@ const swrConfig = {
   fetcher,
   // Global Error handler
   onError: (err: NetworkError) => {
-    console.error(err);
+    enqueueSnackbar(err.message, { variant: "error", preventDuplicate: true });
   },
+};
+
+const snackbarOrigin: SnackbarOrigin = {
+  vertical: "bottom",
+  horizontal: "right",
 };
 
 interface WrapProviderProps {

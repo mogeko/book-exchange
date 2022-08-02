@@ -5,7 +5,7 @@ import { useSWRConfig } from "swr";
 import { useEffect } from "react";
 
 const RandomPage: NextPage = () => {
-  const { data, isError, isLoading } = useQuery<ResType>("/api/random", {});
+  const { data, error, isLoading } = useQuery<ResType>("/api/random", {});
   const { cache } = useSWRConfig();
   const router = useRouter();
 
@@ -16,7 +16,7 @@ const RandomPage: NextPage = () => {
     }
   }, [router, data, cache]);
 
-  if (isError) return <div>Oooops! Jumping failed!</div>;
+  if (error) return <div>Oooops! Jumping failed!</div>;
   return (
     <div>
       We will jump to {isLoading ? <span>...</span> : <span>{data?.url}</span>}

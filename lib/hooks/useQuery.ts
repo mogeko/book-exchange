@@ -8,12 +8,11 @@ function useQuery<T, E = any>(
   opts: SWRConfiguration<T, E> = {}
 ) {
   const query = url ? handleQuery(url, param) : null;
-  const { data, error, ...otherRes } = useSWR<T, E>(query, opts);
+  const { data, ...otherRes } = useSWR<T, E>(query, opts);
 
   return {
     data: data,
-    isLoading: !error && !data,
-    isError: error,
+    isLoading: !data,
     ...otherRes,
   };
 }
@@ -22,12 +21,11 @@ export function useQueryInfinite<T, E = any>(
   getKey: (index: number, previous: T | null) => string | null,
   opts: SWRInfiniteConfiguration<T, E> = {}
 ) {
-  const { data, error, ...otherRes } = useSWRInfinite<T, E>(getKey, opts);
+  const { data, ...otherRes } = useSWRInfinite<T, E>(getKey, opts);
 
   return {
     data: data,
-    isLoading: !error && !data,
-    isError: error,
+    isLoading: !data,
     ...otherRes,
   };
 }

@@ -41,8 +41,8 @@ const UserBar: React.FC = () => {
 };
 
 const UserAvatar: React.FC = () => {
-  const { data, isError, isLoading } = useUser("1");
-  if (isError) return <VscError className="w-6 h-6 text-error" />;
+  const { data, error, isLoading } = useUser("1");
+  if (error) return <VscError className="w-6 h-6 text-error" />;
   if (isLoading) return <VscLoading className="animate-spin w-6 h-6" />;
   if (!data) return <HiUser className="h-6 w-6" aria-hidden="true" />;
   return <Image src={data.avatar!} width={24} height={24} alt="User avatar" />;
