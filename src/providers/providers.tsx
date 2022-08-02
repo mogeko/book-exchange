@@ -1,4 +1,3 @@
-import MessageProvider from "@/providers/msgProvider";
 import MenusProvider from "@/providers/menusProvider";
 import fetcher, { type NetworkError } from "@/lib/fetcher";
 import { SWRConfig } from "swr";
@@ -6,9 +5,7 @@ import { SWRConfig } from "swr";
 const WrapProvider: React.FC<WrapProviderProps> = ({ children }) => {
   return (
     <SWRConfig value={swrConfig}>
-      <MessageProvider>
-        <MenusProvider>{children}</MenusProvider>
-      </MessageProvider>
+      <MenusProvider>{children}</MenusProvider>
     </SWRConfig>
   );
 };

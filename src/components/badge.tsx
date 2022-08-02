@@ -1,9 +1,8 @@
-import { MessageContext } from "@/providers/msgProvider";
-import { useContext } from "react";
+import useMessage from "@/lib/hooks/useMessage";
 
 const Badge: React.FC<BadgeProps> = ({ badgeKey, className }) => {
-  const msg = useContext(MessageContext);
-  const count = msg?.filter((m) => m.key === badgeKey).length;
+  const { data } = useMessage();
+  const count = data?.filter((m) => m.key === badgeKey).length;
   return count ? <span className={`badge ${className}`}>{count}</span> : null;
 };
 

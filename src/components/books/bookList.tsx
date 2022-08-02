@@ -18,14 +18,18 @@ const BookList: React.FC<ParamProps> = (query) => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col" role="list" aria-label="Books List">
         {state.isLoading ? (
           Array.from({ length: 10 }, (_, i) => <LongCard.Skeleton key={i} />)
         ) : (
           <div>
             {data?.map((books, i) => {
               return books.map((book, j) => {
-                return <LongCard key={`${i}-${j}`} {...book} />;
+                return (
+                  <div key={`${i}-${j}`} role="listitem" aria-label="Book Item">
+                    <LongCard {...book} />
+                  </div>
+                );
               });
             })}
           </div>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BookView snapshot a BookView 1`] = `
+exports[`BookView render a BookView 1`] = `
 <div>
   <div
     class="flex flex-col"
@@ -8,7 +8,7 @@ exports[`BookView snapshot a BookView 1`] = `
     <h1
       class="text-2xl w-full py-2"
     >
-      catch
+      text
     </h1>
     <div
       class="my-4 flex w-full gap-3"
@@ -24,7 +24,7 @@ exports[`BookView snapshot a BookView 1`] = `
             style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
           >
             <img
-              alt="catch"
+              alt="text"
               data-nimg="fill"
               decoding="async"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -47,7 +47,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            Gracie
+            Gardner
           </span>
         </div>
         <div
@@ -60,7 +60,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            Cremin, Grady and Yost
+            Mante Inc
           </span>
         </div>
         <div
@@ -73,7 +73,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            Aut laborum perferendis harum quo minus quis consequatur natus nihil.
+            Officiis adipisci rerum dolorum cum et totam eveniet culpa qui.
           </span>
         </div>
         <div
@@ -99,7 +99,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            2022
+            2021
           </span>
         </div>
         <div
@@ -112,7 +112,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            978-1430433573
+            978-1798832496
           </span>
         </div>
         <div
@@ -125,7 +125,7 @@ exports[`BookView snapshot a BookView 1`] = `
             :
           </span>
           <span>
-            468
+            349
              pages
           </span>
         </div>
@@ -145,7 +145,7 @@ exports[`BookView snapshot a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Aut earum harum a nulla impedit. Magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut. Quia exercitationem sequi voluptates delectus ullam laborum. Porro et consequuntur harum. Hic praesentium maiores qui asperiores qui vero accusantium nemo voluptas. Sequi voluptatum perferendis aperiam qui assumenda velit necessitatibus. Adipisci animi molestias aspernatur quas vel consequatur veniam. Nisi voluptas eos. Facere laboriosam rerum quidem possimus nisi sit totam veniam. Repellendus magni et similique consequatur vel officiis ullam. Est quidem ullam eum voluptas porro et voluptates doloribus. Aut minima reprehenderit commodi nemo ducimus atque. Minima neque natus consequatur pariatur odit quaerat. Facere voluptatem quidem quia omnis et. Neque cum eveniet magnam vitae sint. Fugit quae consequatur quis quibusdam dolor. Quos odio quam nihil rerum quia assumenda sequi perspiciatis exercitationem. Reprehenderit quia molestiae aut quia voluptatem. Voluptatum dolore officiis facere ea hic nihil voluptatem ut. Consequuntur accusamus similique odit. Repellat culpa explicabo. In ex harum veniam. Corporis fuga saepe facilis. Ut labore similique molestias nihil. Aspernatur reprehenderit neque natus. Consequatur blanditiis odio ad blanditiis ab. Qui qui odit sit dignissimos voluptas veniam. Hic placeat corrupti natus qui eius magni autem iusto. Libero fugit consequatur voluptatibus nisi voluptas enim hic voluptate. Aliquam impedit consectetur. Praesentium libero quisquam. In eligendi labore. Numquam quis voluptas. Aut aut perferendis laborum autem. Sunt et dolore reprehenderit rerum dolorem itaque. In modi minima. Quisquam velit asperiores nemo ipsam iste amet at cumque rerum. Velit est id autem soluta deleniti voluptas. Aut libero nihil iusto deserunt qui id eveniet officia totam. Minima quasi nihil itaque quos assumenda et. Impedit rerum enim id. At fugit alias aliquid quidem enim. Ab repellendus sunt suscipit adipisci nulla odit. Est aut exercitationem non quia ratione itaque molestias qui libero. Odio corporis in. Aut ipsam soluta minus vel vel facere autem modi quos. Eaque voluptas ea quibusdam totam dolor officiis et. Est corporis delectus voluptas est non fugit occaecati numquam dolor. Ipsa consequatur et. Laboriosam nulla eveniet voluptatem fugiat tempore veritatis vitae cumque dolorem. Est tempora itaque cumque nesciunt unde.
+          Rerum distinctio atque consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a. Impedit occaecati magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut.
         </p>
         <button
           class="btn btn-sm btn-link"
@@ -182,7 +182,7 @@ exports[`BookView snapshot a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Sed et pariatur nihil aut vero impedit quidem. Non sequi voluptas non illo nemo voluptatibus deserunt amet. Soluta culpa itaque esse sint quis excepturi. Quia consequatur excepturi vel doloribus tempora. Illum est aliquid sapiente dolores neque dignissimos et. Accusamus et porro doloribus laboriosam voluptatibus minus voluptatibus. Quo assumenda voluptas unde neque sit sit id aut. Maxime quidem inventore quasi impedit deleniti nobis sed perferendis. Iusto occaecati illo voluptates perspiciatis sequi a doloremque sint. Quod quaerat quod eaque ducimus aperiam mollitia eum ullam voluptas. Temporibus fugiat qui et corrupti. At quidem cumque facilis. Perspiciatis quo placeat aspernatur quos. Commodi placeat consequatur sit inventore aspernatur fugiat molestiae distinctio vel. Quasi saepe quo nihil perspiciatis eveniet alias est. Molestiae esse autem iusto quia rem maxime reprehenderit autem. Optio et dolorum autem porro. Aut consequatur pariatur soluta magnam laborum exercitationem eligendi. Dolor corrupti earum rerum non. Vero aperiam animi eum vero aspernatur officiis repellendus commodi. Qui in maxime. Ipsa eaque debitis ab consequatur provident nihil fuga qui. Delectus tenetur sint et et nemo. Deleniti fuga eveniet sit fugiat ea consequatur repellendus. Autem quis fugit est nihil itaque inventore aut. Est placeat delectus veritatis veritatis ipsa voluptatum ut ratione. Aut rerum vel sit blanditiis voluptatum autem occaecati ratione animi. Iure odio delectus veniam neque tenetur natus. Similique quo aperiam beatae natus sequi accusamus. Ea autem sapiente quod ex. Qui sit qui eum qui exercitationem autem iure. Eligendi cupiditate sed. Deserunt quia consequuntur aut placeat sequi. Nulla voluptatem unde occaecati. Eum molestiae a sunt labore ea corporis. Et sed ullam tempora. Et officiis aut magni blanditiis eveniet doloribus. Excepturi autem dolorem tenetur reprehenderit. Excepturi qui voluptatum delectus. Nihil quidem hic est temporibus provident cumque est. Totam voluptas et in dolores non. Et id ea minima repellendus quia sed porro. Suscipit aut accusamus minus est ea iste vitae et eaque. Sed quidem modi id. Aperiam qui quis minus rerum ut. Esse nihil aut possimus autem. Illo rerum et quia molestiae repudiandae non. Numquam alias quos provident quis. Molestiae et commodi ullam occaecati omnis. Magni iusto autem consequatur reiciendis voluptatibus doloremque ut qui iusto. Tenetur atque sed. Ut et omnis praesentium sed quod aspernatur tempore.
+          Sequi voluptates delectus ullam laborum. Porro et consequuntur harum. Hic praesentium maiores qui asperiores qui vero accusantium nemo voluptas. Sequi voluptatum perferendis aperiam qui assumenda velit necessitatibus. Adipisci animi molestias aspernatur quas vel consequatur veniam. Nisi voluptas eos. Facere laboriosam rerum quidem possimus nisi sit totam veniam. Repellendus magni et similique consequatur vel officiis ullam. Est quidem ullam eum voluptas porro et voluptates doloribus. Aut minima reprehenderit commodi nemo ducimus atque.
         </p>
         <button
           class="btn btn-sm btn-link"
@@ -209,216 +209,620 @@ exports[`BookView snapshot a BookView 1`] = `
 </div>
 `;
 
-exports[`BookView with abnormal state snapshot a BookView when error occurred 1`] = `
+exports[`Books Page renders a Books Page 1`] = `
 <div>
   <div
-    class="alert alert-error shadow-lg"
+    class="drawer"
   >
-    <div>
-      <svg
-        class="w-6 h-6"
-        fill="currentColor"
-        height="1em"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 16 16"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M8.6 1c1.6.1 3.1.9 4.2 2 1.3 1.4 2 3.1 2 5.1 0 1.6-.6 3.1-1.6 4.4-1 1.2-2.4 2.1-4 2.4-1.6.3-3.2.1-4.6-.7-1.4-.8-2.5-2-3.1-3.5C.9 9.2.8 7.5 1.3 6c.5-1.6 1.4-2.9 2.8-3.8C5.4 1.3 7 .9 8.6 1zm.5 12.9c1.3-.3 2.5-1 3.4-2.1.8-1.1 1.3-2.4 1.2-3.8 0-1.6-.6-3.2-1.7-4.3-1-1-2.2-1.6-3.6-1.7-1.3-.1-2.7.2-3.8 1-1.1.8-1.9 1.9-2.3 3.3-.4 1.3-.4 2.7.2 4 .6 1.3 1.5 2.3 2.7 3 1.2.7 2.6.9 3.9.6zM7.9 7.5L10.3 5l.7.7-2.4 2.5 2.4 2.5-.7.7-2.4-2.5-2.4 2.5-.7-.7 2.4-2.5-2.4-2.5.7-.7 2.4 2.5z"
-          fill-rule="evenodd"
-        />
-      </svg>
-      <span>
-        Network Error!
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`BookView with abnormal state snapshot a BookView when loading 1`] = `
-<div>
-  <div
-    class="animate-pulse"
-  >
+    <input
+      aria-hidden="true"
+      class="drawer-toggle"
+      id="mobile-menu"
+      type="checkbox"
+    />
     <div
-      class="flex flex-col"
+      class="drawer-content"
     >
       <div
-        class="h-6 w-40 my-1 bg-slate-700 rounded"
+        class="flex flex-col min-h-screen min-w-full w-full"
+      >
+        <div
+          class="min-w-full"
+        >
+          <div
+            class="hidden h-7 bg-black justify-between sm:flex"
+            data-theme="dracula"
+          >
+            <nav
+              class="navbar min-h-0 flex-"
+            >
+              <a
+                class="btn btn-link btn-xs gap-1 text-gray-400 hover:text-primary focus:text-primary-focus"
+                href="/#"
+              >
+                My library
+              </a>
+              <a
+                class="btn btn-link btn-xs gap-1 text-gray-400 hover:text-primary focus:text-primary-focus"
+                href="/#"
+              >
+                Ranking
+              </a>
+              <a
+                class="btn btn-link btn-xs gap-1 text-gray-400 hover:text-primary focus:text-primary-focus"
+                href="/#"
+              >
+                Quote
+              </a>
+              <a
+                class="btn btn-link btn-xs text-gray-400 hover:text-primary focus:text-primary-focus"
+                href="/random"
+              >
+                I'm Feeling Lucky!
+              </a>
+            </nav>
+            <div
+              class="justify-end"
+            >
+              <div
+                class="dropdown dropdown-end"
+              >
+                <label
+                  class="hidden sm:block normal-case"
+                  tabindex="0"
+                >
+                  <div
+                    class="animate-pulse w-20 mr-4 h-2 bg-slate-700 rounded"
+                  />
+                </label>
+                <label
+                  class="btn btn-ghost btn-circle avatar sm:hidden"
+                  tabindex="0"
+                >
+                  <div
+                    class="w-6 rounded-full"
+                  >
+                    <svg
+                      class="animate-spin w-6 h-6"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M13.917 7A6.002 6.002 0 0 0 2.083 7H1.071a7.002 7.002 0 0 1 13.858 0h-1.012z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </label>
+                <ul
+                  aria-label="User Menu"
+                  class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
+                  role="menu"
+                  tabindex="0"
+                >
+                  <li
+                    aria-label="User Menu Item"
+                    role="menuitem"
+                  >
+                    <a
+                      class="justify-between"
+                      href="/#"
+                    >
+                      <span>
+                        Profile
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    aria-label="User Menu Item"
+                    role="menuitem"
+                  >
+                    <a
+                      class="justify-between"
+                      href="/#"
+                    >
+                      <span>
+                        Settings
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    aria-label="User Menu Item"
+                    role="menuitem"
+                  >
+                    <button>
+                      Sign out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-inherit p-2 md:p-0 md:bg-base-300"
+          >
+            <header
+              class="navbar p-0 m-auto rounded-md max-w-screen-lg bg-base-300 md:rounded-none"
+            >
+              <div
+                class="navbar-start sm:hidden"
+              >
+                <label
+                  aria-label="Drawer Button"
+                  class="btn btn-ghost btn-circle"
+                  for="mobile-menu"
+                  role="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <div
+                class="navbar-center sm:navbar-start"
+              >
+                <div
+                  class="flex justify-start"
+                >
+                  <a
+                    class="btn gap-1 btn-ghost normal-case"
+                    href="/"
+                  >
+                    <span
+                      class="sr-only"
+                    >
+                      Logo
+                    </span>
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2724%27%20height=%2724%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="logo"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                    <h1
+                      class="text-xl font-bold text-base-content"
+                    >
+                      Bookworm
+                    </h1>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="navbar-end"
+              >
+                <div
+                  class="hidden md:block relative"
+                >
+                  <svg
+                    class="h-6 w-6 absolute top-3 left-3 text-gray-400"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <div
+                    class="form-control"
+                  >
+                    <input
+                      aria-label="Search Bar"
+                      class="input bg-base-300 text-xl w-96 pl-10"
+                      placeholder="Search..."
+                      role="search"
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <a
+                  class="btn btn-ghost btn-circle md:hidden"
+                  href="/#"
+                  role="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    class="sr-only"
+                  >
+                    Search
+                  </span>
+                </a>
+                <div
+                  class="sm:hidden"
+                >
+                  <div
+                    class="dropdown dropdown-end"
+                  >
+                    <label
+                      class="hidden sm:block normal-case"
+                      tabindex="0"
+                    >
+                      <div
+                        class="animate-pulse w-20 mr-4 h-2 bg-slate-700 rounded"
+                      />
+                    </label>
+                    <label
+                      class="btn btn-ghost btn-circle avatar sm:hidden"
+                      tabindex="0"
+                    >
+                      <div
+                        class="w-6 rounded-full"
+                      >
+                        <svg
+                          class="animate-spin w-6 h-6"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 16 16"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M13.917 7A6.002 6.002 0 0 0 2.083 7H1.071a7.002 7.002 0 0 1 13.858 0h-1.012z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </label>
+                    <ul
+                      aria-label="User Menu"
+                      class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
+                      role="menu"
+                      tabindex="0"
+                    >
+                      <li
+                        aria-label="User Menu Item"
+                        role="menuitem"
+                      >
+                        <a
+                          class="justify-between"
+                          href="/#"
+                        >
+                          <span>
+                            Profile
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        aria-label="User Menu Item"
+                        role="menuitem"
+                      >
+                        <a
+                          class="justify-between"
+                          href="/#"
+                        >
+                          <span>
+                            Settings
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        aria-label="User Menu Item"
+                        role="menuitem"
+                      >
+                        <button>
+                          Sign out
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </header>
+          </div>
+        </div>
+        <main
+          class="flex-1 max-w-screen-lg w-full mx-auto p-6 md:p-4"
+        >
+          <div
+            class="animate-pulse"
+          >
+            <div
+              class="flex flex-col"
+            >
+              <div
+                class="h-6 w-40 my-1 bg-slate-700 rounded"
+              />
+              <div
+                class="my-4 flex w-full gap-3"
+              >
+                <div
+                  class="relative w-32 h-48 bg-slate-700 rounded"
+                />
+                <div
+                  class="flex flex-col gap-3"
+                >
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                  <div
+                    class="inline-flex gap-2"
+                  >
+                    <div
+                      class="w-14 h-2 bg-slate-700 rounded"
+                    />
+                    <div
+                      class="w-32 h-2 bg-slate-700 rounded"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col items-start my-2"
+              >
+                <div
+                  class="h-4 w-44 mb-4 bg-slate-700 rounded"
+                />
+                <div
+                  class="inline-flex w-full mb-3"
+                >
+                  <div
+                    class="w-8"
+                  />
+                  <div
+                    class="w-full h-2 bg-slate-700 rounded"
+                  />
+                </div>
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-64 h-2 bg-slate-700 rounded"
+                />
+              </div>
+              <div
+                class="flex flex-col items-start my-2"
+              >
+                <div
+                  class="h-4 w-44 mb-4 bg-slate-700 rounded"
+                />
+                <div
+                  class="inline-flex w-full mb-3"
+                >
+                  <div
+                    class="w-8"
+                  />
+                  <div
+                    class="w-full h-2 bg-slate-700 rounded"
+                  />
+                </div>
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                />
+                <div
+                  class="w-64 h-2 bg-slate-700 rounded"
+                />
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer
+          aria-label="Footer"
+          class="footer footer-center p-4 bg-base-300 text-base-content"
+        >
+          <div>
+            <p
+              aria-label="copyright"
+              role="presentation"
+            >
+              Copyright © 
+              2022
+              , All right reserved
+               by Zheng Junyi
+              .
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div
+      class="drawer-side"
+    >
+      <label
+        class="drawer-overlay"
+        for="mobile-menu"
       />
-      <div
-        class="my-4 flex w-full gap-3"
+      <ul
+        aria-label="Drawer Menu"
+        class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content"
+        role="menu"
       >
-        <div
-          class="relative w-32 h-48 bg-slate-700 rounded"
-        />
-        <div
-          class="flex flex-col gap-3"
+        <li
+          role="menuitem"
         >
-          <div
-            class="inline-flex gap-2"
+          <a
+            class="justify-between"
+            href="/#"
           >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-          <div
-            class="inline-flex gap-2"
-          >
-            <div
-              class="w-14 h-2 bg-slate-700 rounded"
-            />
-            <div
-              class="w-32 h-2 bg-slate-700 rounded"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="flex flex-col items-start my-2"
-      >
-        <div
-          class="h-4 w-44 mb-4 bg-slate-700 rounded"
-        />
-        <div
-          class="inline-flex w-full mb-3"
+            <span>
+              My library
+            </span>
+          </a>
+        </li>
+        <li
+          role="menuitem"
         >
-          <div
-            class="w-8"
-          />
-          <div
-            class="w-full h-2 bg-slate-700 rounded"
-          />
-        </div>
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-64 h-2 bg-slate-700 rounded"
-        />
-      </div>
-      <div
-        class="flex flex-col items-start my-2"
-      >
-        <div
-          class="h-4 w-44 mb-4 bg-slate-700 rounded"
-        />
-        <div
-          class="inline-flex w-full mb-3"
+          <a
+            class="justify-between"
+            href="/#"
+          >
+            <span>
+              Ranking
+            </span>
+          </a>
+        </li>
+        <li
+          role="menuitem"
         >
-          <div
-            class="w-8"
-          />
-          <div
-            class="w-full h-2 bg-slate-700 rounded"
-          />
-        </div>
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-full mb-3 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="w-64 h-2 bg-slate-700 rounded"
-        />
-      </div>
+          <a
+            class="justify-between"
+            href="/#"
+          >
+            <span>
+              Quote
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
