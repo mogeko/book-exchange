@@ -11,7 +11,6 @@ const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
-    "^@/__mocks__/(.*)$": "<rootDir>/src/__mocks__/$1",
     "^@/components/(.*)$": "<rootDir>/src/components/$1",
     "^@/layouts/(.*)$": "<rootDir>/src/layouts/$1",
     "^@/lib/(.*)$": "<rootDir>/lib/$1",

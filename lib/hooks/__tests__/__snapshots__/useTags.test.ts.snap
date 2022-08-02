@@ -53,7 +53,7 @@ Object {
       "Oklahoma",
     ],
   },
-  "isError": undefined,
+  "error": undefined,
   "isLoading": false,
   "isValidating": false,
   "mutate": [Function],
