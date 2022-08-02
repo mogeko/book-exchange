@@ -1,7 +1,6 @@
 import { DefaultLayout } from "@/layouts/layout";
 import Box from "@/layouts/boxes";
 import { useBook } from "@/lib/hooks/useBooks";
-import Alert from "@/components/base/alert";
 import Skeleton from "@/components/base/skeleton";
 import withReadMore from "@/components/readMore";
 import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
@@ -18,9 +17,8 @@ const BookPage: NextPage = () => {
 };
 
 export const BookView: React.FC<BookViewProps> = ({ id }) => {
-  const { data, isError, isLoading } = useBook(id);
+  const { data, isLoading } = useBook(id);
 
-  if (isError) return <Alert.Error message="Network Error!" />;
   if (isLoading) return <BookViewSkeleton />;
   return (
     <Box>

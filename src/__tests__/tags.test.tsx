@@ -1,28 +1,33 @@
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen, waitFor } from "@/lib/test-utils";
 import useRouterMock from "@/__mocks__/useRouter";
-import * as tagsCotroller from "@/layouts/tagsCotroller";
-import * as bookList from "@/components/books/bookList";
+import useOnScreenMock from "@/__mocks__/useOnScreenMock";
 import Tags from "@/pages/tags/[tag]";
 
 describe("Tags", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     useRouterMock.returnResult({ query: { tag: "test" } });
-    jest.spyOn(tagsCotroller, "default").mockImplementation(() => <></>);
-    jest.spyOn(bookList, "default").mockImplementation(() => <></>);
+    useOnScreenMock.not.visiable();
   });
 
-  afterAll(() => {
-    jest.clearAllMocks();
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
-  it("renders a Tags", () => {
+  it("renders a Tags", async () => {
     render(<Tags />);
 
     expect(useRouterMock.target).toBeCalledWith();
-    expect(bookList.default).toBeCalled();
+
     expect(
       screen.getByRole("heading", { name: /Tag: test/i })
     ).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("list", { name: /books list/i })
+      ).toBeInTheDocument();
+      expect(screen.getAllByRole("listitem")).toHaveLength(10);
+    });
   });
 });

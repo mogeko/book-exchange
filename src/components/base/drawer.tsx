@@ -17,9 +17,13 @@ const MenusButtons: React.FC = () => {
   const menus = useContext(MenusContext);
 
   return (
-    <ul className="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
+    <ul
+      className="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content"
+      aria-label="Drawer Menu"
+      role="menu"
+    >
       {Object.entries(menus.root).map(([key, [name, href]], index) => (
-        <li key={index}>
+        <li key={index} role="menuitem">
           <Link href={href}>
             <a className="justify-between">
               <span>{name}</span>
@@ -38,7 +42,12 @@ export const withDrawer = (
   const DrawerWrapper: React.FC<DrawerProps> = (props) => {
     return (
       <div className="drawer">
-        <input id={props.toggleId} type="checkbox" className="drawer-toggle" />
+        <input
+          id={props.toggleId}
+          type="checkbox"
+          className="drawer-toggle"
+          aria-hidden
+        />
         <div className="drawer-content">
           <WrappedComponent>{props.children}</WrappedComponent>
         </div>
@@ -51,7 +60,12 @@ export const withDrawer = (
 
 export const DrawerButton: React.FC<DrawerButtonProps> = ({ toggleId }) => {
   return (
-    <label htmlFor={toggleId} className="btn btn-ghost btn-circle">
+    <label
+      htmlFor={toggleId}
+      className="btn btn-ghost btn-circle"
+      aria-label="Drawer Button"
+      role="button"
+    >
       <HiMenu className="h-6 w-6" aria-hidden="true" />
     </label>
   );

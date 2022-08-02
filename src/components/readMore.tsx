@@ -8,9 +8,8 @@ function withReadMore(Component: React.FC<ComponentProps>, szie: Size = "sm") {
     const [isOpen, setIsOpen] = useState(false);
 
     const ReadMore = () => {
-      const { data, isError, isLoading } = useQuery<QueryRes>(url);
+      const { data, isLoading } = useQuery<QueryRes>(url);
 
-      if (isError) return <Alert.Error message="Network Error!" />;
       return isLoading ? (
         <div className="flex flex-col items-start">
           <Component>{foldedData?.text}</Component>

@@ -12,6 +12,7 @@ const Pagination: React.FC<PaginationProps> = ({ length, setIndex, index }) => {
     <div className="btn-group mx-auto">
       <button className="btn btn-xs" onClick={gotoPrevPage}>
         <FaCaretLeft />
+        <span className="sr-only">Previous Page</span>
       </button>
       {Array.from({ length }, (_, i) => (
         <button
@@ -25,6 +26,7 @@ const Pagination: React.FC<PaginationProps> = ({ length, setIndex, index }) => {
       ))}
       <button className="btn btn-xs" onClick={gotoNextPage}>
         <FaCaretRight />
+        <span className="sr-only">Next Page</span>
       </button>
     </div>
   ) : (

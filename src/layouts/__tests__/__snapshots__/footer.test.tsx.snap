@@ -1,16 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer snapshot a footer 1`] = `
+exports[`Footer create a footer with author 1`] = `
 <div>
   <footer
+    aria-label="Footer"
     class="footer footer-center p-4 bg-base-300 text-base-content"
   >
     <div>
-      <p>
+      <p
+        aria-label="copyright"
+        role="presentation"
+      >
+        Copyright © 
+        2022
+        , All right reserved
+         by Zheng Junyi
+        .
+      </p>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`Footer create a footer without author 1`] = `
+<div>
+  <footer
+    aria-label="Footer"
+    class="footer footer-center p-4 bg-base-300 text-base-content"
+  >
+    <div>
+      <p
+        aria-label="copyright"
+        role="presentation"
+      >
         Copyright © 
         1997 - 2022
         , All right reserved
-         by Zheng Junyi
         .
       </p>
     </div>

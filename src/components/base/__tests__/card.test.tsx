@@ -1,25 +1,20 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@/lib/test-utils";
-import { exampleData } from "@/__mocks__/useBooksMock";
 import Card, { LongCard } from "@/components/base/card";
 
 describe("Card", () => {
-  it("renders a book card correctly", () => {
+  it("renders a book card correctly", async () => {
+    const [exampleData] = await fetch("/api/books").then((res) => res.json());
     const { container } = render(<Card {...exampleData} />);
 
-    expect(container.querySelector("figure a")).toHaveAttribute(
-      "href",
-      `/books/${exampleData.id}`
-    );
-    expect(container.querySelector("figure img")).toBeInTheDocument();
-    expect(container.querySelector("h2")?.textContent).toBe(exampleData.title);
-    expect(container.querySelector("p")?.textContent).toBe(
-      exampleData.mate.author
-    );
-  });
-
-  it("snapshot a book card", () => {
-    const { container } = render(<Card {...exampleData} />);
+    expect(
+      screen.getByRole("figure", { name: "Cover Image" })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: screen.getByRole("heading").innerHTML })
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("link")).toHaveLength(2);
 
     expect(container).toMatchSnapshot();
   });
@@ -30,22 +25,18 @@ describe("Card", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("render a long card", () => {
+  it("render a long card", async () => {
+    const [exampleData] = await fetch("/api/books").then((res) => res.json());
     const { container } = render(<LongCard {...exampleData} />);
 
-    expect(container.querySelector("figure a")).toHaveAttribute(
-      "href",
-      `/books/${exampleData.id}`
-    );
-    expect(container.querySelector("figure img")).toBeInTheDocument();
-    expect(container.querySelector("h2")?.textContent).toBe(exampleData.title);
-    expect(container.querySelector("p")?.textContent).toBe(
-      exampleData.mate.author
-    );
-  });
-
-  it("snapshot a long card", () => {
-    const { container } = render(<LongCard {...exampleData} />);
+    expect(
+      screen.getByRole("figure", { name: "Cover Image" })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: screen.getByRole("heading").innerHTML })
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("link")).toHaveLength(2);
 
     expect(container).toMatchSnapshot();
   });

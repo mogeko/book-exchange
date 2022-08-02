@@ -25,8 +25,7 @@ const User: React.FC = () => {
 };
 
 const UserBar: React.FC = () => {
-  const { data, isError, isLoading } = useUser("1");
-  if (isError) return <div className="text-error">Login Error</div>;
+  const { data, isLoading } = useUser("1");
   if (isLoading) return <Skeleton.Line className="animate-pulse w-20 mr-4" />;
   if (!data)
     return (
@@ -56,9 +55,11 @@ const UserMenu: React.FC = () => {
     <ul
       tabIndex={0}
       className="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
+      role="menu"
+      aria-label="User Menu"
     >
       {Object.entries(menus.user).map(([key, [name, href]], index) => (
-        <li key={index}>
+        <li key={index} role="menuitem" aria-label="User Menu Item">
           <Link href={href}>
             <a className="justify-between">
               <span>{name}</span>
@@ -67,7 +68,7 @@ const UserMenu: React.FC = () => {
           </Link>
         </li>
       ))}
-      <li>
+      <li role="menuitem" aria-label="User Menu Item">
         <button>Sign out</button>
       </li>
     </ul>

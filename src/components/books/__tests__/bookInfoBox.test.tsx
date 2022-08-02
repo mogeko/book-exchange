@@ -1,21 +1,20 @@
-import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { exampleData } from "@/__mocks__/useBookMock";
+import { render, waitFor, screen } from "@/lib/test-utils";
 import BookInfo from "@/components/books/bookInfoBox";
 
+const exampleCover = "https://via.placeholder.com/150";
+
 describe("BookInfo", () => {
-  it("renders a BookInfo without meta data", () => {
+  it("renders a BookInfo without meta data", async () => {
     const { container } = render(
-      <BookInfo title="title" cover={exampleData.cover} />
+      <BookInfo title="title" cover={exampleCover} />
     );
 
-    expect(container.querySelector("h1")?.textContent).toBeUndefined();
-  });
-
-  it("snapshot a BookInfo", () => {
-    const { container } = render(
-      <BookInfo title="title" cover={exampleData.cover} />
-    );
+    await waitFor(() => {
+      expect(
+        screen.getByRole("figure", { name: "Cover Image" })
+      ).toBeInTheDocument();
+    });
 
     expect(container).toMatchSnapshot();
   });

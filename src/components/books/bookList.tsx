@@ -1,5 +1,4 @@
 import { LongCard } from "@/components/base/card";
-import Alert from "@/components/base/alert";
 import { useBooksInfinite } from "@/lib/hooks/useBooks";
 import useOnScreen from "@/lib/hooks/useOnScreen";
 import { useEffect, useRef } from "react";
@@ -19,15 +18,18 @@ const BookList: React.FC<ParamProps> = (query) => {
 
   return (
     <>
-      <div className="flex flex-col">
-        {state.isError && <Alert.Error message="Network Error!" />}
+      <div className="flex flex-col" role="list" aria-label="Books List">
         {state.isLoading ? (
           Array.from({ length: 10 }, (_, i) => <LongCard.Skeleton key={i} />)
         ) : (
           <div>
             {data?.map((books, i) => {
               return books.map((book, j) => {
-                return <LongCard key={`${i}-${j}`} {...book} />;
+                return (
+                  <div key={`${i}-${j}`} role="listitem" aria-label="Book Item">
+                    <LongCard {...book} />
+                  </div>
+                );
               });
             })}
           </div>

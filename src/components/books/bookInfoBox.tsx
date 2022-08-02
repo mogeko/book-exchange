@@ -4,7 +4,10 @@ import Image from "next/image";
 
 const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
   <div className="my-4 flex w-full gap-3">
-    <figure className="flex items-center justify-center">
+    <figure
+      className="flex items-center justify-center"
+      aria-label="Cover Image"
+    >
       <div className="relative w-32 h-48">
         <Image src={cover!} layout="fill" alt={title} />
       </div>

@@ -1,128 +1,56 @@
-import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { faker } from "@faker-js/faker";
-import useQueryMock from "@/__mocks__/useQueryMock";
+import { render, screen, fireEvent, waitFor } from "@/lib/test-utils";
 import withReadMore from "@/components/readMore";
 
 const ReadMore = withReadMore(({ children }) => <div>{children}</div>);
-const exampleData = faker.lorem.paragraph(50);
-const exampleFoldedData = {
-  text: faker.lorem.paragraph(10),
+const exampleData = {
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   is_folded: true,
 };
 
 describe("ReadMore", () => {
-  beforeEach(() => {
-    useQueryMock.returnResult({ data: { text: exampleData } });
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  it("renders a ReadMore without ReadMore button", () => {
+  it("renders a ReadMore without ReadMore button", async () => {
     const { container } = render(
       <ReadMore
-        foldedData={{ ...exampleFoldedData, is_folded: false }}
-        url="/example/path"
+        foldedData={{ ...exampleData, is_folded: false }}
+        url="/api/books/bk1000/desc"
       />
     );
 
-    expect(screen.getByText(exampleFoldedData.text)).toBeInTheDocument();
-    expect(container.querySelector("button")).not.toBeInTheDocument();
-  });
-
-  it("snapshots a ReadMore without ReadMore button", () => {
-    const { container } = render(
-      <ReadMore
-        foldedData={{ ...exampleFoldedData, is_folded: false }}
-        url="/example/path"
-      />
-    );
+    expect(screen.getByText(exampleData.text)).toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
 
     expect(container).toMatchSnapshot();
   });
 
   it("renders a ReadMore with ReadMore button", () => {
     const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
+      <ReadMore foldedData={exampleData} url="/api/books/bk1000/desc" />
     );
 
-    expect(screen.getByText(exampleFoldedData.text)).toBeInTheDocument();
-    expect(container.querySelector("button")?.textContent).toBe(" Read more");
-  });
+    expect(screen.getByText(exampleData.text)).toBeInTheDocument();
 
-  it("snapshots a ReadMore with ReadMore button", () => {
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
+    expect(
+      screen.getByRole("button", { name: /read more/i })
+    ).toBeInTheDocument();
 
     expect(container).toMatchSnapshot();
   });
 
-  it("renders a ReadMore with ReadLess button", () => {
+  it("renders a ReadMore with ReadLess button", async () => {
     const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
+      <ReadMore foldedData={exampleData} url="/api/books/bk1000/desc" />
     );
-    fireEvent.click(container.querySelector("button")!);
+    fireEvent.click(screen.getByRole("button", { name: /read more/i }));
 
-    expect(screen.getByText(exampleData)).toBeInTheDocument();
-    expect(container.querySelector("button")?.textContent).toBe(" Read less");
-  });
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
 
-  it("snapshots a ReadMore with ReadLess button", () => {
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
-    fireEvent.click(container.querySelector("button")!);
-
-    expect(container).toMatchSnapshot();
-  });
-});
-
-describe("ReadMore with abnormal state", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  it("renders a ReadMore when loading", () => {
-    useQueryMock.returnResult({ isLoading: true });
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
-    fireEvent.click(container.querySelector("button")!);
-
-    expect(screen.getByText(exampleFoldedData.text)).toBeInTheDocument();
-    expect(container.querySelector("button")?.textContent).toBe("Loading...");
-  });
-
-  it("snapshots a ReadMore when loading", () => {
-    useQueryMock.returnResult({ isLoading: true });
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
-    fireEvent.click(container.querySelector("button")!);
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it("renders a ReadMore when error", () => {
-    useQueryMock.returnResult({ isError: true });
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
-    fireEvent.click(container.querySelector("button")!);
-
-    expect(screen.getByText("Network Error!")).toBeInTheDocument();
-    expect(container.querySelector("button")).not.toBeInTheDocument();
-  });
-
-  it("snapshots a ReadMore when error", () => {
-    useQueryMock.returnResult({ isError: true });
-    const { container } = render(
-      <ReadMore foldedData={exampleFoldedData} url="/example/path" />
-    );
-    fireEvent.click(container.querySelector("button")!);
+    await waitFor(() => {
+      expect(screen.queryByRole(exampleData.text)).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /read less/i })
+      ).toBeInTheDocument();
+    });
 
     expect(container).toMatchSnapshot();
   });

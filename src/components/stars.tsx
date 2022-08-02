@@ -13,7 +13,7 @@ const StarsRate: React.FC<RateProps> = ({ rates }) => {
         if (x >= 10) return <IoIosStarHalf key={i} />;
         return <IoIosStarOutline key={i} />;
       })}
-      <span className="text-base ml-2">
+      <span className="text-base ml-2" role="presentation" aria-label="rates">
         {Math.min(Math.max(0, rates / 10), 10).toFixed(1)}
       </span>
     </div>

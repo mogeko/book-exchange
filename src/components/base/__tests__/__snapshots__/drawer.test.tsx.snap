@@ -1,10 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Drawer snapshot a DrawerButton 1`] = `
+exports[`Drawer renders a DrawerButton 1`] = `
 <div>
   <label
+    aria-label="Drawer Button"
     class="btn btn-ghost btn-circle"
     for="menu-test"
+    role="button"
   >
     <svg
       aria-hidden="true"
@@ -27,12 +29,13 @@ exports[`Drawer snapshot a DrawerButton 1`] = `
 </div>
 `;
 
-exports[`Drawer snapshot a globale menu 1`] = `
+exports[`Drawer renders a globale menu 1`] = `
 <div>
   <div
     class="drawer"
   >
     <input
+      aria-hidden="true"
       class="drawer-toggle"
       id="menu-test"
       type="checkbox"
@@ -52,9 +55,13 @@ exports[`Drawer snapshot a globale menu 1`] = `
         for="menu-test"
       />
       <ul
+        aria-label="Drawer Menu"
         class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content"
+        role="menu"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <a
             class="justify-between"
             href="/#"
@@ -64,7 +71,9 @@ exports[`Drawer snapshot a globale menu 1`] = `
             </span>
           </a>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <a
             class="justify-between"
             href="/#"
@@ -74,7 +83,9 @@ exports[`Drawer snapshot a globale menu 1`] = `
             </span>
           </a>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <a
             class="justify-between"
             href="/#"
@@ -87,68 +98,5 @@ exports[`Drawer snapshot a globale menu 1`] = `
       </ul>
     </div>
   </div>
-</div>
-`;
-
-exports[`Drawer snapshot a globale menu 2`] = `
-<input
-  class="drawer-toggle"
-  id="menu-test"
-  type="checkbox"
-/>
-`;
-
-exports[`Drawer snapshot a globale menu 3`] = `
-<div
-  class="drawer-content"
->
-  <div>
-    test
-  </div>
-</div>
-`;
-
-exports[`Drawer snapshot a globale menu 4`] = `
-<div
-  class="drawer-side"
->
-  <label
-    class="drawer-overlay"
-    for="menu-test"
-  />
-  <ul
-    class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content"
-  >
-    <li>
-      <a
-        class="justify-between"
-        href="/#"
-      >
-        <span>
-          My library
-        </span>
-      </a>
-    </li>
-    <li>
-      <a
-        class="justify-between"
-        href="/#"
-      >
-        <span>
-          Ranking
-        </span>
-      </a>
-    </li>
-    <li>
-      <a
-        class="justify-between"
-        href="/#"
-      >
-        <span>
-          Quote
-        </span>
-      </a>
-    </li>
-  </ul>
 </div>
 `;

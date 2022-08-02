@@ -1,33 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RandomPage snapshot a RandomPage 1`] = `
+exports[`RandomPage should render 1`] = `
 <div>
   <div>
     We will jump to 
     <span>
-      ...
-    </span>
-  </div>
-</div>
-`;
-
-exports[`RandomPage with abnormal state snapshot a RandomPage when loading 1`] = `
-<div>
-  <div>
-    We will jump to 
-    <span>
-      ...
-    </span>
-  </div>
-</div>
-`;
-
-exports[`RandomPage with abnormal state snapshot a RandomPage with error 1`] = `
-<div>
-  <div>
-    We will jump to 
-    <span>
-      ...
+      /books/bk900
     </span>
   </div>
 </div>

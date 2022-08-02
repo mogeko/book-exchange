@@ -1,78 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card snapshot a book card 1`] = `
-<div>
-  <div
-    class="relative flex flex-col w-28"
-  >
-    <figure
-      class="flex justify-center items-center"
-    >
-      <a
-        class="relative w-28 h-[calc(7rem/2*3)]"
-        href="/books/bk90"
-      >
-        <span
-          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-        >
-          <img
-            alt="catch"
-            data-nimg="fill"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
-      </a>
-    </figure>
-    <div
-      class="flex flex-col text-sm"
-    >
-      <a
-        class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-        href="/books/bk90"
-      >
-        <h2
-          class="truncate"
-        >
-          catch
-        </h2>
-      </a>
-      <p
-        class="truncate"
-      >
-        Gracie
-      </p>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Card snapshot a book skeleton card 1`] = `
-<div>
-  <div
-    class="relative flex flex-col mb-4 w-28 animate-pulse"
-  >
-    <div
-      class="mb-2 w-28 h-[calc(7rem/2*3)] bg-slate-700 rounded"
-    />
-    <div
-      class="mb-2 w-24 h-2 bg-slate-700 rounded"
-    />
-    <div
-      class="mb-2 w-20 h-2 bg-slate-700 rounded"
-    />
-  </div>
-</div>
-`;
-
-exports[`Card snapshot a long card 1`] = `
+exports[`Card render a long card 1`] = `
 <div>
   <div
     class="flex py-4 gap-3"
   >
     <figure
+      aria-label="Cover Image"
       class="flex justify-center items-center"
     >
       <a
@@ -184,7 +118,9 @@ exports[`Card snapshot a long card 1`] = `
           />
         </svg>
         <span
+          aria-label="rates"
           class="text-base ml-2"
+          role="presentation"
         >
           7.8
         </span>
@@ -195,6 +131,74 @@ exports[`Card snapshot a long card 1`] = `
         Quis dolore similique accusantium officiis adipisci. Dolorum cum et totam eveniet culpa qui quibusdam ad facere. Rerum distinctio atque consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga.
       </p>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Card renders a book card correctly 1`] = `
+<div>
+  <div
+    class="relative flex flex-col w-28"
+  >
+    <figure
+      aria-label="Cover Image"
+      class="flex justify-center items-center"
+    >
+      <a
+        class="relative w-28 h-[calc(7rem/2*3)]"
+        href="/books/bk90"
+      >
+        <span
+          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+        >
+          <img
+            alt="catch"
+            data-nimg="fill"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+          />
+          <noscript />
+        </span>
+      </a>
+    </figure>
+    <div
+      class="flex flex-col text-sm"
+    >
+      <a
+        class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
+        href="/books/bk90"
+      >
+        <h2
+          class="truncate"
+        >
+          catch
+        </h2>
+      </a>
+      <p
+        class="truncate"
+      >
+        Gracie
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card snapshot a book skeleton card 1`] = `
+<div>
+  <div
+    class="relative flex flex-col mb-4 w-28 animate-pulse"
+  >
+    <div
+      class="mb-2 w-28 h-[calc(7rem/2*3)] bg-slate-700 rounded"
+    />
+    <div
+      class="mb-2 w-24 h-2 bg-slate-700 rounded"
+    />
+    <div
+      class="mb-2 w-20 h-2 bg-slate-700 rounded"
+    />
   </div>
 </div>
 `;

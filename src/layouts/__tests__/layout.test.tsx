@@ -4,37 +4,30 @@ import Layout, { DefaultLayout } from "@/layouts/layout";
 
 describe("Layout", () => {
   it("should render correctly", () => {
-    render(
-      <Layout>
-        <div>hello, world!</div>
-      </Layout>
-    );
-    expect(screen.getByText(/hello, world!/)).toBeInTheDocument();
-  });
-
-  it("snapshot a Layput container", () => {
     const { container } = render(
       <Layout>
         <div>hello, world!</div>
       </Layout>
     );
+
+    expect(screen.getByText(/hello, world!/)).toBeInTheDocument();
+
     expect(container).toMatchSnapshot();
   });
 
   it("should render correctly with Header and Footer", () => {
-    render(
+    const { container } = render(
       <DefaultLayout>
         <div>hello, world!</div>
       </DefaultLayout>
     );
+
     expect(screen.getByText(/hello, world!/)).toBeInTheDocument();
     expect(
-      screen.getByText("Copyright © 2022, All right reserved by Zheng Junyi.")
+      screen.getByRole("heading", { name: "Bookworm" })
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", {
-        name: /Bookworm/i,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText(/copyright/i)).toBeInTheDocument();
+
+    expect(container).toMatchSnapshot();
   });
 });

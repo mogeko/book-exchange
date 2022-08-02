@@ -1,24 +1,26 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Logo from "@/components/base/logo";
 import logoImage from "@/public/logo.svg";
 
 describe("Logo", () => {
-  it("Create a text logo", () => {
-    const { container } = render(<Logo>Test Logo</Logo>);
-    expect(container).toBeInTheDocument();
-    expect(container.querySelector("h1")?.textContent).toEqual("Test Logo");
-    expect(container.querySelector("a")?.href).toMatch(/([&/]$)/);
-    expect(container.querySelector("img")).toBeNull();
-  });
+  it("Create a logo with image", () => {
+    const { container } = render(<Logo src={logoImage}>Test Logo</Logo>);
 
-  it("snapshot a text logo", () => {
-    const { container } = render(<Logo>Test Logo</Logo>);
+    expect(screen.getByRole("link", { name: /logo/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /logo/i })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /logo/i })).toBeInTheDocument();
+
     expect(container).toMatchSnapshot();
   });
 
-  it("Create an image logo", () => {
-    const { container } = render(<Logo src={logoImage} />);
-    expect(container).toBeInTheDocument();
+  it("Create a logo without image", () => {
+    const { container } = render(<Logo>Test Logo</Logo>);
+
+    expect(
+      screen.queryByRole("img", { name: /logo/i })
+    ).not.toBeInTheDocument();
+
+    expect(container).toMatchSnapshot();
   });
 });
