@@ -1,5 +1,6 @@
-import { fireEvent, render, renderHook } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { render, renderHook } from "@testing-library/react";
 import Pagination from "@/components/pagination";
 import { useState } from "react";
 
@@ -14,7 +15,15 @@ describe("Pagination", () => {
       />
     );
 
-    expect(container.querySelector("div")).toHaveClass("btn-group");
+    expect(screen.getAllByRole("button")).toHaveLength(5);
+    expect(
+      screen.getByRole("button", { name: "Previous Page" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Next Page" })
+    ).toBeInTheDocument();
+
+    expect(container).toMatchSnapshot();
   });
 
   it("render a Pagination then lengh <= 1", () => {
@@ -27,54 +36,46 @@ describe("Pagination", () => {
       />
     );
 
-    expect(container.hasChildNodes()).not.toBeTruthy();
-  });
-
-  it("try cleck pages buttons", () => {
-    const hookResult = renderHook(() => useState(0));
-    const { container } = render(
-      <Pagination
-        index={hookResult.result.current[0]}
-        setIndex={hookResult.result.current[1]}
-        length={3}
-      />
-    );
-
-    const buttons = container.querySelectorAll(".btn-group button");
-    expect(buttons.length).toBe(5);
-    expect(buttons[1]).toHaveClass("btn-active");
-    fireEvent.click(buttons[2]);
-    expect(hookResult.result.current[0]).toBe(1);
-  });
-
-  it("try cleck last/next buttons", () => {
-    const hookResult = renderHook(() => useState(0));
-    const { container } = render(
-      <Pagination
-        index={hookResult.result.current[0]}
-        setIndex={hookResult.result.current[1]}
-        length={3}
-      />
-    );
-
-    const buttons = container.querySelectorAll(".btn-group button");
-    expect(buttons?.[1]).toHaveClass("btn-active");
-    fireEvent.click(buttons?.[0] as HTMLButtonElement);
-    expect(hookResult.result.current[0]).toBe(0);
-    fireEvent.click(buttons?.[4] as HTMLButtonElement);
-    expect(hookResult.result.current[0]).toBe(1);
-  });
-
-  it("snapshot a Pagination", () => {
-    const hookResult = renderHook(() => useState(0));
-    const { container } = render(
-      <Pagination
-        index={hookResult.result.current[0]}
-        setIndex={hookResult.result.current[1]}
-        length={3}
-      />
-    );
+    expect(screen.queryAllByRole("button")).toHaveLength(0);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it("try cleck pages buttons", async () => {
+    const hookResult = renderHook(() => useState(0));
+    render(
+      <Pagination
+        index={hookResult.result.current[0]}
+        setIndex={hookResult.result.current[1]}
+        length={3}
+      />
+    );
+
+    expect(screen.getByRole("button", { name: "1" })).toHaveClass("btn-active");
+
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+
+    await waitFor(() => expect(hookResult.result.current[0]).toBe(1));
+  });
+
+  it("try cleck last/next buttons", async () => {
+    const hookResult = renderHook(() => useState(0));
+    render(
+      <Pagination
+        index={hookResult.result.current[0]}
+        setIndex={hookResult.result.current[1]}
+        length={3}
+      />
+    );
+
+    expect(screen.getByRole("button", { name: "1" })).toHaveClass("btn-active");
+
+    fireEvent.click(screen.getByRole("button", { name: "Previous Page" }));
+
+    await waitFor(() => expect(hookResult.result.current[0]).toBe(0));
+
+    fireEvent.click(screen.getByRole("button", { name: "Next Page" }));
+
+    await waitFor(() => expect(hookResult.result.current[0]).toBe(1));
   });
 });

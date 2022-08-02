@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search snapshot a search bar 1`] = `
+exports[`Search Create a search bar 1`] = `
 <div>
   <div
     class="hidden md:block relative"
@@ -25,8 +25,10 @@ exports[`Search snapshot a search bar 1`] = `
       class="form-control"
     >
       <input
+        aria-label="Search Bar"
         class="input bg-base-300 text-xl w-96 pl-10"
         placeholder="Search..."
+        role="search"
         type="text"
       />
     </div>
@@ -34,6 +36,7 @@ exports[`Search snapshot a search bar 1`] = `
   <a
     class="btn btn-ghost btn-circle md:hidden"
     href="/#"
+    role="button"
   >
     <svg
       aria-hidden="true"
@@ -52,6 +55,11 @@ exports[`Search snapshot a search bar 1`] = `
         fill-rule="evenodd"
       />
     </svg>
+    <span
+      class="sr-only"
+    >
+      Search
+    </span>
   </a>
 </div>
 `;

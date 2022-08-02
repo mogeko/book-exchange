@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User snapshot a user menu with logined 1`] = `
+exports[`User renders a user menu with logined 1`] = `
 <div>
   <div
     class="dropdown dropdown-end"
@@ -10,8 +10,15 @@ exports[`User snapshot a user menu with logined 1`] = `
       tabindex="0"
     >
       <div
-        class="animate-pulse w-20 mr-4 h-2 bg-slate-700 rounded"
-      />
+        class="btn btn-link btn-xs text-base-content w-40 flex-nowrap"
+      >
+        Hi! 
+        <b
+          class="truncate"
+        >
+          Britney.Skiles
+        </b>
+      </div>
     </label>
     <label
       class="btn btn-ghost btn-circle avatar sm:hidden"
@@ -20,29 +27,40 @@ exports[`User snapshot a user menu with logined 1`] = `
       <div
         class="w-6 rounded-full"
       >
-        <svg
-          class="animate-spin w-6 h-6"
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 16 16"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
         >
-          <path
-            clip-rule="evenodd"
-            d="M13.917 7A6.002 6.002 0 0 0 2.083 7H1.071a7.002 7.002 0 0 1 13.858 0h-1.012z"
-            fill-rule="evenodd"
+          <span
+            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+          >
+            <img
+              alt=""
+              aria-hidden="true"
+              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2724%27%20height=%2724%27/%3e"
+              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+            />
+          </span>
+          <img
+            alt="User avatar"
+            data-nimg="intrinsic"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
           />
-        </svg>
+          <noscript />
+        </span>
       </div>
     </label>
     <ul
+      aria-label="User Menu"
       class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
+      role="menu"
       tabindex="0"
     >
-      <li>
+      <li
+        aria-label="User Menu Item"
+        role="menuitem"
+      >
         <a
           class="justify-between"
           href="/#"
@@ -52,7 +70,10 @@ exports[`User snapshot a user menu with logined 1`] = `
           </span>
         </a>
       </li>
-      <li>
+      <li
+        aria-label="User Menu Item"
+        role="menuitem"
+      >
         <a
           class="justify-between"
           href="/#"
@@ -62,215 +83,13 @@ exports[`User snapshot a user menu with logined 1`] = `
           </span>
         </a>
       </li>
-      <li>
+      <li
+        aria-label="User Menu Item"
+        role="menuitem"
+      >
         <button>
           Sign out
         </button>
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
-exports[`User snapshot a user menu without logined 1`] = `
-<div>
-  <div
-    class="dropdown dropdown-end"
-  >
-    <label
-      class="hidden sm:block normal-case"
-      tabindex="0"
-    >
-      <a
-        class="btn btn-link btn-xs"
-        href="/#"
-      >
-        Sign in / Sign up
-      </a>
-    </label>
-    <label
-      class="btn btn-ghost btn-circle avatar sm:hidden"
-      tabindex="0"
-    >
-      <div
-        class="w-6 rounded-full"
-      >
-        <svg
-          aria-hidden="true"
-          class="h-6 w-6"
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </label>
-    <ul
-      class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
-      tabindex="0"
-    >
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Profile
-          </span>
-        </a>
-      </li>
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Settings
-          </span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
-exports[`User with abnormal state snapshot user menu is loading 1`] = `
-<div>
-  <div
-    class="dropdown dropdown-end"
-  >
-    <label
-      class="hidden sm:block normal-case"
-      tabindex="0"
-    >
-      <div
-        class="animate-pulse w-20 mr-4 h-2 bg-slate-700 rounded"
-      />
-    </label>
-    <label
-      class="btn btn-ghost btn-circle avatar sm:hidden"
-      tabindex="0"
-    >
-      <div
-        class="w-6 rounded-full"
-      >
-        <svg
-          class="animate-spin w-6 h-6"
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 16 16"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M13.917 7A6.002 6.002 0 0 0 2.083 7H1.071a7.002 7.002 0 0 1 13.858 0h-1.012z"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </label>
-    <ul
-      class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
-      tabindex="0"
-    >
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Profile
-          </span>
-        </a>
-      </li>
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Settings
-          </span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
-exports[`User with abnormal state snapshot user menu when error occurred 1`] = `
-<div>
-  <div
-    class="dropdown dropdown-end"
-  >
-    <label
-      class="hidden sm:block normal-case"
-      tabindex="0"
-    >
-      <div
-        class="animate-pulse w-20 mr-4 h-2 bg-slate-700 rounded"
-      />
-    </label>
-    <label
-      class="btn btn-ghost btn-circle avatar sm:hidden"
-      tabindex="0"
-    >
-      <div
-        class="w-6 rounded-full"
-      >
-        <svg
-          class="animate-spin w-6 h-6"
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 16 16"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M13.917 7A6.002 6.002 0 0 0 2.083 7H1.071a7.002 7.002 0 0 1 13.858 0h-1.012z"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </label>
-    <ul
-      class="menu menu-compact dropdown-content shadow bg-base-300 rounded-box w-52 mt-3 p-2 sm:mt-4 sm:p-0"
-      tabindex="0"
-    >
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Profile
-          </span>
-        </a>
-      </li>
-      <li>
-        <a
-          class="justify-between"
-          href="/#"
-        >
-          <span>
-            Settings
-          </span>
-        </a>
       </li>
     </ul>
   </div>

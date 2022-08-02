@@ -9,14 +9,17 @@ const Search: React.FC = () => {
         <div className="form-control">
           <input
             type="text"
-            placeholder="Search..."
             className="input bg-base-300 text-xl w-96 pl-10"
+            placeholder="Search..."
+            role="search"
+            aria-label="Search Bar"
           />
         </div>
       </div>
       <Link href="#">
-        <a className="btn btn-ghost btn-circle md:hidden">
+        <a className="btn btn-ghost btn-circle md:hidden" role="button">
           <HiSearch className="h-6 w-6" aria-hidden="true" />
+          <span className="sr-only">Search</span>
         </a>
       </Link>
     </>

@@ -118,7 +118,9 @@ exports[`Card render a long card 1`] = `
           />
         </svg>
         <span
+          aria-label="rates"
           class="text-base ml-2"
+          role="presentation"
         >
           7.8
         </span>
