@@ -47,7 +47,7 @@ const booksHandlers = [
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
           language: languages(oneOf),
-          publication_date: "2002-04-24T22:56:21.478Z",
+          publication_date: "2002-04-24",
           isbn: `978-${randomNum({ min: 1000000000, max: 1999999999 })}`,
           [oneOf(["paperback", "hardcover"])]: randomNum({
             min: 100,
