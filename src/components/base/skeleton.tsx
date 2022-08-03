@@ -1,4 +1,4 @@
-// import classNames from "classnames";
+import classNames from "@/lib/utils/classNames";
 
 const Pulse: React.FC<PulseProps> = ({ children, className }) => (
   <div className={classNames(className, "animate-pulse")}>{children}</div>
@@ -17,10 +17,6 @@ const Circle: React.FC<SkeletonProps> = ({ className }) => (
 );
 
 const Skeleton = { Pulse, Line, Square, Circle };
-
-function classNames(...classes: Array<string | undefined>) {
-  return classes.filter(Boolean).join(" ");
-}
 
 interface SkeletonProps {
   className?: string;

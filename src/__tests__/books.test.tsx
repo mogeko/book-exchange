@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
+import mockRouter from "next-router-mock";
 import BookPage, { BookView } from "@/pages/books/[id]";
 
 describe("Books Page", () => {
   beforeEach(() => {
-    useRouterMock.returnResult({ query: { id: "bk1000" } });
+    mockRouter.setCurrentUrl("/books/bk1000");
   });
 
   afterEach(() => {
@@ -14,8 +14,6 @@ describe("Books Page", () => {
 
   it("renders a Books Page", () => {
     const { container } = render(<BookPage />);
-
-    expect(useRouterMock.target).toBeCalledWith();
 
     expect(container).toMatchSnapshot();
   });

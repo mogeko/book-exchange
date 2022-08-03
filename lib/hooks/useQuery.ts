@@ -1,4 +1,4 @@
-import handleQuery from "@/lib/utils/queryTools";
+import handleQuery from "@/lib/utils/handleQuery";
 import useSWR, { type SWRConfiguration } from "swr";
 import useSWRInfinite, { type SWRInfiniteConfiguration } from "swr/infinite";
 

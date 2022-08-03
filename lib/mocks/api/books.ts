@@ -1,6 +1,10 @@
 import { type BookType, type BooksType } from "@/lib/hooks/useBooks";
+import { languages, oneOf, randomNum } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
+
+const descArray = () => faker.lorem.paragraph(50).split(". ");
+const digestArray = () => faker.lorem.paragraph(50).split(". ");
 
 const booksHandlers = [
   rest.get("/api/books", (req, res, ctx) => {
@@ -9,14 +13,13 @@ const booksHandlers = [
     return res(
       ctx.json<BooksType>(
         Array.from({ length: Number(limit ?? 10) }, () => ({
-          id: `bk${faker.datatype.number(100)}`,
+          id: `bk${randomNum(10000)}`,
           title: faker.word.noun(20),
           cover: faker.image.image(1280, 1910),
-          tags: Array.from(
-            { length: faker.datatype.number({ min: 2, max: 8 }) },
-            () => faker.lorem.words(2)
+          tags: Array.from({ length: randomNum({ min: 2, max: 8 }) }, () =>
+            faker.lorem.words(2)
           ),
-          rates: faker.datatype.number(100),
+          rates: randomNum(100),
           mate: {
             author: faker.name.firstName(),
           },
@@ -35,29 +38,28 @@ const booksHandlers = [
         id: bkid as `bk${number}`,
         title: faker.word.noun(20),
         cover: faker.image.image(1280, 1910),
-        tags: Array.from(
-          { length: faker.datatype.number({ min: 2, max: 8 }) },
-          () => faker.lorem.words(2)
+        tags: Array.from({ length: randomNum({ min: 2, max: 8 }) }, () =>
+          faker.lorem.words(2)
         ),
-        rates: faker.datatype.number(100),
+        rates: randomNum(100),
         mate: {
           author: faker.name.firstName(),
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
-          language: "English",
-          publication_date: "2021-10-14T11:31:41.496Z",
-          isbn: `978-${faker.datatype.number({
-            min: 1000000000,
-            max: 1999999999,
-          })}`,
-          paperback: faker.datatype.number({ min: 100, max: 1000 }),
+          language: languages(oneOf),
+          publication_date: "2002-04-24",
+          isbn: `978-${randomNum({ min: 1000000000, max: 1999999999 })}`,
+          [oneOf(["paperback", "hardcover"])]: randomNum({
+            min: 100,
+            max: 1000,
+          }),
         },
         desc: {
-          text: faker.lorem.paragraph(10),
+          text: `${descArray().slice(0, 10).join(". ")}.`,
           is_folded: faker.datatype.boolean(),
         },
         digest: {
-          text: faker.lorem.paragraph(10),
+          text: `${digestArray().slice(0, 10).join(". ")}.`,
           is_folded: faker.datatype.boolean(),
         },
       })
@@ -69,7 +71,7 @@ const booksHandlers = [
     return res(
       ctx.json({
         id: bkid as `bk${number}`,
-        text: faker.lorem.paragraph(50),
+        text: descArray().join(". "),
       })
     );
   }),
@@ -79,7 +81,7 @@ const booksHandlers = [
     return res(
       ctx.json({
         id: bkid as `bk${number}`,
-        text: faker.lorem.paragraph(50),
+        text: digestArray().join(". "),
       })
     );
   }),

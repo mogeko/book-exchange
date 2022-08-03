@@ -68,6 +68,13 @@ exports[`User renders a user menu with logined 1`] = `
           <span>
             Profile
           </span>
+          <span
+            aria-label="Here are 1 new messages"
+            class="badge"
+            role="presentation"
+          >
+            1
+          </span>
         </a>
       </li>
       <li

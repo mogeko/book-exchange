@@ -8,20 +8,12 @@ Object {
       "key": "MENUS_QUOTE",
     },
     Object {
-      "id": "msg8508058944",
-      "key": "MENUS_QUOTE",
-    },
-    Object {
       "id": "msg5337060048",
-      "key": "MENUS_QUOTE",
-    },
-    Object {
-      "id": "msg2576458715",
-      "key": "MENUS_QUOTE",
+      "key": "MENUS_LIBRARY",
     },
     Object {
       "id": "msg1256522742",
-      "key": "MENUS_QUOTE",
+      "key": "USER_PROFILE",
     },
   ],
   "error": undefined,

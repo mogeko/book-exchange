@@ -86,7 +86,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            English
+            Russian
           </span>
         </div>
         <div
@@ -95,11 +95,10 @@ exports[`BookView render a BookView 1`] = `
           <span
             class="capitalize"
           >
-            publication_date
-            :
+            Publication Date:
           </span>
           <span>
-            2021
+            2002-04-24
           </span>
         </div>
         <div
@@ -112,7 +111,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            978-1798832496
+            978-1276711770
           </span>
         </div>
         <div
@@ -121,11 +120,11 @@ exports[`BookView render a BookView 1`] = `
           <span
             class="capitalize"
           >
-            paperback
+            hardcover
             :
           </span>
           <span>
-            349
+            779
              pages
           </span>
         </div>
@@ -145,7 +144,7 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Rerum distinctio atque consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a. Impedit occaecati magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut.
+          Atque consequatur amet iure sequi voluptas dolorem ipsa. Non quam voluptatibus deserunt omnis. Similique cum aliquid est sunt odio nemo ut inventore est. Ut magnam ea dolores ipsum ea recusandae porro et facere. Quae fuga dolor ipsa dolor fugit unde sit. Sint sint aspernatur ullam a est repellendus. Odio maxime id est dolor nobis. Officiis voluptatem veniam maiores aut laborum perferendis. Quo minus quis consequatur natus nihil dicta et. Placeat et aut earum harum a.
         </p>
         <button
           class="btn btn-sm btn-link"
@@ -182,27 +181,8 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Sequi voluptates delectus ullam laborum. Porro et consequuntur harum. Hic praesentium maiores qui asperiores qui vero accusantium nemo voluptas. Sequi voluptatum perferendis aperiam qui assumenda velit necessitatibus. Adipisci animi molestias aspernatur quas vel consequatur veniam. Nisi voluptas eos. Facere laboriosam rerum quidem possimus nisi sit totam veniam. Repellendus magni et similique consequatur vel officiis ullam. Est quidem ullam eum voluptas porro et voluptates doloribus. Aut minima reprehenderit commodi nemo ducimus atque.
+          Exercitationem non quia ratione itaque molestias qui libero aspernatur. Corporis in repudiandae aut ipsam soluta. Vel vel facere autem modi quos qui eaque. Ea quibusdam totam dolor officiis et aut est corporis. Voluptas est non fugit occaecati numquam dolor fugit ipsa consequatur. Repellat laboriosam nulla eveniet voluptatem fugiat tempore veritatis vitae cumque. Voluptatum est tempora itaque. Nesciunt unde doloribus est est sed et pariatur. Aut vero impedit quidem pariatur non sequi voluptas. Illo nemo voluptatibus deserunt amet dolorum soluta culpa itaque esse.
         </p>
-        <button
-          class="btn btn-sm btn-link"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 320 512"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
-            />
-          </svg>
-           Read more
-        </button>
       </div>
     </div>
   </div>

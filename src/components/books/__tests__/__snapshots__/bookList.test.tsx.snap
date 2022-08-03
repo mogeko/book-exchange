@@ -21,7 +21,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk90"
+              href="/books/bk8992"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -45,7 +45,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk90"
+                href="/books/bk8992"
               >
                 <h2
                   class="truncate"
@@ -156,7 +156,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk88"
+              href="/books/bk8718"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -180,7 +180,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk88"
+                href="/books/bk8718"
               >
                 <h2
                   class="truncate"
@@ -291,7 +291,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk41"
+              href="/books/bk4075"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -315,7 +315,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk41"
+                href="/books/bk4075"
               >
                 <h2
                   class="truncate"
@@ -426,7 +426,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk60"
+              href="/books/bk6021"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -450,7 +450,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk60"
+                href="/books/bk6021"
               >
                 <h2
                   class="truncate"
@@ -561,7 +561,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk61"
+              href="/books/bk6079"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -585,7 +585,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk61"
+                href="/books/bk6079"
               >
                 <h2
                   class="truncate"
@@ -696,7 +696,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk92"
+              href="/books/bk9160"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -720,7 +720,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk92"
+                href="/books/bk9160"
               >
                 <h2
                   class="truncate"
@@ -831,7 +831,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk92"
+              href="/books/bk9179"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -855,7 +855,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk92"
+                href="/books/bk9179"
               >
                 <h2
                   class="truncate"
@@ -966,7 +966,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk57"
+              href="/books/bk5714"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -990,7 +990,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk57"
+                href="/books/bk5714"
               >
                 <h2
                   class="truncate"
@@ -1101,7 +1101,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk33"
+              href="/books/bk3362"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -1125,7 +1125,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk33"
+                href="/books/bk3362"
               >
                 <h2
                   class="truncate"
@@ -1236,7 +1236,7 @@ exports[`bookList renders a BookList 1`] = `
           >
             <a
               class="relative w-28 h-[calc(7rem/2*3)]"
-              href="/books/bk92"
+              href="/books/bk9160"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -1260,7 +1260,7 @@ exports[`bookList renders a BookList 1`] = `
             >
               <a
                 class="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content"
-                href="/books/bk92"
+                href="/books/bk9160"
               >
                 <h2
                   class="truncate"

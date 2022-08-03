@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
 import useOnScreenMock from "@/lib/hooks/__mocks__/useOnScreenMock";
+import mockRouter from "next-router-mock";
 import Tags from "@/pages/tags/[tag]";
 
 describe("Tags", () => {
   beforeEach(() => {
-    useRouterMock.returnResult({ query: { tag: "test" } });
+    mockRouter.setCurrentUrl("/tags/test");
     useOnScreenMock.not.visiable();
   });
 
@@ -16,8 +16,6 @@ describe("Tags", () => {
 
   it("renders a Tags", async () => {
     render(<Tags />);
-
-    expect(useRouterMock.target).toBeCalledWith();
 
     expect(
       screen.getByRole("heading", { name: /Tag: test/i })

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from "@/lib/test-utils";
-import useRouterMock from "@/lib/hooks/__mocks__/useRouter";
 import RandomPage from "@/pages/random";
+import mockRouter from "next-router-mock";
 import "@testing-library/jest-dom";
 
 describe("RandomPage", () => {
   beforeEach(() => {
-    useRouterMock.returnResult({});
+    mockRouter.setCurrentUrl("/random");
   });
 
   afterEach(() => {
@@ -13,16 +13,18 @@ describe("RandomPage", () => {
   });
 
   it("should render", async () => {
-    const { container } = render(<RandomPage />);
+    render(<RandomPage />);
 
-    expect(useRouterMock.target).toBeCalledWith();
     expect(screen.getByText("We will jump to")).toBeInTheDocument();
     expect(screen.getByText("...")).toBeInTheDocument();
+    expect(mockRouter).toMatchObject({ asPath: "/random" });
 
     await waitFor(() => {
-      expect(screen.getByText("/books/bk900")).toBeInTheDocument();
+      expect(mockRouter).toMatchObject({
+        asPath: "/books/bk900",
+        pathname: "/books/[id]",
+        query: { id: "bk900" },
+      });
     });
-
-    expect(container).toMatchSnapshot();
   });
 });
