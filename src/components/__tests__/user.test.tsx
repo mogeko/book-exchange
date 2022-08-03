@@ -25,6 +25,12 @@ describe("User", () => {
       ).toBeInTheDocument();
     });
 
+    await waitFor(() => {
+      expect(
+        screen.getByRole("presentation", { name: /new messages/i })
+      ).toBeInTheDocument();
+    });
+
     expect(container).toMatchSnapshot();
   });
 });

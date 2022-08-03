@@ -8,12 +8,12 @@ Object {
       "key": "MENUS_QUOTE",
     },
     Object {
-      "id": "msg2243376510",
-      "key": "MENUS_QUOTE",
+      "id": "msg5337060048",
+      "key": "MENUS_LIBRARY",
     },
     Object {
-      "id": "msg9092606574",
-      "key": "MENUS_LIBRARY",
+      "id": "msg1256522742",
+      "key": "USER_PROFILE",
     },
   ],
   "error": undefined,

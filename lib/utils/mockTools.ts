@@ -1,11 +1,17 @@
 import { faker } from "@faker-js/faker";
 
-export function oneOf(array: any[]) {
+export function oneOf<T = any>(array: T[]): T {
   return array[randomNum(array.length - 1)];
 }
 
-export function randomLanguage() {
-  return oneOf([
+export function someOf<T = any>(array: T[]): T[] {
+  const result = array.filter(randomBool);
+
+  return result.length === 0 ? [oneOf(array)] : result;
+}
+
+export function languages<T = any>(fn: (lang: string[]) => T): T {
+  const langs = [
     "Afrikaans",
     "Arabic",
     "Azerbaijani",
@@ -41,13 +47,11 @@ export function randomLanguage() {
     "Urdu",
     "Vietnamese",
     "Chinese",
-  ]);
-}
+  ];
 
-export function arrayBy(length: number, value: any) {
-  return Array.from({ length: length }, () => value);
+  return fn(langs);
 }
-
-export const listBy = arrayBy;
 
 export const randomNum = faker.datatype.number;
+
+export const randomBool = faker.datatype.boolean;
