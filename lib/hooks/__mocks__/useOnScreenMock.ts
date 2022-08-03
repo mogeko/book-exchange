@@ -1,11 +1,12 @@
 import * as hooks from "@/lib/hooks/useOnScreen";
 
+const mock = jest.spyOn(hooks, "default");
+
 const useOnScreenMock = {
   target: hooks.default,
-  visiable: () => jest.spyOn(hooks, "default").mockImplementation(() => true),
+  visiable: () => mock.mockReturnValue(true),
   not: {
-    visiable: () =>
-      jest.spyOn(hooks, "default").mockImplementation(() => false),
+    visiable: () => mock.mockReturnValue(false),
   },
 };
 
