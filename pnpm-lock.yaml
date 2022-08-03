@@ -13,6 +13,7 @@ specifiers:
   '@types/testing-library__jest-dom': ^5.14.5
   autoprefixer: ^10.4.8
   daisyui: ^2.20.0
+  dayjs: ^1.11.4
   eslint: 8.18.0
   eslint-config-next: 12.2.0
   eslint-config-prettier: ^8.5.0
@@ -36,6 +37,7 @@ specifiers:
 
 dependencies:
   daisyui: 2.20.0_6qxuh3ctkxhae7jnbdaexscv2m
+  dayjs: 1.11.4
   next: 12.2.0_qugu52izettqdqqm5qcjcltcia
   notistack: 3.0.0-alpha.7_vt6aeitzauirmcdhimiad2yjxy
   react: 18.2.0
@@ -1776,6 +1778,10 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
+
+  /dayjs/1.11.4:
+    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

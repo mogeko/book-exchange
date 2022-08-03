@@ -1,6 +1,7 @@
 import { type BookType } from "@/lib/hooks/useBooks";
 import Skeleton from "@/components/base/skeleton";
 import Image from "next/image";
+import dayjs from "dayjs";
 
 const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
   <div className="my-4 flex w-full gap-3">
@@ -25,8 +26,8 @@ const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
         if (itemName === "publication_date") {
           return (
             <div key={i} className="inline-flex gap-1 text-base">
-              <span className="capitalize">{itemName}:</span>
-              <span>{new Date(value).getFullYear()}</span>
+              <span className="capitalize">Publication Date:</span>
+              <span>{dayjs(value).format("YYYY-MM-DD")}</span>
             </div>
           );
         }

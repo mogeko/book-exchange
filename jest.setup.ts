@@ -15,7 +15,6 @@ afterAll(() => server.close());
 
 // Set Seeds for Faker JS
 beforeEach(() => faker.seed(26136));
-faker.seed(26136);
 
 // mock the Router
 jest.mock("next/router", () => require("next-router-mock"));

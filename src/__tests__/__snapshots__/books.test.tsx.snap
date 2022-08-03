@@ -95,11 +95,10 @@ exports[`BookView render a BookView 1`] = `
           <span
             class="capitalize"
           >
-            publication_date
-            :
+            Publication Date:
           </span>
           <span>
-            2021
+            2021-10-16
           </span>
         </div>
         <div
@@ -112,7 +111,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            978-1798832496
+            978-1276711770
           </span>
         </div>
         <div
@@ -125,7 +124,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            349
+            779
              pages
           </span>
         </div>
@@ -145,7 +144,7 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Rerum distinctio atque consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a. Impedit occaecati magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut.
+          Distinctio atque consequatur amet iure sequi voluptas dolorem ipsa suscipit. Quam voluptatibus deserunt omnis sint similique cum aliquid est sunt. Nemo ut inventore est ut ut. Ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a. Impedit occaecati magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut.
         </p>
         <button
           class="btn btn-sm btn-link"

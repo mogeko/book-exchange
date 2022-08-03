@@ -1,5 +1,6 @@
 import { type BookType, type BooksType } from "@/lib/hooks/useBooks";
 import { faker } from "@faker-js/faker";
+import dayjs from "dayjs";
 import { rest } from "msw";
 
 const booksHandlers = [
@@ -45,7 +46,7 @@ const booksHandlers = [
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
           language: "English",
-          publication_date: "2021-10-14T11:31:41.496Z",
+          publication_date: dayjs(faker.date.past()).format("YYYY-MM-DD"),
           isbn: `978-${faker.datatype.number({
             min: 1000000000,
             max: 1999999999,
