@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { renderHook, waitFor } from "@/lib/test-utils";
+import { renderHook, waitFor } from "@/lib/utils/testTools";
 import useQuery, { useQueryInfinite } from "@/lib/hooks/useQuery";
 
 describe("useQuery", () => {

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, waitFor, screen } from "@/lib/test-utils";
+import { render, waitFor, screen } from "@/lib/utils/testTools";
 import BookGrid from "@/components/books/bookGrid";
 
 describe("bookGrid", () => {

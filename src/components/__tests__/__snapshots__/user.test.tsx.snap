@@ -68,6 +68,11 @@ exports[`User renders a user menu with logined 1`] = `
           <span>
             Profile
           </span>
+          <span
+            class="badge "
+          >
+            1
+          </span>
         </a>
       </li>
       <li

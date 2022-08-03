@@ -1,22 +1,20 @@
 import { type TagsType } from "@/lib/hooks/useTags";
+import { arrayBy, randomNum } from "@/lib/utils/mockTools";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
 
 const tagsHandlers = [
   rest.get("/api/tags", (_, res, ctx) => {
-    return res(
-      ctx.json<TagsType>(
-        Array.from({ length: faker.datatype.number({ min: 3, max: 5 }) }, () =>
-          faker.random.word()
-        ).reduce((target: Record<string, string[]>, key) => {
-          target[key] = Array.from(
-            { length: faker.datatype.number({ min: 2, max: 10 }) },
-            () => faker.random.word()
-          );
-          return target;
-        }, {})
-      )
-    );
+    const tags = arrayBy(
+      randomNum({ min: 3, max: 5 }),
+      faker.random.word()
+    ).reduce((acc: Record<string, string[]>, key) => {
+      acc[key] = arrayBy(randomNum({ min: 2, max: 10 }), faker.random.word());
+
+      return acc;
+    }, {});
+
+    return res(ctx.json<TagsType>(tags));
   }),
 ];
 

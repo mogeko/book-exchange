@@ -3,7 +3,7 @@ import useQuery, {
   type Opts,
   type OptsInfinite,
 } from "@/lib/hooks/useQuery";
-import handleQuery from "@/lib/utils/queryTools";
+import handleQuery from "@/lib/utils/handleQuery";
 import { type XOR } from "@/lib/utils/typeTools";
 
 function useBooks(param: ParamProps = {}, opts?: Opts<BooksType>) {

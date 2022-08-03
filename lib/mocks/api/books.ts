@@ -1,7 +1,13 @@
 import { type BookType, type BooksType } from "@/lib/hooks/useBooks";
+import {
+  arrayBy,
+  randomLanguage,
+  oneOf,
+  randomNum,
+} from "@/lib/utils/mockTools";
 import { faker } from "@faker-js/faker";
-import dayjs from "dayjs";
 import { rest } from "msw";
+import dayjs from "dayjs";
 
 const booksHandlers = [
   rest.get("/api/books", (req, res, ctx) => {
@@ -9,22 +15,19 @@ const booksHandlers = [
 
     return res(
       ctx.json<BooksType>(
-        Array.from({ length: Number(limit ?? 10) }, () => ({
-          id: `bk${faker.datatype.number(100)}`,
+        arrayBy(Number(limit ?? 10), {
+          id: `bk${randomNum(10000)}`,
           title: faker.word.noun(20),
           cover: faker.image.image(1280, 1910),
-          tags: Array.from(
-            { length: faker.datatype.number({ min: 2, max: 8 }) },
-            () => faker.lorem.words(2)
-          ),
-          rates: faker.datatype.number(100),
+          tags: arrayBy(randomNum({ min: 2, max: 8 }), faker.lorem.words(2)),
+          rates: randomNum(100),
           mate: {
             author: faker.name.firstName(),
           },
           desc: {
             text: faker.lorem.paragraph(10),
           },
-        }))
+        })
       )
     );
   }),
@@ -36,22 +39,19 @@ const booksHandlers = [
         id: bkid as `bk${number}`,
         title: faker.word.noun(20),
         cover: faker.image.image(1280, 1910),
-        tags: Array.from(
-          { length: faker.datatype.number({ min: 2, max: 8 }) },
-          () => faker.lorem.words(2)
-        ),
-        rates: faker.datatype.number(100),
+        tags: arrayBy(randomNum({ min: 2, max: 8 }), faker.lorem.words(2)),
+        rates: randomNum(100),
         mate: {
           author: faker.name.firstName(),
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
-          language: "English",
+          language: randomLanguage(),
           publication_date: dayjs(faker.date.past()).format("YYYY-MM-DD"),
-          isbn: `978-${faker.datatype.number({
-            min: 1000000000,
-            max: 1999999999,
-          })}`,
-          paperback: faker.datatype.number({ min: 100, max: 1000 }),
+          isbn: `978-${randomNum({ min: 1000000000, max: 1999999999 })}`,
+          [oneOf(["paperback", "hardcover"])]: randomNum({
+            min: 100,
+            max: 1000,
+          }),
         },
         desc: {
           text: faker.lorem.paragraph(10),

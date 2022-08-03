@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@/lib/test-utils";
+import { render, screen } from "@/lib/utils/testTools";
 import { DrawerButton, withDrawer } from "@/components/base/drawer";
 
 const ExampleDrawer = withDrawer((prop) => <div {...prop} />);

@@ -47,7 +47,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            Gardner
+            Lily
           </span>
         </div>
         <div
@@ -60,7 +60,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            Mante Inc
+            Doyle - Gleichner
           </span>
         </div>
         <div
@@ -73,7 +73,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            Officiis adipisci rerum dolorum cum et totam eveniet culpa qui.
+            Facilis et dolorem non omnis qui neque velit quis dolore.
           </span>
         </div>
         <div
@@ -86,7 +86,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            English
+            Korean
           </span>
         </div>
         <div
@@ -98,7 +98,7 @@ exports[`BookView render a BookView 1`] = `
             Publication Date:
           </span>
           <span>
-            2021-10-16
+            2022-07-25
           </span>
         </div>
         <div
@@ -111,7 +111,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            978-1276711770
+            978-1874812449
           </span>
         </div>
         <div
@@ -124,7 +124,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            779
+            950
              pages
           </span>
         </div>
@@ -144,7 +144,7 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Distinctio atque consequatur amet iure sequi voluptas dolorem ipsa suscipit. Quam voluptatibus deserunt omnis sint similique cum aliquid est sunt. Nemo ut inventore est ut ut. Ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a. Impedit occaecati magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut.
+          Et totam eveniet culpa qui quibusdam ad facere. Rerum distinctio atque consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et. Placeat et aut earum harum a.
         </p>
         <button
           class="btn btn-sm btn-link"
@@ -181,7 +181,7 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Sequi voluptates delectus ullam laborum. Porro et consequuntur harum. Hic praesentium maiores qui asperiores qui vero accusantium nemo voluptas. Sequi voluptatum perferendis aperiam qui assumenda velit necessitatibus. Adipisci animi molestias aspernatur quas vel consequatur veniam. Nisi voluptas eos. Facere laboriosam rerum quidem possimus nisi sit totam veniam. Repellendus magni et similique consequatur vel officiis ullam. Est quidem ullam eum voluptas porro et voluptates doloribus. Aut minima reprehenderit commodi nemo ducimus atque.
+          Magni fuga et cumque excepturi enim voluptas. Quasi ipsum ut. Quia exercitationem sequi voluptates delectus ullam laborum. Porro et consequuntur harum. Hic praesentium maiores qui asperiores qui vero accusantium nemo voluptas. Sequi voluptatum perferendis aperiam qui assumenda velit necessitatibus. Adipisci animi molestias aspernatur quas vel consequatur veniam. Nisi voluptas eos. Facere laboriosam rerum quidem possimus nisi sit totam veniam. Repellendus magni et similique consequatur vel officiis ullam. Est quidem ullam eum voluptas porro et voluptates doloribus. Aut minima reprehenderit commodi nemo ducimus atque.
         </p>
         <button
           class="btn btn-sm btn-link"

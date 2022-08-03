@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@/lib/test-utils";
+import { render, screen, waitFor } from "@/lib/utils/testTools";
 import mockRouter from "next-router-mock";
 import BookPage, { BookView } from "@/pages/books/[id]";
 

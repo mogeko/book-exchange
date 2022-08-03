@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { renderHook, waitFor } from "@/lib/test-utils";
+import { renderHook, waitFor } from "@/lib/utils/testTools";
 import useMessage from "@/lib/hooks/useMessage";
 
 describe("useMessage", () => {

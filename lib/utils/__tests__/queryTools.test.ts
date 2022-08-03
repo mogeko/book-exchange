@@ -1,4 +1,4 @@
-import handleQuery from "@/lib/utils/queryTools";
+import handleQuery from "@/lib/utils/handleQuery";
 
 describe("queryTools", () => {
   it("should return a query string", () => {
