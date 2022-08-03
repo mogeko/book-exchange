@@ -1,5 +1,5 @@
 import { type BookType, type BooksType } from "@/lib/hooks/useBooks";
-import { languages, oneOf, randomNum } from "@/lib/utils/mockTools";
+import { languages, oneOf, randomNum } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
 import dayjs from "dayjs";

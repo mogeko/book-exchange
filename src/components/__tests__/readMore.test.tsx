@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, waitFor } from "@/lib/utils/testTools";
+import { render, screen, fireEvent, waitFor } from "@/lib/test-utils";
 import withReadMore from "@/components/readMore";
 
 const ReadMore = withReadMore(({ children }) => <div>{children}</div>);

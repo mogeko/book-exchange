@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@/lib/utils/testTools";
+import { render, screen } from "@/lib/test-utils";
 import Card, { LongCard } from "@/components/base/card";
 
 describe("Card", () => {

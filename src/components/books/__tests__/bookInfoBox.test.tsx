@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, waitFor, screen } from "@/lib/utils/testTools";
+import { render, waitFor, screen } from "@/lib/test-utils";
 import BookInfo from "@/components/books/bookInfoBox";
 
 const exampleCover = "https://via.placeholder.com/150";

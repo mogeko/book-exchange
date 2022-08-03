@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@/lib/utils/testTools";
+import { render, screen, waitFor } from "@/lib/test-utils";
 import useOnScreenMock from "@/lib/hooks/__mocks__/useOnScreenMock";
 import mockRouter from "next-router-mock";
 import Tags from "@/pages/tags/[tag]";

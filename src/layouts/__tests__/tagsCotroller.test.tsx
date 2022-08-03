@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@/lib/utils/testTools";
+import { render, screen, waitFor } from "@/lib/test-utils";
 import TagsCotroller from "@/layouts/tagsCotroller";
 
 describe("TagsCotroller", () => {

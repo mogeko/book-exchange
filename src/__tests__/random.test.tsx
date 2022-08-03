@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@/lib/utils/testTools";
+import { render, screen, waitFor } from "@/lib/test-utils";
 import RandomPage from "@/pages/random";
 import mockRouter from "next-router-mock";
 import "@testing-library/jest-dom";

@@ -1,4 +1,4 @@
-import { randomNum } from "@/lib/utils/mockTools";
+import { randomNum } from "@/lib/mocks/utils";
 import { rest } from "msw";
 
 const randomHandlers = [

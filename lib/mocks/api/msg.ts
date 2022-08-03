@@ -1,5 +1,5 @@
 import { type MessageType } from "@/lib/hooks/useMessage";
-import { oneOf, randomNum } from "@/lib/utils/mockTools";
+import { oneOf, randomNum } from "@/lib/mocks/utils";
 import { rest } from "msw";
 
 const messageHandlers = [
