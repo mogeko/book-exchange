@@ -70,7 +70,7 @@ exports[`User renders a user menu with logined 1`] = `
           </span>
           <span
             aria-label="Here are 1 new messages"
-            class="badge "
+            class="badge"
             role="presentation"
           >
             1
