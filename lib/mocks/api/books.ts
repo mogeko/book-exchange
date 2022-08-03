@@ -2,7 +2,6 @@ import { type BookType, type BooksType } from "@/lib/hooks/useBooks";
 import { languages, oneOf, randomNum } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
-import dayjs from "dayjs";
 
 const descArray = () => faker.lorem.paragraph(50).split(". ");
 const digestArray = () => faker.lorem.paragraph(50).split(". ");
@@ -48,7 +47,7 @@ const booksHandlers = [
           publisher: faker.company.companyName(),
           subtitle: faker.lorem.sentence(10),
           language: languages(oneOf),
-          publication_date: dayjs(faker.date.past()).format("YYYY-MM-DD"),
+          publication_date: "2002-04-24T22:56:21.478Z",
           isbn: `978-${randomNum({ min: 1000000000, max: 1999999999 })}`,
           [oneOf(["paperback", "hardcover"])]: randomNum({
             min: 100,

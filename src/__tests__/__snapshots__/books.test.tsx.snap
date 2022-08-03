@@ -98,7 +98,7 @@ exports[`BookView render a BookView 1`] = `
             Publication Date:
           </span>
           <span>
-            2022-04-25
+            2002-04-25
           </span>
         </div>
         <div
@@ -111,7 +111,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            978-1753856558
+            978-1276711770
           </span>
         </div>
         <div
@@ -124,7 +124,7 @@ exports[`BookView render a BookView 1`] = `
             :
           </span>
           <span>
-            952
+            779
              pages
           </span>
         </div>
@@ -144,25 +144,7 @@ exports[`BookView render a BookView 1`] = `
         <p
           class="indent-8"
         >
-          Consequatur amet iure sequi voluptas dolorem. Suscipit non quam. Deserunt omnis sint similique cum aliquid est sunt odio nemo. Inventore est ut ut magnam ea dolores ipsum ea recusandae. Et facere cumque quae fuga dolor ipsa dolor. Unde sit cupiditate. Sint aspernatur ullam a est repellendus ducimus. Maxime id est dolor nobis fuga. Voluptatem veniam maiores aut laborum perferendis harum quo minus. Consequatur natus nihil dicta et.
-        </p>
-      </div>
-    </div>
-    <div
-      class="flex flex-col items-start my-2"
-    >
-      <h2
-        class="text-lg capitalize w-full my-2"
-      >
-        Popular Highlights in this book
-      </h2>
-      <div
-        class="flex flex-col items-start"
-      >
-        <p
-          class="indent-8"
-        >
-          Alias aliquid quidem. Iste ab repellendus sunt suscipit. Nulla odit debitis est. Exercitationem non quia ratione itaque molestias qui libero aspernatur. Corporis in repudiandae aut ipsam soluta. Vel vel facere autem modi quos qui eaque. Ea quibusdam totam dolor officiis et aut est corporis. Voluptas est non fugit occaecati numquam dolor fugit ipsa consequatur. Repellat laboriosam nulla eveniet voluptatem fugiat tempore veritatis vitae cumque. Voluptatum est tempora itaque.
+          Atque consequatur amet iure sequi voluptas dolorem ipsa. Non quam voluptatibus deserunt omnis. Similique cum aliquid est sunt odio nemo ut inventore est. Ut magnam ea dolores ipsum ea recusandae porro et facere. Quae fuga dolor ipsa dolor fugit unde sit. Sint sint aspernatur ullam a est repellendus. Odio maxime id est dolor nobis. Officiis voluptatem veniam maiores aut laborum perferendis. Quo minus quis consequatur natus nihil dicta et. Placeat et aut earum harum a.
         </p>
         <button
           class="btn btn-sm btn-link"
@@ -183,6 +165,24 @@ exports[`BookView render a BookView 1`] = `
           </svg>
            Read more
         </button>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-start my-2"
+    >
+      <h2
+        class="text-lg capitalize w-full my-2"
+      >
+        Popular Highlights in this book
+      </h2>
+      <div
+        class="flex flex-col items-start"
+      >
+        <p
+          class="indent-8"
+        >
+          Exercitationem non quia ratione itaque molestias qui libero aspernatur. Corporis in repudiandae aut ipsam soluta. Vel vel facere autem modi quos qui eaque. Ea quibusdam totam dolor officiis et aut est corporis. Voluptas est non fugit occaecati numquam dolor fugit ipsa consequatur. Repellat laboriosam nulla eveniet voluptatem fugiat tempore veritatis vitae cumque. Voluptatum est tempora itaque. Nesciunt unde doloribus est est sed et pariatur. Aut vero impedit quidem pariatur non sequi voluptas. Illo nemo voluptatibus deserunt amet dolorum soluta culpa itaque esse.
+        </p>
       </div>
     </div>
   </div>
