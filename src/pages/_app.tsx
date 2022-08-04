@@ -8,11 +8,9 @@ if (
   process.env.NEXT_PUBLIC_DEMO === "true"
 ) {
   if (typeof window === "undefined") {
-    const { server } = await import("@/lib/mocks/server");
-    server.listen();
+    await import("@/lib/mocks/server").then(({ server }) => server.listen());
   } else {
-    const { worker } = await import("@/lib/mocks/browser");
-    worker.start();
+    await import("@/lib/mocks/browser").then(({ worker }) => worker.start());
   }
 }
 

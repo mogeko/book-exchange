@@ -1,4 +1,4 @@
-import { type TagsType } from "@/lib/hooks/useTags";
+import type { TagsType } from "@/lib/hooks/useTags";
 import { randomNum } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";

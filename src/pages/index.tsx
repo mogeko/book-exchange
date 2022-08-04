@@ -3,10 +3,14 @@ import BookGrid from "@/components/books/bookGrid";
 import Box from "@/layouts/boxes";
 import { DefaultLayout } from "@/layouts/layout";
 import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
     <DefaultLayout>
+      <Head>
+        <title>Bookworm</title>
+      </Head>
       <div className="flex w-full gap-6 flex-col c-lg:flex-row">
         <div className="flex basis-5/7 gap-14 max-w-[41rem] flex-col">
           <Popular />

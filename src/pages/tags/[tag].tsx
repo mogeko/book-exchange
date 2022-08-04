@@ -4,6 +4,7 @@ import BookList from "@/components/books/bookList";
 import Box from "@/layouts/boxes";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Tags: NextPage = () => {
   return (
@@ -26,8 +27,11 @@ const TagView: React.FC = () => {
 
   return (
     <Box>
+      <Head>
+        <title>{tag}</title>
+      </Head>
       <Box.Header>Tag: {tag}</Box.Header>
-      {tag && <BookList limit={10} tags_include={tag} />}
+      {tag && <BookList limit={10} tag={tag} />}
     </Box>
   );
 };

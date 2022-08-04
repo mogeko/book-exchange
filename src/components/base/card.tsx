@@ -1,4 +1,4 @@
-import { type BooksType } from "@/lib/hooks/useBooks";
+import type { BooksType } from "@/lib/hooks/useBooks";
 import Skeleton from "@/components/base/skeleton";
 import StarsRate from "@/components/stars";
 import Image from "next/image";

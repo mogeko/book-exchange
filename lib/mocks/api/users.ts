@@ -1,4 +1,4 @@
-import { type UserType } from "@/lib/hooks/useUsers";
+import type { UserType } from "@/lib/hooks/useUsers";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
 
@@ -8,7 +8,7 @@ const usersHandlers = [
 
     return res(
       ctx.json<UserType>({
-        uid: uid as `${number}`,
+        id: uid as `${number}`,
         avatar: faker.image.avatar(),
         username: faker.internet.userName(),
         fullname: `${faker.name.firstName()} ${faker.name.lastName()}`,

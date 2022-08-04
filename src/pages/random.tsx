@@ -1,6 +1,7 @@
 import useQuery from "@/lib/hooks/useQuery";
 import { useRouter } from "next/router";
-import { type NextPage } from "next";
+import Head from "next/head";
+import type { NextPage } from "next";
 import { useSWRConfig } from "swr";
 import { useEffect } from "react";
 
@@ -16,9 +17,20 @@ const RandomPage: NextPage = () => {
     }
   }, [router, data, cache]);
 
-  if (error) return <div>Oooops! Jumping failed!</div>;
+  if (error)
+    return (
+      <div>
+        <Head>
+          <title>Random Page</title>
+        </Head>
+        Oooops! Jumping failed!
+      </div>
+    );
   return (
     <div>
+      <Head>
+        <title>Random Page</title>
+      </Head>
       We will jump to {isLoading ? <span>...</span> : <span>{data?.url}</span>}
     </div>
   );

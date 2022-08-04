@@ -6,6 +6,7 @@ import withReadMore from "@/components/readMore";
 import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Head from "next/head";
 
 const BookPage: NextPage = () => {
   const { query } = useRouter();
@@ -22,6 +23,9 @@ export const BookView: React.FC<BookViewProps> = ({ id }) => {
   if (isLoading) return <BookViewSkeleton />;
   return (
     <Box>
+      <Head>
+        <title>{data?.title}</title>
+      </Head>
       <Box.Header>{data?.title}</Box.Header>
       <BookInfo title={data?.title} cover={data?.cover} mate={data?.mate} />
       <Box.SubBox title="About this book">

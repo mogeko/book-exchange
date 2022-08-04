@@ -37,7 +37,7 @@ interface SubCommentType {
 }
 
 export interface CommentType {
-  cm_id: `cm${number}`;
+  id: `cm${number}`;
   msg: string;
 }
 

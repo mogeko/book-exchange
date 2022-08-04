@@ -14,7 +14,7 @@ describe("useUsers", () => {
 
     await waitFor(() => {
       expect(result.current.data).toBeDefined();
-      expect(result.current.data?.uid).toBe("1000");
+      expect(result.current.data?.id).toBe("1000");
     });
 
     expect(result.current).toMatchSnapshot();

@@ -1,4 +1,4 @@
-import { type BookType } from "@/lib/hooks/useBooks";
+import type { BookType } from "@/lib/hooks/useBooks";
 import Skeleton from "@/components/base/skeleton";
 import Image from "next/image";
 import dayjs from "dayjs";

@@ -1,4 +1,4 @@
-import { type MessageType } from "@/lib/hooks/useMessage";
+import type { MessageType } from "@/lib/hooks/useMessage";
 import { oneOf, randomNum } from "@/lib/mocks/utils";
 import { rest } from "msw";
 
