@@ -21,7 +21,7 @@ const customJestConfig = {
   },
   coveragePathIgnorePatterns: [
     "<rootDir>/lib/mocks/",
-    "<rootDir>/lib/utils/testTools.ts",
+    "<rootDir>/lib/test-utils.ts",
   ],
   testEnvironment: "jest-environment-jsdom",
 };
