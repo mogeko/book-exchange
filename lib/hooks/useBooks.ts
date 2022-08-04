@@ -4,7 +4,7 @@ import useQuery, {
   type OptsInfinite,
 } from "@/lib/hooks/useQuery";
 import handleQuery from "@/lib/utils/handleQuery";
-import { type XOR } from "@/lib/utils/typeTools";
+import type { XOR } from "@/lib/utils/typeTools";
 
 function useBooks(param: ParamProps = {}, opts?: Opts<BooksType>) {
   return useQuery<BooksType>("/api/books", param, opts);

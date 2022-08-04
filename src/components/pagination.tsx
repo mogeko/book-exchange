@@ -1,5 +1,5 @@
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
-import { type MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 const Pagination: React.FC<PaginationProps> = ({ length, setIndex, index }) => {
   const gotoPrevPage = () => setIndex(() => Math.max(0, index - 1));

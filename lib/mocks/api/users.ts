@@ -1,4 +1,4 @@
-import { type UserType } from "@/lib/hooks/useUsers";
+import type { UserType } from "@/lib/hooks/useUsers";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
 
