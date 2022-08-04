@@ -31,7 +31,7 @@ const TagView: React.FC = () => {
         <title>{tag}</title>
       </Head>
       <Box.Header>Tag: {tag}</Box.Header>
-      {tag && <BookList limit={10} tags_include={tag} />}
+      {tag && <BookList limit={10} tag={tag} />}
     </Box>
   );
 };

@@ -27,7 +27,7 @@ export function useBooksInfinite(
 interface ParamProps {
   limit?: number;
   page?: number;
-  tags_include?: string | string[];
+  tag?: string | string[];
 }
 
 export type BooksType = {

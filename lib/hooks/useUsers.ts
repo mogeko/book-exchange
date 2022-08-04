@@ -5,7 +5,7 @@ export function useUser(uid?: string, opts?: Opts<UserType>) {
 }
 
 export type UsersType = {
-  uid: `${number}`;
+  id: `${number}`;
   avatar: string;
   username: string;
   fullname: string;
