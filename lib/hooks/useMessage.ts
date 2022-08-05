@@ -7,7 +7,7 @@ function useMessage(opts?: OptsType) {
     revalidateOnReconnect: true,
   };
 
-  return useQuery<MessageType>("/api/msg", {}, { ...opts, ...requiredOpts });
+  return useQuery<MessageType>("/api/msg", { ...opts, ...requiredOpts });
 }
 
 export type MessageType = Partial<{

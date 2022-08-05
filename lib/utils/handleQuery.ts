@@ -1,4 +1,4 @@
-function handleQuery<T extends ParamProps>(url: `/${string}`, params: T) {
+function handleQuery<T extends ParamProps>(url: URL, params: T) {
   if (Object.keys(params).length === 0) return url;
   const queryParams = Object.entries(params)
     .filter(([_, value]) => value)
@@ -17,10 +17,11 @@ function handleQuery<T extends ParamProps>(url: `/${string}`, params: T) {
   return [url, queryParams].join("?");
 }
 
-type Primitive = string | number | boolean | null | undefined;
-
-export interface ParamProps {
-  [key: string]: Primitive | Primitive[];
+interface ParamProps {
+  [key: string]: any;
 }
+
+export type URL = `/api/${string}`;
+export type Query = [URL | undefined, ParamProps];
 
 export default handleQuery;

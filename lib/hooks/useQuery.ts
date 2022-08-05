@@ -1,14 +1,15 @@
-import handleQuery from "@/lib/utils/handleQuery";
-import useSWR, { type SWRConfiguration } from "swr";
+import handleQuery, { type Query, type URL } from "@/lib/utils/handleQuery";
+import useSWR, { type SWRConfiguration, type SWRResponse } from "swr";
 import useSWRInfinite, { type SWRInfiniteConfiguration } from "swr/infinite";
 
-function useQuery<T, E = any>(
-  url: `/api/${string}` | null,
-  param = {},
-  opts: SWRConfiguration<T, E> = {}
-) {
-  const query = url ? handleQuery(url, param) : null;
-  const { data, ...otherRes } = useSWR<T, E>(query, opts);
+function useQuery<T, E = any>(query?: Query): Res<T, E>;
+function useQuery<T, E = any>(query?: URL): Res<T, E>;
+function useQuery<T, E = any>(query?: Query, opts?: Opts<T, E>): Res<T, E>;
+function useQuery<T, E = any>(query?: URL, opts?: Opts<T, E>): Res<T, E>;
+function useQuery<T, E = any>(query?: Query | URL, opts?: Opts<T, E>) {
+  const [url, params] = Array.isArray(query) ? query : [query, {}];
+  const key = url ? handleQuery(url, params) : undefined;
+  const { data, ...otherRes } = useSWR<T, E>(key, opts);
 
   return {
     data: data,
@@ -19,7 +20,7 @@ function useQuery<T, E = any>(
 
 export function useQueryInfinite<T, E = any>(
   getKey: (index: number, previous: T | null) => string | null,
-  opts: SWRInfiniteConfiguration<T, E> = {}
+  opts?: SWRInfiniteConfiguration<T, E>
 ) {
   const { data, ...otherRes } = useSWRInfinite<T, E>(getKey, opts);
 
@@ -30,6 +31,7 @@ export function useQueryInfinite<T, E = any>(
   };
 }
 
+type Res<T, E> = { isLoading: boolean } & SWRResponse<T, E>;
 export type Opts<T = any, E = any> = SWRConfiguration<T, E>;
 export type OptsInfinite<T = any, E = any> = SWRInfiniteConfiguration<T, E>;
 
