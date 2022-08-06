@@ -55,3 +55,11 @@ export function languages<T = any>(fn: (lang: string[]) => T): T {
 export const randomNum = faker.datatype.number;
 
 export const randomBool = faker.datatype.boolean;
+
+export const randomDateRecent = () => {
+  return faker.date.recent(10, "2022-01-01T00:00:00.000Z").toISOString();
+};
+
+export const randomDatePost = () => {
+  return faker.date.past(1000, "2000-01-01T00:00:00.000Z").toISOString();
+};

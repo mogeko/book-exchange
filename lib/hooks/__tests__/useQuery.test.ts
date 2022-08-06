@@ -23,6 +23,17 @@ describe("useQuery", () => {
 
     expect(result.current).toMatchSnapshot();
   });
+
+  it("fetch query with params", async () => {
+    const { result } = renderHook(() => useQuery(["/api/books", { limit: 5 }]));
+
+    await waitFor(() => {
+      expect(result.current.data).toBeDefined();
+      expect(result.current.data).toHaveLength(5);
+    });
+
+    expect(result.current).toMatchSnapshot();
+  });
 });
 
 describe("useBooksInfinite", () => {
