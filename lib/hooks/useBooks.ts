@@ -7,7 +7,7 @@ function useBooks(param: ParamProps = {}) {
 }
 
 export function useBook(id?: string) {
-  return useQuery<BookType>(id ? `/api/books/${id}` : undefined);
+  return useQuery<BookType>(id ? `/api/books/${id}` : void 0);
 }
 
 export function useBooksInfinite(

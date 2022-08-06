@@ -1,7 +1,7 @@
 import useQuery from "@/lib/hooks/useQuery";
 
 export function useUser(uid?: string) {
-  return useQuery<UserType>(uid ? `/api/users/${uid}` : undefined);
+  return useQuery<UserType>(uid ? `/api/users/${uid}` : void 0);
 }
 
 export type UsersType = {

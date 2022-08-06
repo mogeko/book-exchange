@@ -8,7 +8,7 @@ function useQuery<T, E = any>(query?: Query, opts?: Opts<T, E>): Res<T, E>;
 function useQuery<T, E = any>(query?: URL, opts?: Opts<T, E>): Res<T, E>;
 function useQuery<T, E = any>(query?: Query | URL, opts?: Opts<T, E>) {
   const [url, params] = Array.isArray(query) ? query : [query, {}];
-  const key = url ? handleQuery(url, params) : undefined;
+  const key = url ? handleQuery(url, params) : void 0;
   const { data, ...otherRes } = useSWR<T, E>(key, opts);
 
   return {
