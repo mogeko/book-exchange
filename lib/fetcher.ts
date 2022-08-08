@@ -1,4 +1,4 @@
-async function fetcher(url: string, init?: RequestInit): Promise<any> {
+async function fetcher<R = any>(url: string, init?: RequestInit): Promise<R> {
   const res = await fetch(url, init);
 
   if (!res.ok) {

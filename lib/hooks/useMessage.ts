@@ -1,4 +1,4 @@
-import useQuery, { type Opts } from "./useQuery";
+import useQuery, { type Opts } from "@/lib/hooks/useQuery";
 
 function useMessage(opts?: OptsType) {
   const requiredOpts = {

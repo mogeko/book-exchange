@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Authorize API return an authorization token 1`] = `
+Object {
+  "id": "90019",
+  "token": "2d720993-4aed-43c6-a653-90d3f9a87e9b",
+}
+`;
