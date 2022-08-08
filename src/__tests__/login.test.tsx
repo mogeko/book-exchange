@@ -1,6 +1,13 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/lib/test-utils";
 import fetcher from "@/lib/fetcher";
+import Login, { type Salt, type ResType } from "@/pages/login";
+
+const getCookie = (key: string) => {
+  const cookies = document.cookie.split("; ");
+
+  return cookies.find((c) => c.startsWith(key))?.split("=")[1];
+};
 
 describe("Authorize API", () => {
   it("return a hmac salt", async () => {
@@ -15,18 +22,14 @@ describe("Authorize API", () => {
     const auth = await fetcher<ResType>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({
-        username: "test",
-        password: "test",
+        username: "test-username",
+        password: "test-password",
+        salt: "test-salt",
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const getCookie = (key: string) => {
-      const cookies = document.cookie.split("; ");
-
-      return cookies.find((c) => c.startsWith(key))?.split("=")[1];
-    };
 
     expect(auth.id).toEqual(getCookie("auth-id"));
     expect(auth.token).toEqual(getCookie("auth-token"));
@@ -34,12 +37,3 @@ describe("Authorize API", () => {
     expect(auth).toMatchSnapshot();
   });
 });
-
-interface ResType {
-  id: `${number}`;
-  token: string;
-}
-
-interface Salt {
-  salt: string;
-}

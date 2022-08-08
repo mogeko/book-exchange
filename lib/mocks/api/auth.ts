@@ -1,3 +1,4 @@
+import type { LoginFormInput, Salt, ResType } from "@/pages/login";
 import { randomNum } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
@@ -15,30 +16,26 @@ const authHandlers = [
     const authID = `${randomNum({ min: 1000, max: 100000 })}`;
     const authToken = faker.datatype.uuid();
 
+    if (username && password && salt) {
+      return res(
+        ctx.cookie("auth-id", authID),
+        ctx.cookie("auth-token", authToken),
+        ctx.json<ResType>({
+          id: authID as `${number}`,
+          token: authToken,
+        })
+      );
+    }
+
     return res(
-      ctx.cookie("auth-id", authID),
-      ctx.cookie("auth-token", authToken),
-      ctx.json<ResType>({
-        id: authID as `${number}`,
-        token: authToken,
-      })
+      ctx.status(403),
+      ctx.json({ message: "Failed to authenticate!" })
     );
   }),
 ];
 
-interface ReqType {
-  username: string;
-  password: string;
+type ReqType = {
   salt: string;
-}
-
-interface ResType {
-  id: `${number}`;
-  token: string;
-}
-
-interface Salt {
-  salt: string;
-}
+} & LoginFormInput;
 
 export default authHandlers;
