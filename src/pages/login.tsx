@@ -9,7 +9,8 @@ import type { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import CryptoJS from "crypto-js";
-import React from "react";
+import React, { useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 const Login: NextPage = () => {
   return (
@@ -33,7 +34,7 @@ const Login: NextPage = () => {
 const LoginForm: React.FC = () => {
   const { data: salt, isLoading, mutate } = useQuery<Salt>("/api/auth/salt");
   const { register, handleSubmit } = useForm<LoginFormInput>();
-  const router = useRouter();
+  const [[cookies], router] = [useCookies(), useRouter()];
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const hmac = salt ? CryptoJS.HmacSHA256(data.password, salt.salt) : null;
     const base64 = hmac ? hmac.toString(CryptoJS.enc.Base64) : null;
@@ -58,6 +59,12 @@ const LoginForm: React.FC = () => {
       router.back();
     }
   };
+
+  useEffect(() => {
+    if (cookies["auth-id"] && cookies["auth-token"]) {
+      router.back();
+    }
+  }, [cookies, router]);
 
   return (
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
