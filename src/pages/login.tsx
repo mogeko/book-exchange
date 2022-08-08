@@ -3,13 +3,13 @@ import Layout from "@/layouts/layout";
 import fetcher from "@/lib/fetcher";
 import useQuery from "@/lib/hooks/useQuery";
 import logoImage from "@/public/images/logo.svg";
-import CryptoJS from "crypto-js";
 import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
-import React from "react";
 import type { SubmitHandler } from "react-hook-form";
-import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import type { NextPage } from "next";
+import CryptoJS from "crypto-js";
+import React from "react";
 
 const Login: NextPage = () => {
   return (
@@ -31,7 +31,7 @@ const Login: NextPage = () => {
 };
 
 const LoginForm: React.FC = () => {
-  const { data: salt, mutate } = useQuery<Salt>("/api/auth/salt");
+  const { data: salt, isLoading, mutate } = useQuery<Salt>("/api/auth/salt");
   const { register, handleSubmit } = useForm<LoginFormInput>();
   const router = useRouter();
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
@@ -66,11 +66,17 @@ const LoginForm: React.FC = () => {
           title="Username or email address"
           placeholder="username / email"
           type="text"
+          {...(isLoading ? { disabled: true } : {})}
           {...register("username")}
         />
-        <Input title="Password" type="password" {...register("password")} />
+        <Input
+          title="Password"
+          type="password"
+          {...(isLoading ? { disabled: true } : {})}
+          {...register("password")}
+        />
         <div className="form-control mt-6">
-          <input className="btn btn-primary" type="submit" value="Login" />
+          <input className="btn btn-primary" type="submit" value="Sign in" />
         </div>
       </form>
     </div>
