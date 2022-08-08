@@ -145,7 +145,7 @@ exports[`Card renders a book card correctly 1`] = `
       class="flex justify-center items-center"
     >
       <a
-        class="relative w-28 h-[calc(7rem/2*3)]"
+        class="relative w-28 aspect-[2/3]"
         href="/books/bk8992"
       >
         <span

@@ -16,7 +16,7 @@ exports[`bookGrid renders a BookGrid 1`] = `
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 h-[calc(7rem/2*3)]"
+            class="relative w-28 aspect-[2/3]"
             href="/books/bk8992"
           >
             <span
@@ -61,7 +61,7 @@ exports[`bookGrid renders a BookGrid 1`] = `
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 h-[calc(7rem/2*3)]"
+            class="relative w-28 aspect-[2/3]"
             href="/books/bk8718"
           >
             <span
@@ -106,7 +106,7 @@ exports[`bookGrid renders a BookGrid 1`] = `
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 h-[calc(7rem/2*3)]"
+            class="relative w-28 aspect-[2/3]"
             href="/books/bk4075"
           >
             <span
