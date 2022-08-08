@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Authorize API return a hmac salt 1`] = `"w4uh61mm79nxt7re"`;
+
 exports[`Authorize API return an authorization token 1`] = `
 Object {
   "id": "90019",
