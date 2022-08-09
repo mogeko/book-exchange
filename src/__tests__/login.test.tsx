@@ -65,7 +65,6 @@ describe("Login", () => {
       );
     });
 
-    screen.logTestingPlaygroundURL();
     expect(container).toMatchSnapshot();
   });
 
