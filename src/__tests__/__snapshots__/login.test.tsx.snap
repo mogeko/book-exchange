@@ -86,7 +86,6 @@ exports[`Login should login failed 1`] = `
                 class="input input-bordered"
                 name="username"
                 placeholder="username / email"
-                type="text"
               />
             </div>
             <div
@@ -260,7 +259,6 @@ exports[`Login should login success 1`] = `
                 class="input input-bordered"
                 name="username"
                 placeholder="username / email"
-                type="text"
               />
             </div>
             <div

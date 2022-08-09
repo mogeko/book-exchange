@@ -4,13 +4,13 @@ import fetcher from "@/lib/fetcher";
 import useQuery from "@/lib/hooks/useQuery";
 import logoImage from "@/public/images/logo.svg";
 import { enqueueSnackbar } from "notistack";
-import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import CryptoJS from "crypto-js";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
+import Form, { Input } from "@/components/form";
 
 const Login: NextPage = () => {
   return (
@@ -33,7 +33,6 @@ const Login: NextPage = () => {
 
 const LoginForm: React.FC = () => {
   const { data: salt, isLoading } = useQuery<Salt>("/api/auth/salt");
-  const { register, handleSubmit } = useForm<LoginFormInput>();
   const [[cookies], router] = [useCookies(), useRouter()];
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const hmac = salt ? CryptoJS.HmacSHA256(data.password, salt.salt) : null;
@@ -67,48 +66,20 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="card-body" onSubmit={onSubmit} loading={isLoading}>
         <Input
-          title="Username or email address"
+          name="username"
+          label="Username or email address"
           placeholder="username / email"
-          type="text"
-          {...(isLoading ? { disabled: true } : {})}
-          {...register("username")}
         />
-        <Input
-          title="Password"
-          type="password"
-          {...(isLoading ? { disabled: true } : {})}
-          {...register("password")}
-        />
+        <Input label="Password" type="password" />
         <div className="form-control mt-6">
-          <input className="btn btn-primary" type="submit" value="Sign in" />
+          <Input className="btn btn-primary" type="submit" value="Sign in" />
         </div>
-      </form>
+      </Form>
     </div>
   );
 };
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ title, placeholder, ...props }, ref) => (
-    <div className="form-control">
-      <label className="label">
-        <span className="label-text">{title}</span>
-      </label>
-      <input
-        placeholder={placeholder ?? title.toLowerCase()}
-        className="input input-bordered"
-        {...props}
-        ref={ref}
-      />
-    </div>
-  )
-);
-Input.displayName = "Input";
-
-type InputProps = {
-  title: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
 
 export interface LoginFormInput {
   username: string;
