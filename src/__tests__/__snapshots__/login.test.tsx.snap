@@ -9,7 +9,7 @@ Object {
 }
 `;
 
-exports[`Login should login failed 1`] = `
+exports[`Login should display error prompt 1`] = `
 <div>
   <div
     class="flex flex-col min-h-screen min-w-full w-full"
@@ -67,57 +67,76 @@ exports[`Login should login failed 1`] = `
         <div
           class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
         >
-          <form
+          <div
             class="card-body"
           >
-            <div
-              class="form-control"
-            >
-              <label
-                class="label"
+            <form>
+              <div
+                class="form-control"
               >
-                <span
-                  class="label-text"
+                <label
+                  class="label"
                 >
-                  Username or email address
-                </span>
-              </label>
-              <input
-                class="input input-bordered"
-                name="username"
-                placeholder="username / email"
-                type="text"
-              />
-            </div>
-            <div
-              class="form-control"
-            >
-              <label
-                class="label"
+                  <span
+                    class="label-text"
+                  >
+                    Username or email address
+                  </span>
+                </label>
+                <input
+                  class="input-error input input-bordered"
+                  name="username"
+                  placeholder="username / email"
+                />
+                <label
+                  class="label"
+                >
+                  <span
+                    class="label-text-alt text-error"
+                  >
+                    Username is required
+                  </span>
+                </label>
+              </div>
+              <div
+                class="form-control"
               >
-                <span
-                  class="label-text"
+                <label
+                  class="label"
                 >
-                  Password
-                </span>
-              </label>
-              <input
-                class="input input-bordered"
-                name="password"
-                placeholder="password"
-                type="password"
-              />
-            </div>
-            <div
-              class="form-control mt-6"
-            >
-              <input
-                class="btn btn-primary"
-                type="submit"
-                value="Sign in"
-              />
-            </div>
-          </form>
+                  <span
+                    class="label-text"
+                  >
+                    Password
+                  </span>
+                </label>
+                <input
+                  class="input-error input input-bordered"
+                  name="password"
+                  placeholder="password"
+                  type="password"
+                />
+                <label
+                  class="label"
+                >
+                  <span
+                    class="label-text-alt text-error"
+                  >
+                    Password is required
+                  </span>
+                </label>
+              </div>
+              <div
+                class="form-control mt-6"
+              >
+                <input
+                  class="btn btn-primary"
+                  type="submit"
+                  value="Sign in"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </main>
@@ -138,47 +157,6 @@ exports[`Login should login failed 1`] = `
         </p>
       </div>
     </footer>
-  </div>
-  <div
-    class="notistack-SnackbarContainer go1453831412 go2989568495 go1141946668"
-  >
-    <div
-      class="go1475592160 go1671063245"
-      style="pointer-events: all; overflow: visible; min-height: 0px; transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    >
-      <div
-        class="notistack-CollapseWrapper"
-        style="display: flex; width: 100%;"
-      >
-        <div
-          class="notistack-Snackbar go3963613292"
-        >
-          <div
-            class="go1888806478 notistack-MuiContent go167266335 go3651055292 go3162094071"
-            role="alert"
-            style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
-          >
-            <div
-              class="go946087465"
-              id="notistack-snackbar"
-            >
-              <svg
-                focusable="false"
-                style="font-size: 20px; margin-inline-end: 8px; user-select: none; width: 1em; height: 1em; display: inline-block; fill: currentColor; flex-shrink: 0;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,
-        6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,
-        13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"
-                />
-              </svg>
-              Login Failed!
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 `;
@@ -241,57 +219,58 @@ exports[`Login should login success 1`] = `
         <div
           class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
         >
-          <form
+          <div
             class="card-body"
           >
-            <div
-              class="form-control"
-            >
-              <label
-                class="label"
+            <form>
+              <div
+                class="form-control"
               >
-                <span
-                  class="label-text"
+                <label
+                  class="label"
                 >
-                  Username or email address
-                </span>
-              </label>
-              <input
-                class="input input-bordered"
-                name="username"
-                placeholder="username / email"
-                type="text"
-              />
-            </div>
-            <div
-              class="form-control"
-            >
-              <label
-                class="label"
+                  <span
+                    class="label-text"
+                  >
+                    Username or email address
+                  </span>
+                </label>
+                <input
+                  class="input input-bordered"
+                  name="username"
+                  placeholder="username / email"
+                />
+              </div>
+              <div
+                class="form-control"
               >
-                <span
-                  class="label-text"
+                <label
+                  class="label"
                 >
-                  Password
-                </span>
-              </label>
-              <input
-                class="input input-bordered"
-                name="password"
-                placeholder="password"
-                type="password"
-              />
-            </div>
-            <div
-              class="form-control mt-6"
-            >
-              <input
-                class="btn btn-primary"
-                type="submit"
-                value="Sign in"
-              />
-            </div>
-          </form>
+                  <span
+                    class="label-text"
+                  >
+                    Password
+                  </span>
+                </label>
+                <input
+                  class="input input-bordered"
+                  name="password"
+                  placeholder="password"
+                  type="password"
+                />
+              </div>
+              <div
+                class="form-control mt-6"
+              >
+                <input
+                  class="btn btn-primary"
+                  type="submit"
+                  value="Sign in"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </main>
