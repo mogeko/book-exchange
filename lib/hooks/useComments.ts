@@ -1,26 +1,27 @@
-import useQuery, { type Opts } from "./useQuery";
+import useQuery from "@/lib/hooks/useQuery";
 
-function useComments(param: ParamProps = {}, opts?: Opts<CommentsType>) {
-  return useQuery<CommentsType>("/api/comments", param, opts);
+function useComments(param: ParamProps = {}) {
+  return useQuery<CommentsType>(["/api/comments", param]);
 }
 
-export function useComment(id?: string, opts?: Opts<CommentType>) {
-  return useQuery<CommentType>(id ? `/api/comments/${id}` : null, {}, opts);
+export function useComment(id?: string) {
+  return useQuery<CommentType>(id ? `/api/comments/${id}` : void 0);
 }
 
 export type CommentsType = ({
+  id: `cm${number}`;
   meta: {
     short_review: string;
     rates: number;
   };
   responds: SubCommentType[];
   belongs_to: `bk${number}`;
-} & Omit<SubCommentType, "belongs_to">)[];
+} & Omit<SubCommentType, "belongs_to" | "id">)[];
 
 interface SubCommentType {
-  id: `cm${number}`;
+  id: `cm${number}-${number}`;
   author_meta: {
-    uid: `${number}`;
+    id: `${number}`;
     username: string;
     email: string;
     avatar: string;
@@ -31,13 +32,13 @@ interface SubCommentType {
     created_at: string;
     location: string;
   };
-  belongs_to: `cm${number}`;
+  belongs_to: `cm${number}-${number}` | `cm${number}`;
   msg: string;
   is_folded: boolean;
 }
 
 export interface CommentType {
-  id: `cm${number}`;
+  id: `cm${number}-${number}` | `cm${number}`;
   msg: string;
 }
 

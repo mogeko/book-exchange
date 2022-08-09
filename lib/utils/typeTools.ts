@@ -18,7 +18,7 @@ export type Tail<T extends any[]> = T extends [infer _, ...infer R] ? R : never;
 export type First<T extends any[]> = Head<T>;
 
 // Last<['a', 'b', 'c']> // 'c'
-export type Last<T extends any[]> = T extends [...any[], infer L] ? L : never;
+export type Last<T extends any[]> = T extends [...infer _, infer L] ? L : never;
 
 // Concat<['a', 'b'], ['c', 'd']> // ['a', 'b', 'c', 'd']
 export type Concat<T extends any[], U extends any[]> = [...T, ...U];

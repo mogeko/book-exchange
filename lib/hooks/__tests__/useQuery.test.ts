@@ -12,13 +12,24 @@ describe("useQuery", () => {
 
     expect(result.current.data).toBeUndefined();
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.isError).toBeUndefined();
+    expect(result.current.error).toBeUndefined();
 
     await waitFor(() => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data).toHaveLength(10);
       expect(result.current.isLoading).toBe(false);
-      expect(result.current.isError).toBeUndefined();
+      expect(result.current.error).toBeUndefined();
+    });
+
+    expect(result.current).toMatchSnapshot();
+  });
+
+  it("fetch query with params", async () => {
+    const { result } = renderHook(() => useQuery(["/api/books", { limit: 5 }]));
+
+    await waitFor(() => {
+      expect(result.current.data).toBeDefined();
+      expect(result.current.data).toHaveLength(5);
     });
 
     expect(result.current).toMatchSnapshot();
@@ -37,13 +48,13 @@ describe("useBooksInfinite", () => {
 
     expect(result.current.data).toBeUndefined();
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.isError).toBeUndefined();
+    expect(result.current.error).toBeUndefined();
 
     await waitFor(() => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data?.[0]).toHaveLength(10);
       expect(result.current.isLoading).toBe(false);
-      expect(result.current.isError).toBeUndefined();
+      expect(result.current.error).toBeUndefined();
     });
 
     expect(result.current).toMatchSnapshot();

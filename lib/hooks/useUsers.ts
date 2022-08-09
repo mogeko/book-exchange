@@ -1,7 +1,7 @@
-import useQuery, { type Opts } from "@/lib/hooks/useQuery";
+import useQuery from "@/lib/hooks/useQuery";
 
-export function useUser(uid?: string, opts?: Opts<UserType>) {
-  return useQuery<UserType>(uid ? `/api/users/${uid}` : null, {}, opts);
+export function useUser(uid?: string) {
+  return useQuery<UserType>(uid ? `/api/users/${uid}` : void 0);
 }
 
 export type UsersType = {

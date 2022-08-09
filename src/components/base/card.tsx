@@ -12,7 +12,7 @@ const CardRoot: React.FC<CardProps> = ({ title, cover, mate, id }) => {
         aria-label="Cover Image"
       >
         <Link href={`/books/${id}`}>
-          <a className="relative w-28 h-[calc(7rem/2*3)]">
+          <a className="relative w-28 aspect-[2/3]">
             <Image src={cover!} layout="fill" alt={title} />
           </a>
         </Link>

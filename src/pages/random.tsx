@@ -6,7 +6,7 @@ import { useSWRConfig } from "swr";
 import { useEffect } from "react";
 
 const RandomPage: NextPage = () => {
-  const { data, error, isLoading } = useQuery<ResType>("/api/random", {});
+  const { data, error, isLoading } = useQuery<ResType>("/api/random");
   const { cache } = useSWRConfig();
   const router = useRouter();
 

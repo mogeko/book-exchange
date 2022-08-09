@@ -1,4 +1,4 @@
-import useQuery, { type Opts } from "./useQuery";
+import useQuery, { type Opts } from "@/lib/hooks/useQuery";
 
 function useMessage(opts?: OptsType) {
   const requiredOpts = {
@@ -7,7 +7,7 @@ function useMessage(opts?: OptsType) {
     revalidateOnReconnect: true,
   };
 
-  return useQuery<MessageType>("/api/msg", {}, { ...opts, ...requiredOpts });
+  return useQuery<MessageType>("/api/msg", { ...opts, ...requiredOpts });
 }
 
 export type MessageType = Partial<{

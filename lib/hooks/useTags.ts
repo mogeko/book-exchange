@@ -1,7 +1,7 @@
-import useQuery, { type Opts } from "@/lib/hooks/useQuery";
+import useQuery from "@/lib/hooks/useQuery";
 
-function useTags(opts?: Opts<TagsType>) {
-  return useQuery<TagsType>("/api/tags", {}, opts);
+function useTags() {
+  return useQuery<TagsType>("/api/tags");
 }
 
 export interface TagsType {

@@ -1,27 +1,22 @@
-import useQuery, {
-  useQueryInfinite,
-  type Opts,
-  type OptsInfinite,
-} from "@/lib/hooks/useQuery";
+import useQuery, { useQueryInfinite } from "@/lib/hooks/useQuery";
 import handleQuery from "@/lib/utils/handleQuery";
 import type { XOR } from "@/lib/utils/typeTools";
 
-function useBooks(param: ParamProps = {}, opts?: Opts<BooksType>) {
-  return useQuery<BooksType>("/api/books", param, opts);
+function useBooks(param: ParamProps = {}) {
+  return useQuery<BooksType>(["/api/books", param]);
 }
 
-export function useBook(id?: string, opts?: Opts<BookType>) {
-  return useQuery<BookType>(id ? `/api/books/${id}` : null, {}, opts);
+export function useBook(id?: string) {
+  return useQuery<BookType>(id ? `/api/books/${id}` : void 0);
 }
 
 export function useBooksInfinite(
-  { page = 1, ...other }: ParamProps = { page: 1 },
-  opts: OptsInfinite<BooksType> = {}
+  { page = 1, ...other }: ParamProps = { page: 1 }
 ) {
   return useQueryInfinite<BooksType>((index, previous) => {
     if (previous && !previous.length) return null;
     return handleQuery("/api/books", { page: index + page, ...other });
-  }, opts);
+  });
 }
 
 interface ParamProps {

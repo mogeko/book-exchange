@@ -1,5 +1,4 @@
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import Alert from "@/components/base/alert";
 import useQuery from "@/lib/hooks/useQuery";
 import { useState } from "react";
 
