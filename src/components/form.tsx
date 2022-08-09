@@ -26,10 +26,15 @@ const Form: React.FC<FormProps> = (props) => {
 };
 
 export const Input: React.FC<InputProps> = (props) => {
-  const { label, name, register, className, size = "md", ...rest } = props;
-  const error = rest.errors?.[name ?? label?.toLowerCase()!]?.message;
+  const { label, register, className, errors, ...rest } = props;
+  const key = rest.name ?? label?.toLowerCase()!;
+  const error = errors?.[key]?.message;
+  const defaultClassName = classNames(
+    error ? "input-error" : "",
+    "input input-bordered"
+  );
 
-  if (register && (name || label)) {
+  if (register && (rest.name || label)) {
     return (
       <div className="form-control">
         {label && (
@@ -38,17 +43,9 @@ export const Input: React.FC<InputProps> = (props) => {
           </label>
         )}
         <input
-          className={
-            className ??
-            classNames(
-              "input input-bordered",
-              error ? "input-error" : "",
-              `input-${size}`
-            )
-          }
-          placeholder={rest.placeholder ?? label?.toLowerCase() ?? name}
-          {...register(name ?? label?.toLowerCase()!)}
-          {...rest}
+          className={className ?? defaultClassName}
+          placeholder={rest.placeholder ?? label?.toLowerCase() ?? rest.name}
+          {...{ ...register(key), ...rest }}
         />
         {error && (
           <label className="label">
@@ -72,7 +69,6 @@ interface FormProps {
 type FormChild = {
   register?: UseFormRegister<FieldValues>;
   errors?: FieldErrors<FieldValues>;
-  size?: "xs" | "sm" | "md" | "lg";
   label?: string;
   name?: string;
   className?: string;

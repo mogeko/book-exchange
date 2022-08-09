@@ -84,9 +84,7 @@ exports[`Login should display error prompt 1`] = `
                   </span>
                 </label>
                 <input
-                  class="input input-bordered input-error input-md"
-                  disabled=""
-                  errors="[object Object]"
+                  class="input-error input input-bordered"
                   name="username"
                   placeholder="username / email"
                 />
@@ -113,9 +111,7 @@ exports[`Login should display error prompt 1`] = `
                   </span>
                 </label>
                 <input
-                  class="input input-bordered input-error input-md"
-                  disabled=""
-                  errors="[object Object]"
+                  class="input-error input input-bordered"
                   name="password"
                   placeholder="password"
                   type="password"
@@ -240,8 +236,7 @@ exports[`Login should login success 1`] = `
                   </span>
                 </label>
                 <input
-                  class="input input-bordered input-md"
-                  errors="[object Object]"
+                  class="input input-bordered"
                   name="username"
                   placeholder="username / email"
                 />
@@ -259,8 +254,7 @@ exports[`Login should login success 1`] = `
                   </span>
                 </label>
                 <input
-                  class="input input-bordered input-md"
-                  errors="[object Object]"
+                  class="input input-bordered"
                   name="password"
                   placeholder="password"
                   type="password"

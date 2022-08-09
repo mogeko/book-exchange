@@ -59,11 +59,13 @@ describe("Login", () => {
     });
 
     await waitFor(() => {
+      expect(screen.getByRole("textbox")).not.toHaveAttribute("disabled");
       expect(screen.getByRole("img", { name: "logo" })).toHaveAttribute(
         "srcset"
       );
     });
 
+    screen.logTestingPlaygroundURL();
     expect(container).toMatchSnapshot();
   });
 
