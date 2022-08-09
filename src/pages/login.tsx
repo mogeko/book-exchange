@@ -32,7 +32,7 @@ const Login: NextPage = () => {
 };
 
 const LoginForm: React.FC = () => {
-  const { data: salt, isLoading, mutate } = useQuery<Salt>("/api/auth/salt");
+  const { data: salt, isLoading } = useQuery<Salt>("/api/auth/salt");
   const { register, handleSubmit } = useForm<LoginFormInput>();
   const [[cookies], router] = [useCookies(), useRouter()];
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
@@ -55,7 +55,6 @@ const LoginForm: React.FC = () => {
 
     if (auth) {
       enqueueSnackbar("Login Success!", { variant: "success" });
-      mutate();
       router.back();
     }
   };

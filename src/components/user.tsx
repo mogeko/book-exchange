@@ -7,49 +7,69 @@ import { HiUser } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
+import { useCookies } from "react-cookie";
 
 const User: React.FC = () => {
+  const [cookies, _, removeCookie] = useCookies();
+  const logout = () => {
+    removeCookie("auth-id");
+    removeCookie("auth-token");
+  };
+
+  if (!cookies["auth-id"]) return <UnLoginUser />;
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="hidden sm:block normal-case">
-        <UserBar />
+        <UserBar uid={cookies["auth-id"]} />
       </label>
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar sm:hidden">
         <div className="w-6 rounded-full">
-          <UserAvatar />
+          <UserAvatar uid={cookies["auth-id"]} />
         </div>
       </label>
-      <UserMenu />
+      <UserMenu logout={logout} />
     </div>
   );
 };
 
-const UserBar: React.FC = () => {
-  const { data, isLoading } = useUser("1");
-  if (isLoading) return <Skeleton.Line className="animate-pulse w-20 mr-4" />;
-  if (!data)
-    return (
-      <Link href="#">
-        <a className="btn btn-link btn-xs">Sign in / Sign up</a>
+const UnLoginUser: React.FC = () => (
+  <>
+    <div className="normal-case hidden sm:block">
+      <Link href="/login">
+        <a className="btn btn-link btn-xs w-40 flex-nowrap">
+          Sign in / Sign up
+        </a>
       </Link>
-    );
+    </div>
+    <Link href="/login">
+      <a className="btn btn-ghost btn-circle avatar sm:hidden">
+        <HiUser className="h-6 w-6" aria-hidden="true" />
+      </a>
+    </Link>
+  </>
+);
+
+const UserBar: React.FC<UserProps> = ({ uid }) => {
+  const { data, isLoading } = useUser(uid);
+
+  if (isLoading) return <Skeleton.Line className="animate-pulse w-20 mr-4" />;
   return (
     <div className="btn btn-link btn-xs text-base-content w-40 flex-nowrap">
-      Hi!&nbsp;<b className="truncate">{data.username}</b>
+      Hi!&nbsp;<b className="truncate">{data?.username}</b>
     </div>
   );
 };
 
-const UserAvatar: React.FC = () => {
-  const { data, error, isLoading } = useUser("1");
+const UserAvatar: React.FC<UserProps> = ({ uid }) => {
+  const { data, error, isLoading } = useUser(uid);
   if (error) return <VscError className="w-6 h-6 text-error" />;
   if (isLoading) return <VscLoading className="animate-spin w-6 h-6" />;
-  if (!data) return <HiUser className="h-6 w-6" aria-hidden="true" />;
-  return <Image src={data.avatar!} width={24} height={24} alt="User avatar" />;
+  return <Image src={data?.avatar!} width={24} height={24} alt="User avatar" />;
 };
 
-const UserMenu: React.FC = () => {
+const UserMenu: React.FC<UserMenuProps> = ({ logout }) => {
   const menus = useContext(MenusContext);
+  const handleLogout = () => logout();
 
   return (
     <ul
@@ -69,10 +89,18 @@ const UserMenu: React.FC = () => {
         </li>
       ))}
       <li role="menuitem" aria-label="User Menu Item">
-        <button>Sign out</button>
+        <button onClick={handleLogout}>Sign out</button>
       </li>
     </ul>
   );
 };
+
+interface UserProps {
+  uid: `${number}`;
+}
+
+interface UserMenuProps {
+  logout: () => void;
+}
 
 export default User;
