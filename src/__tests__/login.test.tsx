@@ -13,7 +13,6 @@ describe("Login", () => {
   it("should login success", async () => {
     const { container } = render(<Login />);
 
-    expect(screen.getByRole("img", { name: "logo" })).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Sign in to Bookworm" })
     ).toBeInTheDocument();
@@ -45,16 +44,31 @@ describe("Login", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should login failed", async () => {
+  it("should display error prompt", async () => {
     const { container } = render(<Login />);
 
     fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/login failed/i)).toBeInTheDocument();
+      expect(screen.getByText(/username is required/i)).toBeInTheDocument();
+      expect(screen.getByText(/password is required/i)).toBeInTheDocument();
+      expect(screen.getByRole("textbox")).toHaveClass("input-error");
+      expect(screen.getByPlaceholderText(/password/i)).toHaveClass(
+        "input-error"
+      );
+    });
+
+    await waitFor(() => {
+      expect(screen.getByRole("img", { name: "logo" })).toHaveAttribute(
+        "srcset"
+      );
     });
 
     expect(container).toMatchSnapshot();
+  });
+
+  it.skip("should login fail", async () => {
+    void 0;
   });
 });
 

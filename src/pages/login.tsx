@@ -1,4 +1,5 @@
 import Logo from "@/components/base/logo";
+import Form, { Input } from "@/components/form";
 import Layout from "@/layouts/layout";
 import fetcher from "@/lib/fetcher";
 import useQuery from "@/lib/hooks/useQuery";
@@ -10,7 +11,13 @@ import type { NextPage } from "next";
 import CryptoJS from "crypto-js";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import Form, { Input } from "@/components/form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+  username: yup.string().required("Username is required"),
+  password: yup.string().required("Password is required"),
+});
 
 const Login: NextPage = () => {
   return (
@@ -34,10 +41,10 @@ const Login: NextPage = () => {
 const LoginForm: React.FC = () => {
   const { data: salt, isLoading } = useQuery<Salt>("/api/auth/salt");
   const [[cookies], router] = [useCookies(), useRouter()];
+  const formOpts = { resolver: yupResolver(schema) };
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const hmac = salt ? CryptoJS.HmacSHA256(data.password, salt.salt) : null;
     const base64 = hmac ? hmac.toString(CryptoJS.enc.Base64) : null;
-
     const auth = await fetcher<ResType>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({
@@ -66,17 +73,19 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <Form className="card-body" onSubmit={onSubmit} loading={isLoading}>
-        <Input
-          name="username"
-          label="Username or email address"
-          placeholder="username / email"
-        />
-        <Input label="Password" type="password" />
-        <div className="form-control mt-6">
-          <Input className="btn btn-primary" type="submit" value="Sign in" />
-        </div>
-      </Form>
+      <div className="card-body">
+        <Form loading={isLoading} onSubmit={onSubmit} opts={formOpts}>
+          <Input
+            name="username"
+            label="Username or email address"
+            placeholder="username / email"
+          />
+          <Input label="Password" type="password" />
+          <div className="form-control mt-6">
+            <input className="btn btn-primary" type="submit" value="Sign in" />
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

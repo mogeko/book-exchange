@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@/lib/test-utils";
 import User from "@/components/user";
 
 describe("User", () => {
-  it("renders a user menu without logined", () => {
+  it("renders a user menu without logined", async () => {
     const { container } = render(<User />);
 
     expect(screen.getByText("Sign in / Sign up")).toBeInTheDocument();
@@ -28,6 +28,9 @@ describe("User", () => {
       expect(
         screen.getByRole("presentation", { name: /new messages/i })
       ).toBeInTheDocument();
+      expect(screen.getByRole("img", { name: /user avatar/i })).toHaveAttribute(
+        "srcset"
+      );
     });
 
     expect(container).toMatchSnapshot();
