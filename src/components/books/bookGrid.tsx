@@ -12,7 +12,7 @@ const BookGrid: React.FC<DataProps> = ({ maxPages = 1, page, ...other }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-wrap gap-6 my-8 w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 my-8 w-full">
         {isLoading
           ? Array.from({ length: 10 }, (_, i) => <Card.Skeleton key={i} />)
           : data?.map((book, i) => <Card key={i} {...book} />)}

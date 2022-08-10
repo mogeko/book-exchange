@@ -11,8 +11,8 @@ const Home: NextPage = () => {
       <Head>
         <title>Bookworm</title>
       </Head>
-      <div className="flex w-full gap-6 flex-col c-lg:flex-row">
-        <div className="flex basis-5/7 gap-14 max-w-[41rem] flex-col">
+      <div className="flex w-full gap-6 flex-col lg:flex-row">
+        <div className="flex basis-5/7 gap-14 max-w-screen-md flex-col">
           <Popular />
           <UnpopularMasterpiece />
         </div>
