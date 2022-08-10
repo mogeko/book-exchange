@@ -138,14 +138,14 @@ exports[`Card render a long card 1`] = `
 exports[`Card renders a book card correctly 1`] = `
 <div>
   <div
-    class="relative flex flex-col w-28"
+    class="relative flex flex-col w-full"
   >
     <figure
       aria-label="Cover Image"
       class="flex justify-center items-center"
     >
       <a
-        class="relative w-28 aspect-[2/3]"
+        class="relative w-full aspect-2/3"
         href="/books/bk8992"
       >
         <span

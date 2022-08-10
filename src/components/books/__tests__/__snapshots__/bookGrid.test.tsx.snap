@@ -6,17 +6,17 @@ exports[`bookGrid renders a BookGrid 1`] = `
     class="flex flex-col"
   >
     <div
-      class="flex flex-wrap gap-6 my-8 w-full"
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 my-8 w-full"
     >
       <div
-        class="relative flex flex-col w-28"
+        class="relative flex flex-col w-full"
       >
         <figure
           aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 aspect-[2/3]"
+            class="relative w-full aspect-2/3"
             href="/books/bk8992"
           >
             <span
@@ -54,14 +54,14 @@ exports[`bookGrid renders a BookGrid 1`] = `
         </div>
       </div>
       <div
-        class="relative flex flex-col w-28"
+        class="relative flex flex-col w-full"
       >
         <figure
           aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 aspect-[2/3]"
+            class="relative w-full aspect-2/3"
             href="/books/bk8718"
           >
             <span
@@ -99,14 +99,14 @@ exports[`bookGrid renders a BookGrid 1`] = `
         </div>
       </div>
       <div
-        class="relative flex flex-col w-28"
+        class="relative flex flex-col w-full"
       >
         <figure
           aria-label="Cover Image"
           class="flex justify-center items-center"
         >
           <a
-            class="relative w-28 aspect-[2/3]"
+            class="relative w-full aspect-2/3"
             href="/books/bk4075"
           >
             <span

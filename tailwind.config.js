@@ -3,12 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      screens: {
-        "c-lg": "976px",
-      },
       flexBasis: {
         "5/7": "71.42857143%",
         "2/7": "28.57142857%",
+      },
+      aspectRatio: {
+        "2/3": "2 / 3",
       },
     },
   },
