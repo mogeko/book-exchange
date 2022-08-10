@@ -1,4 +1,4 @@
-import TagsCotroller from "@/layouts/tagsCotroller";
+import TagsCotroller from "@/layouts/aside/tagsCotroller";
 import { DefaultLayout } from "@/layouts/layout";
 import BookList from "@/components/books/bookList";
 import Box from "@/layouts/boxes";

@@ -42,12 +42,10 @@ const TagItem: React.FC<TagProps> = ({ size, name, href }) => {
 const TagSkeleton: React.FC = () => (
   <>
     {Array.from({ length: 4 }, (_, i) => (
-      <Skeleton.Pulse key={i} className="flex flex-col my-2 gap-2 mt-8">
-        <Skeleton.Circle className="h-3 w-36 mb-2" />
-        <Skeleton.Line className="w-48" />
-        <Skeleton.Line className="w-48" />
-        <Skeleton.Line className="w-48" />
-      </Skeleton.Pulse>
+      <Skeleton key={i} className="flex flex-col my-2 gap-2 mt-8">
+        <Skeleton.Circle className="w-36 h-4" />
+        <Skeleton.Line className="w-48 h-4" count={3} />
+      </Skeleton>
     ))}
   </>
 );

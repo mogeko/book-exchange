@@ -1,4 +1,4 @@
-import TagsCotroller from "@/layouts/tagsCotroller";
+import TagsCotroller from "@/layouts/aside/tagsCotroller";
 import BookGrid from "@/components/books/bookGrid";
 import Box from "@/layouts/boxes";
 import { DefaultLayout } from "@/layouts/layout";

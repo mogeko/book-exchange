@@ -10,7 +10,7 @@ exports[`Card render a long card 1`] = `
       class="flex justify-center items-center"
     >
       <a
-        class="relative w-28 h-[calc(7rem/2*3)]"
+        class="relative w-28 aspect-2/3"
         href="/books/bk8992"
       >
         <span
@@ -28,7 +28,7 @@ exports[`Card render a long card 1`] = `
       </a>
     </figure>
     <div
-      class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+      class="flex flex-col gap-2"
     >
       <div
         class="inline-flex justify-start"
@@ -188,16 +188,16 @@ exports[`Card renders a book card correctly 1`] = `
 exports[`Card snapshot a book skeleton card 1`] = `
 <div>
   <div
-    class="relative flex flex-col mb-4 w-28 animate-pulse"
+    class="animate-pulse flex flex-col w-full"
   >
     <div
-      class="mb-2 w-28 h-[calc(7rem/2*3)] bg-slate-700 rounded"
+      class="bg-slate-700 mb-2 rounded w-full aspect-2/3"
     />
     <div
-      class="mb-2 w-24 h-2 bg-slate-700 rounded"
+      class="bg-slate-700 mb-2 rounded w-full h-4"
     />
     <div
-      class="mb-2 w-20 h-2 bg-slate-700 rounded"
+      class="bg-slate-700 mb-2 rounded w-full h-4"
     />
   </div>
 </div>
@@ -206,34 +206,20 @@ exports[`Card snapshot a book skeleton card 1`] = `
 exports[`Card snapshot a long card skeleton 1`] = `
 <div>
   <div
-    class="relative flex mb-4 w-full gap-3 animate-pulse"
+    class="animate-pulse flex py-4 gap-3"
   >
     <div
-      class="mb-2 w-28 h-[calc(7rem/2*3)] bg-slate-700 rounded"
+      class="bg-slate-700 mb-2 rounded w-28 aspect-2/3"
     />
     <div
-      class="flex flex-col w-full gap-2"
+      class="flex flex-col gap-2 w-full"
     >
       <div
-        class="mb-2 w-1/5 h-2 bg-slate-700 rounded"
+        class="bg-slate-700 mb-2 rounded w-3/4 h-4"
       />
       <div
-        class="mb-2 w-1/6 h-2 bg-slate-700 rounded"
+        class="bg-slate-700 mb-2 rounded w-1/2 h-4"
       />
-      <div>
-        <div
-          class="mb-2 w-4/5 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="mb-2 w-4/5 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="mb-2 w-4/5 h-2 bg-slate-700 rounded"
-        />
-        <div
-          class="mb-2 w-4/6 h-2 bg-slate-700 rounded"
-        />
-      </div>
     </div>
   </div>
 </div>

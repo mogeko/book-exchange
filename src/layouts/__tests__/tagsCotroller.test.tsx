@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@/lib/test-utils";
-import TagsCotroller from "@/layouts/tagsCotroller";
+import TagsCotroller from "@/layouts/aside/tagsCotroller";
 
 describe("TagsCotroller", () => {
   it("should render correctly", async () => {
