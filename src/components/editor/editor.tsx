@@ -2,6 +2,7 @@ import { BubbleMenu, FloatingMenu } from "@/components/editor/menus";
 import { PresetButtons } from "@/components/editor/buttons";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import CharacterCount from "@tiptap/extension-character-count";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -20,21 +21,28 @@ const Editor: React.FC = () => {
         placeholder: "Write something here...",
       }),
       FocusClasses,
+      CharacterCount,
     ],
     editorProps: {
       attributes: {
         class:
-          "textarea textarea-bordered textarea-primary prose h-full w-full overflow-auto",
+          "textarea textarea-bordered textarea-primary h-full w-full overflow-auto prose",
       },
     },
   });
 
   return (
-    <>
+    <div className="relative max-w-xl">
       <EditorContent editor={editor} className="flex h-40 w-full" />
       <FloatingMenu editor={editor} buttons={PresetButtons.floating} />
       <BubbleMenu editor={editor} buttons={PresetButtons.bubble} />
-    </>
+      <div className="label items-start">
+        <span className="label-text-alt">
+          {editor?.storage.characterCount.characters()} characters
+        </span>
+        <button className="btn">Submit</button>
+      </div>
+    </div>
   );
 };
 
