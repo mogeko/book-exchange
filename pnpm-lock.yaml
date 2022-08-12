@@ -8,6 +8,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^13.3.0
   '@testing-library/user-event': ^14.3.0
+  '@tiptap/extension-focus': 2.0.0-beta.45
   '@tiptap/extension-highlight': 2.0.0-beta.35
   '@tiptap/extension-placeholder': 2.0.0-beta.53
   '@tiptap/extension-typography': 2.0.0-beta.22
@@ -50,6 +51,7 @@ specifiers:
 dependencies:
   '@hookform/resolvers': 2.9.7_react-hook-form@7.34.0
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.7
+  '@tiptap/extension-focus': 2.0.0-beta.45_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/extension-highlight': 2.0.0-beta.35_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/extension-placeholder': 2.0.0-beta.53_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/extension-typography': 2.0.0-beta.22_jdrcmhoxj44u3cq7gnenksjiqq
@@ -1070,6 +1072,16 @@ packages:
       prosemirror-state: 1.4.1
       prosemirror-view: 1.26.2
       tippy.js: 6.3.7
+    dev: false
+
+  /@tiptap/extension-focus/2.0.0-beta.45_jdrcmhoxj44u3cq7gnenksjiqq:
+    resolution: {integrity: sha512-TWUs1aDPojckNKE8MtFzt2LjpKuA//O/3XZ5JZOFAdX1g7XgGjlvlgw1PSQCRkLjht9Kt3WsjhcNruHTpZp7Zg==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.1
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.182
+      prosemirror-state: 1.4.1
+      prosemirror-view: 1.26.2
     dev: false
 
   /@tiptap/extension-gapcursor/2.0.0-beta.39_jdrcmhoxj44u3cq7gnenksjiqq:

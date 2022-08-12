@@ -5,6 +5,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
 import Placeholder from "@tiptap/extension-placeholder";
+import FocusClasses from "@tiptap/extension-focus";
 
 const Editor: React.FC = () => {
   const editor = useEditor({
@@ -15,22 +16,22 @@ const Editor: React.FC = () => {
       }),
       Typography,
       Placeholder.configure({
-        showOnlyCurrent: false,
-        emptyEditorClass:
-          "before:content-[attr(data-placeholder)] before:float-left before:h-0",
+        emptyEditorClass: "is-editor-empty",
         placeholder: "Write something here...",
       }),
+      FocusClasses,
     ],
     editorProps: {
       attributes: {
-        class: "textarea textarea-bordered textarea-primary prose h-full",
+        class:
+          "textarea textarea-bordered textarea-primary prose h-full w-full overflow-auto",
       },
     },
   });
 
   return (
     <>
-      <EditorContent editor={editor} className="h-40" />
+      <EditorContent editor={editor} className="flex h-40 w-full" />
       <FloatingMenu editor={editor} buttons={PresetButtons.floating} />
       <BubbleMenu editor={editor} buttons={PresetButtons.bubble} />
     </>
