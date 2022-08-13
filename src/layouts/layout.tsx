@@ -4,7 +4,7 @@ import Footer from "@/layouts/footer";
 
 const Container: React.FC<ContainerProps> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen min-w-full w-full">
+    <div className="flex flex-col min-h-screen min-w-full w-full selection:bg-secondary selection:text-secondary-content">
       {children}
     </div>
   );
