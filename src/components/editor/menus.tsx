@@ -55,8 +55,14 @@ export const BubbleMenu: React.FC<MenuProps> = ({ editor, buttons }) => {
   }, [editor, isLinkActive, setIsLinkActive]);
 
   useEffect(() => {
-    editor?.isFocused && setIsLinkActive(false);
-  }, [editor?.isFocused, setIsLinkActive]);
+    const autoCloseLinkDialog = () => setIsLinkActive(false);
+
+    editor?.on("focus", autoCloseLinkDialog);
+
+    return () => {
+      editor?.off("focus", autoCloseLinkDialog);
+    };
+  }, [editor, setIsLinkActive]);
 
   return (
     editor && (
