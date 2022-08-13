@@ -208,7 +208,7 @@ export const BlueMark: React.FC<ButtonProps> = ({ editor }) => {
 };
 
 export const PresetButtons = {
-  bubble: [Bold, Italic, Strike, RedMark, YellowMark, GreenMark, BlueMark],
+  bubble: [Bold, Italic, RedMark, YellowMark, GreenMark, BlueMark, Strike],
   floating: [H1, H2, H3, BulletList, OrderedList, CodeBlock, Blockquote],
 };
 

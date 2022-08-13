@@ -7,6 +7,7 @@ import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
 import Placeholder from "@tiptap/extension-placeholder";
 import FocusClasses from "@tiptap/extension-focus";
+import Link from "@tiptap/extension-link";
 
 const Editor: React.FC = () => {
   const editor = useEditor({
@@ -19,6 +20,9 @@ const Editor: React.FC = () => {
       Placeholder.configure({
         emptyEditorClass: "is-editor-empty",
         placeholder: "Write something here...",
+      }),
+      Link.configure({
+        protocols: ["ftp", "http", "https", "mailto"],
       }),
       FocusClasses,
       CharacterCount,
@@ -40,7 +44,9 @@ const Editor: React.FC = () => {
         <span className="label-text-alt">
           {editor?.storage.characterCount.characters()} characters
         </span>
-        <button className="btn">Submit</button>
+        <button className="btn btn-sm" disabled>
+          Submit
+        </button>
       </div>
     </div>
   );
