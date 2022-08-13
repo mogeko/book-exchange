@@ -30,10 +30,13 @@ const Editor: React.FC = () => {
     editorProps: {
       attributes: {
         class:
-          "textarea textarea-bordered textarea-primary h-full w-full overflow-auto prose",
+          "textarea textarea-bordered textarea-accent h-full w-full overflow-auto prose",
       },
     },
   });
+  const handleClick = () => {
+    return;
+  };
 
   return (
     <div className="relative max-w-xl">
@@ -44,7 +47,11 @@ const Editor: React.FC = () => {
         <span className="label-text-alt">
           {editor?.storage.characterCount.characters()} characters
         </span>
-        <button className="btn btn-sm" disabled>
+        <button
+          onClick={handleClick}
+          className="btn btn-sm btn-primary"
+          {...(editor?.isEmpty ? { disabled: true } : {})}
+        >
           Submit
         </button>
       </div>

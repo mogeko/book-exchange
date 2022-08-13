@@ -9,7 +9,7 @@ const BoxRoot: React.FC<BoxProps> = ({ title, children }) => {
 
 const SubBox: React.FC<BoxProps> = ({ title, children }) => {
   return (
-    <div className="flex flex-col items-start my-2">
+    <div className="flex flex-col items-start my-2 prose">
       {title && <h2 className="text-lg capitalize w-full my-2">{title}</h2>}
       {children}
     </div>

@@ -13,7 +13,7 @@ const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
         <Image src={cover!} layout="fill" alt={title} />
       </div>
     </figure>
-    <div className="flex flex-col">
+    <div className="flex flex-col prose">
       {Object.entries(mate ?? {}).map(([itemName, value], i) => {
         if (itemName === "paperback" || itemName === "hardcover") {
           return (
