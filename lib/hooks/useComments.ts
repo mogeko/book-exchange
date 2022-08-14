@@ -1,11 +1,8 @@
 import useQuery from "@/lib/hooks/useQuery";
+import type { JSONContent } from "@tiptap/react";
 
 function useComments(param: ParamProps = {}) {
   return useQuery<CommentsType>(["/api/comments", param]);
-}
-
-export function useComment(id?: string) {
-  return useQuery<CommentType>(id ? `/api/comments/${id}` : void 0);
 }
 
 export type CommentsType = ({
@@ -33,13 +30,7 @@ interface SubCommentType {
     location: string;
   };
   belongs_to: `cm${number}-${number}` | `cm${number}`;
-  msg: string;
-  is_folded: boolean;
-}
-
-export interface CommentType {
-  id: `cm${number}-${number}` | `cm${number}`;
-  msg: string;
+  msg: JSONContent;
 }
 
 interface ParamProps {

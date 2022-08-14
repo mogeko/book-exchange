@@ -1,9 +1,7 @@
 import { BubbleMenu, FloatingMenu } from "@/components/editor/menus";
 import { PresetButtons } from "@/components/editor/buttons";
 import extensions from "@/components/editor/extensions";
-import Form from "@/components/form";
 import { useEditor, EditorContent } from "@tiptap/react";
-import type { SubmitHandler } from "react-hook-form";
 import type { JSONContent } from "@tiptap/react";
 
 const Editor: React.FC<EditorProps> = ({ onSubmit }) => {
@@ -16,12 +14,13 @@ const Editor: React.FC<EditorProps> = ({ onSubmit }) => {
       },
     },
   });
-  const handleSubmit: SubmitHandler<any> = (data) => {
+  const handleClick = () => {
     onSubmit({ content: editor?.getJSON() });
+    editor?.commands.clearContent();
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="relative max-w-xl">
+    <div className="relative max-w-xl">
       <EditorContent editor={editor} className="flex h-40 w-full" />
       <FloatingMenu editor={editor} buttons={PresetButtons.floating} />
       <BubbleMenu editor={editor} buttons={PresetButtons.bubble} />
@@ -29,15 +28,15 @@ const Editor: React.FC<EditorProps> = ({ onSubmit }) => {
         <span className="label-text-alt">
           {editor?.storage.characterCount.characters()} characters
         </span>
-        <input
-          type="submit"
-          onClick={() => editor?.commands.clearContent()}
+        <button
+          onClick={handleClick}
           className="btn btn-sm btn-primary"
           {...(editor?.isEmpty ? { disabled: true } : {})}
-          value="Submit"
-        />
+        >
+          Submit
+        </button>
       </div>
-    </Form>
+    </div>
   );
 };
 

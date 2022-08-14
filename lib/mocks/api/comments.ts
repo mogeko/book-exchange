@@ -1,5 +1,6 @@
-import type { CommentType, CommentsType } from "@/lib/hooks/useComments";
+import type { CommentsType } from "@/lib/hooks/useComments";
 import type { EditorFormInput } from "@/components/editor/editor";
+import type { JSONContent } from "@tiptap/react";
 import { oneOf, randomNum as rNum, randomDateRecent } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
@@ -11,6 +12,21 @@ const CommentsHandlers = [
     const bkid = req.url.searchParams.get("bkid");
     const cmid = `cm${rNum({ min: 1000000000, max: 100000000000 })}`;
     const subCommentLength = rNum({ min: 0, max: 20 });
+    const genComment = (heading: string, text: string): JSONContent => ({
+      type: "doc",
+      content: [
+        {
+          type: "heading",
+          attrs: { level: 1 },
+          content: [{ type: "text", text: heading }],
+        },
+        { type: "paragraph", content: [{ type: "text", text: text }] },
+      ],
+    });
+    const genSubComment = (text: string): JSONContent => ({
+      type: "doc",
+      content: [{ type: "paragraph", content: [{ type: "text", text: text }] }],
+    });
 
     return res(
       ctx.json<CommentsType>(
@@ -48,25 +64,18 @@ const CommentsHandlers = [
               `${cmid}`,
               `${cmid}-${rNum({ min: 0, max: subCommentLength })}`,
             ]) as `cm${number}-${number}`,
-            msg: faker.lorem.lines(1),
+            msg: genSubComment(faker.lorem.paragraphs(1)),
             is_folded: faker.datatype.boolean(),
           })),
           belongs_to: (bkid ??
             `bk${rNum({ min: 10000, max: 100000 })}`) as `bk${number}`,
-          msg: faker.lorem.paragraph(6),
+          msg: genComment(
+            faker.lorem.lines(1),
+            faker.lorem.paragraphs(3, "<br/> ")
+          ),
           is_folded: faker.datatype.boolean(),
         }))
       )
-    );
-  }),
-  rest.get("/api/comments/:cmid", (req, res, ctx) => {
-    const { cmid } = req.params;
-
-    return res(
-      ctx.json<CommentType>({
-        id: cmid as `cm${number}-${number}` | `cm${number}`,
-        msg: faker.lorem.paragraph(50),
-      })
     );
   }),
   rest.post("/api/comments/submit", async (req, res, ctx) => {
