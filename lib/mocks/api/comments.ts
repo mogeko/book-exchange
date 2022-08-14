@@ -1,4 +1,5 @@
 import type { CommentType, CommentsType } from "@/lib/hooks/useComments";
+import type { EditorFormInput } from "@/components/editor/editor";
 import { oneOf, randomNum as rNum, randomDateRecent } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
 import { rest } from "msw";
@@ -67,6 +68,11 @@ const CommentsHandlers = [
         msg: faker.lorem.paragraph(50),
       })
     );
+  }),
+  rest.post("/api/comments/submit", async (req, res, ctx) => {
+    const { content } = await req.json<EditorFormInput>();
+
+    return res(ctx.json({}));
   }),
 ];
 

@@ -1,32 +1,14 @@
 import { BubbleMenu, FloatingMenu } from "@/components/editor/menus";
 import { PresetButtons } from "@/components/editor/buttons";
+import extensions from "@/components/editor/extensions";
+import Form from "@/components/form";
 import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import CharacterCount from "@tiptap/extension-character-count";
-import Highlight from "@tiptap/extension-highlight";
-import Typography from "@tiptap/extension-typography";
-import Placeholder from "@tiptap/extension-placeholder";
-import FocusClasses from "@tiptap/extension-focus";
-import Link from "@tiptap/extension-link";
+import type { SubmitHandler } from "react-hook-form";
+import type { JSONContent } from "@tiptap/react";
 
-const Editor: React.FC = () => {
+const Editor: React.FC<EditorProps> = ({ onSubmit }) => {
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Highlight.configure({
-        multicolor: true,
-      }),
-      Typography,
-      Placeholder.configure({
-        emptyEditorClass: "is-editor-empty",
-        placeholder: "Write something here...",
-      }),
-      Link.configure({
-        protocols: ["ftp", "http", "https", "mailto"],
-      }),
-      FocusClasses,
-      CharacterCount,
-    ],
+    extensions: extensions,
     editorProps: {
       attributes: {
         class:
@@ -34,12 +16,12 @@ const Editor: React.FC = () => {
       },
     },
   });
-  const handleClick = () => {
-    return;
+  const handleSubmit: SubmitHandler<any> = (data) => {
+    onSubmit({ content: editor?.getJSON() });
   };
 
   return (
-    <div className="relative max-w-xl">
+    <Form onSubmit={handleSubmit} className="relative max-w-xl">
       <EditorContent editor={editor} className="flex h-40 w-full" />
       <FloatingMenu editor={editor} buttons={PresetButtons.floating} />
       <BubbleMenu editor={editor} buttons={PresetButtons.bubble} />
@@ -47,16 +29,24 @@ const Editor: React.FC = () => {
         <span className="label-text-alt">
           {editor?.storage.characterCount.characters()} characters
         </span>
-        <button
-          onClick={handleClick}
+        <input
+          type="submit"
+          onClick={() => editor?.commands.clearContent()}
           className="btn btn-sm btn-primary"
           {...(editor?.isEmpty ? { disabled: true } : {})}
-        >
-          Submit
-        </button>
+          value="Submit"
+        />
       </div>
-    </div>
+    </Form>
   );
 };
+
+interface EditorProps {
+  onSubmit: (data: EditorFormInput) => void;
+}
+
+export interface EditorFormInput {
+  content?: JSONContent;
+}
 
 export default Editor;
