@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Editor from "@/components/editor/editor";
+import Editor from "@/components/editor";
 
 describe("Editor", () => {
   it("render an Editor", () => {
