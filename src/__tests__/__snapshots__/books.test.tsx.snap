@@ -562,6 +562,43 @@ exports[`Books Page renders a Books Page 1`] = `
                 </button>
               </div>
             </div>
+            <div
+              class="animate-pulse"
+            >
+              <div
+                class="flex flex-col p-4 border rounded-lg gap-2 border-slate-600"
+              >
+                <div
+                  class="flex"
+                >
+                  <div
+                    class="bg-slate-700 mb-2 aspect-square rounded-full w-10"
+                  />
+                  <div
+                    class="flex flex-col items-start"
+                  >
+                    <div
+                      class="bg-slate-700 mb-2 rounded h-3 w-32 mx-2"
+                    />
+                    <div
+                      class="bg-slate-700 mb-2 rounded h-3 w-40 mx-2"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="bg-slate-700 mb-2 rounded h-3 w-56 mx-2 mb-4"
+                />
+                <div
+                  class="bg-slate-700 mb-2 rounded h-3 w-full mx-2"
+                />
+                <div
+                  class="bg-slate-700 mb-2 rounded h-3 w-full mx-2"
+                />
+                <div
+                  class="bg-slate-700 mb-2 rounded h-3 w-32 mx-2"
+                />
+              </div>
+            </div>
           </div>
         </main>
         <footer
