@@ -11,6 +11,7 @@ const Editor: React.FC<EditorProps> = ({ onSubmit }) => {
       attributes: {
         class:
           "textarea textarea-bordered textarea-accent h-full w-full overflow-auto prose",
+        role: "textbox",
       },
     },
   });
