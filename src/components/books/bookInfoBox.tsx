@@ -13,7 +13,7 @@ const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
         <Image src={cover!} layout="fill" alt={title} />
       </div>
     </figure>
-    <div className="flex flex-col">
+    <div className="flex flex-col prose">
       {Object.entries(mate ?? {}).map(([itemName, value], i) => {
         if (itemName === "paperback" || itemName === "hardcover") {
           return (
@@ -52,14 +52,9 @@ const BookInfo: React.FC<BookInfoProps> = ({ title, cover, mate }) => (
 
 export const BookInfoSkeleton: React.FC = () => (
   <div className="my-4 flex w-full gap-3">
-    <Skeleton.Square className="relative w-32 h-48" />
-    <div className="flex flex-col gap-3">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <div key={i} className="inline-flex gap-2">
-          <Skeleton.Line className="w-14" />
-          <Skeleton.Line className="w-32" />
-        </div>
-      ))}
+    <Skeleton.Square className="relative w-32 aspect-2/3" />
+    <div className="flex flex-col gap-2  w-full">
+      <Skeleton.Line className="w-2/5 h-4" count={3} />
     </div>
   </div>
 );

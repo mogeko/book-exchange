@@ -20,7 +20,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk8992"
             >
               <span
@@ -38,7 +38,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -155,7 +155,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk8718"
             >
               <span
@@ -173,7 +173,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -290,7 +290,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk4075"
             >
               <span
@@ -308,7 +308,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -425,7 +425,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk6021"
             >
               <span
@@ -443,7 +443,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -560,7 +560,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk6079"
             >
               <span
@@ -578,7 +578,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -695,7 +695,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk9160"
             >
               <span
@@ -713,7 +713,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -830,7 +830,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk9179"
             >
               <span
@@ -848,7 +848,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -965,7 +965,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk5714"
             >
               <span
@@ -983,7 +983,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -1100,7 +1100,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk3362"
             >
               <span
@@ -1118,7 +1118,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"
@@ -1235,7 +1235,7 @@ exports[`bookList renders a BookList 1`] = `
             class="flex justify-center items-center"
           >
             <a
-              class="relative w-28 h-[calc(7rem/2*3)]"
+              class="relative w-28 aspect-2/3"
               href="/books/bk9160"
             >
               <span
@@ -1253,7 +1253,7 @@ exports[`bookList renders a BookList 1`] = `
             </a>
           </figure>
           <div
-            class="flex flex-col gap-2 h-[calc(7rem/2*3)]"
+            class="flex flex-col gap-2"
           >
             <div
               class="inline-flex justify-start"

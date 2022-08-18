@@ -35,7 +35,7 @@ exports[`BookView render a BookView 1`] = `
         </div>
       </figure>
       <div
-        class="flex flex-col"
+        class="flex flex-col prose"
       >
         <div
           class="inline-flex gap-1 text-base"
@@ -131,7 +131,7 @@ exports[`BookView render a BookView 1`] = `
       </div>
     </div>
     <div
-      class="flex flex-col items-start my-2"
+      class="flex flex-col items-start my-2 prose"
     >
       <h2
         class="text-lg capitalize w-full my-2"
@@ -149,7 +149,7 @@ exports[`BookView render a BookView 1`] = `
       </div>
     </div>
     <div
-      class="flex flex-col items-start my-2"
+      class="flex flex-col items-start my-2 prose"
     >
       <h2
         class="text-lg capitalize w-full my-2"
@@ -204,7 +204,7 @@ exports[`Books Page renders a Books Page 1`] = `
       class="drawer-content"
     >
       <div
-        class="flex flex-col min-h-screen min-w-full w-full"
+        class="flex flex-col min-h-screen min-w-full w-full selection:bg-secondary selection:text-secondary-content"
       >
         <div
           class="min-w-full"
@@ -463,175 +463,139 @@ exports[`Books Page renders a Books Page 1`] = `
               class="flex flex-col"
             >
               <div
-                class="h-6 w-40 my-1 bg-slate-700 rounded"
+                class="bg-slate-700 mb-2 rounded h-4 w-1/6 my-1"
               />
               <div
                 class="my-4 flex w-full gap-3"
               >
                 <div
-                  class="relative w-32 h-48 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded relative w-32 aspect-2/3"
                 />
                 <div
-                  class="flex flex-col gap-3"
+                  class="flex flex-col gap-2 w-full"
                 >
                   <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
+                    class="bg-slate-700 mb-2 rounded w-2/5 h-4"
+                  />
                   <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
+                    class="bg-slate-700 mb-2 rounded w-2/5 h-4"
+                  />
                   <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
-                  <div
-                    class="inline-flex gap-2"
-                  >
-                    <div
-                      class="w-14 h-2 bg-slate-700 rounded"
-                    />
-                    <div
-                      class="w-32 h-2 bg-slate-700 rounded"
-                    />
-                  </div>
+                    class="bg-slate-700 mb-2 rounded w-2/5 h-4"
+                  />
                 </div>
               </div>
               <div
-                class="flex flex-col items-start my-2"
+                class="flex flex-col items-start my-2 prose"
               >
                 <div
-                  class="h-4 w-44 mb-4 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-4 w-1/6 mb-4"
                 />
                 <div
-                  class="inline-flex w-full mb-3"
-                >
-                  <div
-                    class="w-8"
-                  />
-                  <div
-                    class="w-full h-2 bg-slate-700 rounded"
-                  />
-                </div>
-                <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded w-4/5 h-4"
                 />
                 <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded w-4/5 h-4"
                 />
                 <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
-                />
-                <div
-                  class="w-64 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded w-1/5 h-4"
                 />
               </div>
               <div
-                class="flex flex-col items-start my-2"
+                class="flex flex-col items-start my-2 prose"
               >
                 <div
-                  class="h-4 w-44 mb-4 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-4 w-1/6 mb-4"
                 />
                 <div
-                  class="inline-flex w-full mb-3"
+                  class="bg-slate-700 mb-2 rounded w-4/5 h-4"
+                />
+                <div
+                  class="bg-slate-700 mb-2 rounded w-4/5 h-4"
+                />
+                <div
+                  class="bg-slate-700 mb-2 rounded w-1/5 h-4"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-4 max-w-xl"
+          >
+            <div
+              class="relative max-w-xl"
+            >
+              <div
+                class="flex h-40 w-full"
+              >
+                <div
+                  class="ProseMirror textarea textarea-bordered textarea-accent h-full w-full overflow-auto prose"
+                  contenteditable="true"
+                  role="textbox"
+                  tabindex="0"
+                  translate="no"
+                >
+                  <p
+                    class="is-empty is-editor-empty"
+                    data-placeholder="Write something here..."
+                  >
+                    <br
+                      class="ProseMirror-trailingBreak"
+                    />
+                  </p>
+                </div>
+              </div>
+              <div
+                class="label items-start"
+              >
+                <span
+                  class="label-text-alt"
+                >
+                  0
+                   characters
+                </span>
+                <button
+                  class="btn btn-sm btn-primary"
+                  disabled=""
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <div
+              class="animate-pulse"
+            >
+              <div
+                class="flex flex-col p-4 border rounded-lg gap-2 border-slate-600"
+              >
+                <div
+                  class="flex"
                 >
                   <div
-                    class="w-8"
+                    class="bg-slate-700 mb-2 aspect-square rounded-full w-10"
                   />
                   <div
-                    class="w-full h-2 bg-slate-700 rounded"
-                  />
+                    class="flex flex-col items-start"
+                  >
+                    <div
+                      class="bg-slate-700 mb-2 rounded h-3 w-32 mx-2"
+                    />
+                    <div
+                      class="bg-slate-700 mb-2 rounded h-3 w-40 mx-2"
+                    />
+                  </div>
                 </div>
                 <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-3 w-56 mx-2 mb-4"
                 />
                 <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-3 w-full mx-2"
                 />
                 <div
-                  class="w-full mb-3 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-3 w-full mx-2"
                 />
                 <div
-                  class="w-64 h-2 bg-slate-700 rounded"
+                  class="bg-slate-700 mb-2 rounded h-3 w-32 mx-2"
                 />
               </div>
             </div>

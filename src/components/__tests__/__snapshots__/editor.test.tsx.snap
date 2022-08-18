@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor render an Editor 1`] = `
+<div>
+  <div
+    class="relative max-w-xl"
+  >
+    <div
+      class="flex h-40 w-full"
+    >
+      <div
+        class="ProseMirror textarea textarea-bordered textarea-accent h-full w-full overflow-auto prose"
+        contenteditable="true"
+        role="textbox"
+        tabindex="0"
+        translate="no"
+      >
+        <p
+          class="is-empty is-editor-empty"
+          data-placeholder="Write something here..."
+        >
+          <br
+            class="ProseMirror-trailingBreak"
+          />
+        </p>
+      </div>
+    </div>
+    <div
+      class="label items-start"
+    >
+      <span
+        class="label-text-alt"
+      >
+        0
+         characters
+      </span>
+      <button
+        class="btn btn-sm btn-primary"
+        disabled=""
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+`;

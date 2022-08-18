@@ -30,11 +30,10 @@ const CardRoot: React.FC<CardProps> = ({ title, cover, mate, id }) => {
 };
 
 const CardSkeleton: React.FC = () => (
-  <Skeleton.Pulse className="relative flex flex-col mb-4 w-28">
-    <Skeleton.Square className="mb-2 w-28 h-[calc(7rem/2*3)]" />
-    <Skeleton.Line className="mb-2 w-24" />
-    <Skeleton.Line className="mb-2 w-20" />
-  </Skeleton.Pulse>
+  <Skeleton className="flex flex-col w-full">
+    <Skeleton.Square className="w-full aspect-2/3" />
+    <Skeleton.Line count={2} />
+  </Skeleton>
 );
 
 const LongCardRoot: React.FC<CardProps> = (props) => {
@@ -46,12 +45,12 @@ const LongCardRoot: React.FC<CardProps> = (props) => {
         aria-label="Cover Image"
       >
         <Link href={`/books/${id}`}>
-          <a className="relative w-28 h-[calc(7rem/2*3)]">
+          <a className="relative w-28 aspect-2/3">
             <Image src={cover!} layout="fill" alt={title} />
           </a>
         </Link>
       </figure>
-      <div className="flex flex-col gap-2 h-[calc(7rem/2*3)]">
+      <div className="flex flex-col gap-2">
         <div className="inline-flex justify-start">
           <Link href={`/books/${id}`}>
             <a className="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content">
@@ -68,19 +67,13 @@ const LongCardRoot: React.FC<CardProps> = (props) => {
 };
 
 const LongCardSkeleton: React.FC = () => (
-  <Skeleton.Pulse className="relative flex mb-4 w-full gap-3">
-    <Skeleton.Square className="mb-2 w-28 h-[calc(7rem/2*3)]" />
-    <div className="flex flex-col w-full gap-2">
-      <Skeleton.Line className="mb-2 w-1/5" />
-      <Skeleton.Line className="mb-2 w-1/6" />
-      <div>
-        <Skeleton.Line className="mb-2 w-4/5" />
-        <Skeleton.Line className="mb-2 w-4/5" />
-        <Skeleton.Line className="mb-2 w-4/5" />
-        <Skeleton.Line className="mb-2 w-4/6" />
-      </div>
+  <Skeleton className="flex py-4 gap-3">
+    <Skeleton.Square className="w-28 aspect-2/3" />
+    <div className="flex flex-col gap-2 w-full">
+      <Skeleton.Line className="w-3/4 h-4" />
+      <Skeleton.Line className="w-1/2 h-4" />
     </div>
-  </Skeleton.Pulse>
+  </Skeleton>
 );
 
 const Card = Object.assign(CardRoot, { Skeleton: CardSkeleton });

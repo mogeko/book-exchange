@@ -7,12 +7,14 @@ import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
+import Comments from "@/components/comment";
 
 const BookPage: NextPage = () => {
   const { query } = useRouter();
   return (
     <DefaultLayout>
-      <BookView id={query.id as string} />
+      <BookView id={query.id as `bk${number}`} />
+      <Comments id={query.id as `bk${number}`} />
     </DefaultLayout>
   );
 };
@@ -43,32 +45,26 @@ const BookDesc = withReadMore(({ children }) => (
 ));
 
 const BookViewSkeleton: React.FC = () => (
-  <Skeleton.Pulse>
+  <Skeleton>
     <Box>
-      <Skeleton.Square className="h-6 w-40 my-1" />
+      <Skeleton.Square className="h-4 w-1/6 my-1" />
       <BookInfoSkeleton />
       <Box.SubBox>
-        <Skeleton.Square className="h-4 w-44 mb-4" />
+        <Skeleton.Square className="h-4 w-1/6 mb-4" />
         <BookDescSkeleton />
       </Box.SubBox>
       <Box.SubBox>
-        <Skeleton.Square className="h-4 w-44 mb-4" />
+        <Skeleton.Square className="h-4 w-1/6 mb-4" />
         <BookDescSkeleton />
       </Box.SubBox>
     </Box>
-  </Skeleton.Pulse>
+  </Skeleton>
 );
 
 const BookDescSkeleton: React.FC = () => (
   <>
-    <div className="inline-flex w-full mb-3">
-      <div className="w-8" />
-      <Skeleton.Line className="w-full" />
-    </div>
-    {Array.from({ length: 3 }).map((_, i) => (
-      <Skeleton.Line key={i} className="w-full mb-3" />
-    ))}
-    <Skeleton.Line className="w-64" />
+    <Skeleton.Line className="w-4/5 h-4" count={2} />
+    <Skeleton.Line className="w-1/5 h-4" />
   </>
 );
 
