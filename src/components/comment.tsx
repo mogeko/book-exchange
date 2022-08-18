@@ -3,6 +3,7 @@ import fetcher from "@/lib/fetcher";
 import useComments, { type CommentType } from "@/lib/hooks/useComments";
 import type { EditorFormInput } from "@/components/editor/editor";
 import extensions from "@/components/editor/extensions";
+import StarsRate from "@/components/stars";
 import { generateHTML } from "@tiptap/react";
 import Image from "next/image";
 import { useMemo } from "react";
@@ -42,38 +43,41 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
       />
     );
   }, [comment.msg]);
-  const Avatar = useMemo(() => {
+  const UserMeta = useMemo(() => {
     return (
-      <Link href={`/${comment.author_meta.username}`}>
-        <a className="avatar">
-          <div className="relative w-10 aspect-square rounded-full">
-            <Image
-              src={comment.author_meta.avatar}
-              alt="Avatar of the commentator"
-              layout="fill"
-            />
-          </div>
-        </a>
-      </Link>
+      <div className="inline-flex">
+        <Link href={`/${comment.author_meta.username}`}>
+          <a className="avatar">
+            <div className="relative w-10 aspect-square rounded-full">
+              <Image
+                src={comment.author_meta.avatar}
+                alt="Avatar of the commentator"
+                layout="fill"
+              />
+            </div>
+          </a>
+        </Link>
+        <div className="flex flex-col items-start">
+          <Link href={`/${comment.author_meta.username}`}>
+            <a className="btn btn-xs btn-link">
+              {comment.author_meta.username}
+            </a>
+          </Link>
+          <span className="text-xs px-2 text-gray-500">
+            {dayjs(comment.meta.created_at).format("YYYY-MM-DD")}
+            <span> in {comment.meta.location}</span>
+          </span>
+        </div>
+      </div>
     );
-  }, [comment.author_meta]);
-  const Username = useMemo(() => {
-    return (
-      <Link href={`/${comment.author_meta.username}`}>
-        <a className="btn btn-xs btn-link">{comment.author_meta.username}</a>
-      </Link>
-    );
-  }, [comment.author_meta.username]);
+  }, [comment.author_meta, comment.meta.created_at, comment.meta.location]);
 
   return (
     <div className="flex flex-col p-4 border rounded-lg gap-2 border-slate-600">
-      <div className="inline-flex">
-        {Avatar}
-        <div className="flex flex-col items-start">
-          {Username}
-          <span className="text-xs px-2 text-gray-500">
-            {dayjs(comment.meta.created_at).format("YYYY-MM-DD HH:mm:ss")}
-          </span>
+      <div className="inline-flex justify-between items-center">
+        {UserMeta}
+        <div className="">
+          <StarsRate rates={comment.meta.rates} />
         </div>
       </div>
       {Content}
