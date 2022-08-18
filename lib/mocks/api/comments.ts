@@ -1,5 +1,5 @@
 import type { CommentsType } from "@/lib/hooks/useComments";
-import type { EditorFormInput } from "@/components/editor/editor";
+import type { EditorFormInput } from "@/components/editor";
 import type { JSONContent } from "@tiptap/react";
 import { oneOf, randomNum as rNum, randomDateRecent } from "@/lib/mocks/utils";
 import { faker } from "@faker-js/faker";
@@ -11,7 +11,10 @@ const CommentsHandlers = [
     const uid = req.url.searchParams.get("uid");
     const bkid = req.url.searchParams.get("bkid");
     const cmid = `cm${rNum({ min: 1000000000, max: 100000000000 })}`;
-    const subCommentLength = rNum({ min: 0, max: 20 });
+    const length = Number(limit ?? 20);
+    const responsesLength = Array.from({ length: length }, () => {
+      return rNum({ min: 0, max: 20 });
+    });
     const genComment = (heading: string, text: string): JSONContent => ({
       type: "doc",
       content: [
@@ -30,7 +33,7 @@ const CommentsHandlers = [
 
     return res(
       ctx.json<CommentsType>(
-        Array.from({ length: Number(limit ?? 20) }, () => ({
+        Array.from({ length: length }, (_, i) => ({
           id: cmid as `cm${number}`,
           author_meta: {
             id: (uid ?? `${rNum({ min: 10000, max: 100000 })}`) as `${number}`,
@@ -46,7 +49,7 @@ const CommentsHandlers = [
             created_at: randomDateRecent(),
             location: faker.address.country(),
           },
-          responds: Array.from({ length: subCommentLength }, (_, i) => ({
+          responses: Array.from({ length: responsesLength[i] }, (_, i) => ({
             id: `${cmid}-${i + 1}` as `cm${number}-${number}`,
             author_meta: {
               id: `${rNum({ min: 10000, max: 100000 })}`,
@@ -62,7 +65,7 @@ const CommentsHandlers = [
             },
             belongs_to: oneOf([
               `${cmid}`,
-              `${cmid}-${rNum({ min: 0, max: subCommentLength })}`,
+              `${cmid}-${rNum({ min: 0, max: responsesLength[i] })}`,
             ]) as `cm${number}-${number}`,
             msg: genSubComment(faker.lorem.paragraphs(1)),
             is_folded: faker.datatype.boolean(),

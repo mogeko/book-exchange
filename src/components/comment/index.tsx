@@ -1,12 +1,13 @@
-import Editor from "@/components/editor/editor";
+import LikeButton from "@/components/comment/likeButton";
+import DislikeButton from "@/components/comment/dislikeButton";
+import ResponsesButton from "@/components/comment/responsesButton";
+import Editor from "@/components/editor";
 import fetcher from "@/lib/fetcher";
 import useComments, { type CommentType } from "@/lib/hooks/useComments";
-import type { EditorFormInput } from "@/components/editor/editor";
+import type { EditorFormInput } from "@/components/editor";
 import extensions from "@/components/editor/extensions";
 import StarsRate from "@/components/stars";
 import { generateHTML } from "@tiptap/react";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { AiOutlineDislike, AiFillDislike } from "react-icons/ai";
 import Image from "next/image";
 import { useMemo } from "react";
 import Link from "next/link";
@@ -83,45 +84,14 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
         </div>
       </div>
       {Content}
-      <div className="flex justify-between">
+      <div className="flex gap-8">
         <div className="inline-flex items-center justify-between w-32">
           <LikeButton like={comment.meta.likes} />
           <DislikeButton dislike={comment.meta.dislike} />
         </div>
+        <ResponsesButton length={comment.responses.length} />
       </div>
     </div>
-  );
-};
-
-const LikeButton: React.FC<LikeButtonProps> = ({ like }) => {
-  return (
-    <label className="swap">
-      <input type="checkbox" />
-      <div className="swap-on btn btn-xs btn-ghost gap-1 text-success">
-        <AiFillLike className="w-4 h-4" />
-        {like < 998 ? like + 1 : "999+"}
-      </div>
-      <div className="swap-off btn btn-xs btn-ghost gap-1">
-        <AiOutlineLike className="w-4 h-4" />
-        {like < 999 ? like : "999+"}
-      </div>
-    </label>
-  );
-};
-
-const DislikeButton: React.FC<DislikesButtonProps> = ({ dislike }) => {
-  return (
-    <label className="swap">
-      <input type="checkbox" />
-      <div className="swap-on btn btn-xs btn-ghost gap-1 text-error">
-        <AiFillDislike className="w-4 h-4" />
-        {dislike < 998 ? dislike + 1 : "999+"}
-      </div>
-      <div className="swap-off btn btn-xs btn-ghost gap-1">
-        <AiOutlineDislike className="w-4 h-4" />
-        {dislike < 999 ? dislike : "999+"}
-      </div>
-    </label>
   );
 };
 
@@ -131,14 +101,6 @@ interface CommentsProps {
 
 interface CommentCardProps {
   comment: CommentType;
-}
-
-interface LikeButtonProps {
-  like: number;
-}
-
-interface DislikesButtonProps {
-  dislike: number;
 }
 
 export default Comments;

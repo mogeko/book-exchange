@@ -16,7 +16,7 @@ describe("useComments", () => {
       expect(result.current.data).toBeDefined();
       expect(result.current.data).toHaveLength(20);
       result.current.data?.forEach((comment) => {
-        comment.responds.forEach((subComment, i) => {
+        comment.responses.forEach((subComment, i) => {
           expect(subComment.id).toEqual(`${comment.id}-${i + 1}`);
         });
       });

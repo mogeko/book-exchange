@@ -13,7 +13,7 @@ export type CommentType = {
     short_review: string;
     rates: number;
   };
-  responds: SubCommentType[];
+  responses: SubCommentType[];
   belongs_to: `bk${number}`;
 } & Omit<SubCommentType, "belongs_to" | "id">;
 
