@@ -5,7 +5,9 @@ function useComments(param: ParamProps = {}) {
   return useQuery<CommentsType>(["/api/comments", param]);
 }
 
-export type CommentsType = ({
+export type CommentsType = CommentType[];
+
+export type CommentType = {
   id: `cm${number}`;
   meta: {
     short_review: string;
@@ -13,7 +15,7 @@ export type CommentsType = ({
   };
   responds: SubCommentType[];
   belongs_to: `bk${number}`;
-} & Omit<SubCommentType, "belongs_to" | "id">)[];
+} & Omit<SubCommentType, "belongs_to" | "id">;
 
 interface SubCommentType {
   id: `cm${number}-${number}`;

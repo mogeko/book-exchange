@@ -7,12 +7,14 @@ import BookInfo, { BookInfoSkeleton } from "@/components/books/bookInfoBox";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
+import Comments from "@/components/comment";
 
 const BookPage: NextPage = () => {
   const { query } = useRouter();
   return (
     <DefaultLayout>
-      <BookView id={query.id as string} />
+      <BookView id={query.id as `bk${number}`} />
+      <Comments id={query.id as `bk${number}`} />
     </DefaultLayout>
   );
 };

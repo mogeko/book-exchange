@@ -69,10 +69,7 @@ const CommentsHandlers = [
           })),
           belongs_to: (bkid ??
             `bk${rNum({ min: 10000, max: 100000 })}`) as `bk${number}`,
-          msg: genComment(
-            faker.lorem.lines(1),
-            faker.lorem.paragraphs(3, "<br/> ")
-          ),
+          msg: genComment(faker.lorem.lines(1), faker.lorem.paragraphs(3)),
           is_folded: faker.datatype.boolean(),
         }))
       )
