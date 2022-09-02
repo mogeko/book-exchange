@@ -3,30 +3,35 @@ import Skeleton from "@/components/base/skeleton";
 import StarsRate from "@/components/stars";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 const CardRoot: React.FC<CardProps> = ({ title, cover, mate, id }) => {
-  return (
-    <div className="relative flex flex-col w-full">
-      <figure
-        className="flex justify-center items-center"
-        aria-label="Cover Image"
-      >
-        <Link href={`/books/${id}`}>
-          <a className="relative w-full aspect-2/3">
-            <Image src={cover!} layout="fill" alt={title} />
-          </a>
-        </Link>
-      </figure>
-      <div className="flex flex-col text-sm">
-        <Link href={`/books/${id}`}>
-          <a className="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content">
-            <h2 className="truncate">{title}</h2>
-          </a>
-        </Link>
-        <p className="truncate">{mate.author}</p>
+  const card = useMemo(() => {
+    return (
+      <div className="relative flex flex-col w-full">
+        <figure
+          className="flex justify-center items-center"
+          aria-label="Cover Image"
+        >
+          <Link href={`/books/${id}`}>
+            <a className="relative w-full aspect-2/3">
+              <Image src={cover!} layout="fill" alt={title} />
+            </a>
+          </Link>
+        </figure>
+        <div className="flex flex-col text-sm">
+          <Link href={`/books/${id}`}>
+            <a className="link no-underline text-primary hover:bg-primary hover:text-primary-content focus:bg-primary-focus focus:text-primary-content">
+              <h2 className="truncate">{title}</h2>
+            </a>
+          </Link>
+          <p className="truncate">{mate.author}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }, [cover, id, mate.author, title]);
+
+  return card;
 };
 
 const CardSkeleton: React.FC = () => (

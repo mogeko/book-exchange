@@ -31,19 +31,19 @@ exports[`Pagination renders a Pagination 1`] = `
     </button>
     <button
       class="btn btn-xs btn-active"
-      value="0"
+      value="1"
     >
       1
     </button>
     <button
       class="btn btn-xs"
-      value="1"
+      value="2"
     >
       2
     </button>
     <button
       class="btn btn-xs"
-      value="2"
+      value="3"
     >
       3
     </button>

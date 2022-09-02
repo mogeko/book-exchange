@@ -3,7 +3,7 @@ import { render, waitFor, screen } from "@/lib/test-utils";
 import BookGrid from "@/components/books/bookGrid";
 
 describe("bookGrid", () => {
-  it("renders a BookGrid", async () => {
+  it.skip("renders a BookGrid", async () => {
     const { container } = render(<BookGrid maxPages={2} limit={3} page={5} />);
 
     await waitFor(() => {

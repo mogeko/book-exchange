@@ -37,7 +37,7 @@ export const UnpopularMasterpiece: React.FC = () => {
   return (
     <Box>
       <Box.Header>Unpopular but Highly Rated</Box.Header>
-      <BookGrid limit={5} />
+      <BookGrid maxPages={1} limit={5} />
     </Box>
   );
 };

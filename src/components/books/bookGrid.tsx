@@ -1,23 +1,37 @@
 import Card from "@/components/base/card";
 import Pagination from "@/components/pagination";
-import useBooks from "@/lib/hooks/useBooks";
-import { useState } from "react";
+import useBooks, { useBooksInfinite } from "@/lib/hooks/useBooks";
+import { useEffect, useState } from "react";
+import * as _ from "lodash";
 
-const BookGrid: React.FC<DataProps> = ({ maxPages = 1, page, ...other }) => {
-  const [index, setIndex] = useState(0);
-  const query = { page: page ?? 1 + index, ...other };
-  const { data, isLoading } = useBooks(query);
-  // Cache the next page of books
-  useBooks({ page: query.page + (index < maxPages - 1 ? 1 : 0), ...other });
+const BookGrid: React.FC<DataProps> = ({ maxPages = 1, ...query }) => {
+  const { data, size, setSize, ...state } = useBooksInfinite(query);
+  const [limit, setLimit] = useState(6);
+  const pages = _.chunk(_.flatten(data), limit);
+
+  useEffect(() => {
+    const md = window.matchMedia("(min-width: 768px)");
+    const handleResize = (e: MediaQueryListEvent) => {
+      setLimit(e.matches ? 10 : 6);
+    };
+
+    if (md.matches) setLimit(10);
+    md.addEventListener("change", handleResize);
+
+    return () => md.removeEventListener("change", handleResize);
+  }, []);
 
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 my-8 w-full">
-        {isLoading
+        {state.isValidating
           ? Array.from({ length: 10 }, (_, i) => <Card.Skeleton key={i} />)
-          : data?.map((book, i) => <Card key={i} {...book} />)}
+          : pages[size - 1].map((book, i) => <Card key={i} {...book} />)}
       </div>
-      <Pagination length={maxPages} index={index} setIndex={setIndex} />
+      <Pagination
+        length={Math.floor((maxPages * 10) / limit)}
+        setSize={(size) => setSize(Math.ceil((limit * size) / 10))}
+      />
     </div>
   );
 };
