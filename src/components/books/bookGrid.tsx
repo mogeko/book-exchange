@@ -1,13 +1,13 @@
 import Card from "@/components/base/card";
 import Pagination from "@/components/pagination";
 import useBooks, { useBooksInfinite } from "@/lib/hooks/useBooks";
+import { flatten, splitEvery } from "ramda";
 import { useEffect, useState } from "react";
-import * as _ from "lodash";
 
 const BookGrid: React.FC<DataProps> = ({ maxPages = 1, ...query }) => {
   const { data, size, setSize, ...state } = useBooksInfinite(query);
   const [limit, setLimit] = useState(6);
-  const pages = _.chunk(_.flatten(data), limit);
+  const pages = data ? splitEvery(limit, flatten(data)) : data;
 
   useEffect(() => {
     const md = window.matchMedia("(min-width: 768px)");
@@ -26,7 +26,7 @@ const BookGrid: React.FC<DataProps> = ({ maxPages = 1, ...query }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 my-8 w-full">
         {state.isValidating
           ? Array.from({ length: 10 }, (_, i) => <Card.Skeleton key={i} />)
-          : pages[size - 1].map((book, i) => <Card key={i} {...book} />)}
+          : pages?.[size - 1].map((book, i) => <Card key={i} {...book} />)}
       </div>
       <Pagination
         length={Math.floor((maxPages * 10) / limit)}
