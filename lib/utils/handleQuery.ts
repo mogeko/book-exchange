@@ -1,20 +1,26 @@
+import { isEmpty, reject, either, isNil, toPairs } from "ramda";
+import { chain, ifElse, is, pipe, map, join } from "ramda";
+
 function handleQuery<T extends ParamProps>(url: URL, params: T) {
-  if (Object.keys(params).length === 0) return url;
-  const queryParams = Object.entries(params)
-    .filter(([_, value]) => value)
-    .map(([key, value]) => {
-      if (Array.isArray(value)) {
-        return value
-          .filter(Boolean)
-          .map((v) => `${key}=${v}`)
-          .join("&");
-      }
+  if (isEmpty(params)) return url;
+  const queryParams = pipe(
+    reject(either(isNil, isEmpty)),
+    toPairs,
+    chain(([key, value]) =>
+      ifElse(
+        is(Array),
+        pipe(
+          reject<any>(isNil),
+          map((v) => [key, v])
+        ),
+        (v) => [[key, v]]
+      )(value)
+    ),
+    map(join("=")),
+    join("&")
+  );
 
-      return `${key}=${value}`;
-    })
-    .join("&");
-
-  return [url, queryParams].join("?");
+  return join("?")([url, queryParams(params)]);
 }
 
 interface ParamProps {
