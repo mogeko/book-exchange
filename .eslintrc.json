@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "ignorePatterns": ["node_modules/", ".next/", "dist/", "public/"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "turbo"
+  ]
+}

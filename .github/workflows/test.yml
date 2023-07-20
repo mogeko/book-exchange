@@ -11,22 +11,18 @@ jobs:
     name: Test Next.js App
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7
+          version: 8
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-      - name: Lint check
-        run: pnpm lint
-      - name: Run test
-        run: pnpm run test.ci
-      - name: Update test result to Codecov
-        uses: codecov/codecov-action@v3
+          node-version: 20
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
+      # - name: Update test result to Codecov
+      #   uses: codecov/codecov-action@v3
