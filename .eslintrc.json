@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "ignorePatterns": ["node_modules/", ".next/", "dist/", "public/"],
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended", "turbo"]
 }
