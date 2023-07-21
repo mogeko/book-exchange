@@ -13,7 +13,9 @@
     "cov": "turbo run cov",
     "type-check": "turbo run type-check",
     "lint": "turbo run lint",
-    "fmt": "turbo run fmt"
+    "fmt": "turbo run fmt",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate"
   },
   "workspaces": [
     "apps/*",
