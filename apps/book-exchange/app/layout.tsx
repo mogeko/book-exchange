@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RootLayout: React.FC<{
+  aside: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ aside, children }) => {
   return (
     <html lang="en">
       <head />
@@ -28,7 +31,12 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            <div className="flex-1">{children}</div>
+            <div className="grid lg:grid-cols-5 flex-1">
+              <div className="hidden lg:block">{aside}</div>
+              <div className="col-span-3 lg:col-span-4 lg:border-l">
+                <div className="h-full px-4 py-6 lg:px-8">{children}</div>
+              </div>
+            </div>
             <SiteFooter />
           </div>
         </ThemeProvider>

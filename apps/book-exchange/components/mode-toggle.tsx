@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { LuLaptop, LuMoon, LuSunMedium } from "react-icons/lu";
+import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,22 +18,22 @@ export const ModeToggle: React.FC = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="w-9 px-0">
-          <LuSunMedium className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <LuMoon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <RxSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <RxMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          <LuSunMedium className="mr-2 h-4 w-4" />
+          <RxSun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <LuMoon className="mr-2 h-4 w-4" />
+          <RxMoon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          <LuLaptop className="mr-2 h-4 w-4" />
+          <RxLaptop className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
