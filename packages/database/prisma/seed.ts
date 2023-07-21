@@ -16,12 +16,15 @@ async function seedYourDatabase() {
       create: {
         email: email,
         name: faker.internet.userName(),
+        avatar: faker.image.avatar(),
         createdAt: faker.date.past(),
         updatedAt: faker.date.recent(),
-        Book: {
+        books: {
           create: randomArrayWith(100, () => ({
             title: faker.lorem.sentence(5),
             author: faker.person.fullName(),
+            discription: faker.lorem.paragraph({ min: 5, max: 10 }),
+            cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
             isbn: faker.phone.number("978-#-##-######-#"),
             createdAt: faker.date.past(),
             updatedAt: faker.date.recent(),

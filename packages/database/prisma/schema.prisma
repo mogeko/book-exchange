@@ -18,16 +18,21 @@ model User {
   updatedAt DateTime @updatedAt
   email     String   @unique
   name      String?
-  Book      Book[]
+  avatar    String?
+
+  books Book[]
 }
 
 model Book {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  author    String
-  isbn      String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  discription String?
+  author      String
+  cover       String?
+  isbn        String?
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
 }
