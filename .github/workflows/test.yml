@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up PNPM
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 8
       - name: Set up Node.js
@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
+      - name: Cache Turborepo Tasks
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules/.cache/turbo
+          key: ${{ runner.os }}-turbo-test-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-turbo-test-
       - run: pnpm install -rw
       - run: pnpm run lint
       # - run: pnpm run test
