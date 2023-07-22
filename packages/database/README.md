@@ -20,6 +20,7 @@ erDiagram
   USER ||--o{ SOMEBODY : follow
   USER ||--o{ COMMENT : issue
   USER ||--o{ VOTER : is
+  USER ||--o{ GRADER : is
   USER {
     UUID      id        PK
     String    email
@@ -30,8 +31,10 @@ erDiagram
     Auth      auth
     UUID      authId    FK
     Book[]    books
+    Book[]    scored
     Comment[] commented
     Comment[] comments
+    Comment[] voted
     USER[]    following
     USER[]    followed
   }
@@ -47,6 +50,14 @@ erDiagram
     UUID     followedId PK, FK
     DataTime createdAt
   }
+  GRADER }o--|| BOOK : grading
+  GRADER {
+    UUID     userId   PK, FK
+    UUID     bookId   PK, FK
+    DataTime createdAt
+    DataTime updatedAt
+    Number   score
+  }
   VOTER }o--|| COMMENT : vote
   VOTER {
     UUID      userId    PK, FK
@@ -61,11 +72,12 @@ erDiagram
   COMMENT }o--|| WRITER : judge
   COMMENT }o--|| SERIE : judge
   COMMENT {
-    UUID     userId   PK, FK
-    UUID     targetId PK, FK
-    String   content
-    DataTime createdAt
+    UUID      userId   PK, FK
+    UUID      targetId PK, FK
+    DataTime  createdAt
     DataTime  updatedAt
+    String    content
+    Boolean[] votes
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
@@ -108,5 +120,6 @@ erDiagram
     COMMENT[] comments
     Author[]  authors
     User[]    oweners
+    User[]    graders
   }
 ```
