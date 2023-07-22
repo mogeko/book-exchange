@@ -1,8 +1,65 @@
-# Database
+# @mogeko/bookworm-db
 
 This is the database package. It is responsible for the database connection and the schema definition.
 
-We use [Prisma](https://www.prisma.io) as an ORM. It is a very powerful tool that allows us to define our schema in a declarative way and generate the database client for us. The generated client will be exported from this package and used in the other packages of the monorepo.
+## PostgreSQL
+
+We need make sure that we have a [PostgreSQL](https://www.postgresql.org) database running on our machine.
+
+It is a good idea to run it by using [Docker](https://www.docker.com) or [Docker Compose](https://docs.docker.com/compose).
+
+```bash
+docker run -d --name postgres \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_DB=prisma \
+  -v postgresql-data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres
+```
+
+## Prisma
+
+We use [Prisma](https://www.prisma.io) as an ORM. It allows us to define our schema in a declarative way and generate the database client for us.
+
+**The generated client will be exported** from this package and used in the other packages of the monorepo.
+
+### Connection URL
+
+Prisma is based on the [official PostgreSQL format](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) for connection URLs. It should look like this:
+
+![postgresql](https://www.prisma.io/docs/static/13ad9000b9d57ac66c16fabcad9e08b7/42cbc/postgresql-connection-string.png)
+
+```txt
+postgresql://USER:PASSWORD@HOST:PORT/DATABASE?KEY1=VALUE&KEY2=VALUE
+```
+
+We can use the `POSTGRES_PRISMA_URL` or `POSTGRES_URL_NON_POOLING` environment variable to set the connection URL.
+
+To do that, we should edit the `.env` file (if not exists, create it) in the root of this package.
+
+```bash
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+POSTGRES_PRISMA_URL="postgresql://postgres:password@localhost:5432/prisma?schema=public&connect_timeout=10&pgbouncer=true"
+POSTGRES_URL_NON_POOLING="postgresql://postgres:password@localhost:5432/prisma?schema=public"
+```
+
+### Default connection parameters
+
+When you connect with Prisma using the `POSTGRES_PRISMA_URL` environment variable, the parameters `connect_timeout=10` and `pgbouncer=true` will be set.
+
+We recommend using the `POSTGRES_URL_NON_POOLING` Environment Variable instead.
+
+See the [Prisma docs](https://www.prisma.io/docs/concepts/database-connectors/postgresql) to learn more.
+
+### Prisma Migrate
+
+To use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate), you must connect to Vercel Postgres with the `POSTGRES_URL_NON_POOLING` environment variable. Prisma migrations do not work with pooled connections. This environment variable can also be added to your client through the `directUrl` configuration property in your `schema.prisma` file.
 
 ## Entity Relationship Diagrams
 
@@ -15,11 +72,11 @@ erDiagram
     DataTime loginTime
     Hash     password
   }
-  USER ||--o{ OWNER : is
-  USER ||--o{ SOMEBODY : follow
-  USER ||--o{ COMMENT : issue
-  USER ||--o{ VOTER : is
-  USER ||--o{ GRADER : is
+  USER ||--o{ OWNER    : is
+  USER ||--o{ SOMEBODY : "follow with"
+  USER ||--o{ COMMENT  : issue
+  USER ||--o{ VOTER    : is
+  USER ||--o{ GRADER   : is
   USER {
     UUID      id        PK
     UUID      authId    FK
@@ -29,13 +86,13 @@ erDiagram
     String    name
     String    avatar
   }
-  OWNER }o--|| BOOK : has
+  OWNER }o--|| BOOK : own
   OWNER {
     UUID     userId    PK, FK
     UUID     bookId    PK, FK
     DataTime createdAt
   }
-  SOMEBODY }o--|| USER : follow
+  SOMEBODY }o--|| USER : "be followed"
   SOMEBODY {
     UUID     followerId PK, FK
     UUID     followedId PK, FK
@@ -49,7 +106,7 @@ erDiagram
     DataTime updatedAt
     Number   score
   }
-  VOTER }o--|| COMMENT : vote
+  VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
     UUID      userId    PK, FK
     UUID      commentId PK, FK
@@ -57,11 +114,11 @@ erDiagram
     DataTime  updatedAt
     Boolean   vote
   }
-  COMMENT }o--|| BOOK : judge
-  COMMENT }o--|| USER : judge
-  COMMENT }o--|| PUBLISHER : judge
-  COMMENT }o--|| WRITER : judge
-  COMMENT }o--|| SERIE : judge
+  COMMENT }o--|| BOOK      : "to"
+  COMMENT }o--|| USER      : "to"
+  COMMENT }o--|| PUBLISHER : "to"
+  COMMENT }o--|| WRITER    : "to"
+  COMMENT }o--|| SERIE     : "to"
   COMMENT {
     UUID      userId   PK, FK
     UUID      targetId PK, FK
