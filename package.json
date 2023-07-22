@@ -19,7 +19,6 @@
   },
   "workspaces": [
     "apps/*",
-    "!apps/archive-*",
     "packages/*"
   ],
   "devDependencies": {

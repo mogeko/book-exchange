@@ -45,7 +45,7 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
-  apps/book-exchange:
+  apps/web:
     dependencies:
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.5
