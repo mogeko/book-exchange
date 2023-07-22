@@ -24,10 +24,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          registry-url: https://npm.pkg.github.com
-          scope: "@mogeko"
           node-version: 20
           cache: "pnpm"
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm install -rw
       - run: pnpm run build
       - name: Create Version PR or Publish to NPM
