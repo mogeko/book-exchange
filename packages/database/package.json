@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
-    "@types/node": "20.4.2",
+    "@types/node": "20.4.3",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   },
