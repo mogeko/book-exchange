@@ -2,6 +2,7 @@ name: Build
 
 on:
   push:
+    branches-ignore: [master]
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up pnpm
+      - name: Set up PNPM
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 8
@@ -27,5 +28,5 @@ jobs:
           path: ${{ github.workspace }}/node_modules/.cache/turbo
           key: ${{ runner.os }}-turbo-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-turbo-
-      - run: pnpm install
-      - run: pnpm build
+      - run: pnpm install -rw
+      - run: pnpm run build

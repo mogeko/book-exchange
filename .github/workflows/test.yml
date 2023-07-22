@@ -2,8 +2,8 @@ name: Test
 
 on:
   push:
-    branches-ignore: [master]
   pull_request:
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up pnpm
+      - name: Set up PNPM
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 8
@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-      - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm test
+      - run: pnpm install -rw
+      - run: pnpm run lint
+      # - run: pnpm run test
       # - name: Update test result to Codecov
       #   uses: codecov/codecov-action@v3

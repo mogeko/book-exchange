@@ -4,10 +4,32 @@
   "type": "module",
   "description": "The database for Book Exchange app",
   "private": false,
-  "author": "Zheng Junyi",
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/bookworm.git",
+    "directory": "packages/database"
+  },
+  "homepage": "https://github.com/mogeko/bookworm/tree/master/packages/database#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/bookworm/issues",
+    "email": "zhengjunyi@live.com"
+  },
   "license": "MIT",
   "main": "index.ts",
   "types": "index.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "!dist/metafile-*.json",
+    "!dist/*.map",
+    "dist",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

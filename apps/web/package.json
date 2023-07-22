@@ -2,7 +2,7 @@
   "name": "@mogeko/bookworm-web",
   "version": "0.0.0",
   "description": "The web frontend for the Book Exchange app",
-  "private": false,
+  "private": true,
   "author": "Zheng Junyi",
   "license": "MIT",
   "scripts": {
