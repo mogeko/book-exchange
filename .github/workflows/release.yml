@@ -33,6 +33,7 @@ jobs:
           EOF
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: pnpm install -rw
       - name: Create Version PR or Publish to NPM
         id: changesets
         uses: changesets/action@v1.4.5
