@@ -16,19 +16,83 @@ erDiagram
     User         user
     UUID         userId   FK
   }
-  USER }|--o{ OWNER : is
+  USER ||--o{ OWNER : is
+  USER ||--o{ SOMEBODY : follow
+  USER ||--o{ COMMENT : issue
+  USER ||--o{ VOTER : is
   USER {
-    UUID     id        PK
-    String   email
-    String   name
-    DataTime createdAt
-    DataTime updatedAt
-    String   avatar
-    Book[]   books
-    Auth     auth
-    UUID     authId    FK
+    UUID      id        PK
+    String    email
+    String    name
+    DataTime  createdAt
+    DataTime  updatedAt
+    String    avatar
+    Auth      auth
+    UUID      authId    FK
+    Book[]    books
+    Comment[] commented
+    Comment[] comments
+    USER[]    following
+    USER[]    followed
   }
-  BOOK }|--o{ OWNER : has
+  OWNER }o--|| BOOK : has
+  OWNER {
+    UUID     userId    PK, FK
+    UUID     bookId    PK, FK
+    DataTime createdAt
+  }
+  SOMEBODY }o--|| USER : follow
+  SOMEBODY {
+    UUID     followerId PK, FK
+    UUID     followedId PK, FK
+    DataTime createdAt
+  }
+  VOTER }o--|| COMMENT : vote
+  VOTER {
+    UUID      userId    PK, FK
+    UUID      commentId PK, FK
+    DataTime  createdAt
+    DataTime  updatedAt
+    Boolean   vote
+  }
+  COMMENT }o--|| BOOK : judge
+  COMMENT }o--|| USER : judge
+  COMMENT }o--|| PUBLISHER : judge
+  COMMENT }o--|| WRITER : judge
+  COMMENT }o--|| SERIE : judge
+  COMMENT {
+    UUID     userId   PK, FK
+    UUID     targetId PK, FK
+    String   content
+    DataTime createdAt
+    DataTime  updatedAt
+  }
+  PUBLISHER ||--o{ BOOK : publish
+  PUBLISHER {
+    UUID      id           PK
+    String    name
+    Comment[] comments
+    Book[]    publications
+  }
+  WRITER ||--o{ AUTHOR : is
+  WRITER {
+    UUID      id       PK
+    String    name
+    Comment[] comments
+    Book[]    artworks
+  }
+  AUTHOR }o--|| BOOK : write
+  AUTHOR {
+    UUID writeId PK, FK
+    UUID bookId  PK, FK
+  }
+  SERIE ||--o{ BOOK : has
+  SERIE {
+    UUID      id    PK
+    String    name
+    Comment[] comments
+    Book[]    books
+  }
   BOOK {
     UUID      id          PK
     String    title
@@ -37,39 +101,12 @@ erDiagram
     DataTime  updatedAt
     String    cover
     String    isbn
-    Author[]  authors
-    User[]    oweners
     Publisher publisher
     UUID      publisherId FK
     Serie     serie
     UUID      serieId     FK
-  }
-  OWNER {
-    UUID     userId    PK, FK
-    UUID     bookId    PK, FK
-    DataTime createdAt
-  }
-  WRITER }o--o{ AUTHOR : is
-  WRITER {
-    UUID   id       PK
-    String name
-    Book[] artworks
-  }
-  BOOK }o--o{ AUTHOR : write
-  AUTHOR {
-    UUID writeId PK, FK
-    UUID bookId  PK, FK
-  }
-  PUBLISHER }o--o| BOOK : publish
-  PUBLISHER {
-    UUID   id           PK
-    String name
-    Book[] publications
-  }
-  SERIE }o--o| BOOK : has
-  SERIE {
-    UUID   id    PK
-    String name
-    Book[] books
+    COMMENT[] comments
+    Author[]  authors
+    User[]    oweners
   }
 ```
