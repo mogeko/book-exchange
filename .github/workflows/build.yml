@@ -12,9 +12,10 @@ jobs:
     name: Build Next.js App
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v2.2.2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 8
       - name: Set up Node.js
