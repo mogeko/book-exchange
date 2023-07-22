@@ -15,7 +15,8 @@
     "lint": "turbo run lint",
     "fmt": "turbo run fmt",
     "db:generate": "turbo run db:generate",
-    "db:migrate": "turbo run db:migrate"
+    "db:migrate": "turbo run db:migrate",
+    "db:studio": "turbo run db:studio"
   },
   "workspaces": [
     "apps/*",
