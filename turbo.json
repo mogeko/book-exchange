@@ -22,7 +22,8 @@
     "lint": { "outputs": [] },
     "fmt": { "cache": false, "outputs": [] },
     "db:generate": { "outputs": [], "cache": false },
-    "db:migrate": { "outputs": [], "cache": false }
+    "db:migrate": { "outputs": [], "cache": false },
+    "db:studio": { "outputs": [], "cache": false, "persistent": true }
   },
   "globalDependencies": [".prettierrc.cjs", ".eslintrc.json"],
   "globalEnv": ["NODE_ENV"]
