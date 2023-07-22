@@ -1,5 +1,12 @@
 # @mogeko/bookworm-web
 
+## 0.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`5adcdcd`](https://github.com/mogeko/bookworm/commit/5adcdcda2481cf155e349c7c29d781da7f1dc179)]:
+  - @mogeko/bookworm-db@0.0.2
+
 ## 0.0.1
 
 ### Patch Changes
