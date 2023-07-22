@@ -2,9 +2,28 @@
   "name": "@mogeko/bookworm-web",
   "version": "0.0.0",
   "description": "The web frontend for the Book Exchange app",
-  "private": true,
-  "author": "Zheng Junyi",
+  "private": false,
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/bookworm.git",
+    "directory": "apps/web"
+  },
+  "homepage": "https://github.com/mogeko/bookworm/tree/master/apps/web#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/bookworm/issues",
+    "email": "zhengjunyi@live.com"
+  },
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "*"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

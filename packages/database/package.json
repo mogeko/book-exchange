@@ -25,10 +25,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
-    "!dist/metafile-*.json",
-    "!dist/*.map",
-    "dist",
-    "CHANGELOG.md"
+    "*"
   ],
   "scripts": {
     "db:generate": "prisma generate",
