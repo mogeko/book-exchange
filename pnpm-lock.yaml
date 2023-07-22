@@ -47,6 +47,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@mogeko/bookworm-db':
+        specifier: workspace:^
+        version: link:../../packages/database
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.5
         version: 2.0.5(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
@@ -65,9 +68,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
-      database:
-        specifier: workspace:*
-        version: link:../../packages/database
       next:
         specifier: 13.4.10
         version: 13.4.10(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)

@@ -1,9 +1,11 @@
 {
-  "name": "database",
-  "version": "0.0.1",
+  "name": "@mogeko/bookworm-db",
+  "version": "0.0.0",
   "type": "module",
-  "description": "Database for the project",
-  "private": true,
+  "description": "The database for Book Exchange app",
+  "private": false,
+  "author": "Zheng Junyi",
+  "license": "MIT",
   "main": "index.ts",
   "types": "index.ts",
   "scripts": {
@@ -14,8 +16,6 @@
     "fmt": "prettier --write .",
     "type-check": "tsc --noEmit"
   },
-  "author": "Zheng Junyi",
-  "license": "MIT",
   "dependencies": {
     "@prisma/client": "^5.0.0",
     "prisma": "^5.0.0"

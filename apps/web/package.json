@@ -1,7 +1,10 @@
 {
-  "name": "book-exchange-web",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@mogeko/bookworm-web",
+  "version": "0.0.0",
+  "description": "The web frontend for the Book Exchange app",
+  "private": false,
+  "author": "Zheng Junyi",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,13 +14,13 @@
     "fmt": "next lint --fix"
   },
   "dependencies": {
+    "@mogeko/bookworm-db": "workspace:^",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "database": "workspace:*",
     "next": "13.4.10",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
