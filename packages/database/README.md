@@ -10,11 +10,10 @@ We use [Prisma](https://www.prisma.io) as an ORM. It is a very powerful tool tha
 erDiagram
   AUTH ||--|| USER : authorize
   AUTH {
-    UUID         id       PK
+    UUID         id        PK
+    UUID         userId    FK
     Hash(sha512) password
-    String       email
-    User         user
-    UUID         userId   FK
+    DataTime     loginTime
   }
   USER ||--o{ OWNER : is
   USER ||--o{ SOMEBODY : follow
@@ -23,20 +22,12 @@ erDiagram
   USER ||--o{ GRADER : is
   USER {
     UUID      id        PK
-    String    email
-    String    name
+    UUID      authId    FK
     DataTime  createdAt
     DataTime  updatedAt
+    String    email     UK
+    String    name
     String    avatar
-    Auth      auth
-    UUID      authId    FK
-    Book[]    books
-    Book[]    scored
-    Comment[] commented
-    Comment[] comments
-    Comment[] voted
-    USER[]    following
-    USER[]    followed
   }
   OWNER }o--|| BOOK : has
   OWNER {
@@ -77,21 +68,16 @@ erDiagram
     DataTime  createdAt
     DataTime  updatedAt
     String    content
-    Boolean[] votes
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
     UUID      id           PK
     String    name
-    Comment[] comments
-    Book[]    publications
   }
   WRITER ||--o{ AUTHOR : is
   WRITER {
     UUID      id       PK
     String    name
-    Comment[] comments
-    Book[]    artworks
   }
   AUTHOR }o--|| BOOK : write
   AUTHOR {
@@ -100,26 +86,18 @@ erDiagram
   }
   SERIE ||--o{ BOOK : has
   SERIE {
-    UUID      id    PK
+    UUID      id       PK
     String    name
-    Comment[] comments
-    Book[]    books
   }
   BOOK {
     UUID      id          PK
-    String    title
-    String    discription
+    UUID      publisherId FK
+    UUID      serieId     FK
     DataTime  createdAt
     DataTime  updatedAt
+    String    title
+    String    discription
     String    cover
     String    isbn
-    Publisher publisher
-    UUID      publisherId FK
-    Serie     serie
-    UUID      serieId     FK
-    COMMENT[] comments
-    Author[]  authors
-    User[]    oweners
-    User[]    graders
   }
 ```
