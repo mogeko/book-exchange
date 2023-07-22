@@ -10,10 +10,10 @@ We use [Prisma](https://www.prisma.io) as an ORM. It is a very powerful tool tha
 erDiagram
   AUTH ||--|| USER : authorize
   AUTH {
-    UUID         id        PK
-    UUID         userId    FK
-    Hash(sha512) password
-    DataTime     loginTime
+    UUID     id        PK
+    UUID     userId    FK
+    DataTime loginTime
+    Hash     password
   }
   USER ||--o{ OWNER : is
   USER ||--o{ SOMEBODY : follow
@@ -101,3 +101,7 @@ erDiagram
     String    isbn
   }
 ```
+
+## License
+
+The code in this project is released under the [MIT License](./LICENSE).
