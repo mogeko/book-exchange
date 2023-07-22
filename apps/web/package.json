@@ -1,0 +1,61 @@
+{
+  "name": "@mogeko/bookworm-web",
+  "version": "0.0.0",
+  "description": "The web frontend for the Book Exchange app",
+  "private": false,
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/bookworm.git",
+    "directory": "apps/web"
+  },
+  "homepage": "https://github.com/mogeko/bookworm/tree/master/apps/web#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/bookworm/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "lint": "next lint",
+    "fmt": "next lint --fix"
+  },
+  "dependencies": {
+    "@mogeko/bookworm-db": "workspace:^",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "next": "13.4.10",
+    "next-themes": "^0.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.6"
+  },
+  "devDependencies": {
+    "@tsconfig/next": "^2.0.0",
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.14",
+    "postcss": "8.4.26",
+    "tailwindcss": "3.3.3",
+    "typescript": "^5.1.6"
+  }
+}

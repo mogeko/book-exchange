@@ -1,0 +1,51 @@
+{
+  "name": "@mogeko/bookworm-db",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "The database for Book Exchange app",
+  "private": false,
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/bookworm.git",
+    "directory": "packages/database"
+  },
+  "homepage": "https://github.com/mogeko/bookworm/tree/master/packages/database#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/bookworm/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "license": "MIT",
+  "main": "index.ts",
+  "types": "index.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "lint": "prettier --check .",
+    "fmt": "prettier --write .",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "prisma": "^5.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@types/node": "20.4.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  },
+  "prisma": {
+    "seed": "tsup-node prisma/seed.ts"
+  }
+}

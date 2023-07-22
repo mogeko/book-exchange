@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "dev": {
+      "dependsOn": ["^build", "^db:migrate"],
+      "cache": false,
+      "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build", "^db:generate"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "dotEnv": [".env.local", ".env.development.local"]
+    },
+    "start": {
+      "dependsOn": ["build", "^db:migrate"],
+      "cache": false,
+      "persistent": true
+    },
+    "test": { "dependsOn": ["^build"], "outputs": [] },
+    "cov": { "dependsOn": ["^build"], "outputs": [] },
+    "type-check": { "outputs": [] },
+    "lint": { "outputs": [] },
+    "fmt": { "cache": false, "outputs": [] },
+    "db:generate": { "outputs": [], "cache": false },
+    "db:migrate": { "outputs": [], "cache": false }
+  },
+  "globalDependencies": [".prettierrc.cjs", ".eslintrc.json"],
+  "globalEnv": ["NODE_ENV"]
+}

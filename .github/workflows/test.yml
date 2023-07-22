@@ -1,9 +1,10 @@
 name: Test
+
 on:
-  pull_request:
   push:
-    branches-ignore:    
-      - master
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -15,17 +16,20 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7
+          version: 8
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-      - name: Lint check
-        run: pnpm lint
-      - name: Run test
-        run: pnpm run test.ci
-      - name: Update test result to Codecov
-        uses: codecov/codecov-action@v3
+          node-version: 20
+          cache: "pnpm"
+      - name: Cache Turborepo Tasks
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules/.cache/turbo
+          key: ${{ runner.os }}-turbo-test-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-turbo-test-
+      - run: pnpm install -rw
+      - run: pnpm run lint
+      # - run: pnpm run test
+      # - name: Update test result to Codecov
+      #   uses: codecov/codecov-action@v3
