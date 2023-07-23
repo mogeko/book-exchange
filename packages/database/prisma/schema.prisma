@@ -13,7 +13,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
@@ -24,23 +24,40 @@ model User {
 }
 
 model Book {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String
   discription String?
-  author      String
+  isbn        String?  @unique
   cover       String?
-  isbn        String?
 
-  owners Owner[]
+  owners  Owner[]
+  authors Author[]
+}
+
+model Writer {
+  id   String @id @default(cuid())
+  name String @unique
+
+  artworks Author[]
 }
 
 model Owner {
-  id        String   @id @default(uuid())
   owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   String
   book      Book     @relation(fields: [bookId], references: [id])
   bookId    String
   createdAt DateTime @default(now())
+
+  @@id([ownerId, bookId])
+}
+
+model Author {
+  writer   Writer @relation(fields: [writerId], references: [id])
+  writerId String
+  book     Book   @relation(fields: [bookId], references: [id])
+  bookId   String
+
+  @@id([writerId, bookId])
 }

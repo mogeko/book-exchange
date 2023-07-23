@@ -2,12 +2,10 @@ import { faker } from "@faker-js/faker/locale/en";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+faker.seed(12345); // To make sure we get the same data every time
 
-/** To generate random data for our database */
-async function seedYourDatabase() {
-  faker.seed(1234); // To make sure we get the same data every time
-
-  const books = await Promise.all(
+async function seedBooks() {
+  return await Promise.all(
     randomArrayWith(100, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
       return await prisma.book.upsert({
@@ -15,7 +13,6 @@ async function seedYourDatabase() {
         update: {},
         create: {
           title: faker.lorem.sentence(5),
-          author: faker.person.fullName(),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
           cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
           isbn: isbn,
@@ -25,7 +22,11 @@ async function seedYourDatabase() {
       });
     })
   );
+}
 
+type Books = Awaited<ReturnType<typeof seedBooks>>;
+
+async function seedUsers(books: Books) {
   return await Promise.all(
     randomArrayWith(50, async () => {
       const email = faker.internet.email();
@@ -39,10 +40,28 @@ async function seedYourDatabase() {
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
           books: {
-            create: arrayElements(books, { min: 0, max: 20 }).map((book) => {
-              return {
-                book: { connect: { id: book.id } },
-              };
+            create: arrayElements(books, { min: 0, max: 50 }).map((book) => {
+              return { bookId: book.id };
+            }),
+          },
+        },
+      });
+    })
+  );
+}
+
+async function seedWriter(books: Books) {
+  return await Promise.all(
+    randomArrayWith(50, async () => {
+      const name = faker.person.fullName();
+      return await prisma.writer.upsert({
+        where: { name: name },
+        update: {},
+        create: {
+          name: name,
+          artworks: {
+            create: arrayElements(books, { min: 1, max: 10 }).map((book) => {
+              return { bookId: book.id };
             }),
           },
         },
@@ -62,7 +81,10 @@ const arrayElements = faker.helpers.arrayElements;
 // Run the seed function
 (async () => {
   try {
-    await seedYourDatabase();
+    const books = await seedBooks();
+
+    await seedUsers(books);
+    await seedWriter(books);
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {
