@@ -1,5 +1,15 @@
 # @mogeko/bookworm-db
 
+## 0.2.0
+
+### Minor Changes
+
+- [#55](https://github.com/mogeko/bookworm/pull/55) [`4967474`](https://github.com/mogeko/bookworm/commit/49674740bd20673a3bcef2b106b42b121aeded82) Thanks [@mogeko](https://github.com/mogeko)! - Add `Writer`, It is a many-to-many model for `Book`.
+
+### Patch Changes
+
+- [#55](https://github.com/mogeko/bookworm/pull/55) [`a5eb43a`](https://github.com/mogeko/bookworm/commit/a5eb43a5c23cecdb0a304b838a32b144b43e5535) Thanks [@mogeko](https://github.com/mogeko)! - Use `CUID` instead of `UUID` as `id`.
+
 ## 0.1.0
 
 ### Minor Changes
