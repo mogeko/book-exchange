@@ -107,7 +107,7 @@ erDiagram
   }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
-    UUID     userId    PK, FK
+    UUID     voterId   PK, FK
     UUID     commentId PK, FK
     DataTime createdAt
     DataTime updatedAt
