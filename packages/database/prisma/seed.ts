@@ -165,11 +165,34 @@ async function seedFollows(users: Users) {
 async function seedCommends(commentators: Users, targets: TargetsProps) {
   return await Promise.all(
     randomArrayWith(1000, async () => {
-      const arrayElement = faker.helpers.arrayElement;
-      const key = arrayElement(Object.keys(targets)) as keyof TargetsProps;
-      const commentator = arrayElement(commentators);
-      const target = arrayElement(targets[key] as any);
       const content = faker.lorem.paragraph({ min: 5, max: 10 });
+      const commentator = faker.helpers.arrayElement(commentators);
+
+      const handleTargets = (targets: TargetsProps): any => {
+        const key = faker.helpers.arrayElement(
+          Object.keys(targets)
+        ) as keyof TargetsProps;
+        const target = faker.helpers.arrayElement(targets[key] as any);
+
+        if (key === "books") {
+          return {
+            transcript: {
+              create: {
+                score: faker.number.int({ min: 0, max: 10 }),
+                book: { connect: target },
+              },
+            },
+          };
+        } else if (key === "series") {
+          return {
+            series: { connect: target },
+          };
+        } else {
+          return {
+            [key.slice(0, -1)]: { connect: target },
+          };
+        }
+      };
 
       const commend = await prisma.comment.findFirst({ where: { content } });
 
@@ -181,16 +204,16 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
             connect: commentator,
           },
           votes: {
-            create: arrayElements(commentators).map((commentator) => {
-              return {
-                voter: { connect: commentator },
-                vote: faker.datatype.boolean(0.6),
-              };
-            }),
+            create: arrayElements(commentators, { min: 0, max: 20 }).map(
+              (commentator) => {
+                return {
+                  voter: { connect: commentator },
+                  vote: faker.datatype.boolean(0.6),
+                };
+              }
+            ),
           },
-          [key === "series" ? key : key.slice(0, -1)]: {
-            connect: target,
-          },
+          ...handleTargets(targets),
         },
       });
     })
