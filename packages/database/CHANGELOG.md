@@ -1,5 +1,13 @@
 # @mogeko/bookworm-db
 
+## 0.7.0
+
+### Minor Changes
+
+- [#65](https://github.com/mogeko/bookworm/pull/65) [`5a68819`](https://github.com/mogeko/bookworm/commit/5a68819c576c157588166207eb1cf97a051f1944) Thanks [@mogeko](https://github.com/mogeko)! - Add `Voter` to store `likes/dislikes` for `Comment`.
+
+  `Voter.vote` will be `true` for `like` and `false` for `dislike`.
+
 ## 0.6.0
 
 ### Minor Changes
