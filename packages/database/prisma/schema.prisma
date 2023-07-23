@@ -20,7 +20,7 @@ model User {
   name      String?
   avatar    String?
 
-  books Book[]
+  books Owner[]
 }
 
 model Book {
@@ -33,6 +33,14 @@ model Book {
   cover       String?
   isbn        String?
 
-  owner   User   @relation(fields: [ownerId], references: [id])
-  ownerId String
+  owners Owner[]
+}
+
+model Owner {
+  id        String   @id @default(uuid())
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    String
+  createdAt DateTime @default(now())
 }
