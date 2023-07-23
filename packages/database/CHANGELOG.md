@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.5.0
+
+### Minor Changes
+
+- [#61](https://github.com/mogeko/bookworm/pull/61) [`31a22f7`](https://github.com/mogeko/bookworm/commit/31a22f79525a4c88cce93bee31c276d6964bab78) Thanks [@mogeko](https://github.com/mogeko)! - Add `Somebody` to handle follow-up Between `User`s.
+
 ## 0.4.0
 
 ### Minor Changes
