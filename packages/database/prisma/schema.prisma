@@ -12,6 +12,15 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Auth {
+  id        String   @id @default(cuid())
+  loginTime DateTime @default(now())
+  password  String
+
+  user      User   @relation(fields: [userEmail], references: [email])
+  userEmail String @unique
+}
+
 model User {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -20,7 +29,8 @@ model User {
   name      String?
   avatar    String?
 
-  books Owner[]
+  authentication Auth?
+  books          Owner[]
 }
 
 model Owner {

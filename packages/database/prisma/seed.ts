@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { faker } from "@faker-js/faker/locale/en";
 import { PrismaClient } from "@prisma/client";
 
@@ -35,6 +36,11 @@ async function seedUsers() {
           avatar: faker.image.avatar(),
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
+          authentication: {
+            create: {
+              password: hash("sha512", faker.internet.password()),
+            },
+          },
         },
       });
     })
@@ -126,6 +132,11 @@ type BooksProps = {
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
   return Array.from({ length: faker.number.int(length) }).map(fn);
+}
+
+/** Helper function to generate a hash value */
+function hash(algorithm: string, value: string) {
+  return createHash(algorithm).update(value).digest("hex");
 }
 
 /** Helper function to generate an array of random values */
