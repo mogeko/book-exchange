@@ -2,12 +2,10 @@ import { faker } from "@faker-js/faker/locale/en";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+faker.seed(12345); // To make sure we get the same data every time
 
-/** To generate random data for our database */
-async function seedYourDatabase() {
-  faker.seed(1234); // To make sure we get the same data every time
-
-  const books = await Promise.all(
+async function seedBooks() {
+  return await Promise.all(
     randomArrayWith(100, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
       return await prisma.book.upsert({
@@ -25,7 +23,9 @@ async function seedYourDatabase() {
       });
     })
   );
+}
 
+async function seedUsers() {
   return await Promise.all(
     randomArrayWith(50, async () => {
       const email = faker.internet.email();
@@ -39,11 +39,13 @@ async function seedYourDatabase() {
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
           books: {
-            create: arrayElements(books, { min: 0, max: 20 }).map((book) => {
-              return {
-                book: { connect: { id: book.id } },
-              };
-            }),
+            create: arrayElements(await seedBooks(), { min: 0, max: 20 }).map(
+              (book) => {
+                return {
+                  book: { connect: { id: book.id } },
+                };
+              }
+            ),
           },
         },
       });
@@ -62,7 +64,7 @@ const arrayElements = faker.helpers.arrayElements;
 // Run the seed function
 (async () => {
   try {
-    await seedYourDatabase();
+    await seedUsers();
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {
