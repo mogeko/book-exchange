@@ -1,5 +1,17 @@
 # @mogeko/bookworm-db
 
+## 0.6.0
+
+### Minor Changes
+
+- [#63](https://github.com/mogeko/bookworm/pull/63) [`1d75631`](https://github.com/mogeko/bookworm/commit/1d756310ba7b1178ab13b07fbf5047569c825c3a) Thanks [@mogeko](https://github.com/mogeko)! - Add `Comment` to store `User`'s comments.
+
+### Patch Changes
+
+- [#63](https://github.com/mogeko/bookworm/pull/63) [`3404b6c`](https://github.com/mogeko/bookworm/commit/3404b6c4919887340c7a2659fc8ca7431978653c) Thanks [@mogeko](https://github.com/mogeko)! - Deduplicate the keys before seeding `Somebody`.
+
+- [#63](https://github.com/mogeko/bookworm/pull/63) [`ed47d1e`](https://github.com/mogeko/bookworm/commit/ed47d1e680131efe52659acbf57a541237588399) Thanks [@mogeko](https://github.com/mogeko)! - Run seeding script (`./prisma/seed.ts`) by [`vite-node`](https://www.npmjs.com/package/vite-node).
+
 ## 0.5.0
 
 ### Minor Changes
