@@ -1,5 +1,15 @@
 # @mogeko/bookworm-db
 
+## 0.3.0
+
+### Minor Changes
+
+- [#57](https://github.com/mogeko/bookworm/pull/57) [`c287936`](https://github.com/mogeko/bookworm/commit/c287936626402c958bc2aefef43196992e828884) Thanks [@mogeko](https://github.com/mogeko)! - Add `Publisher` and `Series`.
+
+### Patch Changes
+
+- [#57](https://github.com/mogeko/bookworm/pull/57) [`771ee76`](https://github.com/mogeko/bookworm/commit/771ee76900bd2d7494fd465ea9f86a908335e91d) Thanks [@mogeko](https://github.com/mogeko)! - Make sure that `Series.name` is unique.
+
 ## 0.2.0
 
 ### Minor Changes
