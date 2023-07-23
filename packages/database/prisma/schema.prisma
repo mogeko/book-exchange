@@ -92,7 +92,7 @@ model Comment {
 }
 
 model Transcript {
-  score Int
+  score Int @db.SmallInt
 
   comment   Comment @relation(fields: [commentId], references: [id])
   commentId String  @unique
