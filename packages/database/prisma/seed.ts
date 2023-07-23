@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker/locale/en";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-faker.seed(9999); // To make sure we get the same data every time
+faker.seed(12345); // To make sure we get the same data every time
 
 async function seedWriter() {
   return await Promise.all(
@@ -136,7 +136,7 @@ async function seedFollows(users: Users) {
         if (followee.id === following.id) return false;
         return (
           arr.findIndex(
-            ([x, y]) => x.id === following.id && y.id === followee.id
+            ([x, y]) => x.id === followee.id && y.id === following.id
           ) === index
         );
       })
