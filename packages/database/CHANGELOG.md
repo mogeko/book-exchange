@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.4.0
+
+### Minor Changes
+
+- [#59](https://github.com/mogeko/bookworm/pull/59) [`e5f56f5`](https://github.com/mogeko/bookworm/commit/e5f56f56f98c555c72e81e6c9450162d4eb01172) Thanks [@mogeko](https://github.com/mogeko)! - Add `Auth` for authentication, it is one-to-one with `User`.
+
 ## 0.3.0
 
 ### Minor Changes
