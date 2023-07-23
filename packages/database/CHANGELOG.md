@@ -1,5 +1,15 @@
 # @mogeko/bookworm-db
 
+## 0.8.0
+
+### Minor Changes
+
+- [#67](https://github.com/mogeko/bookworm/pull/67) [`4ee1cdc`](https://github.com/mogeko/bookworm/commit/4ee1cdc559e610229afd9b25ec1e7ba4eaf5c57d) Thanks [@mogeko](https://github.com/mogeko)! - Add `Transcript` allows `User`s to rate `Book`s.
+
+### Patch Changes
+
+- [#67](https://github.com/mogeko/bookworm/pull/67) [`bbac5fe`](https://github.com/mogeko/bookworm/commit/bbac5fe62dec48a7074f0e100ad98131bbafcab3) Thanks [@mogeko](https://github.com/mogeko)! - Narrow the range of `score` on the `Transcript`.
+
 ## 0.7.0
 
 ### Minor Changes
