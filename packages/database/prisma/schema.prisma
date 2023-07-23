@@ -60,7 +60,7 @@ model Series {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  name        String
+  name        String   @unique
   discription String?
   cover       String?
 

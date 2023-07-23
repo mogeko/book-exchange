@@ -64,13 +64,16 @@ type Publishers = Awaited<ReturnType<typeof seedPublishers>>;
 async function seedSeries() {
   return await Promise.all(
     randomArrayWith(50, async () => {
-      const name = faker.company.name();
-      const series = await prisma.series.findFirst({ where: { name } });
-
-      if (series) return series;
-      return await prisma.series.create({
-        data: {
+      const name = faker.lorem.sentence(5);
+      return await prisma.series.upsert({
+        where: { name: name },
+        update: {},
+        create: {
           name: name,
+          createdAt: faker.date.past(),
+          updatedAt: faker.date.recent(),
+          discription: faker.lorem.paragraph({ min: 5, max: 10 }),
+          cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
         },
       });
     })
