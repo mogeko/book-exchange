@@ -78,12 +78,12 @@ erDiagram
   USER ||--o{ VOTER    : is
   USER ||--o{ GRADER   : is
   USER {
-    UUID      id        PK
-    DataTime  createdAt
-    DataTime  updatedAt
-    String    email     UK
-    String    name
-    String    avatar
+    UUID     id        PK
+    DataTime createdAt
+    DataTime updatedAt
+    String   email     UK
+    String   name
+    String   avatar
   }
   OWNER }o--|| BOOK : own
   OWNER {
@@ -93,7 +93,7 @@ erDiagram
   }
   SOMEBODY }o--|| USER : "be followed"
   SOMEBODY {
-    UUID     followerId PK, FK
+    UUID     followeeId PK, FK
     UUID     followedId PK, FK
     DataTime createdAt
   }
@@ -107,11 +107,11 @@ erDiagram
   }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
-    UUID      userId    PK, FK
-    UUID      commentId PK, FK
-    DataTime  createdAt
-    DataTime  updatedAt
-    Boolean   vote
+    UUID     userId    PK, FK
+    UUID     commentId PK, FK
+    DataTime createdAt
+    DataTime updatedAt
+    Boolean  vote
   }
   COMMENT }o--|| BOOK      : "to"
   COMMENT }o--|| USER      : "to"
@@ -119,21 +119,26 @@ erDiagram
   COMMENT }o--|| WRITER    : "to"
   COMMENT }o--|| SERIES    : "to"
   COMMENT {
-    UUID      userId   PK, FK
-    UUID      targetId PK, FK
-    DataTime  createdAt
-    DataTime  updatedAt
-    String    content
+    UUID     id            PK
+    UUID     commentatorId FK
+    UUID     userId        FK
+    UUID     bookId        FK
+    UUID     publisherId   FK
+    UUID     seriesId      FK
+    UUID     writerId      FK
+    DataTime createdAt
+    DataTime updatedAt
+    String   content
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
-    UUID      id           PK
-    String    name
+    UUID   id   PK
+    String name
   }
   WRITER ||--o{ AUTHOR : is
   WRITER {
-    UUID      id       PK
-    String    name
+    UUID   id   PK
+    String name
   }
   AUTHOR }o--|| BOOK : write
   AUTHOR {
@@ -142,23 +147,23 @@ erDiagram
   }
   SERIES ||--o{ BOOK : has
   SERIES {
-    UUID      id          PK
-    DataTime  createdAt
-    DataTime  updatedAt
-    String    name        UK
-    String    discription
-    String    cover
+    UUID     id          PK
+    DataTime createdAt
+    DataTime updatedAt
+    String   name        UK
+    String   discription
+    String   cover
   }
   BOOK {
-    UUID      id          PK
-    UUID      publisherId FK
-    UUID      seriesId    FK
-    DataTime  createdAt
-    DataTime  updatedAt
-    String    title
-    String    discription
-    String    isbn        UK
-    String    cover
+    UUID     id          PK
+    UUID     publisherId FK
+    UUID     seriesId    FK
+    DataTime createdAt
+    DataTime updatedAt
+    String   title
+    String   discription
+    String   isbn        UK
+    String   cover
   }
 ```
 

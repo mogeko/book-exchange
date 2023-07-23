@@ -30,15 +30,17 @@ model User {
   avatar    String?
 
   authentication Auth?
-  followings     Somebody[] @relation("Follow with")
-  followees      Somebody[] @relation("Be followed")
+  followings     Somebody[] @relation("FolloweeFollowings")
+  followees      Somebody[] @relation("FollowingFollowees")
   books          Owner[]
+  commented      Comment[]  @relation("CommentatorCommented")
+  commentes      Comment[]
 }
 
 model Somebody {
-  followee    User     @relation("Follow with", fields: [followeeId], references: [id])
+  followee    User     @relation("FolloweeFollowings", fields: [followeeId], references: [id])
   followeeId  String
-  following   User     @relation("Be followed", fields: [followingId], references: [id])
+  following   User     @relation("FollowingFollowees", fields: [followingId], references: [id])
   followingId String
   createdAt   DateTime @default(now())
 
@@ -55,11 +57,33 @@ model Owner {
   @@id([ownerId, bookId])
 }
 
+model Comment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  commentator   User   @relation("CommentatorCommented", fields: [commentatorId], references: [id])
+  commentatorId String
+
+  user        User?      @relation(fields: [userId], references: [id])
+  userId      String?
+  book        Book?      @relation(fields: [bookId], references: [id])
+  bookId      String?
+  publisher   Publisher? @relation(fields: [publisherId], references: [id])
+  publisherId String?
+  series      Series?    @relation(fields: [seriesId], references: [id])
+  seriesId    String?
+  writer      Writer?    @relation(fields: [writerId], references: [id])
+  writerId    String?
+}
+
 model Writer {
   id   String @id @default(cuid())
   name String
 
   artworks Author[]
+  comments Comment[]
 }
 
 model Author {
@@ -76,6 +100,7 @@ model Publisher {
   name String
 
   published Book[]
+  comments  Comment[]
 }
 
 model Series {
@@ -86,7 +111,8 @@ model Series {
   discription String?
   cover       String?
 
-  books Book[]
+  books    Book[]
+  comments Comment[]
 }
 
 model Book {
@@ -104,4 +130,5 @@ model Book {
   publisherId String?
   series      Series?    @relation(fields: [seriesId], references: [id])
   seriesId    String?
+  comments    Comment[]
 }

@@ -122,10 +122,24 @@ async function seedBooks({ users, writers, publishers, series }: BooksProps) {
   );
 }
 
+type BooksProps = {
+  users: Users;
+  publishers: Publishers;
+  writers: Writers;
+  series: Series;
+};
+
 async function seedFollows(users: Users) {
   return await Promise.all(
     randomArrayWith(500, () => arrayElements(users, 2))
-      .filter(([followee, following]) => followee.id !== following.id)
+      .filter(([followee, following], index, arr) => {
+        if (followee.id === following.id) return false;
+        return (
+          arr.findIndex(
+            ([x, y]) => x.id === followee.id && y.id === following.id
+          ) === index
+        );
+      })
       .map(async ([followee, following]) => {
         return await prisma.somebody.upsert({
           where: {
@@ -148,12 +162,36 @@ async function seedFollows(users: Users) {
   );
 }
 
-type BooksProps = {
-  users: Users;
-  publishers: Publishers;
-  writers: Writers;
-  series: Series;
-};
+async function seedCommends(commentators: Users, targets: TargetsProps) {
+  return await Promise.all(
+    randomArrayWith(1000, async () => {
+      const arrayElement = faker.helpers.arrayElement;
+      const key = arrayElement(Object.keys(targets)) as keyof TargetsProps;
+      const commentator = arrayElement(commentators);
+      const target = arrayElement(targets[key] as any);
+      const content = faker.lorem.paragraph({ min: 5, max: 10 });
+
+      const commend = await prisma.comment.findFirst({ where: { content } });
+
+      if (commend) return commend;
+      return prisma.comment.create({
+        data: {
+          content: content,
+          commentator: {
+            connect: commentator,
+          },
+          [key === "series" ? key : key.slice(0, -1)]: {
+            connect: target,
+          },
+        },
+      });
+    })
+  );
+}
+
+type TargetsProps = {
+  books: Awaited<ReturnType<typeof seedBooks>>;
+} & BooksProps;
 
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
@@ -176,7 +214,8 @@ const arrayElements = faker.helpers.arrayElements;
     const publishers = await seedPublishers();
     const series = await seedSeries();
 
-    await seedBooks({ users, writers, publishers, series });
+    const books = await seedBooks({ users, writers, publishers, series });
+    await seedCommends(users, { users, writers, publishers, series, books });
     await seedFollows(users);
   } catch (err) {
     console.error(err), process.exit(1);
