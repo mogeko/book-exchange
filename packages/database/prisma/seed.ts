@@ -180,6 +180,14 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
           commentator: {
             connect: commentator,
           },
+          votes: {
+            create: arrayElements(commentators).map((commentator) => {
+              return {
+                voter: { connect: commentator },
+                vote: faker.datatype.boolean(0.6),
+              };
+            }),
+          },
           [key === "series" ? key : key.slice(0, -1)]: {
             connect: target,
           },
