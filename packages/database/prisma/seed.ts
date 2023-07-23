@@ -4,7 +4,85 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 faker.seed(12345); // To make sure we get the same data every time
 
-async function seedBooks() {
+async function seedWriter() {
+  return await Promise.all(
+    randomArrayWith(50, async () => {
+      const name = faker.person.fullName();
+      const writer = await prisma.writer.findFirst({ where: { name } });
+
+      if (writer) return writer;
+      return await prisma.writer.create({
+        data: {
+          name: name,
+        },
+      });
+    })
+  );
+}
+
+type Writers = Awaited<ReturnType<typeof seedWriter>>;
+
+async function seedUsers() {
+  return await Promise.all(
+    randomArrayWith(50, async () => {
+      const email = faker.internet.email();
+      return await prisma.user.upsert({
+        where: { email: email },
+        update: {},
+        create: {
+          email: email,
+          name: faker.internet.userName(),
+          avatar: faker.image.avatar(),
+          createdAt: faker.date.past(),
+          updatedAt: faker.date.recent(),
+        },
+      });
+    })
+  );
+}
+
+type Users = Awaited<ReturnType<typeof seedUsers>>;
+
+async function seedPublishers() {
+  return await Promise.all(
+    randomArrayWith(50, async () => {
+      const name = faker.company.name();
+      const publisher = await prisma.publisher.findFirst({ where: { name } });
+
+      if (publisher) return publisher;
+      return await prisma.publisher.create({
+        data: {
+          name: name,
+        },
+      });
+    })
+  );
+}
+
+type Publishers = Awaited<ReturnType<typeof seedPublishers>>;
+
+async function seedSeries() {
+  return await Promise.all(
+    randomArrayWith(50, async () => {
+      const name = faker.lorem.sentence(5);
+      return await prisma.series.upsert({
+        where: { name: name },
+        update: {},
+        create: {
+          name: name,
+          createdAt: faker.date.past(),
+          updatedAt: faker.date.recent(),
+          discription: faker.lorem.paragraph({ min: 5, max: 10 }),
+          cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
+        },
+      });
+    })
+  );
+}
+
+type Series = Awaited<ReturnType<typeof seedSeries>>;
+
+async function seedBooks({ users, writers, publishers, series }: BooksProps) {
   return await Promise.all(
     randomArrayWith(100, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
@@ -18,31 +96,19 @@ async function seedBooks() {
           isbn: isbn,
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
-        },
-      });
-    })
-  );
-}
-
-type Books = Awaited<ReturnType<typeof seedBooks>>;
-
-async function seedUsers(books: Books) {
-  return await Promise.all(
-    randomArrayWith(50, async () => {
-      const email = faker.internet.email();
-      return await prisma.user.upsert({
-        where: { email: email },
-        update: {},
-        create: {
-          email: email,
-          name: faker.internet.userName(),
-          avatar: faker.image.avatar(),
-          createdAt: faker.date.past(),
-          updatedAt: faker.date.recent(),
-          books: {
-            create: arrayElements(books, { min: 0, max: 50 }).map((book) => {
-              return { bookId: book.id };
+          authors: {
+            create: arrayElements(writers, { min: 1, max: 5 }).map((writer) => {
+              return { writerId: writer.id };
             }),
+          },
+          owners: {
+            create: arrayElements(users).map((user) => ({ ownerId: user.id })),
+          },
+          publisher: {
+            connect: faker.helpers.arrayElement(publishers),
+          },
+          series: {
+            connect: faker.helpers.arrayElement(series),
           },
         },
       });
@@ -50,25 +116,12 @@ async function seedUsers(books: Books) {
   );
 }
 
-async function seedWriter(books: Books) {
-  return await Promise.all(
-    randomArrayWith(50, async () => {
-      const name = faker.person.fullName();
-      return await prisma.writer.upsert({
-        where: { name: name },
-        update: {},
-        create: {
-          name: name,
-          artworks: {
-            create: arrayElements(books, { min: 1, max: 10 }).map((book) => {
-              return { bookId: book.id };
-            }),
-          },
-        },
-      });
-    })
-  );
-}
+type BooksProps = {
+  users: Users;
+  publishers: Publishers;
+  writers: Writers;
+  series: Series;
+};
 
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
@@ -81,10 +134,12 @@ const arrayElements = faker.helpers.arrayElements;
 // Run the seed function
 (async () => {
   try {
-    const books = await seedBooks();
+    const writers = await seedWriter();
+    const users = await seedUsers();
+    const publishers = await seedPublishers();
+    const series = await seedSeries();
 
-    await seedUsers(books);
-    await seedWriter(books);
+    await seedBooks({ users, writers, publishers, series });
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {

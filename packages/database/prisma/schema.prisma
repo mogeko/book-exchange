@@ -23,26 +23,6 @@ model User {
   books Owner[]
 }
 
-model Book {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String
-  discription String?
-  isbn        String?  @unique
-  cover       String?
-
-  owners  Owner[]
-  authors Author[]
-}
-
-model Writer {
-  id   String @id @default(cuid())
-  name String @unique
-
-  artworks Author[]
-}
-
 model Owner {
   owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   String
@@ -53,6 +33,13 @@ model Owner {
   @@id([ownerId, bookId])
 }
 
+model Writer {
+  id   String @id @default(cuid())
+  name String
+
+  artworks Author[]
+}
+
 model Author {
   writer   Writer @relation(fields: [writerId], references: [id])
   writerId String
@@ -60,4 +47,39 @@ model Author {
   bookId   String
 
   @@id([writerId, bookId])
+}
+
+model Publisher {
+  id   String @id @default(cuid())
+  name String
+
+  published Book[]
+}
+
+model Series {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String   @unique
+  discription String?
+  cover       String?
+
+  books Book[]
+}
+
+model Book {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  discription String?
+  isbn        String?  @unique
+  cover       String?
+
+  owners      Owner[]
+  authors     Author[]
+  publisher   Publisher? @relation(fields: [publisherId], references: [id])
+  publisherId String?
+  series      Series?    @relation(fields: [seriesId], references: [id])
+  seriesId    String?
 }
