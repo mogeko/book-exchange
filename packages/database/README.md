@@ -68,9 +68,9 @@ erDiagram
   AUTH ||--|| USER : authorize
   AUTH {
     UUID     id        PK
-    UUID     userId    FK
     DataTime loginTime
-    Hash     password
+    String   userEmail FK, UK
+    String   password
   }
   USER ||--o{ OWNER    : is
   USER ||--o{ SOMEBODY : "follow with"
@@ -79,7 +79,6 @@ erDiagram
   USER ||--o{ GRADER   : is
   USER {
     UUID      id        PK
-    UUID      authId    FK
     DataTime  createdAt
     DataTime  updatedAt
     String    email     UK
@@ -118,7 +117,7 @@ erDiagram
   COMMENT }o--|| USER      : "to"
   COMMENT }o--|| PUBLISHER : "to"
   COMMENT }o--|| WRITER    : "to"
-  COMMENT }o--|| SERIE     : "to"
+  COMMENT }o--|| SERIES    : "to"
   COMMENT {
     UUID      userId   PK, FK
     UUID      targetId PK, FK
@@ -141,21 +140,25 @@ erDiagram
     UUID writeId PK, FK
     UUID bookId  PK, FK
   }
-  SERIE ||--o{ BOOK : has
-  SERIE {
-    UUID      id       PK
-    String    name
+  SERIES ||--o{ BOOK : has
+  SERIES {
+    UUID      id          PK
+    DataTime  createdAt
+    DataTime  updatedAt
+    String    name        UK
+    String    discription
+    String    cover
   }
   BOOK {
     UUID      id          PK
     UUID      publisherId FK
-    UUID      serieId     FK
+    UUID      seriesId    FK
     DataTime  createdAt
     DataTime  updatedAt
     String    title
     String    discription
+    String    isbn        UK
     String    cover
-    String    isbn
   }
 ```
 
