@@ -122,6 +122,32 @@ async function seedBooks({ users, writers, publishers, series }: BooksProps) {
   );
 }
 
+async function seedFollows(users: Users) {
+  return await Promise.all(
+    randomArrayWith(500, () => arrayElements(users, 2))
+      .filter(([followee, following]) => followee.id !== following.id)
+      .map(async ([followee, following]) => {
+        return await prisma.somebody.upsert({
+          where: {
+            followeeId_followingId: {
+              followeeId: followee.id,
+              followingId: following.id,
+            },
+          },
+          update: {},
+          create: {
+            followee: {
+              connect: followee,
+            },
+            following: {
+              connect: following,
+            },
+          },
+        });
+      })
+  );
+}
+
 type BooksProps = {
   users: Users;
   publishers: Publishers;
@@ -151,6 +177,7 @@ const arrayElements = faker.helpers.arrayElements;
     const series = await seedSeries();
 
     await seedBooks({ users, writers, publishers, series });
+    await seedFollows(users);
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {

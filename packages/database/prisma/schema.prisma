@@ -30,7 +30,19 @@ model User {
   avatar    String?
 
   authentication Auth?
+  followings     Somebody[] @relation("Follow with")
+  followees      Somebody[] @relation("Be followed")
   books          Owner[]
+}
+
+model Somebody {
+  followee    User     @relation("Follow with", fields: [followeeId], references: [id])
+  followeeId  String
+  following   User     @relation("Be followed", fields: [followingId], references: [id])
+  followingId String
+  createdAt   DateTime @default(now())
+
+  @@id([followeeId, followingId])
 }
 
 model Owner {

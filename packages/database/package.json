@@ -30,6 +30,7 @@
   "scripts": {
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset --force",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "lint": "prettier --check .",
@@ -47,6 +48,6 @@
     "typescript": "^5.1.6"
   },
   "prisma": {
-    "seed": "tsup-node prisma/seed.ts"
+    "seed": "tsup prisma/seed.ts && node dist/seed.js"
   }
 }
