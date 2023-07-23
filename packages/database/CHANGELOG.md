@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.1.0
+
+### Minor Changes
+
+- [#53](https://github.com/mogeko/bookworm/pull/53) [`fc4f030`](https://github.com/mogeko/bookworm/commit/fc4f030eb1fd550cfb38ee41e7c69e5032cf59b7) Thanks [@mogeko](https://github.com/mogeko)! - Migrate the relationship between `User` and `Book` to many-to-many.
+
 ## 0.0.2
 
 ### Patch Changes
