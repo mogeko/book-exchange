@@ -65,7 +65,7 @@ To use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-mi
 
 ```mermaid
 erDiagram
-  AUTH ||--|| USER : authorize
+  AUTH |o--|| USER : authorize
   AUTH {
     UUID     id        PK
     DataTime loginTime
@@ -76,7 +76,6 @@ erDiagram
   USER ||--o{ SOMEBODY : "follow with"
   USER ||--o{ COMMENT  : issue
   USER ||--o{ VOTER    : is
-  USER ||--o{ GRADER   : is
   USER {
     UUID     id        PK
     DataTime createdAt
@@ -97,14 +96,6 @@ erDiagram
     UUID     followedId PK, FK
     DataTime createdAt
   }
-  GRADER }o--|| BOOK : grading
-  GRADER {
-    UUID     userId   PK, FK
-    UUID     bookId   PK, FK
-    DataTime createdAt
-    DataTime updatedAt
-    Number   score
-  }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
     UUID     voterId   PK, FK
@@ -113,22 +104,29 @@ erDiagram
     DataTime updatedAt
     Boolean  vote
   }
-  COMMENT }o--|| BOOK      : "to"
-  COMMENT }o--|| USER      : "to"
-  COMMENT }o--|| PUBLISHER : "to"
-  COMMENT }o--|| WRITER    : "to"
-  COMMENT }o--|| SERIES    : "to"
+  COMMENT ||--o| TRANSCRIPT : attach
+  COMMENT }o--o| USER       : "to"
+  COMMENT }o--o| PUBLISHER  : "to"
+  COMMENT }o--o| WRITER     : "to"
+  COMMENT }o--o| SERIES     : "to"
   COMMENT {
     UUID     id            PK
     UUID     commentatorId FK
     UUID     userId        FK
-    UUID     bookId        FK
     UUID     publisherId   FK
     UUID     seriesId      FK
     UUID     writerId      FK
     DataTime createdAt
     DataTime updatedAt
     String   content
+  }
+  TRANSCRIPT }o--|| BOOK : "to"
+  TRANSCRIPT {
+    UUID     commentatorId PK, FK
+    UUID     bookId        PK, FK
+    DataTime createdAt
+    DataTime updatedAt
+    Number   score
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
