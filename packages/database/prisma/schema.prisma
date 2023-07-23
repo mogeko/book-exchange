@@ -13,7 +13,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
@@ -24,7 +24,7 @@ model User {
 }
 
 model Book {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String
@@ -37,8 +37,8 @@ model Book {
 }
 
 model Writer {
-  id   String @id @default(uuid())
-  name String
+  id   String @id @default(cuid())
+  name String @unique
 
   artworks Author[]
 }
