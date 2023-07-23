@@ -16,6 +16,7 @@
     "fmt": "turbo run fmt",
     "db:generate": "turbo run db:generate",
     "db:migrate": "turbo run db:migrate",
+    "db:reset": "turbo run db:reset",
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio"
   },
