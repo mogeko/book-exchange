@@ -1,6 +1,6 @@
 {
   "name": "@mogeko/bookworm-web",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "The web frontend for the Book Exchange app",
   "private": false,
   "author": {
