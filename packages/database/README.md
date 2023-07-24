@@ -102,7 +102,7 @@ erDiagram
     DataTime updatedAt
     Boolean  vote
   }
-  COMMENT ||--o| TRANSCRIPT : attach
+  COMMENT ||--o| SCORE      : attach
   COMMENT }o--o| USER       : "to"
   COMMENT }o--o| PUBLISHER  : "to"
   COMMENT }o--o| AUTHOR     : "to"
@@ -118,13 +118,13 @@ erDiagram
     DataTime updatedAt
     String   content
   }
-  TRANSCRIPT }o--|| BOOK : "to"
-  TRANSCRIPT {
+  SCORE }o--|| BOOK : "to"
+  SCORE {
     UUID     commentatorId PK, FK
     UUID     bookId        PK, FK
     DataTime createdAt
     DataTime updatedAt
-    Number   score
+    Number   rate
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
