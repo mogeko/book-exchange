@@ -1,5 +1,17 @@
 # @mogeko/bookworm-db
 
+## 0.9.0
+
+### Minor Changes
+
+- [#71](https://github.com/mogeko/bookworm/pull/71) [`7709b41`](https://github.com/mogeko/bookworm/commit/7709b4173bb33e7f93a59cf2a535ce821c9a6861) Thanks [@mogeko](https://github.com/mogeko)! - Change to implicit many-to-many (Hide `Author` and `Owner`).
+
+- [#71](https://github.com/mogeko/bookworm/pull/71) [`e9b8258`](https://github.com/mogeko/bookworm/commit/e9b82586b1e85927abda4cfa42d5cd9be7aee20f) Thanks [@mogeko](https://github.com/mogeko)! - self relations `User` with implicit many-to-many.
+
+### Patch Changes
+
+- [#71](https://github.com/mogeko/bookworm/pull/71) [`7709b41`](https://github.com/mogeko/bookworm/commit/7709b4173bb33e7f93a59cf2a535ce821c9a6861) Thanks [@mogeko](https://github.com/mogeko)! - rename `Writer` to `Author`.
+
 ## 0.8.0
 
 ### Minor Changes
