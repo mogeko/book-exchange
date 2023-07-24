@@ -24,7 +24,7 @@ async function seedAuthor() {
 type Authors = Awaited<ReturnType<typeof seedAuthor>>;
 
 async function seedUsers() {
-  return await Promise.all(
+  const users = await Promise.all(
     randomArrayWith(50, async () => {
       const email = faker.internet.email();
       return await prisma.user.upsert({
@@ -40,6 +40,30 @@ async function seedUsers() {
             create: {
               password: hash("sha512", faker.internet.password()),
             },
+          },
+        },
+      });
+    })
+  );
+
+  return await Promise.all(
+    users.map(async (user) => {
+      return await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          followedBy: {
+            connect: await Promise.all(
+              arrayElements(users, { min: 0, max: 20 }).filter(
+                (otherUser) => otherUser.id !== user.id
+              )
+            ),
+          },
+          following: {
+            connect: await Promise.all(
+              arrayElements(users, { min: 0, max: 20 }).filter(
+                (otherUser) => otherUser.id !== user.id
+              )
+            ),
           },
         },
       });
@@ -127,39 +151,6 @@ type BooksProps = {
   series: Series;
 };
 
-async function seedFollows(users: Users) {
-  return await Promise.all(
-    randomArrayWith(500, () => arrayElements(users, 2))
-      .filter(([followee, following], index, arr) => {
-        if (followee.id === following.id) return false;
-        return (
-          arr.findIndex(
-            ([x, y]) => x.id === followee.id && y.id === following.id
-          ) === index
-        );
-      })
-      .map(async ([followee, following]) => {
-        return await prisma.somebody.upsert({
-          where: {
-            followeeId_followingId: {
-              followeeId: followee.id,
-              followingId: following.id,
-            },
-          },
-          update: {},
-          create: {
-            followee: {
-              connect: followee,
-            },
-            following: {
-              connect: following,
-            },
-          },
-        });
-      })
-  );
-}
-
 async function seedCommends(commentators: Users, targets: TargetsProps) {
   return await Promise.all(
     randomArrayWith(1000, async () => {
@@ -238,14 +229,15 @@ const arrayElements = faker.helpers.arrayElements;
 // Run the seed function
 (async () => {
   try {
-    const authors = await seedAuthor();
-    const users = await seedUsers();
-    const publishers = await seedPublishers();
-    const series = await seedSeries();
+    const results = {
+      authors: await seedAuthor(),
+      users: await seedUsers(),
+      publishers: await seedPublishers(),
+      series: await seedSeries(),
+    };
 
-    const books = await seedBooks({ users, authors, publishers, series });
-    await seedCommends(users, { users, authors, publishers, series, books });
-    await seedFollows(users);
+    const books = await seedBooks(results);
+    await seedCommends(results.users, { ...results, books });
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {

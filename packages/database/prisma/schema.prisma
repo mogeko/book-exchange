@@ -30,27 +30,17 @@ model User {
   avatar    String?
 
   authentication Auth?
-  followings     Somebody[] @relation("FolloweeFollowings")
-  followees      Somebody[] @relation("FollowingFollowees")
+  followedBy     User[]    @relation("UserFollows")
+  following      User[]    @relation("UserFollows")
   ownedBooks     Book[]
-  commented      Comment[]  @relation("CommentatorCommented")
+  commentOn      Comment[] @relation("commentOn")
   commentes      Comment[]
   voted          Voter[]
 }
 
-model Somebody {
-  followee    User     @relation("FolloweeFollowings", fields: [followeeId], references: [id])
-  followeeId  String
-  following   User     @relation("FollowingFollowees", fields: [followingId], references: [id])
-  followingId String
-  createdAt   DateTime @default(now())
-
-  @@id([followeeId, followingId])
-}
-
 model Voter {
   voter     User     @relation(fields: [voterId], references: [id])
-  voterId   String   @map("userId")
+  voterId   String
   comment   Comment  @relation(fields: [commentId], references: [id])
   commentId String
   createdAt DateTime @default(now())
@@ -66,7 +56,7 @@ model Comment {
   updatedAt DateTime @updatedAt
   content   String
 
-  commentator   User    @relation("CommentatorCommented", fields: [commentatorId], references: [id])
+  commentator   User    @relation("commentOn", fields: [commentatorId], references: [id])
   commentatorId String
   votes         Voter[]
 
