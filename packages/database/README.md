@@ -120,10 +120,8 @@ erDiagram
   }
   SCORE }o--|| BOOK : "to"
   SCORE {
-    UUID     commentatorId PK, FK
-    UUID     bookId        PK, FK
-    DataTime createdAt
-    DataTime updatedAt
+    UUID     commentId PK, FK
+    UUID     bookId    PK, FK
     Number   rate
   }
   PUBLISHER ||--o{ BOOK : publish
