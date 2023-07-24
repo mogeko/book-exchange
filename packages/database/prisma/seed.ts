@@ -5,14 +5,14 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 faker.seed(12345); // To make sure we get the same data every time
 
-async function seedWriter() {
+async function seedAuthor() {
   return await Promise.all(
     randomArrayWith(50, async () => {
       const name = faker.person.fullName();
-      const writer = await prisma.writer.findFirst({ where: { name } });
+      const author = await prisma.author.findFirst({ where: { name } });
 
-      if (writer) return writer;
-      return await prisma.writer.create({
+      if (author) return author;
+      return await prisma.author.create({
         data: {
           name: name,
         },
@@ -21,10 +21,10 @@ async function seedWriter() {
   );
 }
 
-type Writers = Awaited<ReturnType<typeof seedWriter>>;
+type Authors = Awaited<ReturnType<typeof seedAuthor>>;
 
 async function seedUsers() {
-  return await Promise.all(
+  const users = await Promise.all(
     randomArrayWith(50, async () => {
       const email = faker.internet.email();
       return await prisma.user.upsert({
@@ -40,6 +40,30 @@ async function seedUsers() {
             create: {
               password: hash("sha512", faker.internet.password()),
             },
+          },
+        },
+      });
+    })
+  );
+
+  return await Promise.all(
+    users.map(async (user) => {
+      return await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          followedBy: {
+            connect: await Promise.all(
+              arrayElements(users, { min: 0, max: 20 }).filter(
+                (otherUser) => otherUser.id !== user.id
+              )
+            ),
+          },
+          following: {
+            connect: await Promise.all(
+              arrayElements(users, { min: 0, max: 20 }).filter(
+                (otherUser) => otherUser.id !== user.id
+              )
+            ),
           },
         },
       });
@@ -88,7 +112,7 @@ async function seedSeries() {
 
 type Series = Awaited<ReturnType<typeof seedSeries>>;
 
-async function seedBooks({ users, writers, publishers, series }: BooksProps) {
+async function seedBooks({ users, authors, publishers, series }: BooksProps) {
   return await Promise.all(
     randomArrayWith(100, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
@@ -103,12 +127,10 @@ async function seedBooks({ users, writers, publishers, series }: BooksProps) {
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
           authors: {
-            create: arrayElements(writers, { min: 1, max: 5 }).map((writer) => {
-              return { writerId: writer.id };
-            }),
+            connect: arrayElements(authors, { min: 1, max: 5 }),
           },
           owners: {
-            create: arrayElements(users).map((user) => ({ ownerId: user.id })),
+            connect: arrayElements(users),
           },
           publisher: {
             connect: faker.helpers.arrayElement(publishers),
@@ -125,42 +147,9 @@ async function seedBooks({ users, writers, publishers, series }: BooksProps) {
 type BooksProps = {
   users: Users;
   publishers: Publishers;
-  writers: Writers;
+  authors: Authors;
   series: Series;
 };
-
-async function seedFollows(users: Users) {
-  return await Promise.all(
-    randomArrayWith(500, () => arrayElements(users, 2))
-      .filter(([followee, following], index, arr) => {
-        if (followee.id === following.id) return false;
-        return (
-          arr.findIndex(
-            ([x, y]) => x.id === followee.id && y.id === following.id
-          ) === index
-        );
-      })
-      .map(async ([followee, following]) => {
-        return await prisma.somebody.upsert({
-          where: {
-            followeeId_followingId: {
-              followeeId: followee.id,
-              followingId: following.id,
-            },
-          },
-          update: {},
-          create: {
-            followee: {
-              connect: followee,
-            },
-            following: {
-              connect: following,
-            },
-          },
-        });
-      })
-  );
-}
 
 async function seedCommends(commentators: Users, targets: TargetsProps) {
   return await Promise.all(
@@ -240,14 +229,15 @@ const arrayElements = faker.helpers.arrayElements;
 // Run the seed function
 (async () => {
   try {
-    const writers = await seedWriter();
-    const users = await seedUsers();
-    const publishers = await seedPublishers();
-    const series = await seedSeries();
+    const results = {
+      authors: await seedAuthor(),
+      users: await seedUsers(),
+      publishers: await seedPublishers(),
+      series: await seedSeries(),
+    };
 
-    const books = await seedBooks({ users, writers, publishers, series });
-    await seedCommends(users, { users, writers, publishers, series, books });
-    await seedFollows(users);
+    const books = await seedBooks(results);
+    await seedCommends(results.users, { ...results, books });
   } catch (err) {
     console.error(err), process.exit(1);
   } finally {

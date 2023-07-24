@@ -88,13 +88,11 @@ erDiagram
   OWNER {
     UUID     userId    PK, FK
     UUID     bookId    PK, FK
-    DataTime createdAt
   }
   SOMEBODY }o--|| USER : "be followed"
   SOMEBODY {
     UUID     followeeId PK, FK
     UUID     followedId PK, FK
-    DataTime createdAt
   }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
@@ -107,7 +105,7 @@ erDiagram
   COMMENT ||--o| TRANSCRIPT : attach
   COMMENT }o--o| USER       : "to"
   COMMENT }o--o| PUBLISHER  : "to"
-  COMMENT }o--o| WRITER     : "to"
+  COMMENT }o--o| AUTHOR     : "to"
   COMMENT }o--o| SERIES     : "to"
   COMMENT {
     UUID     id            PK
@@ -115,7 +113,7 @@ erDiagram
     UUID     userId        FK
     UUID     publisherId   FK
     UUID     seriesId      FK
-    UUID     writerId      FK
+    UUID     authorId      FK
     DataTime createdAt
     DataTime updatedAt
     String   content
@@ -133,13 +131,13 @@ erDiagram
     UUID   id   PK
     String name
   }
-  WRITER ||--o{ AUTHOR : is
-  WRITER {
+  AUTHOR ||--o{ WRITER : is
+  AUTHOR {
     UUID   id   PK
     String name
   }
-  AUTHOR }o--|| BOOK : write
-  AUTHOR {
+  WRITER }o--|| BOOK : write
+  WRITER {
     UUID writeId PK, FK
     UUID bookId  PK, FK
   }
