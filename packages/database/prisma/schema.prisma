@@ -32,7 +32,7 @@ model User {
   authentication Auth?
   followings     Somebody[] @relation("FolloweeFollowings")
   followees      Somebody[] @relation("FollowingFollowees")
-  books          Owner[]
+  ownedBooks     Book[]
   commented      Comment[]  @relation("CommentatorCommented")
   commentes      Comment[]
   voted          Voter[]
@@ -60,16 +60,6 @@ model Voter {
   @@id([voterId, commentId])
 }
 
-model Owner {
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String
-  book      Book     @relation(fields: [bookId], references: [id])
-  bookId    String
-  createdAt DateTime @default(now())
-
-  @@id([ownerId, bookId])
-}
-
 model Comment {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -87,8 +77,8 @@ model Comment {
   publisherId String?
   series      Series?     @relation(fields: [seriesId], references: [id])
   seriesId    String?
-  writer      Writer?     @relation(fields: [writerId], references: [id])
-  writerId    String?
+  author      Author?     @relation(fields: [authorId], references: [id])
+  authorId    String?
 }
 
 model Transcript {
@@ -102,21 +92,12 @@ model Transcript {
   @@id([commentId, bookId])
 }
 
-model Writer {
+model Author {
   id   String @id @default(cuid())
   name String
 
-  artworks Author[]
+  artworks Book[]
   comments Comment[]
-}
-
-model Author {
-  writer   Writer @relation(fields: [writerId], references: [id])
-  writerId String
-  book     Book   @relation(fields: [bookId], references: [id])
-  bookId   String
-
-  @@id([writerId, bookId])
 }
 
 model Publisher {
@@ -152,7 +133,7 @@ model Book {
   publisherId String?
   series      Series?      @relation(fields: [seriesId], references: [id])
   seriesId    String?
-  owners      Owner[]
+  owners      User[]
   transcripts Transcript[]
   authors     Author[]
 }
