@@ -10,20 +10,6 @@ jobs:
   test:
     name: Test Next.js App
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: password
-          POSTGRES_USER: postgres
-          POSTGRES_DB: prisma
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,12 +30,6 @@ jobs:
           restore-keys: ${{ runner.os }}-turbo-test-
       - run: pnpm install -rw
       - run: pnpm run lint
-        env:
-          POSTGRES_URL_NON_POOLING: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
-          POSTGRES_PRISMA_URL: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
       # - run: pnpm run test
-      #   env:
-      #     POSTGRES_URL_NON_POOLING: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
-      #     POSTGRES_PRISMA_URL: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
       # - name: Update test result to Codecov
       #   uses: codecov/codecov-action@v3

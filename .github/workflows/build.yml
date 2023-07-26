@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build Next.js App
     runs-on: ubuntu-latest
+    env:
+      POSTGRES_URL_NON_POOLING: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
+      POSTGRES_PRISMA_URL: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
     services:
       postgres:
         image: postgres
@@ -44,7 +47,5 @@ jobs:
           key: ${{ runner.os }}-turbo-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-turbo-build-
       - run: pnpm install -rw
+      - run: pnpm run db:reset
       - run: pnpm run build
-        env:
-          POSTGRES_URL_NON_POOLING: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
-          POSTGRES_PRISMA_URL: "postgresql://postgres:password@localhost:5432/prisma?schema=public"
