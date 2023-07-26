@@ -1,5 +1,13 @@
 # @mogeko/bookworm-db
 
+## 0.9.1
+
+### Patch Changes
+
+- [#73](https://github.com/mogeko/bookworm/pull/73) [`6e82f4a`](https://github.com/mogeko/bookworm/commit/6e82f4a5da7cb086e5e06077b9c82f401981b391) Thanks [@mogeko](https://github.com/mogeko)! - Use autoincrement int instead of CUID as `id`.
+
+- [#73](https://github.com/mogeko/bookworm/pull/73) [`f9bfca5`](https://github.com/mogeko/bookworm/commit/f9bfca521e63a815ee3a2786234908ac8e59bdbb) Thanks [@mogeko](https://github.com/mogeko)! - Rename `Transcript` to `Score`.
+
 ## 0.9.0
 
 ### Minor Changes
