@@ -98,7 +98,7 @@ const Following: React.FC = () => {
             Your Following
           </h2>
           <p className="text-sm text-muted-foreground">
-            Your following's top picks.
+            Your following&apos;s top picks.
           </p>
         </div>
       </div>
