@@ -1,4 +1,4 @@
-import { HiOutlineEmojiSad } from "react-icons/hi";
+import { LuFrown, LuPlusCircle } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,20 @@ import { BookArtwork } from "@/components/book-artwork";
 const HomePage: React.FC = () => {
   return (
     <Tabs defaultValue="for-you" className="h-full space-y-6">
-      <TabsList>
-        <TabsTrigger value="for-you" className="relative">
-          For you
-        </TabsTrigger>
-        <TabsTrigger value="following">Following</TabsTrigger>
-      </TabsList>
+      <div className="space-between flex items-center">
+        <TabsList>
+          <TabsTrigger value="for-you" className="relative">
+            For you
+          </TabsTrigger>
+          <TabsTrigger value="following">Following</TabsTrigger>
+        </TabsList>
+        <div className="ml-auto mr-4">
+          <Button>
+            <LuPlusCircle className="mr-2 h-4 w-4" />
+            Add book
+          </Button>
+        </div>
+      </div>
       <TabsContent className="border-none p-0 outline-none" value="for-you">
         <ForYou />
       </TabsContent>
@@ -112,7 +120,7 @@ const FollowingContent: React.FC = () => {
   return (
     <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
       <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
-        <HiOutlineEmojiSad className="w-14 h-14" />
+        <LuFrown className="w-14 h-14" />
         <h3 className="mt-4 text-lg font-semibold">There is no content yet</h3>
         <p className="mb-4 mt-2 text-sm text-muted-foreground">
           You have not followed anyone yet. Add one below.
