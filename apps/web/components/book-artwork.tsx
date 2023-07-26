@@ -35,7 +35,7 @@ export const BookArtwork: React.FC<
 };
 
 type Book = {
-  id: string;
+  id: number;
   authors: { name: string }[];
   cover: string | null;
   title: string;

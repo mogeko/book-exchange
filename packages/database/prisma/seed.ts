@@ -128,7 +128,7 @@ async function seedBooks({ users, authors, publishers, series }: BooksProps) {
         create: {
           title: faker.lorem.sentence(5),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
-          cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
+          cover: faker.image.urlLoremFlickr({ width: 1114, height: 1280 }),
           isbn: isbn,
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),

@@ -45,7 +45,7 @@ const ForYou: React.FC = async () => {
           <div className="flex space-x-4 pb-4">
             {popularBooks.map((book) => (
               <BookArtwork
-                key={book.id}
+                key={`popular-book-${book.id}`}
                 book={book}
                 className="w-[250px]"
                 aspectRatio="portrait"
