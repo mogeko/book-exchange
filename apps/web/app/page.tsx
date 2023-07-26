@@ -1,4 +1,7 @@
+import { HiOutlineEmojiSad } from "react-icons/hi";
+
 import { prisma } from "@/lib/database";
+import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -87,7 +90,39 @@ const ForYou: React.FC = async () => {
 };
 
 const Following: React.FC = () => {
-  return <div>Following</div>;
+  return (
+    <>
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Your Following
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Your following's top picks.
+          </p>
+        </div>
+      </div>
+      <Separator className="my-4" />
+      <FollowingContent />
+    </>
+  );
+};
+
+const FollowingContent: React.FC = () => {
+  return (
+    <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
+      <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
+        <HiOutlineEmojiSad className="w-14 h-14" />
+        <h3 className="mt-4 text-lg font-semibold">There is no content yet</h3>
+        <p className="mb-4 mt-2 text-sm text-muted-foreground">
+          You have not followed anyone yet. Add one below.
+        </p>
+        <Button size="sm" className="relative">
+          Add a friend
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 const getPopularBooks = async (limit: number, offset = 0) => {
