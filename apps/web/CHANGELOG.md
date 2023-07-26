@@ -1,5 +1,18 @@
 # @mogeko/bookworm-web
 
+## 0.1.0
+
+### Minor Changes
+
+- [#73](https://github.com/mogeko/bookworm/pull/73) [`71858f1`](https://github.com/mogeko/bookworm/commit/71858f12ed889e07a075812aaee601e96ffd2075) Thanks [@mogeko](https://github.com/mogeko)! - Complete the popular recommendation part of the homepage.
+
+- [#73](https://github.com/mogeko/bookworm/pull/73) [`23b52fb`](https://github.com/mogeko/bookworm/commit/23b52fb8c793b372be396d40ae1af2e1eb7e9078) Thanks [@mogeko](https://github.com/mogeko)! - Complete the `Made for You` part of the homepage.
+
+### Patch Changes
+
+- Updated dependencies [[`6e82f4a`](https://github.com/mogeko/bookworm/commit/6e82f4a5da7cb086e5e06077b9c82f401981b391), [`f9bfca5`](https://github.com/mogeko/bookworm/commit/f9bfca521e63a815ee3a2786234908ac8e59bdbb)]:
+  - @mogeko/bookworm-db@0.9.1
+
 ## 0.0.11
 
 ### Patch Changes
