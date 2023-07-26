@@ -24,7 +24,7 @@ async function seedAuthor() {
 type Authors = Awaited<ReturnType<typeof seedAuthor>>;
 
 async function seedUsers() {
-  const users = await Promise.all(
+  const orginUsers = await Promise.all(
     randomArrayWith(50, async () => {
       const email = faker.internet.email();
       return await prisma.user.upsert({
@@ -46,23 +46,29 @@ async function seedUsers() {
     })
   );
 
-  return await Promise.all(
-    users.map(async (user) => {
+  const userWithFollows = await Promise.all(
+    orginUsers.map(async (user) => {
       return await prisma.user.update({
         where: { id: user.id },
         data: {
           followedBy: {
-            connect: await Promise.all(
-              arrayElements(users, { min: 0, max: 20 }).filter(
-                (otherUser) => otherUser.id !== user.id
-              )
+            connect: arrayElements(orginUsers, { min: 0, max: 20 }).filter(
+              (otherUser) => otherUser.id !== user.id
             ),
           },
+        },
+      });
+    })
+  );
+
+  return await Promise.all(
+    userWithFollows.map(async (user) => {
+      return await prisma.user.update({
+        where: { id: user.id },
+        data: {
           following: {
-            connect: await Promise.all(
-              arrayElements(users, { min: 0, max: 20 }).filter(
-                (otherUser) => otherUser.id !== user.id
-              )
+            connect: arrayElements(orginUsers, { min: 0, max: 20 }).filter(
+              (otherUser) => otherUser.id !== user.id
             ),
           },
         },
@@ -122,7 +128,7 @@ async function seedBooks({ users, authors, publishers, series }: BooksProps) {
         create: {
           title: faker.lorem.sentence(5),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
-          cover: faker.image.urlLoremFlickr({ width: 1280, height: 1114 }),
+          cover: faker.image.urlLoremFlickr({ width: 1114, height: 1280 }),
           isbn: isbn,
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
@@ -165,9 +171,9 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
 
         if (key === "books") {
           return {
-            transcript: {
+            score: {
               create: {
-                score: faker.number.int({ min: 0, max: 10 }),
+                rate: faker.number.int({ min: 0, max: 10 }),
                 book: { connect: target },
               },
             },

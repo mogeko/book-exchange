@@ -67,7 +67,7 @@ To use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-mi
 erDiagram
   AUTH |o--|| USER : authorize
   AUTH {
-    UUID     id        PK
+    Int      id        PK
     DataTime loginTime
     String   userEmail FK, UK
     String   password
@@ -77,7 +77,7 @@ erDiagram
   USER ||--o{ COMMENT  : issue
   USER ||--o{ VOTER    : is
   USER {
-    UUID     id        PK
+    Int      id        PK
     DataTime createdAt
     DataTime updatedAt
     String   email     UK
@@ -86,64 +86,62 @@ erDiagram
   }
   OWNER }o--|| BOOK : own
   OWNER {
-    UUID     userId    PK, FK
-    UUID     bookId    PK, FK
+    Int     userId    PK, FK
+    Int     bookId    PK, FK
   }
   SOMEBODY }o--|| USER : "be followed"
   SOMEBODY {
-    UUID     followeeId PK, FK
-    UUID     followedId PK, FK
+    Int     followeeId PK, FK
+    Int     followedId PK, FK
   }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
-    UUID     voterId   PK, FK
-    UUID     commentId PK, FK
+    Int      voterId   PK, FK
+    Int      commentId PK, FK
     DataTime createdAt
     DataTime updatedAt
     Boolean  vote
   }
-  COMMENT ||--o| TRANSCRIPT : attach
+  COMMENT ||--o| SCORE      : attach
   COMMENT }o--o| USER       : "to"
   COMMENT }o--o| PUBLISHER  : "to"
   COMMENT }o--o| AUTHOR     : "to"
   COMMENT }o--o| SERIES     : "to"
   COMMENT {
-    UUID     id            PK
-    UUID     commentatorId FK
-    UUID     userId        FK
-    UUID     publisherId   FK
-    UUID     seriesId      FK
-    UUID     authorId      FK
+    Int      id            PK
+    Int      commentatorId FK
+    Int      userId        FK
+    Int      publisherId   FK
+    Int      seriesId      FK
+    Int      authorId      FK
     DataTime createdAt
     DataTime updatedAt
     String   content
   }
-  TRANSCRIPT }o--|| BOOK : "to"
-  TRANSCRIPT {
-    UUID     commentatorId PK, FK
-    UUID     bookId        PK, FK
-    DataTime createdAt
-    DataTime updatedAt
-    Number   score
+  SCORE }o--|| BOOK : "to"
+  SCORE {
+    Int commentId PK, FK
+    Int bookId    PK, FK
+    Int rate
   }
   PUBLISHER ||--o{ BOOK : publish
   PUBLISHER {
-    UUID   id   PK
+    Int    id   PK
     String name
   }
   AUTHOR ||--o{ WRITER : is
   AUTHOR {
-    UUID   id   PK
+    Int    id   PK
     String name
   }
   WRITER }o--|| BOOK : write
   WRITER {
-    UUID writeId PK, FK
-    UUID bookId  PK, FK
+    Int writeId PK, FK
+    Int bookId  PK, FK
   }
   SERIES ||--o{ BOOK : has
   SERIES {
-    UUID     id          PK
+    Int      id          PK
     DataTime createdAt
     DataTime updatedAt
     String   name        UK
@@ -151,9 +149,9 @@ erDiagram
     String   cover
   }
   BOOK {
-    UUID     id          PK
-    UUID     publisherId FK
-    UUID     seriesId    FK
+    Int      id          PK
+    Int      publisherId FK
+    Int      seriesId    FK
     DataTime createdAt
     DataTime updatedAt
     String   title

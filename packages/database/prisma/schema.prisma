@@ -13,7 +13,7 @@ datasource db {
 }
 
 model Auth {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   loginTime DateTime @default(now())
   password  String
 
@@ -22,7 +22,7 @@ model Auth {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
@@ -33,16 +33,16 @@ model User {
   followedBy     User[]    @relation("UserFollows")
   following      User[]    @relation("UserFollows")
   ownedBooks     Book[]
-  commentOn      Comment[] @relation("commentOn")
+  commentTo      Comment[] @relation("CommentToX")
   commentes      Comment[]
-  voted          Voter[]
+  voteTo         Voter[]
 }
 
 model Voter {
   voter     User     @relation(fields: [voterId], references: [id])
-  voterId   String
+  voterId   Int
   comment   Comment  @relation(fields: [commentId], references: [id])
-  commentId String
+  commentId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   vote      Boolean
@@ -51,39 +51,39 @@ model Voter {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String
 
-  commentator   User    @relation("commentOn", fields: [commentatorId], references: [id])
-  commentatorId String
+  commentator   User    @relation("CommentToX", fields: [commentatorId], references: [id])
+  commentatorId Int
   votes         Voter[]
 
-  transcript  Transcript?
-  user        User?       @relation(fields: [userId], references: [id])
-  userId      String?
-  publisher   Publisher?  @relation(fields: [publisherId], references: [id])
-  publisherId String?
-  series      Series?     @relation(fields: [seriesId], references: [id])
-  seriesId    String?
-  author      Author?     @relation(fields: [authorId], references: [id])
-  authorId    String?
+  score       Score?
+  user        User?      @relation(fields: [userId], references: [id])
+  userId      Int?
+  publisher   Publisher? @relation(fields: [publisherId], references: [id])
+  publisherId Int?
+  series      Series?    @relation(fields: [seriesId], references: [id])
+  seriesId    Int?
+  author      Author?    @relation(fields: [authorId], references: [id])
+  authorId    Int?
 }
 
-model Transcript {
-  score Int @db.SmallInt
+model Score {
+  rate Int @db.SmallInt
 
   comment   Comment @relation(fields: [commentId], references: [id])
-  commentId String  @unique
+  commentId Int     @unique
   book      Book    @relation(fields: [bookId], references: [id])
-  bookId    String
+  bookId    Int
 
   @@id([commentId, bookId])
 }
 
 model Author {
-  id   String @id @default(cuid())
+  id   Int    @id @default(autoincrement())
   name String
 
   artworks Book[]
@@ -91,7 +91,7 @@ model Author {
 }
 
 model Publisher {
-  id   String @id @default(cuid())
+  id   Int    @id @default(autoincrement())
   name String
 
   published Book[]
@@ -99,7 +99,7 @@ model Publisher {
 }
 
 model Series {
-  id          String   @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   name        String   @unique
@@ -111,7 +111,7 @@ model Series {
 }
 
 model Book {
-  id          String   @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String
@@ -119,11 +119,11 @@ model Book {
   isbn        String?  @unique
   cover       String?
 
-  publisher   Publisher?   @relation(fields: [publisherId], references: [id])
-  publisherId String?
-  series      Series?      @relation(fields: [seriesId], references: [id])
-  seriesId    String?
+  publisher   Publisher? @relation(fields: [publisherId], references: [id])
+  publisherId Int?
+  series      Series?    @relation(fields: [seriesId], references: [id])
+  seriesId    Int?
+  scores      Score[]
   owners      User[]
-  transcripts Transcript[]
   authors     Author[]
 }
