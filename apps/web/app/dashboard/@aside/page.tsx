@@ -26,11 +26,11 @@ const AsideMenu: React.FC = () => {
             Discover
           </h2>
           <div className="space-y-1">
-            <MenuButton href="/">
+            <MenuButton href="/dashboard">
               <LuBookOpen className="w-4 h-4 mr-2" />
               Read Now
             </MenuButton>
-            <MenuButton href="/browse">
+            <MenuButton href="/dashboard/browse">
               <LuLayoutGrid className="w-4 h-4 mr-2" />
               Browse
             </MenuButton>
@@ -41,19 +41,19 @@ const AsideMenu: React.FC = () => {
             Library
           </h2>
           <div className="space-y-1">
-            <MenuButton href="/booklists" /** TODO: with user id */>
+            <MenuButton href="/dashboard/booklists" /** TODO: with user id */>
               <LuList className="w-4 h-4 mr-2" />
               Book Lists
             </MenuButton>
-            <MenuButton href="/made4u" /** TODO: with user id */>
+            <MenuButton href="/dashboard/made4u" /** TODO: with user id */>
               <LuUser className="w-4 h-4 mr-2" />
               Made For You
             </MenuButton>
-            <MenuButton href="/authors" /** TODO: with user id */>
+            <MenuButton href="/dashboard/authors" /** TODO: with user id */>
               <LuPenTool className="w-4 h-4 mr-2" />
               Authors
             </MenuButton>
-            <MenuButton href="/series" /** TODO: with user id */>
+            <MenuButton href="/dashboard/series" /** TODO: with user id */>
               <LuLibrary className="w-4 h-4 mr-2" />
               Series
             </MenuButton>
