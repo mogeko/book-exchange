@@ -38,7 +38,7 @@ async function seedUsers() {
           updatedAt: faker.date.recent(),
           authentication: {
             create: {
-              password: hash("sha512", faker.internet.password()),
+              password: createHash("sha512").update("pa$$w0rd").digest("hex"),
             },
           },
         },
@@ -222,11 +222,6 @@ type TargetsProps = {
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
   return Array.from({ length: faker.number.int(length) }).map(fn);
-}
-
-/** Helper function to generate a hash value */
-function hash(algorithm: string, value: string) {
-  return createHash(algorithm).update(value).digest("hex");
 }
 
 /** Helper function to generate an array of random values */
