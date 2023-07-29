@@ -8,6 +8,7 @@ import {
   type infer as zInfer,
 } from "zod";
 
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -43,12 +44,27 @@ export const UserLoginForm: React.FC<
     description: string;
   } & React.ComponentPropsWithoutRef<typeof Card>
 > = ({ redirect, title, description, ...props }) => {
+  const { toast } = useToast();
   const form = useForm<zInfer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = async (values: zInfer<typeof formSchema>) => {};
+  const onSubmit = async (values: zInfer<typeof formSchema>) => {
+    const res = await fetch("/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+
+    if (res.status !== 200) {
+      toast({
+        variant: "destructive",
+        title: "Oooooops! Something went wrong.",
+        description: (await res.json()).error,
+      });
+    }
+  };
 
   return (
     <Card {...props}>
