@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -44,6 +45,8 @@ export const UserLoginForm: React.FC<
     description: string;
   } & React.ComponentPropsWithoutRef<typeof Card>
 > = ({ redirect, title, description, ...props }) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -64,6 +67,8 @@ export const UserLoginForm: React.FC<
         description: (await res.json()).error,
       });
     }
+
+    router.push(searchParams.get("from") ?? "/dashboard");
   };
 
   return (

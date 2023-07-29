@@ -29,7 +29,10 @@ export async function middleware(request: NextRequest) {
         throw new Error("Token or uid not found");
       }
     } catch (error) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("from", request.nextUrl.pathname);
+
+      return NextResponse.redirect(loginUrl);
     }
   }
 }
