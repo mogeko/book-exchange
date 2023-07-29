@@ -1,8 +1,36 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+import { sign, verify } from "@/lib/jwt";
+
+export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    const token = request.cookies.get("token")?.value;
+    const uid = request.cookies.get("uid")?.value;
+
+    try {
+      if (token && uid && (await verify(token)).uid === uid) {
+        const jwt = await sign({ uid }, { expiresIn: "7d" });
+        const response = NextResponse.next();
+        response.cookies.set("token", jwt, {
+          expires: new Date(Date.now() + 604800000), // 7 days
+          path: "/",
+        });
+        response.cookies.set("uid", uid, {
+          expires: new Date(Date.now() + 604800000), // 7 days
+          path: "/",
+        });
+
+        return response;
+      } else {
+        throw new Error("Token or uid not found");
+      }
+    } catch (error) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 }
 

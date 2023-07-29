@@ -1,9 +1,8 @@
 import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
-import { sign } from "jsonwebtoken";
 
-import { secret } from "@/config/secret";
 import { prisma } from "@/lib/database";
+import { sign } from "@/lib/jwt";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -20,13 +19,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 
-  const jwtToken = sign({ email }, secret.jwt, { expiresIn: "7d" });
+  const uid = auth.user.id.toString();
+  const jwt = await sign({ uid }, { expiresIn: "7d" });
   const response = NextResponse.json({ data: { user: auth.user } });
-  response.cookies.set("uid", auth.user.id.toString(), {
+  response.cookies.set("token", jwt, {
     expires: new Date(Date.now() + 604800000), // 7 days
     path: "/",
   });
-  response.cookies.set("jwt", jwtToken, {
+  response.cookies.set("uid", auth.user.id.toString(), {
     expires: new Date(Date.now() + 604800000), // 7 days
     path: "/",
   });
