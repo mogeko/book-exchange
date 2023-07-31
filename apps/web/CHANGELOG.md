@@ -1,5 +1,11 @@
 # @mogeko/bookworm-web
 
+## 0.3.1
+
+### Patch Changes
+
+- [#84](https://github.com/mogeko/bookworm/pull/84) [`5c65480`](https://github.com/mogeko/bookworm/commit/5c6548021c6e7869854cb920d941d5b0b96bc940) Thanks [@mogeko](https://github.com/mogeko)! - Verify and Login with [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions) instead of [REST API](https://github.com/mogeko/bookworm/blob/eb675825116860414e6a2e2b9e8bb4716cb9a5ff/apps/web/app/auth/route.ts#L7).
+
 ## 0.3.0
 
 ### Minor Changes
