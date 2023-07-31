@@ -35,6 +35,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
     "@mogeko/bookworm-db": "workspace:^",
+    "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.0.4",
@@ -48,6 +49,7 @@
     "next": "13.4.12",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
     "react-icons": "^4.10.1",

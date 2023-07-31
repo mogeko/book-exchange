@@ -3,11 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  object as zObject,
-  string as zString,
-  type infer as zInfer,
-} from "zod";
+import { object, string, type infer as zInfer } from "zod";
 
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -29,11 +25,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const formSchema = zObject({
-  email: zString().email({
+const formSchema = object({
+  email: string().email({
     message: "Please enter a valid email address",
   }),
-  password: zString().min(8, {
+  password: string().min(8, {
     message: "Password must be at least 8 characters",
   }),
 });

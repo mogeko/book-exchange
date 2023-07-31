@@ -11,6 +11,12 @@ export async function middleware(request: NextRequest) {
     const token = request.cookies.get("token")?.value;
     const uid = request.cookies.get("uid")?.value;
 
+    // Redirect to `/dashboard/:uid` if the URL is `/dashboard`
+    if (uid && request.nextUrl.pathname === "/dashboard") {
+      return NextResponse.redirect(new URL(`/dashboard/${uid}`, request.url));
+    }
+
+    // Verify if the token and uid are valid
     try {
       if (token && uid && (await verify(token)).uid === uid) {
         const jwt = await sign({ uid }, { expiresIn: "7d" });

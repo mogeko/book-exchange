@@ -13,9 +13,8 @@ datasource db {
 }
 
 model Auth {
-  id        Int      @id @default(autoincrement())
-  loginTime DateTime @default(now())
-  password  String
+  id       Int    @id @default(autoincrement())
+  password String
 
   user      User   @relation(fields: [userEmail], references: [email])
   userEmail String @unique
@@ -26,8 +25,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
-  name      String?
-  avatar    String?
+  name      String
+  avatar    String
 
   authentication Auth?
   followedBy     User[]    @relation("UserFollows")
