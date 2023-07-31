@@ -22,7 +22,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   const [{ token, uid }, _, removeCookie] = useCookies(["token", "uid"]);
   const [pathname, router] = [usePathname(), useRouter()];
   const handleLogout = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent> | KeyboardEvent) => {
       e.preventDefault();
       if (token && uid) removeCookie("token"), removeCookie("uid");
       router.push("/login");
@@ -42,14 +42,14 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
         // TODO: Open Comment page
       } else if (e.key === "F" && e.metaKey && e.shiftKey) {
         // TODO: Open Follow page
-      } else if (e.key === "L" && e.metaKey && e.shiftKey) {
-        // TODO: Logout and redirect to login page
+      } else if (e.key === "Q" && e.metaKey && e.shiftKey && e.ctrlKey) {
+        handleLogout(e);
       }
     };
 
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
-  }, []);
+  }, [handleLogout]);
 
   if (!user || pathname === "/login") return <div />;
   return (
@@ -76,7 +76,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Your Profile
-          <DropdownMenuShortcut>⇧&#x2318;P</DropdownMenuShortcut>
+          <DropdownMenuShortcut>&#x21E7;&#x2318;P</DropdownMenuShortcut>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -86,21 +86,21 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
           </DropdownMenuItem>
           <DropdownMenuItem>
             Your Wishlist
-            <DropdownMenuShortcut>⇧&#x2318;W</DropdownMenuShortcut>
+            <DropdownMenuShortcut>&#x21E7;&#x2318;W</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Your Comment
-            <DropdownMenuShortcut>⇧&#x2318;C</DropdownMenuShortcut>
+            <DropdownMenuShortcut>&#x21E7;&#x2318;C</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Your Following
-            <DropdownMenuShortcut>⇧&#x2318;F</DropdownMenuShortcut>
+            <DropdownMenuShortcut>&#x21E7;&#x2318;F</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
           Logout
-          <DropdownMenuShortcut>⇧&#x2318;Q</DropdownMenuShortcut>
+          <DropdownMenuShortcut>&#x2303;&#x21E7;&#x2318;Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
