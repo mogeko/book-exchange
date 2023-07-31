@@ -25,6 +25,7 @@ export const Search: React.FC<
         // TODO: Open Search Dialog
       }
     };
+
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
   }, []);

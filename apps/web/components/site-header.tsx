@@ -1,8 +1,17 @@
+import { cookies } from "next/headers";
+
+import { prisma, type User } from "@/lib/database";
 import { MainNav } from "@/components/main-nav";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SearchInHeader } from "@/components/search";
+import { UserNav } from "@/components/user-nav";
 
-export const SiteHeader: React.FC = () => {
+export const SiteHeader: React.FC = async () => {
+  const uid = cookies().get("uid")?.value;
+  const user: User | null = uid
+    ? await prisma.user.findUnique({ where: { id: parseInt(uid) } })
+    : null;
+
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
       <div className="container flex h-14 items-center">
@@ -13,6 +22,7 @@ export const SiteHeader: React.FC = () => {
           </div>
           <nav className="flex items-center space-x-1">
             <ModeToggle />
+            <UserNav user={user} />
           </nav>
         </div>
       </div>
