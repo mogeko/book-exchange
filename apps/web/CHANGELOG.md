@@ -1,5 +1,22 @@
 # @mogeko/bookworm-web
 
+## 0.3.0
+
+### Minor Changes
+
+- [#82](https://github.com/mogeko/bookworm/pull/82) [`86c1ee4`](https://github.com/mogeko/bookworm/commit/86c1ee43fad32582924948bbfec2ad10e98916c7) Thanks [@mogeko](https://github.com/mogeko)! - Complete the main body of the user menu.
+
+### Patch Changes
+
+- [#82](https://github.com/mogeko/bookworm/pull/82) [`66cc698`](https://github.com/mogeko/bookworm/commit/66cc698025fa9be6d6feaf493cde7becdc9d7993) Thanks [@mogeko](https://github.com/mogeko)! - Trigger Logout with shortcut keys (`⌃⇧⌘Q`).
+
+- [#82](https://github.com/mogeko/bookworm/pull/82) [`8981182`](https://github.com/mogeko/bookworm/commit/898118223e431059878d4b66e0880bd8e11c23c8) Thanks [@mogeko](https://github.com/mogeko)! - Hide the search bar/button on the `/login` page.
+
+- [#82](https://github.com/mogeko/bookworm/pull/82) [`56fddb9`](https://github.com/mogeko/bookworm/commit/56fddb9625aa45c8da016077325d911c3f7c5b18) Thanks [@mogeko](https://github.com/mogeko)! - Redirect to `/dashboard/:uid` if the URL is `/dashboard`.
+
+- Updated dependencies [[`8674cac`](https://github.com/mogeko/bookworm/commit/8674caca3f5fb4ee9ddf25bf8ae59a8d2339d8a2)]:
+  - @mogeko/bookworm-db@0.9.3
+
 ## 0.2.0
 
 ### Minor Changes

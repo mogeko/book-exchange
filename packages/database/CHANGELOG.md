@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.9.3
+
+### Patch Changes
+
+- [#82](https://github.com/mogeko/bookworm/pull/82) [`8674cac`](https://github.com/mogeko/bookworm/commit/8674caca3f5fb4ee9ddf25bf8ae59a8d2339d8a2) Thanks [@mogeko](https://github.com/mogeko)! - `User.name` and `User.avatar` should be required.
+
 ## 0.9.2
 
 ### Patch Changes
