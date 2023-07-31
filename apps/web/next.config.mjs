@@ -6,6 +6,9 @@ const nextConfig = {
     domains: ["loremflickr.com"],
   },
   transpilePackages: ["database"],
+  experimental: {
+    serverActions: true,
+  },
 };
 
 export default nextConfig;
