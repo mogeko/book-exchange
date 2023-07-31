@@ -1,12 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { LuSearch } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-export const Search: React.FC<{ className?: string }> = ({ className }) => {
+export const SearchInHeader: React.FC<
+  React.ComponentPropsWithoutRef<typeof Search>
+> = (props) => {
+  const pathname = usePathname();
+
+  if (pathname === "/login") return <div />;
+  return <Search {...props} />;
+};
+
+export const Search: React.FC<
+  Omit<React.ComponentPropsWithoutRef<typeof Button>, "variant">
+> = ({ className, ...props }) => {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && e.metaKey) {
@@ -21,6 +33,7 @@ export const Search: React.FC<{ className?: string }> = ({ className }) => {
     <Button
       variant="outline"
       className={cn("justify-between gap-4 w-full", className)}
+      {...props}
     >
       <div className="inline-flex items-center justify-between flex-row">
         <LuSearch className="mr-2 h-4 w-4" />
