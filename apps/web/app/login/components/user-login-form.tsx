@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { login } from "@/app/login/actions";
 
 const formSchema = object({
   email: string().email({
@@ -50,21 +51,13 @@ export const UserLoginForm: React.FC<
   });
 
   const onSubmit = async (values: zInfer<typeof formSchema>) => {
-    const res = await fetch("/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    const { ok, uid, error } = await login(values.email, values.password);
 
-    if (res.status !== 200) {
-      toast({
-        variant: "destructive",
-        title: "Oooooops! Something went wrong.",
-        description: (await res.json()).error,
-      });
+    if (!ok) {
+      toast({ variant: "destructive", title: "Oooooops!", description: error });
+    } else {
+      router.push(searchParams.get("from") ?? `/dashboard/${uid}`);
     }
-
-    router.push(searchParams.get("from") ?? "/dashboard");
   };
 
   return (
