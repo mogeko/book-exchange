@@ -1,5 +1,24 @@
 # @mogeko/bookworm-web
 
+## 0.2.0
+
+### Minor Changes
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`4ca36a5`](https://github.com/mogeko/bookworm/commit/4ca36a5f15c54fd2bd23b7e522d4fff21a24246f) Thanks [@mogeko](https://github.com/mogeko)! - Complete the Sign in / Sign up page to the UI section.
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`2cec94b`](https://github.com/mogeko/bookworm/commit/2cec94bd35d34972370e42b9688a5617e65d4c2b) Thanks [@mogeko](https://github.com/mogeko)! - Verify the login token.
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`c5b13a3`](https://github.com/mogeko/bookworm/commit/c5b13a38682fe23cbbce91238f9004a4ab591dbc) Thanks [@mogeko](https://github.com/mogeko)! - Create an api to generate a login token (`jwt`).
+
+### Patch Changes
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`8a4d84e`](https://github.com/mogeko/bookworm/commit/8a4d84e61ce1d83937b6b59a2e06906968d0b82b) Thanks [@mogeko](https://github.com/mogeko)! - Redirect `/` to `/dashboard`.
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`f083d41`](https://github.com/mogeko/bookworm/commit/f083d41ee3130e489fca952e6a7bc55b60b79e6f) Thanks [@mogeko](https://github.com/mogeko)! - Automatically jump to the source URL, after logging in.
+
+- Updated dependencies [[`17f2162`](https://github.com/mogeko/bookworm/commit/17f2162de75091a0a0414cdba7220bc5a9a4a429)]:
+  - @mogeko/bookworm-db@0.9.2
+
 ## 0.1.0
 
 ### Minor Changes

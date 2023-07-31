@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.9.2
+
+### Patch Changes
+
+- [#79](https://github.com/mogeko/bookworm/pull/79) [`17f2162`](https://github.com/mogeko/bookworm/commit/17f2162de75091a0a0414cdba7220bc5a9a4a429) Thanks [@mogeko](https://github.com/mogeko)! - Use a single password (`pa$w0rd`) for all seeded `User`s.
+
 ## 0.9.1
 
 ### Patch Changes
