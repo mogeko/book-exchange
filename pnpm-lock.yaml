@@ -118,8 +118,8 @@ importers:
         specifier: ^9.0.2
         version: 9.0.2
       '@types/node':
-        specifier: 20.4.4
-        version: 20.4.4
+        specifier: 20.4.5
+        version: 20.4.5
       '@types/react':
         specifier: 18.2.15
         version: 18.2.15
@@ -152,14 +152,14 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2
       '@types/node':
-        specifier: 20.4.4
-        version: 20.4.4
+        specifier: 20.4.5
+        version: 20.4.5
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
       vite-node:
         specifier: ^0.33.0
-        version: 0.33.0(@types/node@20.4.4)
+        version: 0.33.0(@types/node@20.4.5)
 
 packages:
 
@@ -1713,7 +1713,7 @@ packages:
   /@types/jsonwebtoken@9.0.2:
     resolution: {integrity: sha512-drE6uz7QBKq1fYqqoFKTDRdFCPHd5TCub75BM+D+cMx7NU9hUz7SESLfC2fSCXVFMO5Yj8sOWHuGqPgjc+fz0Q==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.5
     dev: true
 
   /@types/minimist@1.2.2:
@@ -1724,8 +1724,8 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@20.4.4:
-    resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==}
+  /@types/node@20.4.5:
+    resolution: {integrity: sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -5228,7 +5228,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node@0.33.0(@types/node@20.4.4):
+  /vite-node@0.33.0(@types/node@20.4.5):
     resolution: {integrity: sha512-19FpHYbwWWxDr73ruNahC+vtEdza52kA90Qb3La98yZ0xULqV8A5JLNPUff0f5zID4984tW7l3DH2przTJUZSw==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5238,7 +5238,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.6(@types/node@20.4.4)
+      vite: 4.4.6(@types/node@20.4.5)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5250,7 +5250,7 @@ packages:
       - terser
     dev: true
 
-  /vite@4.4.6(@types/node@20.4.4):
+  /vite@4.4.6(@types/node@20.4.5):
     resolution: {integrity: sha512-EY6Mm8vJ++S3D4tNAckaZfw3JwG3wa794Vt70M6cNJ6NxT87yhq7EC8Rcap3ahyHdo8AhCmV9PTk+vG1HiYn1A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5278,7 +5278,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.5
       esbuild: 0.18.15
       postcss: 8.4.27
       rollup: 3.26.3
