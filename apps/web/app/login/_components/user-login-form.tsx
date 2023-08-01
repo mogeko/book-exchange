@@ -77,9 +77,13 @@ export const UserLoginForm: React.FC<
               name="email"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="">Email</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="name@example.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -90,7 +94,7 @@ export const UserLoginForm: React.FC<
               name="password"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="">Password</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="password" {...field} />
                   </FormControl>

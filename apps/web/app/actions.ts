@@ -37,6 +37,35 @@ export async function login({ email, password }: LoginPayload, from?: string) {
   redirect(from ?? `/dashboard/${uid}`);
 }
 
+export async function register(
+  { email, password, username }: RegisterPayload,
+  from?: string
+) {
+  const passwdHash = createHash("sha512").update(password).digest("hex");
+  const emailHash = createHash("md5").update(email).digest("hex");
+
+  try {
+    const user = await prisma.user.create({
+      data: {
+        name: username,
+        email,
+        avatar: `https://www.gravatar.com/avatar/${emailHash}?d=identicon`,
+        authentication: {
+          create: { password: passwdHash },
+        },
+      },
+    });
+
+    return await login({ email: user.email, password: password }, from);
+  } catch (error: any) {
+    if (error.message === "NEXT_REDIRECT") {
+      redirect(from ?? "/dashboard");
+    } else {
+      return { error: error.message as string };
+    }
+  }
+}
+
 export async function logout() {
   const cookieStore = cookies();
 
@@ -47,3 +76,5 @@ export async function logout() {
 }
 
 type LoginPayload = { email: string; password: string };
+
+type RegisterPayload = { username: string } & LoginPayload;
