@@ -1,8 +1,4 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { cookies } from "next/headers";
 import {
   LuBookOpen,
   LuLayoutGrid,
@@ -12,11 +8,15 @@ import {
   LuUser,
 } from "react-icons/lu";
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { prisma } from "@/lib/database";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { MenuButton } from "@/app/dashboard/[uid]/@aside/components/menu-button";
 
-const AsideMenu: React.FC = () => {
-  const booklists = [] as any[]; // TODO: get booklists
+const AsideMenu: React.FC = async () => {
+  const uid = cookies().get("uid")?.value;
+  const booklists = await prisma.booklist.findMany({
+    where: { userId: uid ? parseInt(uid) : void 0 },
+  });
 
   return (
     <aside className="pb-12">
@@ -26,7 +26,7 @@ const AsideMenu: React.FC = () => {
             Discover
           </h2>
           <div className="space-y-1">
-            <MenuButton href="/dashboard">
+            <MenuButton href={`/dashboard/${uid}`}>
               <LuBookOpen className="w-4 h-4 mr-2" />
               Read Now
             </MenuButton>
@@ -41,19 +41,19 @@ const AsideMenu: React.FC = () => {
             Library
           </h2>
           <div className="space-y-1">
-            <MenuButton href="/dashboard/booklists" /** TODO: with user id */>
+            <MenuButton href={`/dashboard/${uid}/booklists`}>
               <LuList className="w-4 h-4 mr-2" />
               Book Lists
             </MenuButton>
-            <MenuButton href="/dashboard/made4u" /** TODO: with user id */>
+            <MenuButton href={`/dashboard/${uid}/made4u`}>
               <LuUser className="w-4 h-4 mr-2" />
               Made For You
             </MenuButton>
-            <MenuButton href="/dashboard/authors" /** TODO: with user id */>
+            <MenuButton href={`/dashboard/${uid}/authors`}>
               <LuPenTool className="w-4 h-4 mr-2" />
               Authors
             </MenuButton>
-            <MenuButton href="/dashboard/series" /** TODO: with user id */>
+            <MenuButton href={`/dashboard/${uid}/series`}>
               <LuLibrary className="w-4 h-4 mr-2" />
               Series
             </MenuButton>
@@ -61,43 +61,22 @@ const AsideMenu: React.FC = () => {
         </div>
         <div className="py-2">
           <h2 className="relative px-7 text-lg font-semibold tracking-tight">
-            Playlists
+            Book lists
           </h2>
           <ScrollArea>
             {booklists.map((booklist, i) => (
               <MenuButton
-                href={`/booklists/${booklist.id}`}
+                href={`/dashboard/${uid}/booklists/${booklist.id}`}
                 key={`booklist-${i}`}
               >
                 <LuList className="w-4 h-4 mr-2" />
-                {booklist.name}
+                {booklist.title}
               </MenuButton>
             ))}
           </ScrollArea>
         </div>
       </div>
     </aside>
-  );
-};
-
-const MenuButton: React.FC<
-  {
-    variant?: "secondary" | "ghost";
-  } & React.ComponentProps<typeof Link>
-> = ({ className, variant, href, ...props }) => {
-  const pathname = usePathname();
-
-  return (
-    <Link
-      className={cn(
-        buttonVariants({
-          variant: variant ?? (pathname === href ? "secondary" : "ghost"),
-        }),
-        "w-full justify-start"
-      )}
-      href={href}
-      {...props}
-    />
   );
 };
 
