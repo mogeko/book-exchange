@@ -67,12 +67,12 @@ To use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-mi
 erDiagram
   AUTH |o--|| USER : authorize
   AUTH {
-    Int      id        PK
-    DataTime loginTime
-    String   userEmail FK, UK
-    String   password
+    Int    id        PK
+    String userEmail FK, UK
+    String password
   }
   USER ||--o{ OWNER    : is
+  USER ||--o{ BOOKLIST : create
   USER ||--o{ SOMEBODY : "follow with"
   USER ||--o{ COMMENT  : issue
   USER ||--o{ VOTER    : is
@@ -86,13 +86,26 @@ erDiagram
   }
   OWNER }o--|| BOOK : own
   OWNER {
-    Int     userId    PK, FK
-    Int     bookId    PK, FK
+    Int userId PK, FK
+    Int bookId PK, FK
+  }
+  BOOKLIST ||--o{ BOOKLIST_BOOK : via
+  BOOKLIST {
+    Int    id     PK
+    Int    userId FK
+    String title
+    String discription
+    String state
+  }
+  BOOKLIST_BOOK }o--|| BOOK : has
+  BOOKLIST_BOOK {
+    Int booklistId PK, FK
+    Int bookId     PK, FK
   }
   SOMEBODY }o--|| USER : "be followed"
   SOMEBODY {
-    Int     followeeId PK, FK
-    Int     followedId PK, FK
+    Int followeeId PK, FK
+    Int followedId PK, FK
   }
   VOTER }o--|| COMMENT : "like/dislike"
   VOTER {
@@ -124,7 +137,16 @@ erDiagram
     Int bookId    PK, FK
     Int rate
   }
-  PUBLISHER ||--o{ BOOK : publish
+  SERIES ||--o{ BOOK : has
+  SERIES {
+    Int      id          PK
+    Int      publisherId UK
+    String   name
+    String   discription
+    String   cover
+  }
+  PUBLISHER ||--o{ BOOK   : publish
+  PUBLISHER ||--o{ SERIES : publish
   PUBLISHER {
     Int    id   PK
     String name
@@ -138,15 +160,6 @@ erDiagram
   WRITER {
     Int writeId PK, FK
     Int bookId  PK, FK
-  }
-  SERIES ||--o{ BOOK : has
-  SERIES {
-    Int      id          PK
-    DataTime createdAt
-    DataTime updatedAt
-    String   name        UK
-    String   discription
-    String   cover
   }
   BOOK {
     Int      id          PK
