@@ -161,12 +161,12 @@ type BooksProps = {
 
 async function seedBooklists({ users, books }: BooklistsProps) {
   return await Promise.all(
-    randomArrayWith(120, async () => {
+    randomArrayWith(200, async () => {
       return await prisma.booklist.upsert({
-        where: { id: faker.number.int({ min: 1, max: 100 }) },
+        where: { id: faker.number.int({ min: 1, max: 200 }) },
         update: {},
         create: {
-          title: faker.lorem.sentence(5),
+          title: faker.lorem.sentence(3),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
           user: { connect: faker.helpers.arrayElement(users) },
           books: {
