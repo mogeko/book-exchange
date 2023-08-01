@@ -2,21 +2,12 @@
 
 import { createHash } from "node:crypto";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/database";
-import { sign } from "@/lib/jwt";
+import { sign } from "@/lib/jsonwebtoken";
 
-/**
- * Since we do not use standard Form Actions on the client side, and we need to handle exceptions
- * on the client side, **`Server Mutations` cannot be used in this Action.**
- *
- * > #### Server Mutations
- * >
- * > Server Actions that mutates your data and calls `redirect`, `revalidatePath`, or `revalidateTag`.
- *
- * @see {@link https://github.com/react-hook-form/react-hook-form/issues/10391}
- */
-export async function login(email: string, password: string) {
+export async function login({ email, password }: LoginPayload, from?: string) {
   const passwdHash = createHash("sha512").update(password).digest("hex");
 
   const auth = await prisma.auth.findUnique({
@@ -25,12 +16,9 @@ export async function login(email: string, password: string) {
   });
 
   if (!auth) {
-    return {
-      ok: false,
-      error: "Since you're new here, please register first!",
-    } as const;
+    return { error: "Since you're new here, please register first!" } as const;
   } else if (auth.password !== passwdHash) {
-    return { ok: false, error: "Wrong password! Try again." } as const;
+    return { error: "Wrong password! Try again." } as const;
   }
 
   const uid = auth.user.id.toString();
@@ -46,5 +34,16 @@ export async function login(email: string, password: string) {
     path: "/",
   });
 
-  return { ok: true, uid } as const;
+  redirect(from ?? `/dashboard/${uid}`);
 }
+
+export async function logout() {
+  const cookieStore = cookies();
+
+  cookieStore.delete("token");
+  cookieStore.delete("uid");
+
+  redirect("/login");
+}
+
+type LoginPayload = { email: string; password: string };

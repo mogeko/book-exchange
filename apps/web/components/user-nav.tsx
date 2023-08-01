@@ -1,8 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useCookies } from "react-cookie";
+import { useCallback, useEffect, useTransition } from "react";
 
 import type { User } from "@/lib/database";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -17,18 +15,13 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { logout } from "@/app/actions";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
-  const [{ token, uid }, _, removeCookie] = useCookies(["token", "uid"]);
-  const [pathname, router] = [usePathname(), useRouter()];
-  const handleLogout = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent> | KeyboardEvent) => {
-      e.preventDefault();
-      if (token && uid) removeCookie("token"), removeCookie("uid");
-      router.push("/login");
-    },
-    [token, uid, removeCookie, router]
-  );
+  const [_isPending, startTransition] = useTransition();
+  const handleLogout = useCallback(() => {
+    startTransition(() => logout());
+  }, [startTransition]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -43,7 +36,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
       } else if (e.key === "F" && e.metaKey && e.shiftKey) {
         // TODO: Open Follow page
       } else if (e.key === "Q" && e.metaKey && e.shiftKey && e.ctrlKey) {
-        handleLogout(e);
+        handleLogout();
       }
     };
 
@@ -51,7 +44,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
     return () => window.removeEventListener("keydown", down);
   }, [handleLogout]);
 
-  if (!user || pathname === "/login") return <div />;
+  if (!user) return <div />;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

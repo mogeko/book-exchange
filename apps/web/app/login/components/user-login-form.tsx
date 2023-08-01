@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -24,7 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login } from "@/app/login/actions";
+import { login } from "@/app/actions";
 
 const formSchema = object({
   email: string().email({
@@ -37,13 +38,12 @@ const formSchema = object({
 
 export const UserLoginForm: React.FC<
   {
-    redirect?: string;
     title: string;
     description: string;
   } & React.ComponentPropsWithoutRef<typeof Card>
-> = ({ redirect, title, description, ...props }) => {
+> = ({ title, description, ...props }) => {
+  const [_isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,13 +51,16 @@ export const UserLoginForm: React.FC<
   });
 
   const onSubmit = async (values: zInfer<typeof formSchema>) => {
-    const { ok, uid, error } = await login(values.email, values.password);
+    startTransition(async () => {
+      const redirect = searchParams.get("from") ?? void 0;
+      const { error } = await login(values, redirect);
 
-    if (!ok) {
-      toast({ variant: "destructive", title: "Oooooops!", description: error });
-    } else {
-      router.push(searchParams.get("from") ?? `/dashboard/${uid}`);
-    }
+      toast({
+        variant: "destructive",
+        title: "Oooooops! Something went wrong.",
+        description: error,
+      });
+    });
   };
 
   return (
