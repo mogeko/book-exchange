@@ -1,5 +1,15 @@
 # @mogeko/bookworm-web
 
+## 0.4.0
+
+### Minor Changes
+
+- [#88](https://github.com/mogeko/bookworm/pull/88) [`0e0a7a8`](https://github.com/mogeko/bookworm/commit/0e0a7a89aa366f7e094f314f1e787664fdd11830) Thanks [@mogeko](https://github.com/mogeko)! - Complete the relevant logic of registering an account.
+
+### Patch Changes
+
+- [#88](https://github.com/mogeko/bookworm/pull/88) [`4e8ec9c`](https://github.com/mogeko/bookworm/commit/4e8ec9cab0633eaf97e7fcd9721cf9bc707b901d) Thanks [@mogeko](https://github.com/mogeko)! - Logout by server action.
+
 ## 0.3.2
 
 ### Patch Changes
