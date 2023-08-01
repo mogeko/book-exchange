@@ -2,10 +2,9 @@ import { LuFrown, LuPlusCircle } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
 import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookArtwork } from "@/components/book-artwork";
+import { BookScrollArea } from "@/components/book-scroll-area";
 
 const HomePage: React.FC = () => {
   return (
@@ -43,56 +42,19 @@ const ForYou: React.FC = async () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <div className="space-y-1">
-          <h2 className="text-2xl font-semibold tracking-tight">Popular</h2>
-          <p className="text-sm text-muted-foreground">
-            Top picks for you. Updated daily.
-          </p>
-        </div>
-      </div>
-      <Separator className="my-4" />
-      <div className="relative">
-        <ScrollArea className="flex space-x-4 pb-4">
-          <div className="flex space-x-4 pb-4">
-            {popularBooks.map((book) => (
-              <BookArtwork
-                key={`popular-book-${book.id}`}
-                book={book}
-                className="w-[250px]"
-                aspectRatio="portrait"
-                width={250}
-                height={330}
-              />
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-      <div className="mt-6 space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight">Made for You</h2>
-        <p className="text-sm text-muted-foreground">
-          Your personal booklists. Updated daily.
-        </p>
-      </div>
-      <Separator className="my-4" />
-      <div className="relative">
-        <ScrollArea>
-          <div className="flex space-x-4 pb-4">
-            {madeForYouBooks.map((book) => (
-              <BookArtwork
-                key={`made-for-you-book-${book.id}`}
-                book={book}
-                className="w-[150px]"
-                aspectRatio="square"
-                width={150}
-                height={150}
-              />
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
+      <BookScrollArea
+        title="Popular"
+        description="Top picks for you. Updated daily."
+        books={popularBooks}
+      />
+      <BookScrollArea
+        title="Made for You"
+        description="Your personal booklists. Updated daily."
+        books={madeForYouBooks}
+        aspectRatio="square"
+        className="w-[150px]"
+        width={150}
+      />
     </>
   );
 };
