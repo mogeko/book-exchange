@@ -10,7 +10,7 @@ import {
 
 import { prisma } from "@/lib/database";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MenuButton } from "@/app/dashboard/[uid]/@aside/components/menu-button";
+import { MenuButton } from "@/app/dashboard/[uid]/@aside/_components/menu-button";
 
 const AsideMenu: React.FC = async () => {
   const uid = cookies().get("uid")?.value;

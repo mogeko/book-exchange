@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UserLoginForm } from "@/app/login/components/user-login-form";
-import { UserSignupForm } from "@/app/login/components/user-signup-form";
+import { UserLoginForm } from "@/app/login/_components/user-login-form";
+import { UserSignupForm } from "@/app/login/_components/user-signup-form";
 
 const LoginPage: React.FC = () => {
   return (
