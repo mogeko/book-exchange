@@ -1,5 +1,13 @@
 # @mogeko/bookworm-db
 
+## 0.10.0
+
+### Minor Changes
+
+- [#86](https://github.com/mogeko/bookworm/pull/86) [`06df6cf`](https://github.com/mogeko/bookworm/commit/06df6cfcf19377c24b8d76277922e2ccb58cce1a) Thanks [@mogeko](https://github.com/mogeko)! - Add `Booklist`, it is many-to-one for `User` and many-to-many for `Book`s.
+
+- [#86](https://github.com/mogeko/bookworm/pull/86) [`2ce0214`](https://github.com/mogeko/bookworm/commit/2ce021441348ddea3a91206aba029dec56e514cb) Thanks [@mogeko](https://github.com/mogeko)! - Add `Tag` and `Book.translator`.
+
 ## 0.9.3
 
 ### Patch Changes

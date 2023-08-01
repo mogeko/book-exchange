@@ -1,5 +1,14 @@
 # @mogeko/bookworm-web
 
+## 0.3.2
+
+### Patch Changes
+
+- [#86](https://github.com/mogeko/bookworm/pull/86) [`075e12b`](https://github.com/mogeko/bookworm/commit/075e12b5b91199db6e64c87ef43aaa92ebbdce62) Thanks [@mogeko](https://github.com/mogeko)! - Show Book lists in the sidebar.
+
+- Updated dependencies [[`06df6cf`](https://github.com/mogeko/bookworm/commit/06df6cfcf19377c24b8d76277922e2ccb58cce1a), [`2ce0214`](https://github.com/mogeko/bookworm/commit/2ce021441348ddea3a91206aba029dec56e514cb)]:
+  - @mogeko/bookworm-db@0.10.0
+
 ## 0.3.1
 
 ### Patch Changes
