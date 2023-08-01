@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker/locale/en";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-faker.seed(12345); // To make sure we get the same data every time
+faker.seed(114514); // To make sure we get the same data every time
 
 async function seedAuthor() {
   return await Promise.all(
@@ -11,7 +11,10 @@ async function seedAuthor() {
       return await prisma.author.upsert({
         where: { id: faker.number.int({ min: 1, max: 50 }) },
         update: {},
-        create: { name: faker.person.fullName() },
+        create: {
+          name: faker.person.fullName(),
+          avatar: faker.image.urlLoremFlickr({ category: "people" }),
+        },
       });
     })
   );
@@ -21,7 +24,7 @@ type Authors = Awaited<ReturnType<typeof seedAuthor>>;
 
 async function seedUsers() {
   const orginUsers = await Promise.all(
-    randomArrayWith(50, async () => {
+    randomArrayWith(100, async () => {
       const email = faker.internet.email();
       return await prisma.user.upsert({
         where: { email: email },
@@ -98,9 +101,13 @@ async function seedSeries({ publiashers }: SeriesProps) {
         where: { id: faker.number.int({ min: 1, max: 20 }) },
         update: {},
         create: {
-          name: faker.lorem.sentence(5),
+          name: faker.commerce.productName(),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
-          cover: faker.image.urlLoremFlickr({ width: 1114, height: 1280 }),
+          cover: faker.image.urlLoremFlickr({
+            category: "logo",
+            width: 1114,
+            height: 1280,
+          }),
           publisher: {
             connect: faker.helpers.arrayElement(publiashers),
           },
@@ -113,12 +120,12 @@ async function seedSeries({ publiashers }: SeriesProps) {
 type Series = Awaited<ReturnType<typeof seedSeries>>;
 type SeriesProps = { publiashers: Publishers };
 
-async function seedBooks({ users, authors, publishers, series }: BooksProps) {
+async function seedBooks(props: BooksProps) {
   return await Promise.all(
     randomArrayWith(100, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
-      const publish = faker.helpers.arrayElement(publishers);
-      const _series = series.filter((s) => s.publisherId === publish.id);
+      const publish = faker.helpers.arrayElement(props.publishers);
+      const _series = props.series.filter((s) => s.publisherId === publish.id);
 
       return await prisma.book.upsert({
         where: { isbn: isbn },
@@ -126,15 +133,25 @@ async function seedBooks({ users, authors, publishers, series }: BooksProps) {
         create: {
           title: faker.lorem.sentence(5),
           discription: faker.lorem.paragraph({ min: 5, max: 10 }),
-          cover: faker.image.urlLoremFlickr({ width: 1114, height: 1280 }),
+          cover: faker.image.urlLoremFlickr({
+            category: "book",
+            width: 1114,
+            height: 1280,
+          }),
           isbn: isbn,
           createdAt: faker.date.past(),
           updatedAt: faker.date.recent(),
           authors: {
-            connect: arrayElements(authors, { min: 1, max: 5 }),
+            connect: arrayElements(props.authors, { min: 1, max: 5 }),
+          },
+          translators: {
+            connect: arrayElements(props.authors, { min: 0, max: 2 }),
+          },
+          tags: {
+            connect: arrayElements(props.tags, { min: 0, max: 20 }),
           },
           owners: {
-            connect: arrayElements(users),
+            connect: arrayElements(props.users),
           },
           publisher: {
             connect: publish,
@@ -157,13 +174,14 @@ type BooksProps = {
   publishers: Publishers;
   authors: Authors;
   series: Series;
+  tags: Tags;
 };
 
 async function seedBooklists({ users, books }: BooklistsProps) {
   return await Promise.all(
-    randomArrayWith(200, async () => {
+    randomArrayWith(300, async () => {
       return await prisma.booklist.upsert({
-        where: { id: faker.number.int({ min: 1, max: 200 }) },
+        where: { id: faker.number.int({ min: 1, max: 300 }) },
         update: {},
         create: {
           title: faker.lorem.sentence(3),
@@ -241,10 +259,21 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
   );
 }
 
-type TargetsProps = {
-  books: Awaited<ReturnType<typeof seedBooks>>;
-  series: Series;
-} & BooksProps;
+type TargetsProps = { books: Books } & Omit<BooksProps, "tags">;
+
+async function seedTags() {
+  return await Promise.all(
+    randomArrayWith(80, async () => {
+      return await prisma.tag.upsert({
+        where: { id: faker.number.int({ min: 1, max: 80 }) },
+        update: {},
+        create: { name: faker.lorem.word() },
+      });
+    })
+  );
+}
+
+type Tags = Awaited<ReturnType<typeof seedTags>>;
 
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
@@ -263,8 +292,9 @@ const arrayElements = faker.helpers.arrayElements;
       publishers: await seedPublishers(),
     };
 
+    const tags = await seedTags();
     const series = await seedSeries({ publiashers: results.publishers });
-    const books = await seedBooks({ ...results, series });
+    const books = await seedBooks({ ...results, series, tags });
     await seedBooklists({ users: results.users, books });
     await seedCommends(results.users, { ...results, books, series });
   } catch (err) {

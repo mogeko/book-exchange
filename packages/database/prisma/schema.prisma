@@ -100,11 +100,13 @@ model Score {
 }
 
 model Author {
-  id   Int    @id @default(autoincrement())
-  name String
+  id     Int    @id @default(autoincrement())
+  avatar String
+  name   String
 
-  artworks Book[]
-  comments Comment[]
+  articles     Book[]    @relation("Write")
+  translations Book[]    @relation("Translate")
+  comments     Comment[]
 }
 
 model Publisher {
@@ -141,8 +143,17 @@ model Book {
   publisherId Int?
   series      Series?    @relation(fields: [seriesId], references: [id])
   seriesId    Int?
+  translators Author[]   @relation("Translate")
+  authors     Author[]   @relation("Write")
+  tags        Tag[]
   booklists   Booklist[]
   scores      Score[]
   owners      User[]
-  authors     Author[]
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  books Book[]
 }

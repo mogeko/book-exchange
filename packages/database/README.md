@@ -140,7 +140,7 @@ erDiagram
   SERIES ||--o{ BOOK : has
   SERIES {
     Int      id          PK
-    Int      publisherId UK
+    Int      publisherId FK
     String   name
     String   discription
     String   cover
@@ -151,7 +151,8 @@ erDiagram
     Int    id   PK
     String name
   }
-  AUTHOR ||--o{ WRITER : is
+  AUTHOR ||--o{ WRITER     : is
+  AUTHOR ||--o{ TRANSLATOR : is
   AUTHOR {
     Int    id   PK
     String name
@@ -161,6 +162,12 @@ erDiagram
     Int writeId PK, FK
     Int bookId  PK, FK
   }
+  TRANSLATOR }o--|| BOOK : translate
+  TRANSLATOR {
+    Int translatorId PK, FK
+    Int bookId       PK, FK
+  }
+  BOOK }o--|| BOOK_TAG : has
   BOOK {
     Int      id          PK
     Int      publisherId FK
@@ -171,6 +178,15 @@ erDiagram
     String   discription
     String   isbn        UK
     String   cover
+  }
+  BOOK_TAG ||--o{ TAG : has
+  BOOK_TAG {
+    Int bookId PK, FK
+    Int tagId  PK, FK
+  }
+  TAG {
+    Int    id   PK
+    String name UK
   }
 ```
 
