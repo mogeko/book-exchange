@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { sign, verify } from "@/lib/jwt";
+import { sign, verify } from "@/lib/jsonwebtoken";
 
 export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") {

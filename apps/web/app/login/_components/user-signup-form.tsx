@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -24,7 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login } from "@/app/login/actions";
+import { register } from "@/app/actions";
 
 const formSchema = object({
   email: string().email({
@@ -33,31 +34,36 @@ const formSchema = object({
   password: string().min(8, {
     message: "Password must be at least 8 characters",
   }),
+  username: string().min(3, {
+    message: "Name must be at least 3 characters",
+  }),
 });
 
-export const UserLoginForm: React.FC<
+export const UserSignupForm: React.FC<
   {
-    redirect?: string;
     title: string;
     description: string;
   } & React.ComponentPropsWithoutRef<typeof Card>
-> = ({ redirect, title, description, ...props }) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+> = ({ title, description, ...props }) => {
+  const [_isPending, startTransition] = useTransition();
   const { toast } = useToast();
+  const searchParams = useSearchParams();
   const form = useForm<zInfer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", username: "" },
   });
 
   const onSubmit = async (values: zInfer<typeof formSchema>) => {
-    const { ok, uid, error } = await login(values.email, values.password);
+    startTransition(async () => {
+      const redirect = searchParams.get("from") ?? void 0;
+      const { error } = await register(values, redirect);
 
-    if (!ok) {
-      toast({ variant: "destructive", title: "Oooooops!", description: error });
-    } else {
-      router.push(searchParams.get("from") ?? `/dashboard/${uid}`);
-    }
+      toast({
+        variant: "destructive",
+        title: "Oooooops! Something went wrong.",
+        description: error,
+      });
+    });
   };
 
   return (
@@ -74,9 +80,13 @@ export const UserLoginForm: React.FC<
               name="email"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="">Email</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="name@example.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -87,7 +97,7 @@ export const UserLoginForm: React.FC<
               name="password"
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <FormLabel className="">Password</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="password" {...field} />
                   </FormControl>
@@ -95,9 +105,22 @@ export const UserLoginForm: React.FC<
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem className="space-y-1">
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input type="text" placeholder="Your name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
           <CardFooter>
-            <Button type="submit">Sign in</Button>
+            <Button type="submit">Register</Button>
           </CardFooter>
         </form>
       </Form>
