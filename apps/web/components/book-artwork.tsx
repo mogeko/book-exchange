@@ -7,21 +7,21 @@ export const BookArtwork: React.FC<
   {
     book: Book;
     aspectRatio?: "portrait" | "square";
-  } & React.HTMLAttributes<HTMLDivElement> &
-    Pick<React.ComponentPropsWithoutRef<typeof Image>, "width" | "height">
-> = ({ className, book, aspectRatio, width, height, ...props }) => {
+    width?: number;
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, book, aspectRatio = "portrait", width = 250, ...props }) => {
   return (
-    <div className={cn("space-y-3", className)} {...props}>
+    <div className={cn("space-y-3", className ?? "w-[250px]")} {...props}>
       <Link href={`/book/${book.id}`} className="overflow-hidden rounded-md">
         <Image
           className={cn(
             "h-auto w-auto object-cover transition-all hover:scale-105",
-            aspectRatio === "square" ? "aspect-square" : "aspect-[3/4]"
+            aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
           )}
           src={book.cover ?? "" /** TODO */}
-          alt={book.title ?? "Some book"}
+          height={aspectRatio === "square" ? width : (width / 3) * 4}
           width={width}
-          height={height}
+          alt={book.title ?? "Some book"}
         />
       </Link>
       <div className="space-y-1 text-sm">
@@ -34,7 +34,7 @@ export const BookArtwork: React.FC<
   );
 };
 
-type Book = {
+export type Book = {
   id: number;
   authors: { name: string }[];
   cover: string | null;
