@@ -122,7 +122,7 @@ type SeriesProps = { publiashers: Publishers };
 
 async function seedBooks(props: BooksProps) {
   return await Promise.all(
-    randomArrayWith(100, async () => {
+    randomArrayWith(500, async () => {
       const isbn = faker.phone.number("978-#-##-######-#");
       const publish = faker.helpers.arrayElement(props.publishers);
       const _series = props.series.filter((s) => s.publisherId === publish.id);
@@ -262,12 +262,71 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
 type TargetsProps = { books: Books } & Omit<BooksProps, "tags">;
 
 async function seedTags() {
+  const tags = [
+    "arts",
+    "fiction",
+    "literature",
+    "science",
+    "history",
+    "business",
+    "health",
+    "biography",
+    "social sciences",
+    "animals",
+    "architecture",
+    "art lnstruction",
+    "art History",
+    "dance",
+    "design",
+    "fashion",
+    "film",
+    "graphic design",
+    "music",
+    "music theory",
+    "painting",
+    "photography",
+    "bears",
+    "cats",
+    "kittens",
+    "dogs",
+    "puppies",
+    "fantasy",
+    "historical fiction",
+    "horror",
+    "humor",
+    "literature",
+    "magic",
+    "mystery and detective stories",
+    "plays",
+    "poetry",
+    "romance",
+    "science fiction",
+    "short stories",
+    "thriller",
+    "young adult",
+    "biology",
+    "chemistry",
+    "mathematics",
+    "physics",
+    "programming",
+    "management",
+    "entrepreneurship",
+    "business economics",
+    "business success",
+    "finance",
+    "ancient civilization",
+    "archaeology",
+    "anthropology",
+    "world war ii",
+    "social life and customs",
+  ];
+
   return await Promise.all(
-    randomArrayWith(80, async () => {
+    tags.map(async (tag) => {
       return await prisma.tag.upsert({
-        where: { id: faker.number.int({ min: 1, max: 80 }) },
+        where: { name: tag },
         update: {},
-        create: { name: faker.lorem.word() },
+        create: { name: tag },
       });
     })
   );
