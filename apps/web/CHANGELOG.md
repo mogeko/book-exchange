@@ -1,5 +1,11 @@
 # @mogeko/bookworm-web
 
+## 0.4.1
+
+### Patch Changes
+
+- [#91](https://github.com/mogeko/bookworm/pull/91) [`7c51d55`](https://github.com/mogeko/bookworm/commit/7c51d55eb71081abb4b79b17376321b94e630a99) Thanks [@mogeko](https://github.com/mogeko)! - Encapsulate `ScrollArea` with `BookArtwork` to improve the reusability.
+
 ## 0.4.0
 
 ### Minor Changes
