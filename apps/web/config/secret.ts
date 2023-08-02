@@ -1,5 +1,5 @@
-export const secret = {
+export const siteSecret = {
   jwt: process.env.JWT_SECRET || "jwt-secret",
 };
 
-export type Secret = typeof secret;
+export type siteSecret = typeof siteSecret;

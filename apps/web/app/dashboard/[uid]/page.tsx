@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea } from "@/components/book-scroll-area";
 
-const HomePage: React.FC = () => {
+const ReadNowPage: React.FC = () => {
   return (
     <Tabs defaultValue="for-you" className="h-full space-y-6">
       <div className="space-between flex items-center">
@@ -137,4 +137,4 @@ const getRandomBooks = async (take: number) => {
   });
 };
 
-export default HomePage;
+export default ReadNowPage;
