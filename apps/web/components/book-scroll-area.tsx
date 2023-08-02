@@ -14,7 +14,7 @@ export const BookScrollArea: React.FC<
     books: Book[];
   } & Omit<React.ComponentPropsWithoutRef<typeof BookArtwork>, "book">
 > = ({ title, description, books, children, ...props }) => {
-  if (books.length === 0) return null;
+  if (books && !books.length) return;
   return (
     <>
       <div className="flex items-center justify-between">

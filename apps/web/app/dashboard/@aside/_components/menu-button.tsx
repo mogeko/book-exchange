@@ -12,13 +12,13 @@ export const MenuButton: React.FC<
   } & React.ComponentProps<typeof Link>
 > = ({ className, variant, href, ...props }) => {
   const pathname = usePathname();
-  const _variant =
-    variant ?? (pathname.startsWith(href.toString()) ? "secondary" : "ghost");
 
   return (
     <Link
       className={cn(
-        buttonVariants({ variant: _variant }),
+        buttonVariants({
+          variant: variant ?? (pathname === href ? "secondary" : "ghost"),
+        }),
         "w-full justify-start truncate"
       )}
       href={href}
