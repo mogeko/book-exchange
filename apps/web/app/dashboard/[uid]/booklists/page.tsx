@@ -1,6 +1,12 @@
+import { prisma } from "@/lib/database";
 import { DataTable } from "@/app/dashboard/[uid]/booklists/_components/data-table";
 
-const BooklistsPage: React.FC = () => {
+const BooklistsPage: React.FC<{
+  params: { uid: string };
+}> = async ({ params: { uid } }) => {
+  const booklists = await getBooklists(parseInt(uid));
+  console.log(booklists);
+
   return (
     <>
       <div className="flex items-center justify-between space-y-2">
@@ -11,9 +17,16 @@ const BooklistsPage: React.FC = () => {
           </p>
         </div>
       </div>
-      <DataTable data={[]} columns={[]} />
+      <DataTable data={booklists} columns={[]} />
     </>
   );
 };
+
+async function getBooklists(uid: number) {
+  return await prisma.booklist.findMany({
+    where: { userId: uid },
+    select: { id: true, title: true, status: true, priority: true },
+  });
+}
 
 export default BooklistsPage;

@@ -194,7 +194,8 @@ async function seedBooklists({ users, books }: BooklistsProps) {
               };
             }),
           },
-          state: faker.helpers.arrayElement(["WANT", "READING", "READED"]),
+          status: faker.helpers.arrayElement(["TODO", "IN_PROGRESS", "DONE"]),
+          priority: faker.helpers.arrayElement(["LOW", "MEDIUM", "HIGH"]),
         },
       });
     })
