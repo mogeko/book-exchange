@@ -19,10 +19,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
-import { statuses } from "@/app/dashboard/[uid]/booklists/_lib/statues";
 import type { Booklist } from "@/app/dashboard/[uid]/booklists/page";
 
-export function RowActions<TData>({ row }: { row: Row<TData> }) {
+export function DataTableRowActions<TData>({ row }: { row: Row<TData> }) {
   const booklist = row.original as Booklist;
 
   useEffect(() => {
@@ -52,18 +51,6 @@ export function RowActions<TData>({ row }: { row: Row<TData> }) {
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Status</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={booklist.status}>
-              {statuses.map(({ value, label }) => (
-                <DropdownMenuRadioItem key={`action-${value}`} value={value}>
-                  {label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Priority</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>

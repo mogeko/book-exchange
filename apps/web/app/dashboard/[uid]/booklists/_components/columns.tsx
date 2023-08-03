@@ -3,8 +3,8 @@
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { DataTableColumnHeader } from "@/components/data-table";
-import { RowActions } from "@/app/dashboard/[uid]/booklists/_components/row-actions";
+import { DataTableColumnHeader } from "@/app/dashboard/[uid]/booklists/_components/data-table";
+import { DataTableRowActions } from "@/app/dashboard/[uid]/booklists/_components/data-table-row-actions";
 import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
 import { statuses } from "@/app/dashboard/[uid]/booklists/_lib/statues";
 import type { Booklist } from "@/app/dashboard/[uid]/booklists/page";
@@ -36,7 +36,9 @@ export const columns: ColumnDef<Booklist>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Booklist" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+    cell: ({ row }) => (
+      <div className="w-[80px]">{`BOOKLIST-${row.getValue("id")}`}</div>
+    ),
     enableSorting: false,
     enableHiding: false,
   },
@@ -103,6 +105,6 @@ export const columns: ColumnDef<Booklist>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <RowActions row={row} />,
+    cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

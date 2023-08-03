@@ -2,9 +2,9 @@ import { RxArrowDown, RxArrowUp, RxDash } from "react-icons/rx";
 
 export const priorities = [
   {
-    label: "Low",
-    value: "LOW",
-    icon: RxArrowDown,
+    label: "High",
+    value: "HIGH",
+    icon: RxArrowUp,
   },
   {
     label: "medium",
@@ -12,8 +12,8 @@ export const priorities = [
     icon: RxDash,
   },
   {
-    label: "High",
-    value: "HIGH",
-    icon: RxArrowUp,
+    label: "Low",
+    value: "LOW",
+    icon: RxArrowDown,
   },
 ];

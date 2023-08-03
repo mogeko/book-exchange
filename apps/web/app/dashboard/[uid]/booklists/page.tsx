@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/database";
-import { DataTable } from "@/components/data-table";
 import { columns } from "@/app/dashboard/[uid]/booklists/_components/columns";
+import { DataTable } from "@/app/dashboard/[uid]/booklists/_components/data-table";
 
 const BooklistsPage: React.FC<{
   params: { uid: string };
@@ -8,7 +8,7 @@ const BooklistsPage: React.FC<{
   const booklists = await getBooklists(parseInt(uid));
 
   return (
-    <>
+    <div className="flex h-full flex-1 flex-col space-y-8 p-8">
       <div className="flex items-center justify-between space-y-2">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
@@ -18,7 +18,7 @@ const BooklistsPage: React.FC<{
         </div>
       </div>
       <DataTable data={booklists} columns={columns} />
-    </>
+    </div>
   );
 };
 

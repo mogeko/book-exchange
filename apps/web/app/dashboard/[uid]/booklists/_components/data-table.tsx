@@ -14,6 +14,7 @@ import {
   type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
+  type Table as TableType,
   type VisibilityState,
 } from "@tanstack/react-table";
 import { RxArrowDown, RxArrowUp, RxCaretSort, RxEyeNone } from "react-icons/rx";
@@ -35,6 +36,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DataTableToolbar } from "@/app/dashboard/[uid]/booklists/_components/data-table-toolbar";
 
 export function DataTable<TData, TValue>(props: {
   columns: ColumnDef<TData, TValue>[];
@@ -63,7 +65,7 @@ export function DataTable<TData, TValue>(props: {
 
   return (
     <div className="space-y-4 flex-1">
-      <div /> {/* TODO: Add toolbar */}
+      <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
