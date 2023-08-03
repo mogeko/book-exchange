@@ -52,7 +52,7 @@ export const columns: ColumnDef<Booklist>[] = [
       return (
         <div className="flex space-x-2">
           <Link
-            className="max-w-[500px] truncate font-bold text-primary hover:text-muted-foreground"
+            className="max-w-[500px] truncate font-bold ring-offset-background transition-colors text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             href={`/booklist/${row.getValue("id")}`}
           >
             {row.getValue("title")}
@@ -60,6 +60,7 @@ export const columns: ColumnDef<Booklist>[] = [
         </div>
       );
     },
+    enableHiding: false,
   },
   {
     accessorKey: "status",
