@@ -1,5 +1,38 @@
 # @mogeko/bookworm-web
 
+## 0.5.0
+
+### Minor Changes
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`398455b`](https://github.com/mogeko/bookworm/commit/398455bce2ae82392613430bd2029946ec4fbd2b) Thanks [@mogeko](https://github.com/mogeko)! - Complete the general skeleton for the `/dashboard/:uid/booklists` page.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`9b4b603`](https://github.com/mogeko/bookworm/commit/9b4b603b4b30553f212b77363d4d777cafe90e39) Thanks [@mogeko](https://github.com/mogeko)! - Complete the `/dashboard/:uid/booklists` page.
+
+### Patch Changes
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`df3ded2`](https://github.com/mogeko/bookworm/commit/df3ded2e843e0aef9adf7b8a7061a96263a3212a) Thanks [@mogeko](https://github.com/mogeko)! - Complete the `/dashboard/browse` page.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`bc1ed85`](https://github.com/mogeko/bookworm/commit/bc1ed85962a56f5b682ad926f129c5b47a5840d5) Thanks [@mogeko](https://github.com/mogeko)! - Create `columns.tsx` to describe how to display data in the table.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`d8bb81b`](https://github.com/mogeko/bookworm/commit/d8bb81b7c37f0d41563b7500ed3b45b591a44646) Thanks [@mogeko](https://github.com/mogeko)! - Add an action menu to the table.
+
+  TODO: Implement specific functions with Server Actions.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`9b4b603`](https://github.com/mogeko/bookworm/commit/9b4b603b4b30553f212b77363d4d777cafe90e39) Thanks [@mogeko](https://github.com/mogeko)! - Add pagination to the table.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`11e0995`](https://github.com/mogeko/bookworm/commit/11e09951f7ea880146db7f9f97d8187518ebcc3a) Thanks [@mogeko](https://github.com/mogeko)! - Add faceted filter to the table.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`c325450`](https://github.com/mogeko/bookworm/commit/c325450ed511b8df93ab52ba23edeb501c589ca7) Thanks [@mogeko](https://github.com/mogeko)! - Add a search bar for the table.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`4f8b3ac`](https://github.com/mogeko/bookworm/commit/4f8b3ace9ae4d090625f2aaef83e41bb08d5df85) Thanks [@mogeko](https://github.com/mogeko)! - Make `columns.title` cannot be hidden.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`c357ce6`](https://github.com/mogeko/bookworm/commit/c357ce6294db8174648ff7427bac673f30ca756c) Thanks [@mogeko](https://github.com/mogeko)! - Add view options to the table.
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`4fc55ad`](https://github.com/mogeko/bookworm/commit/4fc55add85a1caf77727618501cd82fb63657591) Thanks [@mogeko](https://github.com/mogeko)! - Create links to the `/booklist/:booklistId` page.
+
+- Updated dependencies [[`965469e`](https://github.com/mogeko/bookworm/commit/965469ea4b03075ccec3cfaa9c87c47d14bdcd2f)]:
+  - @mogeko/bookworm-db@0.10.1
+
 ## 0.4.1
 
 ### Patch Changes

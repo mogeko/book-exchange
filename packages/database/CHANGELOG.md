@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.10.1
+
+### Patch Changes
+
+- [#93](https://github.com/mogeko/bookworm/pull/93) [`965469e`](https://github.com/mogeko/bookworm/commit/965469ea4b03075ccec3cfaa9c87c47d14bdcd2f) Thanks [@mogeko](https://github.com/mogeko)! - Add `priority` and use `status` instead of `state` in the `Booklist`.
+
 ## 0.10.0
 
 ### Minor Changes
