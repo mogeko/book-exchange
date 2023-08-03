@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -50,9 +51,12 @@ export const columns: ColumnDef<Booklist>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
+          <Link
+            className="max-w-[500px] truncate font-bold text-primary hover:text-muted-foreground"
+            href={`/booklist/${row.getValue("id")}`}
+          >
             {row.getValue("title")}
-          </span>
+          </Link>
         </div>
       );
     },
