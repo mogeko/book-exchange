@@ -4,6 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "@/components/data-table";
+import { RowActions } from "@/app/dashboard/[uid]/booklists/_components/row-actions";
 import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
 import { statuses } from "@/app/dashboard/[uid]/booklists/_lib/statues";
 import type { Booklist } from "@/app/dashboard/[uid]/booklists/page";
@@ -99,5 +100,9 @@ export const columns: ColumnDef<Booklist>[] = [
       );
     },
     filterFn: (row, id, value) => value.includes(row.getValue(id)),
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <RowActions row={row} />,
   },
 ];
