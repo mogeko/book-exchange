@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/database";
-import { DataTable } from "@/app/dashboard/[uid]/booklists/_components/data-table";
+import { DataTable } from "@/components/data-table";
+import { columns } from "@/app/dashboard/[uid]/booklists/_components/columns";
 
 const BooklistsPage: React.FC<{
   params: { uid: string };
 }> = async ({ params: { uid } }) => {
   const booklists = await getBooklists(parseInt(uid));
-  console.log(booklists);
 
   return (
     <>
@@ -17,7 +17,7 @@ const BooklistsPage: React.FC<{
           </p>
         </div>
       </div>
-      <DataTable data={booklists} columns={[]} />
+      <DataTable data={booklists} columns={columns} />
     </>
   );
 };
@@ -28,5 +28,7 @@ async function getBooklists(uid: number) {
     select: { id: true, title: true, status: true, priority: true },
   });
 }
+
+export type Booklist = Awaited<ReturnType<typeof getBooklists>>[number];
 
 export default BooklistsPage;

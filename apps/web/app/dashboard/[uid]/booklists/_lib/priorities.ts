@@ -4,16 +4,16 @@ export const priorities = [
   {
     label: "Low",
     value: "LOW",
-    // icon: RxArrowDown,
+    icon: RxArrowDown,
   },
   {
     label: "medium",
     value: "MEDIUM",
-    // icon: RxDash,
+    icon: RxDash,
   },
   {
     label: "High",
     value: "HIGH",
-    // icon: RxArrowUp,
+    icon: RxArrowUp,
   },
 ];
