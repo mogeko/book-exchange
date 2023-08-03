@@ -63,7 +63,7 @@ const AsideMenu: React.FC = async () => {
           <h2 className="relative px-7 text-lg font-semibold tracking-tight">
             Book lists
           </h2>
-          <ScrollArea>
+          <ScrollArea className="h-[300px] px-1">
             {booklists.map((booklist, i) => (
               <MenuButton
                 href={`/dashboard/${uid}/booklists/${booklist.id}`}

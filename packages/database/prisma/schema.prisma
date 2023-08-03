@@ -39,8 +39,9 @@ model User {
 }
 
 model Booklist {
-  id          Int           @id @default(autoincrement())
-  state       ReadingStatus
+  id          Int              @id @default(autoincrement())
+  status      BooklistStatus   @default(TODO)
+  priority    BooklistPriority @default(MEDIUM)
   title       String
   discription String?
 
@@ -49,10 +50,16 @@ model Booklist {
   books  Book[]
 }
 
-enum ReadingStatus {
-  WANT
-  READING
-  READED
+enum BooklistStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+enum BooklistPriority {
+  HIGH
+  MEDIUM
+  LOW
 }
 
 model Voter {

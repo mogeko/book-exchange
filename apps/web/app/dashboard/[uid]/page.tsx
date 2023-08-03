@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 import { prisma } from "@/lib/database";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookScrollArea } from "@/components/book-scroll-area";
+import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
 
 const ReadNowPage: React.FC = () => {
   return (
@@ -54,7 +56,11 @@ const ForYou: React.FC = async () => {
         aspectRatio="square"
         className="w-[150px]"
         width={150}
-      />
+      >
+        <ViewAll
+          href={"" /*  TODO: make this link to the `./:uid/m4u` page */}
+        />
+      </BookScrollArea>
     </>
   );
 };
