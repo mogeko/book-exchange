@@ -1,3 +1,5 @@
+"use client";
+
 import type { Column } from "@tanstack/react-table";
 import { RxCheck, RxPlusCircled } from "react-icons/rx";
 

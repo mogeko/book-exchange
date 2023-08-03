@@ -14,7 +14,6 @@ import {
   type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
-  type Table as TableType,
   type VisibilityState,
 } from "@tanstack/react-table";
 import { RxArrowDown, RxArrowUp, RxCaretSort, RxEyeNone } from "react-icons/rx";
@@ -36,6 +35,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DataTablePagination } from "@/app/dashboard/[uid]/booklists/_components/data-table-pagination";
 import { DataTableToolbar } from "@/app/dashboard/[uid]/booklists/_components/data-table-toolbar";
 
 export function DataTable<TData, TValue>(props: {
@@ -112,7 +112,7 @@ export function DataTable<TData, TValue>(props: {
           </TableBody>
         </Table>
       </div>
-      <div /> {/* TODO: Add pagination */}
+      <DataTablePagination table={table} />
     </div>
   );
 }
