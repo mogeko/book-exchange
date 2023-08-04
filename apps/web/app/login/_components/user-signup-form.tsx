@@ -2,6 +2,7 @@
 
 import { useTransition } from "react";
 import { useSearchParams } from "next/navigation";
+import { register } from "@/actions/authorization";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -25,7 +26,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { register } from "@/app/actions";
 
 const formSchema = object({
   email: string().email({

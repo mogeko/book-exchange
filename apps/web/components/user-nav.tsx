@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useTransition } from "react";
+import { logout } from "@/actions/authorization";
 
 import type { User } from "@/lib/database";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,7 +16,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { logout } from "@/app/actions";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   const [_isPending, startTransition] = useTransition();
