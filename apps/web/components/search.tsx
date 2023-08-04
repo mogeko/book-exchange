@@ -18,6 +18,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
+  CommandShortcut,
 } from "@/components/ui/command";
 
 export const SearchInHeader: React.FC<
@@ -53,6 +54,7 @@ export const Search: React.FC<
     },
     [router, setOpen, setSearchValue, setHistory]
   );
+  const clearHistory = useCallback(() => setHistory([]), [setHistory]);
   const changeThemeTo = useCallback(
     (theme: string) => (setOpen(false), setTheme(theme)),
     [setOpen, setTheme]
@@ -63,11 +65,14 @@ export const Search: React.FC<
       if (e.key === "k" && e.metaKey) {
         e.preventDefault(), setOpen((open) => !open);
       }
+      if (e.key === "Backspace" && e.metaKey) {
+        e.preventDefault(), clearHistory();
+      }
     };
 
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
-  }, [setOpen, data]);
+  }, [setOpen]);
 
   const SearchResults = useMemo(() => {
     if (isLoading) {
@@ -101,9 +106,10 @@ export const Search: React.FC<
             <span>{title}</span>
           </CommandItem>
         ))}
-        <CommandItem onSelect={() => setHistory([])}>
+        <CommandItem onSelect={clearHistory}>
           <LuTrash2 className="mr-2 h-4 w-4" />
           <span>Clear all history</span>
+          <CommandShortcut>&#x2318;&#x232B;</CommandShortcut>
         </CommandItem>
       </>
     );
