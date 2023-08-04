@@ -107,7 +107,7 @@ export const Search: React.FC<
         </CommandItem>
       </>
     );
-  }, [isLoading, history, data, jumpTo]);
+  }, [isLoading, history, data, jumpTo, setHistory]);
 
   return (
     <>
