@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { LuCornerDownRight, LuSearch } from "react-icons/lu";
+import { useTheme } from "next-themes";
+import { LuBook, LuSearch } from "react-icons/lu";
+import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 import { useSearch } from "@/hooks/use-search";
@@ -33,6 +35,7 @@ export const Search: React.FC<
   const [open, setOpen] = useState(false);
   const { data, isLoading, isEmpty } = useSearch(searchValue);
   const router = useRouter();
+  const { setTheme } = useTheme();
 
   const jumpTo = useCallback(
     (id: number) => {
@@ -40,6 +43,10 @@ export const Search: React.FC<
       router.push(`/book/${id}`);
     },
     [router, setOpen, setSearchValue]
+  );
+  const changeThemeTo = useCallback(
+    (theme: string) => (setOpen(false), setTheme(theme)),
+    [setOpen, setTheme]
   );
 
   useEffect(() => {
@@ -83,10 +90,25 @@ export const Search: React.FC<
               onSelect={() => jumpTo(id)}
               value={title}
             >
-              <LuCornerDownRight className="mr-2 h-4 w-4" />
+              <LuBook className="mr-2 h-4 w-4" />
               <span>{title}</span>
             </CommandItem>
           ))}
+          <CommandSeparator />
+          <CommandGroup heading="Theme">
+            <CommandItem onSelect={() => changeThemeTo("light")}>
+              <RxSun className="mr-2 h-4 w-4" />
+              <span>Light</span>
+            </CommandItem>
+            <CommandItem onSelect={() => changeThemeTo("dark")}>
+              <RxMoon className="mr-2 h-4 w-4" />
+              <span>Dark</span>
+            </CommandItem>
+            <CommandItem onSelect={() => changeThemeTo("system")}>
+              <RxLaptop className="mr-2 h-4 w-4" />
+              <span>System</span>
+            </CommandItem>
+          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </>
