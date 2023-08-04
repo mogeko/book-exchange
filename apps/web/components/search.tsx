@@ -1,13 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { LuBook, LuSearch } from "react-icons/lu";
+import { LuBook, LuLoader2, LuSearch, LuTrash2 } from "react-icons/lu";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
-import { useSearch } from "@/hooks/use-search";
+import { useHistory } from "@/hooks/use-history";
+import { useSearch, type Book } from "@/hooks/use-search";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -33,16 +34,24 @@ export const Search: React.FC<
 > = ({ className, ...props }) => {
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState(false);
-  const { data, isLoading, isEmpty } = useSearch(searchValue);
+  const [history, setHistory] = useHistory<Book>("search-history");
+  const { data, isLoading } = useSearch(searchValue);
   const router = useRouter();
   const { setTheme } = useTheme();
 
   const jumpTo = useCallback(
-    (id: number) => {
-      setOpen(false), setSearchValue("");
-      router.push(`/book/${id}`);
+    (id: number, title: string) => {
+      setOpen(false), setSearchValue(""); // reset Search Dialog
+      setHistory((history) => {
+        if (!history.find((book) => book.id === id)) {
+          history.push({ id, title });
+        }
+
+        return history;
+      }); // update history
+      router.push(`/book/${id}`); // direct to book page
     },
-    [router, setOpen, setSearchValue]
+    [router, setOpen, setSearchValue, setHistory]
   );
   const changeThemeTo = useCallback(
     (theme: string) => (setOpen(false), setTheme(theme)),
@@ -58,7 +67,47 @@ export const Search: React.FC<
 
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
-  }, []);
+  }, [setOpen, data]);
+
+  const SearchResults = useMemo(() => {
+    if (isLoading) {
+      return (
+        <CommandPlainText className="text-muted-foreground">
+          <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+          <span>Searching books...</span>
+        </CommandPlainText>
+      );
+    }
+
+    const books = history.concat(
+      data?.filter(({ id }) => {
+        return !history.find((book) => book.id === id);
+      }) ?? []
+    );
+
+    if (!books.length) {
+      return <CommandPlainText>No history here</CommandPlainText>;
+    }
+
+    return (
+      <>
+        {books.map(({ id, title }) => (
+          <CommandItem
+            key={`search-book-${id}`}
+            onSelect={() => jumpTo(id, title)}
+            value={title}
+          >
+            <LuBook className="mr-2 h-4 w-4" />
+            <span>{title}</span>
+          </CommandItem>
+        ))}
+        <CommandItem onSelect={() => setHistory([])}>
+          <LuTrash2 className="mr-2 h-4 w-4" />
+          <span>Clear all history</span>
+        </CommandItem>
+      </>
+    );
+  }, [isLoading, history, data, jumpTo]);
 
   return (
     <>
@@ -82,18 +131,10 @@ export const Search: React.FC<
           onValueChange={(value) => setSearchValue(value)}
         />
         <CommandList>
-          {isEmpty && <CommandEmpty>No books found</CommandEmpty>}
-          {isLoading && <CommandItem>Searching books...</CommandItem>}
-          {data?.map(({ id, title }) => (
-            <CommandItem
-              key={`search-book-${id}`}
-              onSelect={() => jumpTo(id)}
-              value={title}
-            >
-              <LuBook className="mr-2 h-4 w-4" />
-              <span>{title}</span>
-            </CommandItem>
-          ))}
+          <CommandEmpty>No command or books found</CommandEmpty>
+          <CommandGroup heading="History or results">
+            {SearchResults}
+          </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Theme">
             <CommandItem onSelect={() => changeThemeTo("light")}>
@@ -112,5 +153,19 @@ export const Search: React.FC<
         </CommandList>
       </CommandDialog>
     </>
+  );
+};
+
+const CommandPlainText: React.FC<
+  {} & React.ButtonHTMLAttributes<HTMLDivElement>
+> = ({ className, ...props }) => {
+  return (
+    <div
+      className={cn(
+        "relative flex select-none items-center justify-center py-3 text-sm outline-none",
+        className
+      )}
+      {...props}
+    />
   );
 };

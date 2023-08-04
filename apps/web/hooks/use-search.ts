@@ -14,10 +14,10 @@ export function useSearch(value: string) {
   );
 
   if (value.length <= 0) {
-    return { isLoading: false, isEmpty: false, data: [] };
-  } else if (data?.length === 0) {
-    return { isLoading: false, isEmpty: true, data: [] };
+    return { isLoading: false, data: null, error: null };
   } else {
-    return { isLoading, isEmpty: false, data, error };
+    return { isLoading, data, error };
   }
 }
+
+export type Book = Awaited<ReturnType<typeof search>>[number];
