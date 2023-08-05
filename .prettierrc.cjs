@@ -26,7 +26,8 @@ module.exports = {
   importOrderMergeDuplicateImports: true,
   importOrderCombineTypeAndValueImports: true,
   plugins: [
-    "prettier-plugin-tailwindcss",
     "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-prisma",
+    "prettier-plugin-tailwindcss",
   ],
 };
