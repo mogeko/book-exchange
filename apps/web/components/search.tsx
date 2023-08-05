@@ -36,9 +36,9 @@ export const Search: React.FC<
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState(false);
   const [history, setHistory] = useHistory<Book>("search-history");
-  const { data, isLoading } = useSearch(searchValue);
-  const router = useRouter();
+  const { data, isLoading } = useSearch(searchValue, history);
   const { setTheme } = useTheme();
+  const router = useRouter();
 
   const jumpTo = useCallback(
     (id: number, title: string) => {
@@ -72,7 +72,7 @@ export const Search: React.FC<
 
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
-  }, [setOpen]);
+  }, [setOpen, clearHistory]);
 
   const SearchResults = useMemo(() => {
     if (isLoading) {
@@ -84,19 +84,13 @@ export const Search: React.FC<
       );
     }
 
-    const books = history.concat(
-      data?.filter(({ id }) => {
-        return !history.find((book) => book.id === id);
-      }) ?? []
-    );
-
-    if (!books.length) {
+    if (!data.length) {
       return <CommandPlainText>No history here</CommandPlainText>;
     }
 
     return (
       <>
-        {books.map(({ id, title }) => (
+        {data.map(({ id, title }) => (
           <CommandItem
             key={`search-book-${id}`}
             onSelect={() => jumpTo(id, title)}
@@ -113,7 +107,7 @@ export const Search: React.FC<
         </CommandItem>
       </>
     );
-  }, [isLoading, history, data, jumpTo, setHistory]);
+  }, [data, isLoading, jumpTo, clearHistory]);
 
   return (
     <>
