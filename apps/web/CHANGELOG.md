@@ -1,5 +1,25 @@
 # @mogeko/bookworm-web
 
+## 0.6.0
+
+### Minor Changes
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`2566c0e`](https://github.com/mogeko/bookworm/commit/2566c0e2b85d39a67fabd9d5e32eb6a31ebc2d17) Thanks [@mogeko](https://github.com/mogeko)! - Add history to the Search Dialog.
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`d99cfc8`](https://github.com/mogeko/bookworm/commit/d99cfc8872cdc13e98f6b994fff548a3c84859bf) Thanks [@mogeko](https://github.com/mogeko)! - Complete the core functions of the `Search` component.
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`6cab907`](https://github.com/mogeko/bookworm/commit/6cab90708ae4d083e02499350afc12ddbba61abe) Thanks [@mogeko](https://github.com/mogeko)! - Switch themes in the `Search` component.
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`e223f73`](https://github.com/mogeko/bookworm/commit/e223f737df4363bb65366f57fdd4a0ca0b041101) Thanks [@mogeko](https://github.com/mogeko)! - Search for the author's name and ISBN number at the same time.
+
+### Patch Changes
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`e223f73`](https://github.com/mogeko/bookworm/commit/e223f737df4363bb65366f57fdd4a0ca0b041101) Thanks [@mogeko](https://github.com/mogeko)! - Limit the number of results per search request to 10.
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`4963daf`](https://github.com/mogeko/bookworm/commit/4963dafd8b06649d7448ace0194c2f526957c7ba) Thanks [@mogeko](https://github.com/mogeko)! - Add shortcut keys to the cleanHistoty command.
+
+- [#95](https://github.com/mogeko/bookworm/pull/95) [`8a50897`](https://github.com/mogeko/bookworm/commit/8a50897da7f82cb517f124df18cb00f2da9860b6) Thanks [@mogeko](https://github.com/mogeko)! - Set the parameter `delay` as required for `useDebounce` (use `null` to skip delay).
+
 ## 0.5.0
 
 ### Minor Changes
