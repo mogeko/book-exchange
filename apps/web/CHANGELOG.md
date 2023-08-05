@@ -1,5 +1,11 @@
 # @mogeko/bookworm-web
 
+## 0.6.1
+
+### Patch Changes
+
+- [#97](https://github.com/mogeko/bookworm/pull/97) [`f1b7c4b`](https://github.com/mogeko/bookworm/commit/f1b7c4b5aa0098db746db7178fbd0f2476a7fa9e) Thanks [@mogeko](https://github.com/mogeko)! - Handling errors, when the query fails.
+
 ## 0.6.0
 
 ### Minor Changes
