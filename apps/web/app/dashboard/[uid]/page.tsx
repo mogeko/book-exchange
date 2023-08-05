@@ -1,14 +1,14 @@
-import Link from "next/link";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 import { prisma } from "@/lib/database";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
 
-const ReadNowPage: React.FC = () => {
+const ReadNowPage: React.FC<{
+  params: { uid: string };
+}> = ({ params: { uid } }) => {
   return (
     <Tabs defaultValue="for-you" className="h-full space-y-6">
       <div className="space-between flex items-center">
@@ -26,7 +26,7 @@ const ReadNowPage: React.FC = () => {
         </div>
       </div>
       <TabsContent className="border-none p-0 outline-none" value="for-you">
-        <ForYou />
+        <ForYou uid={uid} />
       </TabsContent>
       <TabsContent
         className="h-full flex-col border-none p-0 data-[state=active]:flex"
@@ -38,9 +38,9 @@ const ReadNowPage: React.FC = () => {
   );
 };
 
-const ForYou: React.FC = async () => {
-  const popularBooks = await getPopularBooks(10);
-  const madeForYouBooks = await getRandomBooks(10); // TODO: make this actually made for you
+const ForYou: React.FC<{ uid: string }> = async ({ uid }) => {
+  const popularBooks = await getPopularBooks();
+  const madeForYouBooks = await getRandomBooks(); // TODO: make this actually made for you
 
   return (
     <>
@@ -57,9 +57,7 @@ const ForYou: React.FC = async () => {
         className="w-[150px]"
         width={150}
       >
-        <ViewAll
-          href={"" /*  TODO: make this link to the `./:uid/m4u` page */}
-        />
+        <ViewAll href={`/dashboard/${uid}/made4u`} />
       </BookScrollArea>
     </>
   );
@@ -101,7 +99,9 @@ const FollowingContent: React.FC = () => {
   );
 };
 
-const getPopularBooks = async (limit: number, offset = 0) => {
+const getPopularBooks = async (options?: { skip: number; take: number }) => {
+  "use server";
+
   return await prisma.book.findMany({
     orderBy: {
       owners: {
@@ -116,12 +116,14 @@ const getPopularBooks = async (limit: number, offset = 0) => {
         select: { name: true },
       },
     },
-    skip: offset,
-    take: limit,
+    take: options?.take ?? 10,
+    skip: options?.skip ?? 0,
   });
 };
 
-const getRandomBooks = async (take: number) => {
+const getRandomBooks = async (options?: { take: number }) => {
+  "use server";
+
   const booksCount = await prisma.book.count();
 
   return await prisma.book.findMany({
@@ -139,7 +141,7 @@ const getRandomBooks = async (take: number) => {
       },
     },
     skip: Math.floor(Math.random() * booksCount),
-    take: take,
+    take: options?.take ?? 10,
   });
 };
 
