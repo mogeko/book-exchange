@@ -101,7 +101,7 @@ export function DataTableFacetedFilter<TData, TValue>(props: {
                   >
                     <div
                       className={cn(
-                        "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                        "border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
                         isSelected
                           ? "bg-primary text-primary-foreground"
                           : "opacity-50 [&_svg]:invisible"
@@ -110,7 +110,7 @@ export function DataTableFacetedFilter<TData, TValue>(props: {
                       <RxCheck className="h-4 w-4" />
                     </div>
                     {OptionIcon && (
-                      <OptionIcon className="mr-2 h-4 w-4 text-muted-foreground" />
+                      <OptionIcon className="text-muted-foreground mr-2 h-4 w-4" />
                     )}
                     <span>{label}</span>
                     {facets?.get(value) && (

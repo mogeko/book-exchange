@@ -21,7 +21,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "bg-background min-h-screen font-sans antialiased",
           sans.variable
         )}
       >

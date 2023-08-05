@@ -52,7 +52,7 @@ export const columns: ColumnDef<Booklist>[] = [
       return (
         <div className="flex space-x-2">
           <Link
-            className="max-w-[500px] truncate font-bold ring-offset-background transition-colors text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            className="ring-offset-background text-primary focus-visible:ring-ring max-w-[500px] truncate font-bold underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             href={`/booklist/${row.getValue("id")}`}
           >
             {row.getValue("title")}
@@ -77,7 +77,7 @@ export const columns: ColumnDef<Booklist>[] = [
       return (
         <div className="flex w-[100px] items-center">
           {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+            <status.icon className="text-muted-foreground mr-2 h-4 w-4" />
           )}
           <span>{status.label}</span>
         </div>
@@ -100,7 +100,7 @@ export const columns: ColumnDef<Booklist>[] = [
       return (
         <div className="flex items-center">
           {priority.icon && (
-            <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+            <priority.icon className="text-muted-foreground mr-2 h-4 w-4" />
           )}
           <span>{priority.label}</span>
         </div>

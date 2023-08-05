@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>(props: {
   });
 
   return (
-    <div className="space-y-4 flex-1">
+    <div className="flex-1 space-y-4">
       <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
@@ -136,7 +136,7 @@ export function DataTableColumnHeader<TData, TValue>(
           <Button
             variant="ghost"
             size="sm"
-            className="-ml-3 h-8 data-[state=open]:bg-accent"
+            className="data-[state=open]:bg-accent -ml-3 h-8"
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc" ? (
@@ -150,18 +150,18 @@ export function DataTableColumnHeader<TData, TValue>(
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <RxArrowUp className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <RxArrowUp className="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <RxArrowDown className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+            <RxArrowDown className="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
             Desc
           </DropdownMenuItem>
           {column.getCanHide() && (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-                <RxEyeNone className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+                <RxEyeNone className="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
                 Hide
               </DropdownMenuItem>
             </>

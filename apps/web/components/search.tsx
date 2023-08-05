@@ -78,15 +78,15 @@ export const Search: React.FC<
     <>
       <Button
         variant="outline"
-        className={cn("justify-between gap-4 w-full", className)}
+        className={cn("w-full justify-between gap-4", className)}
         onClick={() => setOpen((open) => !open)}
         {...props}
       >
-        <div className="inline-flex items-center justify-between flex-row">
+        <div className="inline-flex flex-row items-center justify-between">
           <LuSearch className="mr-2 h-4 w-4" />
           <span>Search...</span>
         </div>
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100">
           <span className="text-xs">&#x2318;</span>K
         </kbd>
       </Button>

@@ -73,7 +73,7 @@ const Following: React.FC = () => {
           <h2 className="text-2xl font-semibold tracking-tight">
             Your Following
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Your following&apos;s top picks.
           </p>
         </div>
@@ -88,9 +88,9 @@ const FollowingContent: React.FC = () => {
   return (
     <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
       <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
-        <LuFrown className="w-14 h-14" />
+        <LuFrown className="h-14 w-14" />
         <h3 className="mt-4 text-lg font-semibold">There is no content yet</h3>
-        <p className="mb-4 mt-2 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mb-4 mt-2 text-sm">
           You have not followed anyone yet. Add one below.
         </p>
         <Button size="sm" className="relative">

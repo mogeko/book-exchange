@@ -27,11 +27,11 @@ const AsideMenu: React.FC = async () => {
           </h2>
           <div className="space-y-1">
             <MenuButton href={`/dashboard/${uid}`}>
-              <LuBookOpen className="w-4 h-4 mr-2" />
+              <LuBookOpen className="mr-2 h-4 w-4" />
               Read Now
             </MenuButton>
             <MenuButton href="/dashboard/browse">
-              <LuLayoutGrid className="w-4 h-4 mr-2" />
+              <LuLayoutGrid className="mr-2 h-4 w-4" />
               Browse
             </MenuButton>
           </div>
@@ -42,19 +42,19 @@ const AsideMenu: React.FC = async () => {
           </h2>
           <div className="space-y-1">
             <MenuButton href={`/dashboard/${uid}/booklists`}>
-              <LuList className="w-4 h-4 mr-2" />
+              <LuList className="mr-2 h-4 w-4" />
               Book Lists
             </MenuButton>
             <MenuButton href={`/dashboard/${uid}/made4u`}>
-              <LuUser className="w-4 h-4 mr-2" />
+              <LuUser className="mr-2 h-4 w-4" />
               Made For You
             </MenuButton>
             <MenuButton href={`/dashboard/${uid}/authors`}>
-              <LuPenTool className="w-4 h-4 mr-2" />
+              <LuPenTool className="mr-2 h-4 w-4" />
               Authors
             </MenuButton>
             <MenuButton href={`/dashboard/${uid}/series`}>
-              <LuLibrary className="w-4 h-4 mr-2" />
+              <LuLibrary className="mr-2 h-4 w-4" />
               Series
             </MenuButton>
           </div>
@@ -69,7 +69,7 @@ const AsideMenu: React.FC = async () => {
                 href={`/dashboard/${uid}/booklists/${booklist.id}`}
                 key={`booklist-${i}`}
               >
-                <LuList className="w-4 h-4 mr-2" />
+                <LuList className="mr-2 h-4 w-4" />
                 {booklist.title}
               </MenuButton>
             ))}
