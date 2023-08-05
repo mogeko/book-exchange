@@ -1,5 +1,11 @@
 # @mogeko/bookworm-web
 
+## 0.6.2
+
+### Patch Changes
+
+- [#99](https://github.com/mogeko/bookworm/pull/99) [`7090421`](https://github.com/mogeko/bookworm/commit/7090421c5a0e82d46793ba0d5a74946c3b71789b) Thanks [@mogeko](https://github.com/mogeko)! - Use the `history` as the initial value of `useSearch`.
+
 ## 0.6.1
 
 ### Patch Changes
