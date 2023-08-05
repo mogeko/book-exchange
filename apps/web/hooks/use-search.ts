@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useToast } from "@/hooks/use-toast";
 
-export function useSearch(value: string) {
+export function useSearch(value: string, initialData?: Book[]) {
   const debouncedValue = useDebounce(value, 500);
   const { toast } = useToast();
 
@@ -15,6 +15,7 @@ export function useSearch(value: string) {
     (value: string) => search(value),
     {
       keepPreviousData: !!value.length,
+      fallbackData: initialData ?? [],
       onError: (error) => {
         toast({
           variant: "destructive",
