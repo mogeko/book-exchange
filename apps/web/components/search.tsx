@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { LuBook, LuLoader2, LuSearch, LuTrash2 } from "react-icons/lu";
+import { LuBook, LuSearch, LuTrash2 } from "react-icons/lu";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
@@ -36,7 +36,7 @@ export const Search: React.FC<
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState(false);
   const [history, setHistory] = useHistory<Book>("search-history");
-  const { data, isLoading } = useSearch(searchValue, history);
+  const { data } = useSearch(searchValue, history);
   const { setTheme } = useTheme();
   const router = useRouter();
 
@@ -74,41 +74,6 @@ export const Search: React.FC<
     return () => window.removeEventListener("keydown", down);
   }, [setOpen, clearHistory]);
 
-  const SearchResults = useMemo(() => {
-    if (isLoading) {
-      return (
-        <CommandPlainText className="text-muted-foreground">
-          <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
-          <span>Searching books...</span>
-        </CommandPlainText>
-      );
-    }
-
-    if (!data.length) {
-      return <CommandPlainText>No history here</CommandPlainText>;
-    }
-
-    return (
-      <>
-        {data.map(({ id, title }) => (
-          <CommandItem
-            key={`search-book-${id}`}
-            onSelect={() => jumpTo(id, title)}
-            value={title}
-          >
-            <LuBook className="mr-2 h-4 w-4" />
-            <span>{title}</span>
-          </CommandItem>
-        ))}
-        <CommandItem onSelect={clearHistory}>
-          <LuTrash2 className="mr-2 h-4 w-4" />
-          <span>Clear all history</span>
-          <CommandShortcut>&#x2318;&#x232B;</CommandShortcut>
-        </CommandItem>
-      </>
-    );
-  }, [data, isLoading, jumpTo, clearHistory]);
-
   return (
     <>
       <Button
@@ -133,7 +98,29 @@ export const Search: React.FC<
         <CommandList>
           <CommandEmpty>No command or books found</CommandEmpty>
           <CommandGroup heading="History or results">
-            {SearchResults}
+            {data.map(({ id, title }) => (
+              <CommandItem
+                key={`search-book-${id}`}
+                onSelect={() => jumpTo(id, title)}
+                value={title}
+              >
+                <LuBook className="mr-2 h-4 w-4" />
+                <span>{title}</span>
+              </CommandItem>
+            ))}
+            {!history.length ? (
+              !data.length && (
+                <div className="relative flex select-none items-center justify-center py-3 text-sm outline-none">
+                  No history here
+                </div>
+              )
+            ) : (
+              <CommandItem onSelect={clearHistory}>
+                <LuTrash2 className="mr-2 h-4 w-4" />
+                <span>Clear all history</span>
+                <CommandShortcut>&#x2318;&#x232B;</CommandShortcut>
+              </CommandItem>
+            )}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Theme">
@@ -153,19 +140,5 @@ export const Search: React.FC<
         </CommandList>
       </CommandDialog>
     </>
-  );
-};
-
-const CommandPlainText: React.FC<
-  {} & React.ButtonHTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
-  return (
-    <div
-      className={cn(
-        "relative flex select-none items-center justify-center py-3 text-sm outline-none",
-        className
-      )}
-      {...props}
-    />
   );
 };
