@@ -10,7 +10,7 @@ import {
 import { prisma } from "@/lib/database";
 import { loginUser } from "@/lib/user";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MenuButton } from "@/app/(dashboard)/@aside/_components/menu-button";
+import { MenuButton } from "@/app/(authorized)/@aside/_components/menu-button";
 
 const AsideMenu: React.FC = async () => {
   const { uid } = loginUser();
@@ -41,7 +41,7 @@ const AsideMenu: React.FC = async () => {
             Library
           </h2>
           <div className="space-y-1">
-            <MenuButton href="/booklists">
+            <MenuButton href="/booklist">
               <LuList className="mr-2 h-4 w-4" />
               Book Lists
             </MenuButton>

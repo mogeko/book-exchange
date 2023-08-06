@@ -18,8 +18,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { priorities } from "@/app/(dashboard)/booklists/_lib/priorities";
-import type { Booklist } from "@/app/(dashboard)/booklists/page";
+import { priorities } from "@/app/(authorized)/booklist/_lib/priorities";
+import type { Booklist } from "@/app/(authorized)/booklist/page";
 
 export function DataTableRowActions<TData>({ row }: { row: Row<TData> }) {
   const booklist = row.original as Booklist;
