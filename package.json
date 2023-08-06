@@ -18,7 +18,8 @@
     "db:migrate": "turbo run db:migrate",
     "db:reset": "turbo run db:reset",
     "db:seed": "turbo run db:seed",
-    "db:studio": "turbo run db:studio"
+    "db:studio": "turbo run db:studio",
+    "cron:made4u": "turbo run made4u"
   },
   "workspaces": [
     "apps/*",

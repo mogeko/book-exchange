@@ -337,19 +337,25 @@ type Tags = Awaited<ReturnType<typeof seedTags>>;
 
 async function seedReferral(users: Users, books: Books) {
   return users.map(async (user) => {
-    return await prisma.user.update({
+    return await prisma.referral.upsert({
       where: { id: user.id },
-      data: {
-        referrals: {
-          create: {
-            books: {
-              connect: arrayElements(books, 10).map((book) => {
-                return {
-                  id: book.id,
-                };
-              }),
-            },
-          },
+      update: {
+        books: {
+          connect: arrayElements(books, 10).map((book) => {
+            return {
+              id: book.id,
+            };
+          }),
+        },
+      },
+      create: {
+        user: { connect: { id: user.id } },
+        books: {
+          connect: arrayElements(books, 10).map((book) => {
+            return {
+              id: book.id,
+            };
+          }),
         },
       },
     });

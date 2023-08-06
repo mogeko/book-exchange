@@ -25,7 +25,8 @@
     "db:migrate": { "outputs": [], "cache": false },
     "db:reset": { "outputs": [], "cache": false },
     "db:seed": { "outputs": [], "cache": false },
-    "db:studio": { "outputs": [], "cache": false, "persistent": true }
+    "db:studio": { "outputs": [], "cache": false, "persistent": true },
+    "made4u": { "outputs": [], "cache": false }
   },
   "globalDependencies": [".prettierrc.cjs", ".eslintrc.json"],
   "globalEnv": ["NODE_ENV"]
