@@ -1,15 +1,16 @@
-import { prisma } from "@/lib/database";
-import { loginUser } from "@/lib/user";
+import { cookies } from "next/headers";
+
+import { prisma, User } from "@/lib/database";
 import { MainNav } from "@/components/main-nav";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SearchInHeader } from "@/components/search";
 import { UserNav } from "@/components/user-nav";
 
 export const SiteHeader: React.FC = async () => {
-  const { uid } = loginUser();
-  const user = await prisma.user.findUnique({
-    where: { id: uid },
-  });
+  const uid = cookies().get("uid")?.value;
+  const user: User | null = uid
+    ? await prisma.user.findUnique({ where: { id: parseInt(uid) } })
+    : null;
 
   return (
     <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-40 w-full border-b backdrop-blur">

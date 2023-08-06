@@ -34,7 +34,7 @@ export async function login({ email, password }: LoginPayload, from?: string) {
     path: "/",
   });
 
-  redirect(from ?? `/${uid}`);
+  redirect(from ?? "/");
 }
 
 export async function register(

@@ -3,32 +3,34 @@ import { NextResponse, type NextRequest } from "next/server";
 import { sign, verify } from "@/lib/jsonwebtoken";
 
 export async function middleware(request: NextRequest) {
-  const token = request.cookies.get("token")?.value;
-  const uid = request.cookies.get("uid")?.value;
+  if (!request.nextUrl.pathname.startsWith("/login")) {
+    const token = request.cookies.get("token")?.value;
+    const uid = request.cookies.get("uid")?.value;
 
-  // Verify if the token and uid are valid
-  try {
-    if (token && uid && (await verify(token)).uid === uid) {
-      const jwt = await sign({ uid }, { expiresIn: "7d" });
-      const response = NextResponse.next();
-      response.cookies.set("token", jwt, {
-        expires: new Date(Date.now() + 604800000), // 7 days
-        path: "/",
-      });
-      response.cookies.set("uid", uid, {
-        expires: new Date(Date.now() + 604800000), // 7 days
-        path: "/",
-      });
+    // Verify if the token and uid are valid
+    try {
+      if (token && uid && (await verify(token)).uid === uid) {
+        const jwt = await sign({ uid }, { expiresIn: "7d" });
+        const response = NextResponse.next();
+        response.cookies.set("token", jwt, {
+          expires: new Date(Date.now() + 604800000), // 7 days
+          path: "/",
+        });
+        response.cookies.set("uid", uid, {
+          expires: new Date(Date.now() + 604800000), // 7 days
+          path: "/",
+        });
 
-      return response;
-    } else {
-      throw new Error("Token or uid not found");
+        return response;
+      } else {
+        throw new Error("Token or uid not found");
+      }
+    } catch (error) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("from", request.nextUrl.pathname);
+
+      return NextResponse.redirect(loginUrl);
     }
-  } catch (error) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("from", request.nextUrl.pathname);
-
-    return NextResponse.redirect(loginUrl);
   }
 }
 
