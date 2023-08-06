@@ -1,6 +1,8 @@
+import { getReferral } from "@/actions/made-fot-you";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
+import { loginUser } from "@/lib/user";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,8 +39,12 @@ const ReadNowPage: React.FC = () => {
 };
 
 const ForYou: React.FC = async () => {
+  const { uid } = loginUser();
+  const { books: madeForYouBooks } = await getReferral(
+    { uid, date: new Date() },
+    { take: 10 }
+  );
   const popularBooks = await getPopularBooks();
-  const madeForYouBooks = await getRandomBooks(); // TODO: make this actually made for you
 
   return (
     <>
@@ -116,30 +122,6 @@ const getPopularBooks = async (options?: { skip: number; take: number }) => {
     },
     take: options?.take ?? 10,
     skip: options?.skip ?? 0,
-  });
-};
-
-const getRandomBooks = async (options?: { take: number }) => {
-  "use server";
-
-  const booksCount = await prisma.book.count();
-
-  return await prisma.book.findMany({
-    orderBy: {
-      owners: {
-        _count: "desc",
-      },
-    },
-    select: {
-      id: true,
-      title: true,
-      cover: true,
-      authors: {
-        select: { name: true },
-      },
-    },
-    skip: Math.floor(Math.random() * booksCount),
-    take: options?.take ?? 10,
   });
 };
 

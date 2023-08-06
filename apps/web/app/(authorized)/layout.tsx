@@ -1,7 +1,6 @@
-const DashboardLayout: React.FC<{
-  aside: React.ReactNode;
-  children: React.ReactNode;
-}> = ({ aside, children }) => {
+const DashboardLayout: React.FC<
+  React.PropsWithChildren<{ aside: React.ReactNode }>
+> = ({ aside, children }) => {
   return (
     <div className="grid flex-1 lg:grid-cols-5">
       <div className="hidden lg:block">{aside}</div>
