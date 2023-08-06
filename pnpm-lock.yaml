@@ -191,6 +191,16 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0(@types/node@20.4.5)
 
+  packages/made4u:
+    dependencies:
+      '@mogeko/bookworm-db':
+        specifier: workspace:^
+        version: link:../database
+    devDependencies:
+      vite-node:
+        specifier: ^0.33.0
+        version: 0.33.0(@types/node@20.4.5)
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:

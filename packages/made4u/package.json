@@ -1,0 +1,22 @@
+{
+  "name": "made-for-you",
+  "version": "0.0.0",
+  "description": "It is a cron job to update the `/made4u` page every day",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "update": "vite-node index.ts",
+    "made4u": "pnpm run update"
+  },
+  "keywords": [
+    "cron"
+  ],
+  "author": "Zheng Junyi",
+  "license": "MIT",
+  "dependencies": {
+    "@mogeko/bookworm-db": "workspace:^"
+  },
+  "devDependencies": {
+    "vite-node": "^0.33.0"
+  }
+}
