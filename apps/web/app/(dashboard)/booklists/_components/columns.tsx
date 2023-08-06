@@ -4,11 +4,11 @@ import Link from "next/link";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { DataTableColumnHeader } from "@/app/dashboard/[uid]/booklists/_components/data-table";
-import { DataTableRowActions } from "@/app/dashboard/[uid]/booklists/_components/data-table-row-actions";
-import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
-import { statuses } from "@/app/dashboard/[uid]/booklists/_lib/statues";
-import type { Booklist } from "@/app/dashboard/[uid]/booklists/page";
+import { DataTableColumnHeader } from "@/app/(dashboard)/booklists/_components/data-table";
+import { DataTableRowActions } from "@/app/(dashboard)/booklists/_components/data-table-row-actions";
+import { priorities } from "@/app/(dashboard)/booklists/_lib/priorities";
+import { statuses } from "@/app/(dashboard)/booklists/_lib/statues";
+import type { Booklist } from "@/app/(dashboard)/booklists/page";
 
 export const columns: ColumnDef<Booklist>[] = [
   {

@@ -34,7 +34,7 @@ export async function login({ email, password }: LoginPayload, from?: string) {
     path: "/",
   });
 
-  redirect(from ?? `/dashboard/${uid}`);
+  redirect(from ?? `/${uid}`);
 }
 
 export async function register(
@@ -59,7 +59,7 @@ export async function register(
     return await login({ email: user.email, password: password }, from);
   } catch (error: any) {
     if (error.message === "NEXT_REDIRECT") {
-      redirect(from ?? "/dashboard");
+      redirect(from ?? "/");
     } else {
       return { error: error.message as string };
     }

@@ -5,10 +5,10 @@ import { RxCross2 } from "react-icons/rx";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DataTableFacetedFilter } from "@/app/dashboard/[uid]/booklists/_components/data-table-faceted-filter";
-import { DataTableViewOptions } from "@/app/dashboard/[uid]/booklists/_components/data-table-view-options";
-import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
-import { statuses } from "@/app/dashboard/[uid]/booklists/_lib/statues";
+import { DataTableFacetedFilter } from "@/app/(dashboard)/booklists/_components/data-table-faceted-filter";
+import { DataTableViewOptions } from "@/app/(dashboard)/booklists/_components/data-table-view-options";
+import { priorities } from "@/app/(dashboard)/booklists/_lib/priorities";
+import { statuses } from "@/app/(dashboard)/booklists/_lib/statues";
 
 export function DataTableToolbar<TData>({ table }: { table: Table<TData> }) {
   return (

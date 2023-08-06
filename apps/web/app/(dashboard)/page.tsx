@@ -6,9 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
 
-const ReadNowPage: React.FC<{
-  params: { uid: string };
-}> = ({ params: { uid } }) => {
+const ReadNowPage: React.FC = () => {
   return (
     <Tabs defaultValue="for-you" className="h-full space-y-6">
       <div className="space-between flex items-center">
@@ -26,7 +24,7 @@ const ReadNowPage: React.FC<{
         </div>
       </div>
       <TabsContent className="border-none p-0 outline-none" value="for-you">
-        <ForYou uid={uid} />
+        <ForYou />
       </TabsContent>
       <TabsContent
         className="h-full flex-col border-none p-0 data-[state=active]:flex"
@@ -38,7 +36,7 @@ const ReadNowPage: React.FC<{
   );
 };
 
-const ForYou: React.FC<{ uid: string }> = async ({ uid }) => {
+const ForYou: React.FC = async () => {
   const popularBooks = await getPopularBooks();
   const madeForYouBooks = await getRandomBooks(); // TODO: make this actually made for you
 
@@ -57,7 +55,7 @@ const ForYou: React.FC<{ uid: string }> = async ({ uid }) => {
         className="w-[150px]"
         width={150}
       >
-        <ViewAll href={`/dashboard/${uid}/made4u`} />
+        <ViewAll href={`/made4u`} />
       </BookScrollArea>
     </>
   );

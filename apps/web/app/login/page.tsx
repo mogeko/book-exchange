@@ -19,8 +19,8 @@ const LoginPage: React.FC = () => {
           </TabsContent>
           <TabsContent value="signup">
             <UserSignupForm
-              title="Create a new account"
-              description="Enter your email address and password to create a new account."
+              title="Create an account"
+              description="Enter your email below to create your account."
             />
           </TabsContent>
         </Tabs>
