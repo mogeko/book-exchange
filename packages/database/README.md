@@ -71,11 +71,12 @@ erDiagram
     String userEmail FK, UK
     String password
   }
-  USER ||--o{ OWNER    : is
-  USER ||--o{ BOOKLIST : create
-  USER ||--o{ SOMEBODY : "follow with"
-  USER ||--o{ COMMENT  : issue
-  USER ||--o{ VOTER    : is
+  USER ||--o{ OWNER       : is
+  USER ||--o{ BOOKLIST    : create
+  USER ||--o{ SOMEBODY    : "follow with"
+  USER ||--o{ COMMENT     : issue
+  USER ||--o{ VOTER       : is
+  USER ||--o{ REFERRAL : be
   USER {
     Int      id        PK
     DataTime createdAt
@@ -95,11 +96,23 @@ erDiagram
     Int    userId FK
     String title
     String discription
-    String state
+    String status
+    String priority
+  }
+  REFERRAL ||--o{ REFERRAL_BOOK : via
+  REFERRAL {
+    Int      id        PK
+    Int      userId    FK
+    DataTime createdAt
   }
   BOOKLIST_BOOK }o--|| BOOK : has
   BOOKLIST_BOOK {
     Int booklistId PK, FK
+    Int bookId     PK, FK
+  }
+  REFERRAL_BOOK }o--|| BOOK : has
+  REFERRAL_BOOK {
+    Int referralId PK, FK
     Int bookId     PK, FK
   }
   SOMEBODY }o--|| USER : "be followed"
