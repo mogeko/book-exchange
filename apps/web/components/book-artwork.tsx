@@ -26,7 +26,7 @@ export const BookArtwork: React.FC<
       </Link>
       <div className="space-y-1 text-sm">
         <h3 className="font-medium leading-none">{book.title}</h3>
-        <p className="text-xs text-muted-foreground truncate">
+        <p className="text-muted-foreground truncate text-xs">
           {book.authors?.map((author) => author.name).join(" / ")}
         </p>
       </div>

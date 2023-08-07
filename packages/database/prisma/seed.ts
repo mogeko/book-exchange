@@ -335,6 +335,33 @@ async function seedTags() {
 
 type Tags = Awaited<ReturnType<typeof seedTags>>;
 
+async function seedReferral(users: Users, books: Books) {
+  return users.map(async (user) => {
+    return await prisma.referral.upsert({
+      where: { id: user.id },
+      update: {
+        books: {
+          connect: arrayElements(books, 10).map((book) => {
+            return {
+              id: book.id,
+            };
+          }),
+        },
+      },
+      create: {
+        user: { connect: { id: user.id } },
+        books: {
+          connect: arrayElements(books, 10).map((book) => {
+            return {
+              id: book.id,
+            };
+          }),
+        },
+      },
+    });
+  });
+}
+
 /** Helper function to generate an array of random values */
 function randomArrayWith<T>(length: number, fn: () => T) {
   return Array.from({ length: faker.number.int(length) }).map(fn);
@@ -356,6 +383,7 @@ const arrayElements = faker.helpers.arrayElements;
     const series = await seedSeries({ publiashers: results.publishers });
     const books = await seedBooks({ ...results, series, tags });
     await seedBooklists({ users: results.users, books });
+    await seedReferral(results.users, books);
     await seedCommends(results.users, { ...results, books, series });
   } catch (err) {
     console.error(err), process.exit(1);

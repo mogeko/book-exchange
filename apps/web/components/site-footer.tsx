@@ -7,7 +7,7 @@ export const SiteFooter: React.FC = () => {
   return (
     <footer className="border-t py-6 md:py-0">
       <div className="container flex flex-col items-center justify-center gap-4 md:h-24 md:flex-row">
-        <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        <p className="text-muted-foreground text-center text-sm leading-loose md:text-left">
           Copyright © <CopyrightYear />, <AuthorInfo />.
         </p>
       </div>
@@ -30,7 +30,7 @@ const CopyrightYear: React.FC = () => {
 const AuthorInfo: React.FC = () => {
   return (
     <>
-      <span className="hidden sm:inline-block mr-2">All right reserved</span>
+      <span className="mr-2 hidden sm:inline-block">All right reserved</span>
       <Link
         className={buttonVariants({ variant: "link", size: null })}
         href={siteConfig.authorHomePage}

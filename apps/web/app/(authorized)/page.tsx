@@ -1,9 +1,9 @@
-import Link from "next/link";
+import { getReferral } from "@/actions/made-fot-you";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 import { prisma } from "@/lib/database";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { loginUser } from "@/lib/user";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
@@ -39,8 +39,12 @@ const ReadNowPage: React.FC = () => {
 };
 
 const ForYou: React.FC = async () => {
-  const popularBooks = await getPopularBooks(10);
-  const madeForYouBooks = await getRandomBooks(10); // TODO: make this actually made for you
+  const { uid } = loginUser();
+  const { books: madeForYouBooks } = await getReferral(
+    { uid, date: new Date() },
+    { take: 10 }
+  );
+  const popularBooks = await getPopularBooks();
 
   return (
     <>
@@ -57,9 +61,7 @@ const ForYou: React.FC = async () => {
         className="w-[150px]"
         width={150}
       >
-        <ViewAll
-          href={"" /*  TODO: make this link to the `./:uid/m4u` page */}
-        />
+        <ViewAll href={`/made4u`} />
       </BookScrollArea>
     </>
   );
@@ -73,7 +75,7 @@ const Following: React.FC = () => {
           <h2 className="text-2xl font-semibold tracking-tight">
             Your Following
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Your following&apos;s top picks.
           </p>
         </div>
@@ -88,9 +90,9 @@ const FollowingContent: React.FC = () => {
   return (
     <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
       <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
-        <LuFrown className="w-14 h-14" />
+        <LuFrown className="h-14 w-14" />
         <h3 className="mt-4 text-lg font-semibold">There is no content yet</h3>
-        <p className="mb-4 mt-2 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mb-4 mt-2 text-sm">
           You have not followed anyone yet. Add one below.
         </p>
         <Button size="sm" className="relative">
@@ -101,28 +103,8 @@ const FollowingContent: React.FC = () => {
   );
 };
 
-const getPopularBooks = async (limit: number, offset = 0) => {
-  return await prisma.book.findMany({
-    orderBy: {
-      owners: {
-        _count: "desc",
-      },
-    },
-    select: {
-      id: true,
-      title: true,
-      cover: true,
-      authors: {
-        select: { name: true },
-      },
-    },
-    skip: offset,
-    take: limit,
-  });
-};
-
-const getRandomBooks = async (take: number) => {
-  const booksCount = await prisma.book.count();
+const getPopularBooks = async (options?: { skip: number; take: number }) => {
+  "use server";
 
   return await prisma.book.findMany({
     orderBy: {
@@ -138,8 +120,8 @@ const getRandomBooks = async (take: number) => {
         select: { name: true },
       },
     },
-    skip: Math.floor(Math.random() * booksCount),
-    take: take,
+    take: options?.take ?? 10,
+    skip: options?.skip ?? 0,
   });
 };
 

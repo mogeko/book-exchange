@@ -4,7 +4,7 @@ import { UserSignupForm } from "@/app/login/_components/user-signup-form";
 
 const LoginPage: React.FC = () => {
   return (
-    <div className="container flex flex-col items-center justify-center flex-1">
+    <div className="container flex flex-1 flex-col items-center justify-center">
       <div className="">
         <Tabs defaultValue="signin" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
@@ -19,8 +19,8 @@ const LoginPage: React.FC = () => {
           </TabsContent>
           <TabsContent value="signup">
             <UserSignupForm
-              title="Create a new account"
-              description="Enter your email address and password to create a new account."
+              title="Create an account"
+              description="Enter your email below to create your account."
             />
           </TabsContent>
         </Tabs>

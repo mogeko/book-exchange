@@ -1,0 +1,39 @@
+{
+  "name": "made-for-you",
+  "version": "0.0.0",
+  "description": "It is a cron job to update the `/made4u` page every week",
+  "private": true,
+  "author": {
+    "name": "Zheng Junyi",
+    "email": "zhengjunyi@live.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogeko/bookworm.git",
+    "directory": "packages/made4u"
+  },
+  "homepage": "https://github.com/mogeko/bookworm/tree/master/packages/made4u#readme",
+  "bugs": {
+    "url": "https://github.com/mogeko/bookworm/issues",
+    "email": "zhengjunyi@live.com"
+  },
+  "license": "MIT",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "update": "vite-node index.ts",
+    "made4u": "pnpm run update",
+    "lint": "prettier --check . --loglevel error",
+    "fmt": "prettier --write . --loglevel error",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "cron"
+  ],
+  "dependencies": {
+    "@mogeko/bookworm-db": "workspace:^"
+  },
+  "devDependencies": {
+    "vite-node": "^0.33.0"
+  }
+}

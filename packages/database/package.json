@@ -33,8 +33,8 @@
     "db:reset": "prisma migrate reset --force",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "lint": "prettier --check .",
-    "fmt": "prettier --write .",
+    "lint": "prettier --check . --loglevel error",
+    "fmt": "prettier --write . --loglevel error",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

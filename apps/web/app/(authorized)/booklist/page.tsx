@@ -1,11 +1,10 @@
 import { prisma } from "@/lib/database";
-import { columns } from "@/app/dashboard/[uid]/booklists/_components/columns";
-import { DataTable } from "@/app/dashboard/[uid]/booklists/_components/data-table";
+import { loginUser } from "@/lib/user";
+import { columns } from "@/app/(authorized)/booklist/_components/columns";
+import { DataTable } from "@/app/(authorized)/booklist/_components/data-table";
 
-const BooklistsPage: React.FC<{
-  params: { uid: string };
-}> = async ({ params: { uid } }) => {
-  const booklists = await getBooklists(parseInt(uid));
+const BooklistsPage: React.FC = async () => {
+  const booklists = await getBooklists();
 
   return (
     <div className="flex h-full flex-1 flex-col space-y-8 p-8">
@@ -22,9 +21,9 @@ const BooklistsPage: React.FC<{
   );
 };
 
-async function getBooklists(uid: number) {
+async function getBooklists(uid?: number) {
   return await prisma.booklist.findMany({
-    where: { userId: uid },
+    where: { userId: uid ?? loginUser().uid },
     select: { id: true, title: true, status: true, priority: true },
   });
 }

@@ -1,36 +1,19 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { sign, verify } from "@/lib/jsonwebtoken";
+import { verify } from "@/lib/jsonwebtoken";
 
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
-
-  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (!request.nextUrl.pathname.startsWith("/login")) {
     const token = request.cookies.get("token")?.value;
     const uid = request.cookies.get("uid")?.value;
 
-    // Redirect to `/dashboard/:uid` if the URL is `/dashboard`
-    if (uid && request.nextUrl.pathname === "/dashboard") {
-      return NextResponse.redirect(new URL(`/dashboard/${uid}`, request.url));
-    }
-
-    // Verify if the token and uid are valid
     try {
-      if (token && uid && (await verify(token)).uid === uid) {
-        const jwt = await sign({ uid }, { expiresIn: "7d" });
-        const response = NextResponse.next();
-        response.cookies.set("token", jwt, {
-          expires: new Date(Date.now() + 604800000), // 7 days
-          path: "/",
-        });
-        response.cookies.set("uid", uid, {
-          expires: new Date(Date.now() + 604800000), // 7 days
-          path: "/",
-        });
-
-        return response;
+      if (token && uid) {
+        if ((await verify(token)).uid === uid) {
+          return NextResponse.next();
+        } else {
+          throw new Error("Token and uid mismatch");
+        }
       } else {
         throw new Error("Token or uid not found");
       }

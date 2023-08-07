@@ -18,8 +18,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { priorities } from "@/app/dashboard/[uid]/booklists/_lib/priorities";
-import type { Booklist } from "@/app/dashboard/[uid]/booklists/page";
+import { priorities } from "@/app/(authorized)/booklist/_lib/priorities";
+import type { Booklist } from "@/app/(authorized)/booklist/page";
 
 export function DataTableRowActions<TData>({ row }: { row: Row<TData> }) {
   const booklist = row.original as Booklist;
@@ -40,7 +40,7 @@ export function DataTableRowActions<TData>({ row }: { row: Row<TData> }) {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+          className="data-[state=open]:bg-muted flex h-8 w-8 p-0"
         >
           <RxDotsHorizontal className="h-4 w-4" />
           <span className="sr-only">Open menu</span>

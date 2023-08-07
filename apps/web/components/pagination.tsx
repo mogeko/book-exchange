@@ -28,7 +28,7 @@ export const Pagination: React.FC<{
         <Button
           className={cn(
             currentPage === page ? "pointer-events-none" : "",
-            "rounded-full h-8 w-8"
+            "h-8 w-8 rounded-full"
           )}
           variant={currentPage === page ? "default" : "ghost"}
           key={`pagination-${page}`}
@@ -65,9 +65,9 @@ export const Pagination: React.FC<{
   }, [currentPage, totalPages, createPagination]);
 
   return (
-    <nav className="flex flex-row justify-center flex-wrap items-center md:gap-1">
+    <nav className="flex flex-row flex-wrap items-center justify-center md:gap-1">
       <Button
-        className="rounded-full h-8 w-8"
+        className="h-8 w-8 rounded-full"
         variant="ghost"
         disabled={currentPage === 1}
         size={null}
@@ -81,7 +81,7 @@ export const Pagination: React.FC<{
       </Button>
       {pagination}
       <Button
-        className="rounded-full h-8 w-8"
+        className="h-8 w-8 rounded-full"
         variant="ghost"
         disabled={currentPage === totalPages}
         size={null}

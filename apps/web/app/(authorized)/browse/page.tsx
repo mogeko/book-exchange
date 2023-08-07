@@ -56,7 +56,9 @@ const BrowsePage: React.FC = async () => {
   );
 };
 
-async function getBooksByTag(tag: string, opts?: Opts) {
+async function getBooksByTag(tag: string, options?: Options) {
+  "use server";
+
   return await prisma.book.findMany({
     where: { tags: { some: { name: tag } } },
     orderBy: {
@@ -70,11 +72,11 @@ async function getBooksByTag(tag: string, opts?: Opts) {
         select: { name: true },
       },
     },
-    skip: opts?.skip ?? 0,
-    take: opts?.take ?? 10,
+    skip: options?.skip ?? 0,
+    take: options?.take ?? 10,
   });
 }
 
-type Opts = { skip?: number; take?: number };
+type Options = { skip?: number; take?: number };
 
 export default BrowsePage;

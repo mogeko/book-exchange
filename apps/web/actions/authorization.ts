@@ -22,19 +22,14 @@ export async function login({ email, password }: LoginPayload, from?: string) {
   }
 
   const uid = auth.user.id.toString();
-  const jwt = await sign({ uid }, { expiresIn: "7d" });
+  const jwt = await sign({ uid }, { expiresIn: "30d" });
   const cookieStore = cookies();
 
-  cookieStore.set("token", jwt, {
-    expires: new Date(Date.now() + 604800000), // 7 days
-    path: "/",
-  });
-  cookieStore.set("uid", auth.user.id.toString(), {
-    expires: new Date(Date.now() + 604800000), // 7 days
-    path: "/",
-  });
+  // Expiration time: 30 days
+  cookieStore.set("token", jwt, { maxAge: 2592000, path: "/" });
+  cookieStore.set("uid", uid, { maxAge: 2592000, path: "/" });
 
-  redirect(from ?? `/dashboard/${uid}`);
+  redirect(from ?? "/");
 }
 
 export async function register(
@@ -59,7 +54,7 @@ export async function register(
     return await login({ email: user.email, password: password }, from);
   } catch (error: any) {
     if (error.message === "NEXT_REDIRECT") {
-      redirect(from ?? "/dashboard");
+      redirect(from ?? "/");
     } else {
       return { error: error.message as string };
     }
