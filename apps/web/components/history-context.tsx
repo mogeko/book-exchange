@@ -11,12 +11,11 @@ const HistoryContext = createContext<{
 
 export const HistoryProvider: React.FC<
   {
-    user: { id: number } | null;
     intialValue?: any[];
   } & Omit<React.ProviderProps<typeof HistoryContext>, "value">
-> = ({ user, intialValue = [], ...props }) => {
-  const [history, setHistory] = useHistoryPrimitive(user?.id ?? 0, intialValue);
-  return <HistoryContext.Provider value={{ history, setHistory }} {...props} />;
+> = ({ intialValue = [], ...props }) => {
+  const historyPayload = useHistoryPrimitive(intialValue);
+  return <HistoryContext.Provider value={historyPayload} {...props} />;
 };
 
 export function useHistory<T, Fn extends Callback<T> = Callback<T>>() {

@@ -1,3 +1,4 @@
+import { loginedUserStatus } from "@/actions/user-status";
 import {
   LuBookOpen,
   LuLayoutGrid,
@@ -8,12 +9,11 @@ import {
 } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
-import { loginUser } from "@/lib/user";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MenuButton } from "@/app/(authorized)/@aside/_components/menu-button";
 
 const AsideMenu: React.FC = async () => {
-  const { uid } = loginUser();
+  const { uid } = await loginedUserStatus();
   const booklists = await prisma.booklist.findMany({
     where: { userId: uid },
   });

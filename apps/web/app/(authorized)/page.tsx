@@ -1,14 +1,14 @@
 import { getReferral } from "@/actions/made-fot-you";
+import { loginedUserStatus } from "@/actions/user-status";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
-import { loginUser } from "@/lib/user";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
 
-const ReadNowPage: React.FC = () => {
+const ReadNowPage: React.FC = async () => {
   return (
     <Tabs defaultValue="for-you" className="h-full space-y-6">
       <div className="space-between flex items-center">
@@ -39,7 +39,7 @@ const ReadNowPage: React.FC = () => {
 };
 
 const ForYou: React.FC = async () => {
-  const { uid } = loginUser();
+  const { uid } = await loginedUserStatus();
   const { books: madeForYouBooks } = await getReferral(
     { uid, date: new Date() },
     { take: 10 }

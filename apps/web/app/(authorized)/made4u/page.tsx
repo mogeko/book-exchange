@@ -1,12 +1,12 @@
 import { getReferral } from "@/actions/made-fot-you";
+import { loginedUserStatus } from "@/actions/user-status";
 
-import { loginUser } from "@/lib/user";
 import { BooksProvider } from "@/app/(authorized)/made4u/_components/books-context";
 import { BooksShowcase } from "@/app/(authorized)/made4u/_components/books-showcase";
 import { DatePicker } from "@/app/(authorized)/made4u/_components/date-picker";
 
 const MadeForYouPage: React.FC = async () => {
-  const { uid } = loginUser();
+  const { uid } = await loginedUserStatus();
   const { books, user } = await getReferral({ uid, date: new Date() });
   const disabledDate = { before: user.createdAt, after: new Date() };
 

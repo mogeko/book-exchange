@@ -45,7 +45,7 @@ export const UserSignupForm: React.FC<
     description: string;
   } & React.ComponentPropsWithoutRef<typeof Card>
 > = ({ title, description, ...props }) => {
-  const [_isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const searchParams = useSearchParams();
   const form = useForm<zInfer<typeof formSchema>>({

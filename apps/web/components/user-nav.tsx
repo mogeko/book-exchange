@@ -1,11 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useTransition } from "react";
+import Link from "next/link";
 import { logout } from "@/actions/authorization";
+import { FaUserCircle } from "react-icons/fa";
 
 import type { User } from "@/lib/database";
+import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,7 +49,20 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
     return () => window.removeEventListener("keydown", down);
   }, [handleLogout]);
 
-  if (!user) return <div />;
+  if (!user) {
+    return (
+      <Link
+        className={cn(
+          buttonVariants({ variant: "ghost" }),
+          "relative h-9 w-9 rounded-full"
+        )}
+        href="/login"
+      >
+        <FaUserCircle className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full" />
+      </Link>
+    );
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
