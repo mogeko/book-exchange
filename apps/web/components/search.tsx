@@ -132,3 +132,5 @@ export const Search: React.FC<
     </>
   );
 };
+
+export { Search as SearchInHeader };

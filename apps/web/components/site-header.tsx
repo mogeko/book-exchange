@@ -4,7 +4,7 @@ import { prisma, User } from "@/lib/database";
 import { HistoryProvider } from "@/components/history-context";
 import { MainNav } from "@/components/main-nav";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Search } from "@/components/search";
+import { SearchInHeader } from "@/components/search";
 import { UserNav } from "@/components/user-nav";
 
 export const SiteHeader: React.FC = async () => {
@@ -18,9 +18,9 @@ export const SiteHeader: React.FC = async () => {
       <div className="container flex h-14 items-center">
         <MainNav />
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
-          <HistoryProvider user={user}>
+          <HistoryProvider>
             <div className="w-full flex-1 md:max-w-[250px] md:flex-none">
-              {user && <Search />}
+              <SearchInHeader />
             </div>
             <nav className="flex items-center space-x-1">
               <ModeToggle />
