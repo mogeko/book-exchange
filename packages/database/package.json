@@ -45,7 +45,7 @@
     "@faker-js/faker": "^8.0.2",
     "@types/node": "20.4.5",
     "typescript": "^5.1.6",
-    "vite-node": "^0.33.0"
+    "vite-node": "^0.34.1"
   },
   "prisma": {
     "seed": "vite-node prisma/seed.ts"
