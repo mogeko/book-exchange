@@ -1,5 +1,6 @@
+import { loginedUserStatus } from "@/actions/user-status";
+
 import { prisma } from "@/lib/database";
-import { loginUser } from "@/lib/user";
 import { columns } from "@/app/(authorized)/booklist/_components/columns";
 import { DataTable } from "@/app/(authorized)/booklist/_components/data-table";
 
@@ -22,8 +23,9 @@ const BooklistsPage: React.FC = async () => {
 };
 
 async function getBooklists(uid?: number) {
+  const { uid: logined } = await loginedUserStatus();
   return await prisma.booklist.findMany({
-    where: { userId: uid ?? loginUser().uid },
+    where: { userId: uid ?? logined },
     select: { id: true, title: true, status: true, priority: true },
   });
 }
