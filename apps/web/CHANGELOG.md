@@ -1,5 +1,18 @@
 # @mogeko/bookworm-web
 
+## 0.7.1
+
+### Patch Changes
+
+- [#108](https://github.com/mogeko/bookworm/pull/108) [`fb28064`](https://github.com/mogeko/bookworm/commit/fb2806487bff92478b663f9b4bcca6039afbc995) Thanks [@mogeko](https://github.com/mogeko)! - Clear the search history after the user logout.
+
+- [#108](https://github.com/mogeko/bookworm/pull/108) [`f8b0e9d`](https://github.com/mogeko/bookworm/commit/f8b0e9dcf0217aaf6ceb034d195028654818c1da) Thanks [@mogeko](https://github.com/mogeko)! - Add a date limit for valid daily recommendations (`/made4u`).
+
+  - From: the day the user registers
+  - To: Today
+
+- [#108](https://github.com/mogeko/bookworm/pull/108) [`5b691d1`](https://github.com/mogeko/bookworm/commit/5b691d1ee564bd30e7b5efe51522d4a25728375e) Thanks [@mogeko](https://github.com/mogeko)! - Distinguish users when saving search history.
+
 ## 0.7.0
 
 ### Minor Changes
