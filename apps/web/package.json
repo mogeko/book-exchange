@@ -33,7 +33,7 @@
     "fmt": "next lint --fix"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.1.1",
+    "@hookform/resolvers": "^3.2.0",
     "@mogeko/bookworm-db": "workspace:^",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.4",
