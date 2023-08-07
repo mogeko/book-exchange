@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.10.2
+
+### Patch Changes
+
+- [#106](https://github.com/mogeko/bookworm/pull/106) [`f69ce84`](https://github.com/mogeko/bookworm/commit/f69ce844df385a5019e2d91bb94963bdcd9f617d) Thanks [@mogeko](https://github.com/mogeko)! - create `Referral` to record weekly referrals.
+
 ## 0.10.1
 
 ### Patch Changes

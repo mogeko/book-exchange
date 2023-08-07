@@ -1,5 +1,24 @@
 # @mogeko/bookworm-web
 
+## 0.7.0
+
+### Minor Changes
+
+- [#106](https://github.com/mogeko/bookworm/pull/106) [`3a32458`](https://github.com/mogeko/bookworm/commit/3a32458819c7878f2b1faf2d905506b2be11ad44) Thanks [@mogeko](https://github.com/mogeko)! - Create a Server Action to provide data for the "Made for you" function.
+
+### Patch Changes
+
+- [#106](https://github.com/mogeko/bookworm/pull/106) [`841838f`](https://github.com/mogeko/bookworm/commit/841838f6f5b6e2783c1e70faa9292a2c847cba14) Thanks [@mogeko](https://github.com/mogeko)! - Bump version of [`Next.js`](https://www.npmjs.com/package/next) from `13.4.12` to `13.4.13`.
+
+  Fix issue[#90](https://github.com/mogeko/bookworm/issues/90).
+
+- [#106](https://github.com/mogeko/bookworm/pull/106) [`9efb6ae`](https://github.com/mogeko/bookworm/commit/9efb6ae87a068ca494c50a43efb6c988b043ceb9) Thanks [@mogeko](https://github.com/mogeko)! - Remove the extra `isLoading`.
+
+  > Because `keepPreviousData` + `fallbackData` is set, `data` can never be `undefined`.
+
+- Updated dependencies [[`f69ce84`](https://github.com/mogeko/bookworm/commit/f69ce844df385a5019e2d91bb94963bdcd9f617d)]:
+  - @mogeko/bookworm-db@0.10.2
+
 ## 0.6.2
 
 ### Patch Changes
