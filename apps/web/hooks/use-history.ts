@@ -1,22 +1,25 @@
 "use client";
 
-import { useMemo, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useMemo } from "react";
 
 import { useLocalStorage } from "@/hooks/use-localstorage";
 
 export function useHistory<T>(uid: number, initialValue = [] as T[]) {
-  const [sKey, init] = [`${uid}-s-history`, JSON.stringify(initialValue)];
+  const [sKey, init] = [`${uid}-search-history`, JSON.stringify(initialValue)];
   const [storage, setStorage] = useLocalStorage(sKey, init);
 
-  const searchHistory = useMemo(() => JSON.parse(storage), [storage]) as T[];
+  const history = useMemo(() => JSON.parse(storage), [storage]) as T[];
 
-  const setSearchHistory: Dispatch<SetStateAction<T[]>> = (history) => {
-    if (typeof history === "function") {
-      setStorage(JSON.stringify(history(searchHistory)));
-    } else {
-      setStorage(JSON.stringify(history));
-    }
-  };
+  const setHistory: React.Dispatch<React.SetStateAction<T[]>> = useCallback(
+    (newHistory) => {
+      if (typeof newHistory === "function") {
+        setStorage(JSON.stringify(newHistory(history)));
+      } else {
+        setStorage(JSON.stringify(newHistory));
+      }
+    },
+    [history, setStorage]
+  );
 
-  return [searchHistory, setSearchHistory] as const;
+  return [history, setHistory] as const;
 }

@@ -4,7 +4,6 @@ import { useCallback, useEffect, useTransition } from "react";
 import { logout } from "@/actions/authorization";
 
 import type { User } from "@/lib/database";
-import { useHistory } from "@/hooks/use-history";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,12 +16,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useHistory } from "@/components/history-context";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   const [_, startTransition] = useTransition();
+  const { setHistory } = useHistory();
   const handleLogout = useCallback(() => {
-    startTransition(() => logout());
-  }, [startTransition]);
+    setHistory([]), startTransition(() => logout());
+  }, [setHistory, startTransition]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {

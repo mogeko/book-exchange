@@ -7,7 +7,6 @@ import { LuBook, LuSearch, LuTrash2 } from "react-icons/lu";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
-import { useHistory } from "@/hooks/use-history";
 import { useSearch, type Book } from "@/hooks/use-search";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,21 +19,14 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-
-export const SearchInHeader: React.FC<
-  {
-    user: { id: number } | null;
-  } & Omit<React.ComponentPropsWithoutRef<typeof Search>, "uid">
-> = ({ user, ...props }) => {
-  return <>{user && <Search uid={user.id} {...props} />}</>;
-};
+import { useHistory } from "@/components/history-context";
 
 export const Search: React.FC<
-  { uid: number } & React.ButtonHTMLAttributes<HTMLButtonElement>
-> = ({ className, uid, ...props }) => {
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ className, ...props }) => {
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState(false);
-  const [history, setHistory] = useHistory<Book>(uid);
+  const { history, setHistory } = useHistory<Book>();
   const { data } = useSearch(searchValue, history);
   const { setTheme } = useTheme();
   const router = useRouter();
