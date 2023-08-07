@@ -1,5 +1,19 @@
 # @mogeko/bookworm-web
 
+## 0.7.2
+
+### Patch Changes
+
+- [#110](https://github.com/mogeko/bookworm/pull/110) [`611ddc2`](https://github.com/mogeko/bookworm/commit/611ddc2a238b347c18896e1dcc7c874b214166fe) Thanks [@mogeko](https://github.com/mogeko)! - Search is allowed to be used, even if the user is not logged in.
+
+  The search history from the unauthenticated user will be keep after the user login.
+
+- [#110](https://github.com/mogeko/bookworm/pull/110) [`42ec769`](https://github.com/mogeko/bookworm/commit/42ec769a4fc3fc9715732ff0006691ddb1cc4836) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the style of UserNav when not logged in.
+
+- [#110](https://github.com/mogeko/bookworm/pull/110) [`000645d`](https://github.com/mogeko/bookworm/commit/000645d2dbacb1b906303bfddf3951a12d538177) Thanks [@mogeko](https://github.com/mogeko)! - Upgrade `@/lib/user.ts` to a Server Action.
+
+  So that it can be used in both Server Components and Client Components.
+
 ## 0.7.1
 
 ### Patch Changes
