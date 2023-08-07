@@ -15,7 +15,10 @@ import {
 } from "@/components/ui/popover";
 import { useBooksContext } from "@/app/(authorized)/made4u/_components/books-context";
 
-export const DatePicker: React.FC<{ uid: number }> = ({ uid }) => {
+export const DatePicker: React.FC<{
+  disabled?: { before: Date; after: Date };
+  uid: number;
+}> = ({ uid, disabled }) => {
   const [date, setDate] = useState<Date>(new Date());
   const { setbooks } = useBooksContext();
   const [_, startTransition] = useTransition();
@@ -55,6 +58,7 @@ export const DatePicker: React.FC<{ uid: number }> = ({ uid }) => {
           mode="single"
           onSelect={handleDateChange}
           selected={date}
+          disabled={disabled}
           initialFocus
         />
       </PopoverContent>
