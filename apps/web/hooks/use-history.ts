@@ -4,8 +4,9 @@ import { useMemo, type Dispatch, type SetStateAction } from "react";
 
 import { useLocalStorage } from "@/hooks/use-localstorage";
 
-export function useHistory<T>(sKey: string, init = [] as T[]) {
-  const [storage, setStorage] = useLocalStorage(sKey, JSON.stringify(init));
+export function useHistory<T>(uid: number, initialValue = [] as T[]) {
+  const [sKey, init] = [`${uid}-s-history`, JSON.stringify(initialValue)];
+  const [storage, setStorage] = useLocalStorage(sKey, init);
 
   const searchHistory = useMemo(() => JSON.parse(storage), [storage]) as T[];
 

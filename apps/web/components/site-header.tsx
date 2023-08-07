@@ -18,7 +18,7 @@ export const SiteHeader: React.FC = async () => {
         <MainNav />
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
           <div className="w-full flex-1 md:max-w-[250px] md:flex-none">
-            <SearchInHeader />
+            <SearchInHeader user={user} />
           </div>
           <nav className="flex items-center space-x-1">
             <ModeToggle />

@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useTransition } from "react";
-import { usePathname } from "next/navigation";
 import { logout } from "@/actions/authorization";
 
 import type { User } from "@/lib/database";
+import { useHistory } from "@/hooks/use-history";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,11 +19,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
-  const [_isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const handleLogout = useCallback(() => {
     startTransition(() => logout());
   }, [startTransition]);
-  const pathname = usePathname();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -46,7 +45,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
     return () => window.removeEventListener("keydown", down);
   }, [handleLogout]);
 
-  if (!user || pathname === "/login") return <div />;
+  if (!user) return <div />;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

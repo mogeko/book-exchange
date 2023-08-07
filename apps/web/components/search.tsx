@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { LuBook, LuSearch, LuTrash2 } from "react-icons/lu";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
@@ -22,20 +22,19 @@ import {
 } from "@/components/ui/command";
 
 export const SearchInHeader: React.FC<
-  React.ComponentPropsWithoutRef<typeof Search>
-> = (props) => {
-  const pathname = usePathname();
-
-  if (pathname === "/login") return <div />;
-  return <Search {...props} />;
+  {
+    user: { id: number } | null;
+  } & Omit<React.ComponentPropsWithoutRef<typeof Search>, "uid">
+> = ({ user, ...props }) => {
+  return <>{user && <Search uid={user.id} {...props} />}</>;
 };
 
 export const Search: React.FC<
-  Omit<React.ComponentPropsWithoutRef<typeof Button>, "variant">
-> = ({ className, ...props }) => {
+  { uid: number } & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ className, uid, ...props }) => {
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState(false);
-  const [history, setHistory] = useHistory<Book>("search-history");
+  const [history, setHistory] = useHistory<Book>(uid);
   const { data } = useSearch(searchValue, history);
   const { setTheme } = useTheme();
   const router = useRouter();
@@ -47,7 +46,6 @@ export const Search: React.FC<
         if (!history.find((book) => book.id === id)) {
           history.push({ id, title });
         }
-
         return history;
       }); // update history
       router.push(`/book/${id}`); // direct to book page
