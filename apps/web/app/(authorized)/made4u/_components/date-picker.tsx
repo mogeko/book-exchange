@@ -36,7 +36,7 @@ export const DatePicker: React.FC<{ uid: number }> = ({ uid }) => {
         }
       });
     },
-    [setbooks, startTransition, uid, toast]
+    [uid, toast, setbooks]
   );
 
   return (

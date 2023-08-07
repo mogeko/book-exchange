@@ -19,10 +19,13 @@ export async function getReferral({ uid, date }: Payload, options?: Options) {
         take: options?.take ?? 20,
         skip: options?.skip ?? 0,
       },
+      user: {
+        select: { createdAt: true },
+      },
     },
   });
 
-  return referral ?? { books: [] };
+  return referral ?? { books: [], user: { createdAt: new Date() } };
 }
 
 export type Payload = { uid: number; date: Date };
