@@ -22,17 +22,12 @@ export async function login({ email, password }: LoginPayload, from?: string) {
   }
 
   const uid = auth.user.id.toString();
-  const jwt = await sign({ uid }, { expiresIn: "7d" });
+  const jwt = await sign({ uid }, { expiresIn: "30d" });
   const cookieStore = cookies();
 
-  cookieStore.set("token", jwt, {
-    expires: new Date(Date.now() + 604800000), // 7 days
-    path: "/",
-  });
-  cookieStore.set("uid", auth.user.id.toString(), {
-    expires: new Date(Date.now() + 604800000), // 7 days
-    path: "/",
-  });
+  // Expiration time: 30 days
+  cookieStore.set("token", jwt, { maxAge: 2592000, path: "/" });
+  cookieStore.set("uid", uid, { maxAge: 2592000, path: "/" });
 
   redirect(from ?? "/");
 }
