@@ -49,7 +49,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
 
     window.addEventListener("keydown", down);
     return () => window.removeEventListener("keydown", down);
-  }, [handleLogout]);
+  }, [handleLogout, goToPage]);
 
   if (!user) {
     return (

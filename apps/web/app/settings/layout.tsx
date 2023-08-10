@@ -13,6 +13,7 @@ const SettingsLayout: React.FC<{
   const { uid } = await loginedUserStatus();
   const user = await prisma.user.findUnique({
     where: { id: uid },
+    select: { id: true, name: true, avatar: true },
   });
 
   if (!user) redirect("/login");
