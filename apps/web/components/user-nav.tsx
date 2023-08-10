@@ -1,14 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useTransition } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { logout } from "@/actions/authorization";
 import { FaUserCircle } from "react-icons/fa";
 
 import type { User } from "@/lib/database";
-import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,17 +22,20 @@ import { useHistory } from "@/components/history-context";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   const [_, startTransition] = useTransition();
+  const router = useRouter();
   const { setHistory } = useHistory();
+
   const handleLogout = useCallback(() => {
     setHistory([]), startTransition(() => logout());
   }, [setHistory, startTransition]);
+  const goToPage = useCallback((href: string) => router.push(href), [router]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "P" && e.metaKey && e.shiftKey) {
-        // TODO: Open Profile page
+        e.preventDefault(), goToPage("/settings");
       } else if (e.key === "B" && e.metaKey) {
-        // TODO: Open Book list page
+        e.preventDefault(), goToPage("/booklist");
       } else if (e.key === "W" && e.metaKey && e.shiftKey) {
         // TODO: Open Wishlist page
       } else if (e.key === "C" && e.metaKey && e.shiftKey) {
@@ -51,15 +53,13 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
 
   if (!user) {
     return (
-      <Link
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "relative h-9 w-9 rounded-full"
-        )}
-        href="/login"
+      <Button
+        variant="ghost"
+        className="relative h-9 w-9 rounded-full"
+        onClick={() => goToPage("/login")}
       >
         <FaUserCircle className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full" />
-      </Link>
+      </Button>
     );
   }
 
@@ -85,13 +85,13 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => goToPage("/settings")}>
           Your Profile
           <DropdownMenuShortcut>&#x21E7;&#x2318;P</DropdownMenuShortcut>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => goToPage("/booklist")}>
             Your Book lists
             <DropdownMenuShortcut>&#x2318;B</DropdownMenuShortcut>
           </DropdownMenuItem>
