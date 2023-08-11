@@ -68,7 +68,7 @@ export const ProfileForm: React.FC<{
         }
       });
     },
-    [startTransition]
+    [startTransition, toast, uid]
   );
 
   return (

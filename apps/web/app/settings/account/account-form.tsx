@@ -61,7 +61,7 @@ export const AccountForm: React.FC<{
         }
       });
     },
-    [startTransition]
+    [startTransition, toast, uid]
   );
 
   return (
