@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.11.0
+
+### Minor Changes
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`41b2acd`](https://github.com/mogeko/bookworm/commit/41b2acd7a852406181e8e972312ac0a43750f0dc) Thanks [@mogeko](https://github.com/mogeko)! - Optionally record `Profile` for each `User`.
+
 ## 0.10.2
 
 ### Patch Changes

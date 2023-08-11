@@ -1,6 +1,6 @@
 {
   "name": "made-for-you",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "It is a cron job to update the `/made4u` page every week",
   "private": true,
   "author": {
