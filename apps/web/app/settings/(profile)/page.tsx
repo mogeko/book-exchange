@@ -14,6 +14,7 @@ const ProfileSettingsPage: React.FC = async () => {
       },
       email: true,
       name: true,
+      id: true,
     },
   });
 
@@ -27,6 +28,7 @@ const ProfileSettingsPage: React.FC = async () => {
       </div>
       <Separator />
       <ProfileForm
+        uid={user?.id ?? uid}
         initialValues={{
           bio: user?.profile?.bio ?? void 0,
           location: user?.profile?.location ?? void 0,

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
 
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { update } from "@/app/settings/(profile)/profile-action";
 
 const schema = object({
   name: string()
@@ -30,7 +32,7 @@ const schema = object({
   email: string({
     required_error: "Please select an email to display.",
   }).email(),
-  bio: string().max(160).min(4),
+  bio: string().max(160).min(4).optional(),
   location: string()
     .max(30, {
       message: "Location must not be longer than 30 characters.",
@@ -40,8 +42,10 @@ const schema = object({
 
 export const ProfileForm: React.FC<{
   initialValues?: Partial<ProfileFormValues>;
-}> = ({ initialValues }) => {
+  uid: number;
+}> = ({ uid, initialValues }) => {
   const [_, startTransition] = useTransition();
+  const { toast } = useToast();
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(schema),
     defaultValues: initialValues,
@@ -51,7 +55,17 @@ export const ProfileForm: React.FC<{
   const onSubmit = useCallback(
     (data: ProfileFormValues) => {
       startTransition(async () => {
-        console.log(data); // TODO: Submit data
+        const { error } = await update(uid, data);
+
+        if (!error) {
+          toast({ description: "✅ Your profile has been updated" });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
       });
     },
     [startTransition]
