@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+import { useCallback, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { login } from "@/actions/authorization";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,18 +50,21 @@ export const UserLoginForm: React.FC<
     defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = async (values: zInfer<typeof formSchema>) => {
-    startTransition(async () => {
-      const redirect = searchParams.get("from") ?? void 0;
-      const { error } = await login(values, redirect);
+  const onSubmit = useCallback(
+    (values: zInfer<typeof formSchema>) => {
+      startTransition(async () => {
+        const redirect = searchParams.get("from") ?? void 0;
+        const { error } = await login(values, redirect);
 
-      toast({
-        variant: "destructive",
-        title: "Oooooops! Something went wrong.",
-        description: error,
+        toast({
+          variant: "destructive",
+          title: "Oooooops! Something went wrong.",
+          description: error,
+        });
       });
-    });
-  };
+    },
+    [searchParams, startTransition, toast]
+  );
 
   return (
     <Card {...props}>

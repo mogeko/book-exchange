@@ -40,6 +40,14 @@ async function seedUsers() {
               password: createHash("sha512").update("pa$$w0rd").digest("hex"),
             },
           },
+          profile: {
+            create: {
+              bio: faker.person.bio(),
+              location: faker.location.city(),
+              birthday: faker.date.past(),
+              urls: randomArrayWith(3, () => faker.internet.url()),
+            },
+          },
         },
       });
     })
