@@ -8,6 +8,7 @@ import { RxCalendar } from "react-icons/rx";
 import { date, object, type infer as zInfer } from "zod";
 
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -24,6 +25,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { update } from "@/app/settings/account/account-action";
 
 const schema = object({
   birthday: date({
@@ -33,8 +35,10 @@ const schema = object({
 
 export const AccountForm: React.FC<{
   initialValues?: Partial<AccountFormValues>;
-}> = ({ initialValues }) => {
+  uid: number;
+}> = ({ uid, initialValues }) => {
   const [_, startTransition] = useTransition();
+  const { toast } = useToast();
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(schema),
     defaultValues: initialValues,
@@ -44,7 +48,17 @@ export const AccountForm: React.FC<{
   const onSubmit = useCallback(
     (data: AccountFormValues) => {
       startTransition(async () => {
-        console.log(data); // TODO: Submit data
+        const { error } = await update(uid, data);
+
+        if (!error) {
+          toast({ description: "✅ Your account has been updated" });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
       });
     },
     [startTransition]
