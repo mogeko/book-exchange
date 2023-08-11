@@ -29,6 +29,7 @@ model User {
   avatar    String
 
   authentication Auth?
+  profile        Profile?
   followedBy     User[]     @relation("UserFollows")
   following      User[]     @relation("UserFollows")
   ownedBooks     Book[]
@@ -37,6 +38,17 @@ model User {
   referrals      Referral[]
   booklists      Booklist[]
   voteTo         Voter[]
+}
+
+model Profile {
+  id       Int       @id @default(autoincrement())
+  birthday DateTime?
+  bio      String?
+  urls     String[]
+  location String?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
 }
 
 model Booklist {

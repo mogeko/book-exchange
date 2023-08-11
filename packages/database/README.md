@@ -71,12 +71,13 @@ erDiagram
     String userEmail FK, UK
     String password
   }
+  USER ||--o| PROFILE     : has
   USER ||--o{ OWNER       : is
   USER ||--o{ BOOKLIST    : create
   USER ||--o{ SOMEBODY    : "follow with"
   USER ||--o{ COMMENT     : issue
   USER ||--o{ VOTER       : is
-  USER ||--o{ REFERRAL : be
+  USER ||--o{ REFERRAL    : be
   USER {
     Int      id        PK
     DataTime createdAt
@@ -84,6 +85,14 @@ erDiagram
     String   email     UK
     String   name
     String   avatar
+  }
+  PROFILE {
+    Int      id       PK
+    Int      userId   FK
+    DateTime birthday
+    String   bio
+    String   location
+    String[] urls
   }
   OWNER }o--|| BOOK : own
   OWNER {
