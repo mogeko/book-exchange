@@ -8,6 +8,13 @@ const ProfileSettingsPage: React.FC = async () => {
   const { uid } = await loginedUserStatus();
   const user = await prisma.user.findUnique({
     where: { id: uid },
+    select: {
+      profile: {
+        select: { bio: true, location: true },
+      },
+      email: true,
+      name: true,
+    },
   });
 
   return (
@@ -19,7 +26,14 @@ const ProfileSettingsPage: React.FC = async () => {
         </p>
       </div>
       <Separator />
-      <ProfileForm initialValues={user ?? {}} />
+      <ProfileForm
+        initialValues={{
+          bio: user?.profile?.bio ?? void 0,
+          location: user?.profile?.location ?? void 0,
+          name: user?.name,
+          email: user?.email,
+        }}
+      />
     </div>
   );
 };

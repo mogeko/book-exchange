@@ -33,17 +33,25 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "P" && e.metaKey && e.shiftKey) {
-        e.preventDefault(), goToPage("/settings");
-      } else if (e.key === "B" && e.metaKey) {
+        // TODO: Open Profile page
+      }
+      if (e.key === "B" && e.metaKey) {
         e.preventDefault(), goToPage("/booklist");
-      } else if (e.key === "W" && e.metaKey && e.shiftKey) {
+      }
+      if (e.key === "W" && e.metaKey && e.shiftKey) {
         // TODO: Open Wishlist page
-      } else if (e.key === "C" && e.metaKey && e.shiftKey) {
+      }
+      if (e.key === "C" && e.metaKey && e.shiftKey) {
         // TODO: Open Comment page
-      } else if (e.key === "F" && e.metaKey && e.shiftKey) {
+      }
+      if (e.key === "F" && e.metaKey && e.shiftKey) {
         // TODO: Open Follow page
-      } else if (e.key === "Q" && e.metaKey && e.shiftKey && e.ctrlKey) {
-        handleLogout();
+      }
+      if (e.key === "S" && e.metaKey && e.ctrlKey) {
+        e.preventDefault(), goToPage("/settings");
+      }
+      if (e.key === "Q" && e.metaKey && e.shiftKey && e.ctrlKey) {
+        e.preventDefault(), handleLogout();
       }
     };
 
@@ -85,7 +93,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => goToPage("/settings")}>
+        <DropdownMenuItem>
           Your Profile
           <DropdownMenuShortcut>&#x21E7;&#x2318;P</DropdownMenuShortcut>
         </DropdownMenuItem>
@@ -108,6 +116,11 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
             <DropdownMenuShortcut>&#x21E7;&#x2318;F</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => goToPage("/settings")}>
+          Settings
+          <DropdownMenuShortcut>&#x2303;&#x2318;S</DropdownMenuShortcut>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
           Logout

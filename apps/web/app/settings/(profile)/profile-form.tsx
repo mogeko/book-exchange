@@ -31,20 +31,25 @@ const schema = object({
     required_error: "Please select an email to display.",
   }).email(),
   bio: string().max(160).min(4),
+  location: string()
+    .max(30, {
+      message: "Location must not be longer than 30 characters.",
+    })
+    .optional(),
 });
 
 export const ProfileForm: React.FC<{
-  initialValues?: Partial<zInfer<typeof schema>>;
+  initialValues?: Partial<ProfileFormValues>;
 }> = ({ initialValues }) => {
   const [_, startTransition] = useTransition();
-  const form = useForm<zInfer<typeof schema>>({
+  const form = useForm<ProfileFormValues>({
     resolver: zodResolver(schema),
     defaultValues: initialValues,
     mode: "onChange",
   });
 
   const onSubmit = useCallback(
-    (data: zInfer<typeof schema>) => {
+    (data: ProfileFormValues) => {
       startTransition(async () => {
         console.log(data); // TODO: Submit data
       });
@@ -110,8 +115,23 @@ export const ProfileForm: React.FC<{
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button type="submit">Update profile</Button>
       </form>
     </Form>
   );
 };
+
+export type ProfileFormValues = zInfer<typeof schema>;
