@@ -1,5 +1,26 @@
 # @mogeko/bookworm-web
 
+## 0.8.0
+
+### Minor Changes
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`ca705cb`](https://github.com/mogeko/bookworm/commit/ca705cb723be1a978aad3e11a76788f2fbb863b8) Thanks [@mogeko](https://github.com/mogeko)! - Complete the UI part of the Account settings page.
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`b736acd`](https://github.com/mogeko/bookworm/commit/b736acd586b2d381480ae9f52a068d1c29b72c5c) Thanks [@mogeko](https://github.com/mogeko)! - Set the color theme in the setting page.
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`5456905`](https://github.com/mogeko/bookworm/commit/5456905a480b3fd72708edc148f8f5874f3e1c7e) Thanks [@mogeko](https://github.com/mogeko)! - Complete the UI part of the Profile settings page.
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`acf3681`](https://github.com/mogeko/bookworm/commit/acf3681aa23cf0be0c488bdb9566f5c38710ef71) Thanks [@mogeko](https://github.com/mogeko)! - Update Account settings by Server Action.
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`f453fa2`](https://github.com/mogeko/bookworm/commit/f453fa235396ea5c39d30d28ff3a60a75959f86e) Thanks [@mogeko](https://github.com/mogeko)! - Create a basic skeleton for the setup page.
+
+- [#112](https://github.com/mogeko/bookworm/pull/112) [`4ba00b8`](https://github.com/mogeko/bookworm/commit/4ba00b86dac9adcc9f5a803f6c06c1843f6bfac7) Thanks [@mogeko](https://github.com/mogeko)! - Update Profile settings by Server Action.
+
+### Patch Changes
+
+- Updated dependencies [[`41b2acd`](https://github.com/mogeko/bookworm/commit/41b2acd7a852406181e8e972312ac0a43750f0dc)]:
+  - @mogeko/bookworm-db@0.11.0
+
 ## 0.7.2
 
 ### Patch Changes

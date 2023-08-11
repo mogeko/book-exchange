@@ -1,5 +1,12 @@
 # made-for-you
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`41b2acd`](https://github.com/mogeko/bookworm/commit/41b2acd7a852406181e8e972312ac0a43750f0dc)]:
+  - @mogeko/bookworm-db@0.11.0
+
 ## 0.1.0
 
 ### Minor Changes
