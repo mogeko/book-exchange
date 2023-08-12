@@ -1,5 +1,13 @@
 # @mogeko/bookworm-web
 
+## 0.8.1
+
+### Patch Changes
+
+- [#114](https://github.com/mogeko/bookworm/pull/114) [`a902a08`](https://github.com/mogeko/bookworm/commit/a902a08acd93a8ab96e843e4f5a1001ddd273187) Thanks [@mogeko](https://github.com/mogeko)! - Confirm user's password when registering.
+
+- [#114](https://github.com/mogeko/bookworm/pull/114) [`e62dc7d`](https://github.com/mogeko/bookworm/commit/e62dc7d78aa9296a854cdd42974668926451f88b) Thanks [@mogeko](https://github.com/mogeko)! - Create a settings page to change the password.
+
 ## 0.8.0
 
 ### Minor Changes
