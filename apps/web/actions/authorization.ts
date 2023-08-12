@@ -1,18 +1,25 @@
 "use server";
 
 import { createHash } from "node:crypto";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/database";
 import { sign } from "@/lib/jsonwebtoken";
 
-export async function login({ email, password }: LoginPayload, to?: string) {
+export async function login(
+  { email, password }: { email: string; password: string },
+  { to, reload }: { to: string; reload?: boolean } = { to: "/" }
+) {
+  // const [{ email, password }, { to, reload }] = [payload, opts];
   const passwdHash = createHash("sha512").update(password).digest("hex");
 
   const auth = await prisma.auth.findUnique({
     where: { userEmail: email },
-    include: { user: true },
+    include: {
+      user: { select: { id: true } },
+    },
   });
 
   if (!auth) {
@@ -29,36 +36,31 @@ export async function login({ email, password }: LoginPayload, to?: string) {
   cookieStore.set("token", jwt, { maxAge: 2592000, path: "/" });
   cookieStore.set("uid", uid, { maxAge: 2592000, path: "/" });
 
-  redirect(to ?? "/");
+  reload ? revalidatePath(to ?? "/") : redirect(to ?? "/");
+
+  return { uid } as const;
 }
 
 export async function register(
-  { email, password, username }: RegisterPayload,
-  to?: string
+  payload: { username: string } & Parameters<typeof login>[0],
+  redirectTo = "/"
 ) {
+  const { email: userEmail, password, username } = payload;
   const passwdHash = createHash("sha512").update(password).digest("hex");
-  const emailHash = createHash("md5").update(email).digest("hex");
+  const emailHash = createHash("md5").update(userEmail).digest("hex");
 
-  try {
-    const user = await prisma.user.create({
-      data: {
-        name: username,
-        email,
-        avatar: `https://www.gravatar.com/avatar/${emailHash}?d=identicon`,
-        authentication: {
-          create: { password: passwdHash },
-        },
+  const { email } = await prisma.user.create({
+    data: {
+      name: username,
+      email: userEmail,
+      avatar: `https://www.gravatar.com/avatar/${emailHash}?d=identicon`,
+      authentication: {
+        create: { password: passwdHash },
       },
-    });
+    },
+  });
 
-    return await login({ email: user.email, password: password }, to);
-  } catch (error: any) {
-    if (error.message === "NEXT_REDIRECT") {
-      redirect(to ?? "/");
-    } else {
-      return { error: error.message as string };
-    }
-  }
+  return await login({ email, password }, { to: redirectTo });
 }
 
 export async function logout() {
@@ -69,7 +71,3 @@ export async function logout() {
 
   redirect("/login");
 }
-
-type LoginPayload = { email: string; password: string };
-
-type RegisterPayload = { username: string } & LoginPayload;
