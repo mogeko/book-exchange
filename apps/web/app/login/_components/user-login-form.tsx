@@ -53,7 +53,7 @@ export const UserLoginForm: React.FC<
   const onSubmit = useCallback(
     (values: zInfer<typeof formSchema>) => {
       startTransition(async () => {
-        const redirect = searchParams.get("from") ?? void 0;
+        const redirect = { to: searchParams.get("from") ?? "/" };
         const { error } = await login(values, redirect);
 
         toast({

@@ -34,9 +34,15 @@ const formSchema = object({
   password: string().min(8, {
     message: "Password must be at least 8 characters",
   }),
+  confirmPassword: string({
+    required_error: "Please confirm your password",
+  }),
   username: string().min(3, {
     message: "Name must be at least 3 characters",
   }),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
 });
 
 export const UserSignupForm: React.FC<
@@ -102,7 +108,28 @@ export const UserSignupForm: React.FC<
                 <FormItem className="space-y-1">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Put your password here"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem className="space-y-1">
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Confirm your password again"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
