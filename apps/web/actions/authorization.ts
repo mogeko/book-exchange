@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/database";
 import { sign } from "@/lib/jsonwebtoken";
 
-export async function login({ email, password }: LoginPayload, from?: string) {
+export async function login({ email, password }: LoginPayload, to?: string) {
   const passwdHash = createHash("sha512").update(password).digest("hex");
 
   const auth = await prisma.auth.findUnique({
@@ -29,12 +29,12 @@ export async function login({ email, password }: LoginPayload, from?: string) {
   cookieStore.set("token", jwt, { maxAge: 2592000, path: "/" });
   cookieStore.set("uid", uid, { maxAge: 2592000, path: "/" });
 
-  redirect(from ?? "/");
+  redirect(to ?? "/");
 }
 
 export async function register(
   { email, password, username }: RegisterPayload,
-  from?: string
+  to?: string
 ) {
   const passwdHash = createHash("sha512").update(password).digest("hex");
   const emailHash = createHash("md5").update(email).digest("hex");
@@ -51,10 +51,10 @@ export async function register(
       },
     });
 
-    return await login({ email: user.email, password: password }, from);
+    return await login({ email: user.email, password: password }, to);
   } catch (error: any) {
     if (error.message === "NEXT_REDIRECT") {
-      redirect(from ?? "/");
+      redirect(to ?? "/");
     } else {
       return { error: error.message as string };
     }

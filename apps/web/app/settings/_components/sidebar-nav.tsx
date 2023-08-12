@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GoShieldLock } from "react-icons/go";
 import { LuPaintbrush, LuSettings, LuUser } from "react-icons/lu";
 
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ export const SidebarNav: React.FC = () => {
       { title: "Profile", href: "/settings", icon: LuUser },
       { title: "Account", href: "/settings/account", icon: LuSettings },
       { title: "Appearance", href: "/settings/appearance", icon: LuPaintbrush },
+      { title: "Security", href: "/settings/security", icon: GoShieldLock },
     ],
     []
   );
