@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/hooks/use-theme";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import systemPreview from "@/app/settings/_images/auto-preview.svg";

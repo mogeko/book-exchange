@@ -7,7 +7,7 @@ import { sans } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/theme-wrapper";
 import { Toaster } from "@/components/toaster";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           sans.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider defaultTheme="system">
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             {children}

@@ -1,8 +1,8 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
+import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
