@@ -1,5 +1,15 @@
 # @mogeko/bookworm-web
 
+## 0.8.2
+
+### Patch Changes
+
+- [#116](https://github.com/mogeko/bookworm/pull/116) [`46b45e1`](https://github.com/mogeko/bookworm/commit/46b45e193cafeabf7bb3e28d86f9b863d9270258) Thanks [@mogeko](https://github.com/mogeko)! - Implement `ThemeProvider` by ourself.
+
+- [#116](https://github.com/mogeko/bookworm/pull/116) [`2322363`](https://github.com/mogeko/bookworm/commit/232236301fa3e813318027488dd3d9fd4c59be88) Thanks [@mogeko](https://github.com/mogeko)! - Add more themes.
+
+- [#116](https://github.com/mogeko/bookworm/pull/116) [`63aa38c`](https://github.com/mogeko/bookworm/commit/63aa38c852f9f773477656e6fb8114eb9d7da7fa) Thanks [@mogeko](https://github.com/mogeko)! - Allow users to customize the theme color.
+
 ## 0.8.1
 
 ### Patch Changes
