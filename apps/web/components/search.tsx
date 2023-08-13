@@ -46,7 +46,7 @@ export const Search: React.FC<
   );
   const clearHistory = useCallback(() => setHistory([]), [setHistory]);
   const changeThemeTo = useCallback(
-    (theme: string) => (setOpen(false), setTheme(theme)),
+    (theme: string) => (setOpen(false), setTheme({ mode: theme })),
     [setOpen, setTheme]
   );
 

@@ -21,11 +21,11 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <head />
       <body
         className={cn(
-          "bg-background theme-slate min-h-screen font-sans antialiased",
+          "bg-background min-h-screen font-sans antialiased",
           sans.variable
         )}
       >
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider defaultTheme={{ mode: "system", color: "slate" }}>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             {children}

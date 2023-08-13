@@ -3,7 +3,6 @@
 @import "tailwindcss/utilities";
 
 @import "./themes/rose.css";
-@import "./themes/slate.css";
 @import "./themes/zinc.css";
 
 @layer base {
