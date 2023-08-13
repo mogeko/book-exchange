@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+import "@/styles/globals.css";
 
 import type { Metadata } from "next";
 
@@ -21,7 +21,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <head />
       <body
         className={cn(
-          "bg-background min-h-screen font-sans antialiased",
+          "bg-background theme-slate min-h-screen font-sans antialiased",
           sans.variable
         )}
       >
