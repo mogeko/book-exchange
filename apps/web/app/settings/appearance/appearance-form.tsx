@@ -68,6 +68,9 @@ export const AppearanceForm: React.FC = () => {
           <TooltipProvider>
             <ColorSwatcher name="zinc" themeName="theme-zinc" />
             <ColorSwatcher name="rose" themeName="theme-rose" />
+            <ColorSwatcher name="blue" themeName="theme-blue" />
+            <ColorSwatcher name="green" themeName="theme-green" />
+            <ColorSwatcher name="orange" themeName="theme-orange" />
           </TooltipProvider>
         </div>
       </div>

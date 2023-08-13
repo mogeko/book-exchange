@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "./themes/blue.css";
+@import "./themes/green.css";
+@import "./themes/orange.css";
 @import "./themes/rose.css";
 @import "./themes/zinc.css";
 
