@@ -1,0 +1,18 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./themes/blue.css";
+@import "./themes/green.css";
+@import "./themes/orange.css";
+@import "./themes/rose.css";
+@import "./themes/zinc.css";
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -65,7 +65,7 @@ export const SecurityForm: React.FC<{ uid: number }> = ({ uid }) => {
         }
       });
     },
-    [startTransition, toast]
+    [startTransition, toast, uid]
   );
 
   return (

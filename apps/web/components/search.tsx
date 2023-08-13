@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 import { LuBook, LuSearch, LuTrash2 } from "react-icons/lu";
 import { RxLaptop, RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 import { useSearch, type Book } from "@/hooks/use-search";
+import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -46,7 +46,7 @@ export const Search: React.FC<
   );
   const clearHistory = useCallback(() => setHistory([]), [setHistory]);
   const changeThemeTo = useCallback(
-    (theme: string) => (setOpen(false), setTheme(theme)),
+    (theme: string) => (setOpen(false), setTheme({ mode: theme })),
     [setOpen, setTheme]
   );
 

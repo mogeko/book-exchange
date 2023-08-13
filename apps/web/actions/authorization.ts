@@ -12,7 +12,6 @@ export async function login(
   { email, password }: { email: string; password: string },
   { to, reload }: { to: string; reload?: boolean } = { to: "/" }
 ) {
-  // const [{ email, password }, { to, reload }] = [payload, opts];
   const passwdHash = createHash("sha512").update(password).digest("hex");
 
   const auth = await prisma.auth.findUnique({
