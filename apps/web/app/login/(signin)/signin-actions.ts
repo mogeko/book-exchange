@@ -37,29 +37,7 @@ export async function login(
 
   reload ? revalidatePath(to ?? "/") : redirect(to ?? "/");
 
-  return { uid } as const;
-}
-
-export async function register(
-  payload: { username: string } & Parameters<typeof login>[0],
-  redirectTo = "/"
-) {
-  const { email: userEmail, password, username } = payload;
-  const passwdHash = createHash("sha512").update(password).digest("hex");
-  const emailHash = createHash("md5").update(userEmail).digest("hex");
-
-  const { email } = await prisma.user.create({
-    data: {
-      name: username,
-      email: userEmail,
-      avatar: `https://www.gravatar.com/avatar/${emailHash}?d=identicon`,
-      authentication: {
-        create: { password: passwdHash },
-      },
-    },
-  });
-
-  return await login({ email, password }, { to: redirectTo });
+  return { uid: auth.user.id } as const;
 }
 
 export async function logout() {

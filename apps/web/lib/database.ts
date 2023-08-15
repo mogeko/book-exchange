@@ -1,3 +1,5 @@
+import "server-only";
+
 import { PrismaClient } from "@mogeko/bookworm-db";
 
 export const prisma = new PrismaClient();

@@ -1,4 +1,3 @@
-import { loginedUserStatus } from "@/actions/user-status";
 import {
   LuBookOpen,
   LuLayoutGrid,
@@ -9,6 +8,7 @@ import {
 } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MenuButton } from "@/app/(authorized)/@aside/_components/menu-button";
 

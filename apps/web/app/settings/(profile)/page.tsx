@@ -1,6 +1,5 @@
-import { loginedUserStatus } from "@/actions/user-status";
-
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 import { Separator } from "@/components/ui/separator";
 import { ProfileForm } from "@/app/settings/(profile)/profile-form";
 

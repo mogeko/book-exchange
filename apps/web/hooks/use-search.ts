@@ -1,8 +1,8 @@
 "use client";
 
-import { search } from "@/actions/search";
 import useSWR from "swr";
 
+import { search } from "@/lib/search-actions";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useToast } from "@/hooks/use-toast";
 

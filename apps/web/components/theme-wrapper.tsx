@@ -16,24 +16,21 @@ export const ThemeProvider: React.FC<
   const [color, setColor] = useLocalStorage("theme-color", defaultTheme.color);
 
   const setTheme = useCallback(
-    (theme: React.SetStateAction<ThemeValueType>) => {
-      if (typeof theme === "function") {
-        setTheme((currentTheme) => theme(currentTheme));
+    (newTheme: React.SetStateAction<ThemeValueType>) => {
+      if (typeof newTheme === "function") {
+        setTheme((currentTheme) => newTheme(currentTheme));
       } else {
-        theme.mode && setMode(theme.mode);
-        theme.color && setColor(theme.color);
+        newTheme.mode && setMode(newTheme.mode);
+        newTheme.color && setColor(newTheme.color);
       }
     },
     [setMode, setColor]
   );
 
   const applyMode = useCallback((mode: string) => {
+    document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(mode);
     document.documentElement.style.colorScheme = mode;
-  }, []);
-
-  const applyColor = useCallback((color: string) => {
-    document.documentElement.classList.add(`theme-${color}`);
   }, []);
 
   const handleMediaQuery = useCallback(() => {
@@ -47,17 +44,19 @@ export const ThemeProvider: React.FC<
   useEffect(() => {
     document.documentElement.setAttribute("class", "");
     ["light", "dark"].includes(mode) ? applyMode(mode) : handleMediaQuery();
-    applyColor(color);
-  }, [applyColor, applyMode, color, handleMediaQuery, mode]);
+    document.documentElement.classList.add(`theme-${color}`);
+  }, [applyMode, color, handleMediaQuery, mode]);
 
   // Listen for changes from the OS System preferences
   useEffect(() => {
-    const match = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mode === "system") {
+      const match = window.matchMedia("(prefers-color-scheme: dark)");
 
-    match.addEventListener("change", handleMediaQuery);
+      match.addEventListener("change", handleMediaQuery);
 
-    return () => match.removeEventListener("change", handleMediaQuery);
-  }, [handleMediaQuery]);
+      return () => match.removeEventListener("change", handleMediaQuery);
+    }
+  }, [handleMediaQuery, mode]);
 
   return (
     <ThemeContext.Provider
@@ -73,8 +72,7 @@ const ThemeScript = memo(
   ({ nonce }: { nonce?: string }) => (
     <script
       dangerouslySetInnerHTML={{
-        __html:
-          "!function(){try{var d=document.documentElement,c=d.classList;var e=localStorage.getItem('theme-mode');var f=localStorage.getItem('theme-color');d.setAttribute('class','');if('system'===e||(!e&&true)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.style.colorScheme='dark';c.add('dark')}else{d.style.colorScheme='light';c.add('light')}}else if(e){c.add(e||'')}c.add('theme-'+(f||'zinc'));if(e==='light'||e==='dark')d.style.colorScheme=e;}catch(e){}}()",
+        __html: `!function(){try{var e=document.documentElement,t=e.classList,a=localStorage.getItem("theme-mode"),c=localStorage.getItem("theme-color");if(e.setAttribute("class",""),"system"!==a&&a)a&&t.add(a||"");else{var l="(prefers-color-scheme: dark)",o=window.matchMedia(l);o.media!==l||o.matches?(e.style.colorScheme="dark",t.add("dark")):(e.style.colorScheme="light",t.add("light"))}t.add("theme-"+(c||"zinc")),"light"!==a&&"dark"!==a||(e.style.colorScheme=a)}catch(a){}}();`,
       }}
       nonce={nonce}
     />

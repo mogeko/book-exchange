@@ -46,7 +46,7 @@ export const Search: React.FC<
   );
   const clearHistory = useCallback(() => setHistory([]), [setHistory]);
   const changeThemeTo = useCallback(
-    (theme: string) => (setOpen(false), setTheme({ mode: theme })),
+    (mode: string) => (setOpen(false), setTheme({ mode })),
     [setOpen, setTheme]
   );
 
@@ -91,11 +91,15 @@ export const Search: React.FC<
             {data.map(({ id, title }) => (
               <CommandItem
                 key={`search-book-${id}`}
+                className="[&[aria-selected]>span.shortcut]:block"
                 onSelect={() => jumpTo(id, title)}
                 value={title}
               >
                 <LuBook className="mr-2 h-4 w-4" />
                 <span>{title}</span>
+                <CommandShortcut className="shortcut hidden">
+                  &#x23CE;
+                </CommandShortcut>
               </CommandItem>
             ))}
             {!history.length ? (
