@@ -1,13 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UserSignupForm } from "@/app/login/_components/user-signup-form";
+import { SwitchButton } from "@/app/login/_components/switch-button";
 import { UserSigninForm } from "@/app/login/(signin)/signin-form";
 
-const LoginPage: React.FC = () => {
+const SigninPage: React.FC = () => {
   return (
     <>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -21,17 +15,9 @@ const LoginPage: React.FC = () => {
         </div>
         <UserSigninForm />
       </div>
-      <Link
-        href="/login/signup"
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute right-4 top-4 md:right-8 md:top-8"
-        )}
-      >
-        Sign up
-      </Link>
+      <SwitchButton href="/login/signup">Sign up</SwitchButton>
     </>
   );
 };
 
-export default LoginPage;
+export default SigninPage;

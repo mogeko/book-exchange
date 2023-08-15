@@ -1,11 +1,12 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
 
+import { decode } from "@/lib/base64";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -18,42 +19,48 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login } from "@/app/login/(signin)/signin-actions";
+import { register } from "@/app/login/signup/password/password-actions";
 
 const schema = object({
   email: string().email({
     message: "Please enter a valid email address",
   }),
   password: string().min(8, {
-    message: "Password must be at least 8 characters",
+    message: "Password must be at least 8 characters long",
   }),
 });
 
-export const UserSigninForm: React.FC<
+export const UserPasswordForm: React.FC<
   {} & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, ...props }) => {
-  const [_isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
+  const state = decode(searchParams.get("state") ?? "e30=");
+  const { push } = useRouter();
+  const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: JSON.parse(state),
+    mode: "onChange",
   });
 
   const onSubmit = useCallback(
-    (values: zInfer<typeof schema>) => {
+    ({ email, password }: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const redirect = { to: searchParams.get("from") ?? "/" };
-        const { error } = await login(values, redirect);
+        const { error } = await register(email, password);
 
-        toast({
-          variant: "destructive",
-          title: "Oooooops! Something went wrong.",
-          description: error,
-        });
+        if (!error) {
+          push("/login/signup/username?" + searchParams.toString());
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
       });
     },
-    [searchParams, startTransition, toast]
+    [push, searchParams, startTransition, toast]
   );
 
   return (
@@ -97,7 +104,7 @@ export const UserSigninForm: React.FC<
                 )}
               />
             </div>
-            <Button type="submit">Sign in</Button>
+            <Button type="submit">Continue</Button>
           </div>
         </form>
       </Form>

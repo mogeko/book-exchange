@@ -37,7 +37,7 @@ export async function login(
 
   reload ? revalidatePath(to ?? "/") : redirect(to ?? "/");
 
-  return { uid } as const;
+  return { uid: auth.user.id } as const;
 }
 
 export async function logout() {
