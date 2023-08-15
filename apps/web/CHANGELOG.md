@@ -1,5 +1,29 @@
 # @mogeko/bookworm-web
 
+## 0.8.3
+
+### Patch Changes
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`dda6740`](https://github.com/mogeko/bookworm/commit/dda67402eab7269264b8f3e6513bd4ac7a5b2170) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the login page.
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`619a077`](https://github.com/mogeko/bookworm/commit/619a0777d19c28172041623101df09ba6a32ecdd) Thanks [@mogeko](https://github.com/mogeko)! - Ensure that the database client only works on the server side.
+
+  By import `server-only` package.
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`b9d9abc`](https://github.com/mogeko/bookworm/commit/b9d9abcf3bb2c6f6e2da8e7bdc1696d68cdd3bfb) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the sign up page.
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`b83accc`](https://github.com/mogeko/bookworm/commit/b83acccc901eec313c488c912b9b8cce2484ae3d) Thanks [@mogeko](https://github.com/mogeko)! - Make sure that Server Actions stays with its users.
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`b3a4672`](https://github.com/mogeko/bookworm/commit/b3a46727b10c164700707a67a63cfbef50d3b20c) Thanks [@mogeko](https://github.com/mogeko)! - Add a shortcut for the search results.
+
+  The shortcut only displayed when `aria-selected=true` of the parent node.
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`424c311`](https://github.com/mogeko/bookworm/commit/424c311e24c5a6344fcf387bf66eae9cf3929fb7) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the logo.
+
+  Nowadays, the logo will change with the change of theme mode (`dark`/`light`).
+
+- [#123](https://github.com/mogeko/bookworm/pull/123) [`25b7da1`](https://github.com/mogeko/bookworm/commit/25b7da10b2c3ab067bf6e2e26e9f40846da2a75b) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the favicon.
+
 ## 0.8.2
 
 ### Patch Changes
