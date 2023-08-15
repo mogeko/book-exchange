@@ -1,3 +1,7 @@
+// Since Middleware runs on Edge Runtime, it is not a standard Node.js environment.
+// Any Node.js specific APIs (e.g. `require`) and modules will not work in here.
+// See: https://edge-runtime.vercel.app/features/available-apis#unsupported-apis
+
 import { NextResponse, type NextRequest } from "next/server";
 
 import { verify } from "@/lib/jsonwebtoken";
@@ -19,6 +23,7 @@ export async function middleware(request: NextRequest) {
       }
     } catch (error) {
       const loginUrl = new URL("/login", request.url);
+
       loginUrl.searchParams.set("from", request.nextUrl.pathname);
 
       return NextResponse.redirect(loginUrl);
