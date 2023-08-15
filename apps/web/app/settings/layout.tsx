@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { loginedUserStatus } from "@/actions/user-status";
 
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { SidebarNav } from "@/app/settings/_components/sidebar-nav";

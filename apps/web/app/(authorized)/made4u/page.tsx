@@ -1,9 +1,8 @@
-import { getReferral } from "@/actions/made-fot-you";
-import { loginedUserStatus } from "@/actions/user-status";
-
+import { loginedUserStatus } from "@/lib/user-actions";
 import { BooksProvider } from "@/app/(authorized)/made4u/_components/books-context";
 import { BooksShowcase } from "@/app/(authorized)/made4u/_components/books-showcase";
 import { DatePicker } from "@/app/(authorized)/made4u/_components/date-picker";
+import { getReferral } from "@/app/(authorized)/made4u/made4u-actions";
 
 const MadeForYouPage: React.FC = async () => {
   const { uid } = await loginedUserStatus();

@@ -1,9 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { loginedUserStatus } from "@/actions/user-status";
 
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 
 export async function setUsername(name: string) {
   const { uid: id } = await loginedUserStatus();

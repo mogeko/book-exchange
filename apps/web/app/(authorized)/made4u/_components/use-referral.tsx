@@ -1,11 +1,11 @@
+import useSWRMutation from "swr/mutation";
+
+import { useBooksContext } from "@/app/(authorized)/made4u/_components/books-context";
 import {
   getReferral,
   type Options,
   type Payload,
-} from "@/actions/made-fot-you";
-import useSWRMutation from "swr/mutation";
-
-import { useBooksContext } from "@/app/(authorized)/made4u/_components/books-context";
+} from "@/app/(authorized)/made4u/made4u-actions";
 
 export function useReferral(payload: Payload, options: Options) {
   const { books } = useBooksContext();

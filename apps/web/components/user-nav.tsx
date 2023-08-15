@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { logout } from "@/actions/authorization";
 import { FaUserCircle } from "react-icons/fa";
 
 import type { User } from "@/lib/database";
@@ -19,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useHistory } from "@/components/history-context";
+import { logout } from "@/app/login/(signin)/signin-actions";
 
 export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
   const [_, startTransition] = useTransition();

@@ -1,5 +1,4 @@
-import { loginedUserStatus } from "@/actions/user-status";
-
+import { loginedUserStatus } from "@/lib/user-actions";
 import { Separator } from "@/components/ui/separator";
 import { SecurityForm } from "@/app/settings/security/security-form";
 

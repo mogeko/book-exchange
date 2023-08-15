@@ -1,9 +1,9 @@
 "use server";
 
 import { createHash } from "node:crypto";
-import { login } from "@/actions/authorization";
 
 import { prisma } from "@/lib/database";
+import { login } from "@/app/login/(signin)/signin-actions";
 import type { SecurityFormValues } from "@/app/settings/security/security-form";
 
 export async function update(uid: number, data: SecurityFormValues) {
