@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { sans } from "@/lib/font";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-wrapper";
+import { ThemeWrapper } from "@/components/theme-wrapper";
 import { Toaster } from "@/components/toaster";
 
 export const metadata: Metadata = {
@@ -23,9 +23,9 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           sans.variable
         )}
       >
-        <ThemeProvider defaultTheme={{ mode: "system", color: "zinc" }}>
+        <ThemeWrapper defaultTheme={{ mode: "system", color: "zinc" }}>
           <div className="relative flex min-h-screen flex-col">{children}</div>
-        </ThemeProvider>
+        </ThemeWrapper>
         <Toaster />
       </body>
     </html>
