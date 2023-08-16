@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -35,7 +35,6 @@ export const UserPasswordForm: React.FC<
 > = ({ className, ...props }) => {
   const searchParams = useSearchParams();
   const state = decode(searchParams.get("state") ?? "e30=");
-  const { push } = useRouter();
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
@@ -45,22 +44,18 @@ export const UserPasswordForm: React.FC<
   });
 
   const onSubmit = useCallback(
-    ({ email, password }: zInfer<typeof schema>) => {
+    (value: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const { error } = await register(email, password);
+        const { error } = await register(value, searchParams.toString());
 
-        if (!error) {
-          push("/login/signup/username?" + searchParams.toString());
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Oooooops! Something went wrong.",
-            description: error,
-          });
-        }
+        toast({
+          variant: "destructive",
+          title: "Oooooops! Something went wrong.",
+          description: error,
+        });
       });
     },
-    [push, searchParams, startTransition, toast]
+    [searchParams, startTransition, toast]
   );
 
   return (

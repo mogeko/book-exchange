@@ -123,7 +123,7 @@ export const UserNav: React.FC<{ user: User | null }> = ({ user }) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
-          Logout
+          Sign out
           <DropdownMenuShortcut>&#x2303;&#x21E7;&#x2318;Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

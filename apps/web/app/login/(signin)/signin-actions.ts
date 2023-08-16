@@ -3,15 +3,15 @@
 import { createHash } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect as doRedirect } from "next/navigation";
 
 import { prisma } from "@/lib/database";
 import { sign } from "@/lib/jsonwebtoken";
 
 export async function login(
   { email, password }: { email: string; password: string },
-  { to, reload }: { to: string; reload?: boolean } = { to: "/" }
-) {
+  options: { redirect: string; reload?: boolean } = { redirect: "/" }
+): Promise<{ error?: string } | never> {
   const passwdHash = createHash("sha512").update(password).digest("hex");
 
   const auth = await prisma.auth.findUnique({
@@ -22,9 +22,9 @@ export async function login(
   });
 
   if (!auth) {
-    return { error: "Since you're new here, please register first!" } as const;
+    return { error: "Since you're new here, please register first!" };
   } else if (auth.password !== passwdHash) {
-    return { error: "Wrong password! Try again." } as const;
+    return { error: "Wrong password! Try again." };
   }
 
   const uid = auth.user.id.toString();
@@ -35,16 +35,19 @@ export async function login(
   cookieStore.set("token", jwt, { maxAge: 2592000, path: "/" });
   cookieStore.set("uid", uid, { maxAge: 2592000, path: "/" });
 
-  reload ? revalidatePath(to ?? "/") : redirect(to ?? "/");
-
-  return { uid: auth.user.id } as const;
+  if (options.reload) {
+    return revalidatePath(options.redirect), {};
+  } else {
+    doRedirect(options.redirect);
+  }
 }
 
 export async function logout() {
   const cookieStore = cookies();
 
-  cookieStore.delete("token");
-  cookieStore.delete("uid");
+  cookieStore.getAll().forEach((cookie) => {
+    cookieStore.delete(cookie.name);
+  });
 
-  redirect("/login");
+  doRedirect("/login");
 }
