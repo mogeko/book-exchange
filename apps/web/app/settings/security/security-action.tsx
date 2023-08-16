@@ -30,7 +30,7 @@ export async function update(uid: number, data: SecurityFormValues) {
 
     return await login(
       { email, password: newPassword },
-      { to: "/setting/security", reload: true }
+      { redirect: "/setting/security", reload: true }
     );
   } catch (error: any) {
     if (error.code === "P2025") {

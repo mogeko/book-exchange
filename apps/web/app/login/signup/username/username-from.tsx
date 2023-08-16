@@ -2,7 +2,7 @@
 
 import { useCallback, useTransition } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -38,7 +38,6 @@ export const UserUsernameFrom: React.FC<
   const redirect = searchParams.get("from") ?? "/";
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
-  const { push } = useRouter();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
     mode: "onChange",
@@ -47,20 +46,16 @@ export const UserUsernameFrom: React.FC<
   const onSubmit = useCallback(
     ({ username }: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const { error } = await setUsername(username);
+        const { error } = await setUsername(username, redirect);
 
-        if (!error) {
-          push(redirect);
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Oooooops! Something went wrong.",
-            description: error,
-          });
-        }
+        toast({
+          variant: "destructive",
+          title: "Oooooops! Something went wrong.",
+          description: error,
+        });
       });
     },
-    [startTransition, redirect, toast, push]
+    [startTransition, redirect, toast]
   );
 
   return (

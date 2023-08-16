@@ -34,17 +34,16 @@ export const UserSigninForm: React.FC<
 > = ({ className, ...props }) => {
   const [_isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
+  const redirect = searchParams.get("from") ?? "/";
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: { email: "", password: "" },
   });
 
   const onSubmit = useCallback(
     (values: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const redirect = { to: searchParams.get("from") ?? "/" };
-        const { error } = await login(values, redirect);
+        const { error } = await login(values, { redirect });
 
         toast({
           variant: "destructive",
