@@ -30,7 +30,7 @@ export const ThemeProvider: React.FC<
         newTheme.color && setColor(newTheme.color);
       }
     },
-    [setMode, setColor, mode, color]
+    [mode, color, setMode, setColor]
   );
 
   const applyMode = useCallback((mode: string) => {
@@ -41,20 +41,23 @@ export const ThemeProvider: React.FC<
     }
   }, []);
 
-  const handleMediaQuery = useCallback(() => {
-    if (mode === "system" && !props.forcedMode) {
-      const query = "(prefers-color-scheme: dark)";
-      const { media, matches } = window.matchMedia(query);
-      applyMode(media !== query || matches ? "dark" : "light");
-    }
-  }, [applyMode, mode, props.forcedMode]);
+  const handleMediaQuery = useCallback(
+    ({ matches }: MediaQueryListEvent | MediaQueryList) => {
+      applyMode(matches ? "dark" : "light");
+    },
+    [applyMode]
+  );
 
   // When theme changes, apply it to the <html> element
   useEffect(() => {
     document.documentElement.setAttribute("class", "");
-    applyMode(props.forcedMode ?? mode), handleMediaQuery();
+    if (mode === "system" && !props.forcedMode) {
+      handleMediaQuery(window.matchMedia("(prefers-color-scheme: dark)"));
+    } else {
+      applyMode(props.forcedMode ?? mode);
+    }
     document.documentElement.classList.add(`theme-${color}`);
-  }, [applyMode, color, handleMediaQuery, mode, props.forcedMode]);
+  }, [mode, color, props.forcedMode, applyMode, handleMediaQuery]);
 
   // Listen for changes from the OS System preferences
   useEffect(() => {
