@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 import { SwitchButton } from "@/app/login/_components/switch-button";
-import cover from "@/app/login/_images/books_person_with_fantasy.jpg";
+import cover from "@/app/login/_images/books_with_head.jpg";
 
-const SignupLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+const SigninLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div className="bg-muted relative hidden h-full flex-col p-10 text-white dark:border-r lg:flex">
@@ -15,10 +15,10 @@ const SignupLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           {children}
         </div>
-        <SwitchButton href="/login">Sign in</SwitchButton>
+        <SwitchButton href="/login/signup">Sign up</SwitchButton>
       </div>
     </>
   );
 };
 
-export default SignupLayout;
+export default SigninLayout;

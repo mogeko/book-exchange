@@ -52,7 +52,7 @@ export const UserSigninForm: React.FC<
         });
       });
     },
-    [searchParams, startTransition, toast]
+    [startTransition, toast, redirect]
   );
 
   return (
