@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import cover from "@/app/login/_images/illustration.svg";
+import cover from "@/app/login/_images/books_with_head.jpg";
 
 const LoginLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
