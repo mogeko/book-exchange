@@ -1,5 +1,13 @@
 # @mogeko/bookworm-web
 
+## 0.8.4
+
+### Patch Changes
+
+- [#125](https://github.com/mogeko/bookworm/pull/125) [`33ff886`](https://github.com/mogeko/bookworm/commit/33ff8868b823c1a4947e27f564b9062e0e27e0c2) Thanks [@mogeko](https://github.com/mogeko)! - Redirect in Server Action instead of push on the client.
+
+  fix: `redirect` can't be used in `try...catch...` block, so put it outside.
+
 ## 0.8.3
 
 ### Patch Changes
