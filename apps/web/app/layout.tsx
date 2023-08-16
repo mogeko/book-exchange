@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head />
       <body
         className={cn(
@@ -25,7 +25,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           sans.variable
         )}
       >
-        <ThemeProvider defaultTheme={{ mode: "system", color: "slate" }}>
+        <ThemeProvider defaultTheme={{ mode: "system", color: "zinc" }}>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             {children}
