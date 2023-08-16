@@ -26,7 +26,6 @@ export async function register(
       },
     });
   } catch (error: any) {
-    console.error(error);
     if (error.code === "P2002") {
       return { error: `User with email (${userEmail}) already exist!` };
     }
