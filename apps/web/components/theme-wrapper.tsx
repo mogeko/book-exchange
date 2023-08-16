@@ -18,13 +18,13 @@ export const ThemeProvider: React.FC<
   const setTheme = useCallback(
     (newTheme: React.SetStateAction<ThemeValueType>) => {
       if (typeof newTheme === "function") {
-        setTheme((currentTheme) => newTheme(currentTheme));
+        setTheme(newTheme({ mode, color }));
       } else {
         newTheme.mode && setMode(newTheme.mode);
         newTheme.color && setColor(newTheme.color);
       }
     },
-    [setMode, setColor]
+    [setMode, setColor, mode, color]
   );
 
   const applyMode = useCallback((mode: string) => {
