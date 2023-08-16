@@ -6,32 +6,22 @@ import { useLocalStorage } from "@/hooks/use-localstorage";
 
 export const ThemeContext = createContext<{
   theme: { mode?: string; color?: string };
-  setTheme: React.Dispatch<
-    React.SetStateAction<{ mode?: string; color?: string }>
-  >;
-}>({ theme: { mode: "system", color: "zinc" }, setTheme: (_) => {} });
+  setColor: React.Dispatch<React.SetStateAction<string>>;
+  setMode: React.Dispatch<React.SetStateAction<string>>;
+}>({
+  theme: { mode: "system", color: "zinc" },
+  setColor: (_) => {},
+  setMode: (_) => {},
+});
 
 export const ThemeProvider: React.FC<
   React.PropsWithChildren<{
     defaultTheme?: React.ContextType<typeof ThemeContext>["theme"];
     forcedMode?: "light" | "dark";
-    nonce?: string;
   }>
 > = ({ defaultTheme = { mode: "system", color: "zinc" }, ...props }) => {
-  const [mode, setMode] = useLocalStorage("theme-mode", defaultTheme.mode);
   const [color, setColor] = useLocalStorage("theme-color", defaultTheme.color);
-
-  const setTheme = useCallback(
-    (newTheme: React.SetStateAction<typeof defaultTheme>) => {
-      if (typeof newTheme === "function") {
-        setTheme(newTheme({ mode, color }));
-      } else {
-        newTheme.mode && setMode(newTheme.mode);
-        newTheme.color && setColor(newTheme.color);
-      }
-    },
-    [mode, color, setMode, setColor]
-  );
+  const [mode, setMode] = useLocalStorage("theme-mode", defaultTheme.mode);
 
   const applyMode = useCallback((mode: string) => {
     if (["light", "dark"].includes(mode)) {
@@ -70,7 +60,7 @@ export const ThemeProvider: React.FC<
 
   return (
     <ThemeContext.Provider
-      value={{ theme: { mode, color }, setTheme: setTheme }}
+      value={{ theme: { mode, color }, setColor, setMode }}
     >
       <ThemeScript forcedMode={props.forcedMode} />
       {props.children}

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const ModeToggle: React.FC = () => {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme("mode");
 
   return (
     <DropdownMenu>
@@ -24,15 +24,15 @@ export const ModeToggle: React.FC = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme({ mode: "light" })}>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           <RxSun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme({ mode: "dark" })}>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           <RxMoon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme({ mode: "system" })}>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           <RxLaptop className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
