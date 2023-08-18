@@ -18,7 +18,13 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
   const { authors, translators, ...book } =
     (await prisma.book.findUnique({
       where: { id: parseInt(params.bid) },
-      include: { authors: true, translators: true, publisher: true },
+      include: {
+        authors: true,
+        translators: true,
+        tags: true,
+        series: true,
+        publisher: true,
+      },
     })) ?? notFound();
 
   return (
@@ -79,8 +85,8 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
           </div>
         </section>
       </div>
-      <div className="grid grid-cols-3 gap-8 md:grid-cols-4">
-        <div className="col-span-3">
+      <div className="grid grid-cols-5 gap-8 md:grid-cols-7">
+        <div className="col-span-5">
           <AuthorScrollArea
             authors={[
               ...authors.map((author) => ({ type: "author", ...author })),
@@ -88,7 +94,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
             ]}
           />
         </div>
-        <BookDetails book={book} className="col-span-3 md:col-span-1" />
+        <BookDetails book={book} className="hidden md:col-span-2 md:flex" />
       </div>
     </div>
   );
