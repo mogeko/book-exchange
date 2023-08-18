@@ -12,8 +12,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useBooksContext } from "@/app/(authorized)/made4u/_components/books-context";
-import { getReferral } from "@/app/(authorized)/made4u/made4u-actions";
+import { useBooksContext } from "@/app/(core)/(bookshelf)/made4u/_components/books-context";
+import { getReferral } from "@/app/(core)/(bookshelf)/made4u/made4u-actions";
 
 export const DatePicker: React.FC<{
   disabled?: { before: Date; after: Date };

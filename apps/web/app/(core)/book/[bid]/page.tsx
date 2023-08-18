@@ -5,12 +5,12 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/database";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
-import { AuthorScrollArea } from "@/app/(authorized)/book/[bid]/_components/author-scroll-area";
-import { Description } from "@/app/(authorized)/book/[bid]/_components/description";
-import { Language } from "@/app/(authorized)/book/[bid]/_components/language";
-import { PublishDate } from "@/app/(authorized)/book/[bid]/_components/publish-date";
-import { Publisher } from "@/app/(authorized)/book/[bid]/_components/publisher";
-import { Statistics } from "@/app/(authorized)/book/[bid]/_components/statistics";
+import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
+import { Description } from "@/app/(core)/book/[bid]/_components/description";
+import { Language } from "@/app/(core)/book/[bid]/_components/language";
+import { PublishDate } from "@/app/(core)/book/[bid]/_components/publish-date";
+import { Publisher } from "@/app/(core)/book/[bid]/_components/publisher";
+import { Statistics } from "@/app/(core)/book/[bid]/_components/statistics";
 
 import { BookDetails } from "./_components/book-details";
 

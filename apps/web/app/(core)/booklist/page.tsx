@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
-import { columns } from "@/app/(authorized)/booklist/_components/columns";
-import { DataTable } from "@/app/(authorized)/booklist/_components/data-table";
+import { columns } from "@/app/(core)/booklist/_components/columns";
+import { DataTable } from "@/app/(core)/booklist/_components/data-table";
 
 const BooklistsPage: React.FC = async () => {
   const booklists = await getBooklists();

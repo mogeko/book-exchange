@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
-import { getReferral } from "@/app/(authorized)/made4u/made4u-actions";
+import { getReferral } from "@/app/(core)/(bookshelf)/made4u/made4u-actions";
 
 const ReadNowPage: React.FC = async () => {
   return (

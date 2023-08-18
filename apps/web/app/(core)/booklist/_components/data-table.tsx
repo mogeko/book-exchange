@@ -35,8 +35,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DataTablePagination } from "@/app/(authorized)/booklist/_components/data-table-pagination";
-import { DataTableToolbar } from "@/app/(authorized)/booklist/_components/data-table-toolbar";
+import { DataTablePagination } from "@/app/(core)/booklist/_components/data-table-pagination";
+import { DataTableToolbar } from "@/app/(core)/booklist/_components/data-table-toolbar";
 
 export function DataTable<TData, TValue>(props: {
   columns: ColumnDef<TData, TValue>[];

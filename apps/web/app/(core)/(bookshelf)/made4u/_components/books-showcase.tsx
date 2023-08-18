@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { BookArtwork } from "@/components/book-artwork";
-import { useBooksContext } from "@/app/(authorized)/made4u/_components/books-context";
+import { useBooksContext } from "@/app/(core)/(bookshelf)/made4u/_components/books-context";
 
 export const BooksShowcase: React.FC<{
   className?: string;

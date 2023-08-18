@@ -5,12 +5,13 @@ import type { Book, Series, Tag } from "@/lib/database";
 import { cn } from "@/lib/utils";
 
 const linkVariants = cva(
-  "focus:ring-ring inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold capitalize transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-5",
+  "focus:ring-ring inline-flex items-center rounded-full font-semibold capitalize transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-5",
   {
     variants: {
       variant: {
         default: "text-primary text-sm underline-offset-4 hover:underline",
-        badge: "hover:bg-primary hover:text-primary-foreground border text-xs",
+        badge:
+          "hover:bg-primary hover:text-primary-foreground border px-2.5 py-0.5 text-xs",
       },
     },
     defaultVariants: {

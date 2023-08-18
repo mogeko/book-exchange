@@ -10,7 +10,7 @@ import {
 import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MenuButton } from "@/app/(authorized)/_components/menu-button";
+import { MenuButton } from "@/app/(core)/_components/menu-button";
 
 export const AsideMenu: React.FC = async () => {
   const { uid } = await loginedUserStatus();
