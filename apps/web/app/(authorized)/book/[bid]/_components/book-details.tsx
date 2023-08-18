@@ -1,17 +1,27 @@
 import Link from "next/link";
-import { LuHash } from "react-icons/lu";
+import { cva } from "class-variance-authority";
 
 import type { Book, Series, Tag } from "@/lib/database";
 import { cn } from "@/lib/utils";
-import { badgeVariants } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+
+const linkVariants = cva(
+  "focus:ring-ring inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold capitalize transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-5",
+  {
+    variants: {
+      variant: {
+        default: "text-primary text-sm underline-offset-4 hover:underline",
+        badge: "hover:bg-primary hover:text-primary-foreground border text-xs",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
 export const BookDetails: React.FC<
   {
-    book: {
-      series: Series | null;
-      tags: Tag[];
-    } & Book;
+    book: { series: Series | null; tags: Tag[] } & Book;
   } & React.HTMLAttributes<HTMLElement>
 > = async ({ book: _book, className, ...props }) => {
   // TODO: Fetch data from API
@@ -34,7 +44,11 @@ export const BookDetails: React.FC<
   const ids = [
     { name: "ISBN 10", value: book.isbn10 },
     { name: "ISBN 13", value: book.isbn },
-    { name: "OCLC/WorldCat", value: book.oclc },
+    {
+      name: "OCLC/WorldCat",
+      value: book.oclc,
+      baseUrl: "https://www.worldcat.org/oclc/",
+    },
   ];
 
   return (
@@ -50,10 +64,7 @@ export const BookDetails: React.FC<
           <div className="text-muted-foreground inline-flex items-baseline gap-1">
             <span className="text-lg">#</span>
             <Link
-              className={cn(
-                buttonVariants({ variant: "link", size: null }),
-                "text-lg capitalize"
-              )}
+              className={cn(linkVariants(), "text-lg")}
               href={`/series/${book.series.id}`}
             >
               {book.series.name}
@@ -67,14 +78,17 @@ export const BookDetails: React.FC<
         </h4>
         <table className="table-auto">
           <tbody>
-            {physical.map(({ name, value }) => (
-              <tr key={`the-physical-object-${name}`}>
-                <td className="font-semibold">{name}</td>
-                <td className="text-muted-foreground text-sm capitalize">
-                  {value}
-                </td>
-              </tr>
-            ))}
+            {physical.map(({ name, value }) => {
+              if (!value) return;
+              return (
+                <tr key={`the-physical-object-${name}`}>
+                  <td className="font-semibold">{name}</td>
+                  <td className="text-muted-foreground text-sm capitalize">
+                    {value}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -84,14 +98,23 @@ export const BookDetails: React.FC<
         </h4>
         <table className="table-auto">
           <tbody>
-            {ids.map(({ name, value }) => (
-              <tr key={`id-numbers-${name}`}>
-                <td className="font-semibold">{name}</td>
-                <td className="text-muted-foreground text-sm capitalize">
-                  {value}
-                </td>
-              </tr>
-            ))}
+            {ids.map(({ name, value, baseUrl }) => {
+              if (!value) return;
+              return (
+                <tr key={`id-numbers-${name}`}>
+                  <td className="font-semibold">{name}</td>
+                  <td className="text-muted-foreground text-sm capitalize">
+                    {baseUrl ? (
+                      <Link className={linkVariants()} href={baseUrl + value}>
+                        {value}
+                      </Link>
+                    ) : (
+                      <span>{value}</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -104,10 +127,7 @@ export const BookDetails: React.FC<
             <Link
               key={`keyword-${tag.id}`}
               href={`/tag/${tag.id}`}
-              className={cn(
-                badgeVariants({ variant: "outline" }),
-                "hover:bg-primary hover:text-primary-foreground capitalize"
-              )}
+              className={linkVariants({ variant: "badge" })}
             >
               {tag.name}
             </Link>

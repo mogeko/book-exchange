@@ -27,7 +27,7 @@ export const Description: React.FC<{
         </p>
         <button
           onClick={(e) => (e.preventDefault, setShowMore((target) => !target))}
-          className="text-primary inline-flex items-end justify-center rounded-md text-sm font-medium underline-offset-4 hover:underline"
+          className="text-primary inline-flex items-end rounded-md text-sm font-medium underline-offset-4 hover:underline"
         >
           {showMore ? (
             <>
