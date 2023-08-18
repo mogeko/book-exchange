@@ -1,5 +1,5 @@
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/app/_components/site-footer";
+import { SiteHeader } from "@/app/_components/site-header";
 import { AsideMenu } from "@/app/(authorized)/_components/aside-menu";
 
 const DashboardLayout: React.FC<React.PropsWithChildren> = ({ children }) => {

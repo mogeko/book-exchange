@@ -5,8 +5,8 @@ import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/app/_components/site-footer";
+import { SiteHeader } from "@/app/_components/site-header";
 import { SidebarNav } from "@/app/settings/_components/sidebar-nav";
 
 const SettingsLayout: React.FC<{
