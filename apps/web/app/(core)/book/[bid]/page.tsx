@@ -6,26 +6,41 @@ import { prisma } from "@/lib/database";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
-import { Description } from "@/app/(core)/book/[bid]/_components/description";
-import { Language } from "@/app/(core)/book/[bid]/_components/language";
-import { PublishDate } from "@/app/(core)/book/[bid]/_components/publish-date";
-import { Publisher } from "@/app/(core)/book/[bid]/_components/publisher";
-import { Statistics } from "@/app/(core)/book/[bid]/_components/statistics";
-
-import { BookDetails } from "./_components/book-details";
+import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
+import { Description } from "@/app/(core)/book/[bid]/_components/header-description";
+import { Language } from "@/app/(core)/book/[bid]/_components/header-language";
+import { PublishDate } from "@/app/(core)/book/[bid]/_components/header-publish-date";
+import { Publisher } from "@/app/(core)/book/[bid]/_components/header-publisher";
+import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistics";
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
-  const { authors, translators, ...book } =
+  const { authors, translators, scores, ...book } =
     (await prisma.book.findUnique({
       where: { id: parseInt(params.bid) },
       include: {
         authors: true,
         translators: true,
-        tags: true,
+        scores: {
+          select: {
+            comment: {
+              select: { id: true, commentator: true, content: true },
+            },
+            rate: true,
+          },
+        },
         series: true,
         publisher: true,
+        tags: true,
       },
     })) ?? notFound();
+  const {
+    _avg: { rate: rating },
+    _count: { rate: ratingCount },
+  } = await prisma.score.aggregate({
+    where: { bookId: parseInt(params.bid) },
+    _count: { rate: true },
+    _avg: { rate: true },
+  });
 
   return (
     <div className="flex flex-col">
@@ -66,7 +81,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                 })}
               </p>
             </div>
-            <Statistics />
+            <Statistics bid={book.id} />
             <Description context={book.discription} />
             <Separator />
             <div className="grid gap-4 md:grid-cols-3">
