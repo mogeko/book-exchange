@@ -1,17 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/database";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "@/components/link";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
 import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
+import { CommentContextProvider } from "@/app/(core)/book/[bid]/_components/comment-context";
+import { CommentFeeds } from "@/app/(core)/book/[bid]/_components/comment-feeds";
 import { Description } from "@/app/(core)/book/[bid]/_components/header-description";
 import { Language } from "@/app/(core)/book/[bid]/_components/header-language";
 import { PublishDate } from "@/app/(core)/book/[bid]/_components/header-publish-date";
 import { Publisher } from "@/app/(core)/book/[bid]/_components/header-publisher";
 import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistics";
+import { scoreFilter } from "@/app/(core)/book/[bid]/comment-actions";
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
   const { authors, translators, scores, ...book } =
@@ -20,27 +23,12 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
       include: {
         authors: true,
         translators: true,
-        scores: {
-          select: {
-            comment: {
-              select: { id: true, commentator: true, content: true },
-            },
-            rate: true,
-          },
-        },
+        scores: { select: scoreFilter },
         series: true,
         publisher: true,
         tags: true,
       },
     })) ?? notFound();
-  const {
-    _avg: { rate: rating },
-    _count: { rate: ratingCount },
-  } = await prisma.score.aggregate({
-    where: { bookId: parseInt(params.bid) },
-    _count: { rate: true },
-    _avg: { rate: true },
-  });
 
   return (
     <div className="flex flex-col">
@@ -68,7 +56,6 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                     <>
                       <Link
                         key={`author-name-${author.id}-${author.name}`}
-                        className="text-primary underline-offset-4 hover:underline"
                         href={`/author/${author.id}`}
                       >
                         {author.name}
@@ -108,6 +95,16 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
               ...translators.map((xs) => ({ type: "translator", ...xs })),
             ]}
           />
+          <div className="space-y-5 border-none p-0 outline-none">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Comments ({scores.length})
+            </h2>
+            <div className="relative">
+              <CommentContextProvider initialScores={scores}>
+                <CommentFeeds />
+              </CommentContextProvider>
+            </div>
+          </div>
         </div>
         <BookDetails book={book} className="hidden md:col-span-2 md:flex" />
       </div>

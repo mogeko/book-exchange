@@ -6,7 +6,7 @@ export const Language: React.FC<
   return (
     <section className={className} {...props}>
       <header className="flex flex-row items-center justify-between space-y-0 px-6 py-4 pb-2">
-        <h3 className=" text-sm font-medium leading-none tracking-tight">
+        <h3 className="text-sm font-medium leading-none tracking-tight">
           Language
         </h3>
         <LuGlobe className="text-muted-foreground h-4 w-4" />

@@ -1,24 +1,6 @@
-import Link from "next/link";
-import { cva } from "class-variance-authority";
-
 import type { Book, Series, Tag } from "@/lib/database";
 import { cn } from "@/lib/utils";
-
-const linkVariants = cva(
-  "focus:ring-ring inline-flex items-center rounded-full font-semibold capitalize transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-5",
-  {
-    variants: {
-      variant: {
-        default: "text-primary text-sm underline-offset-4 hover:underline",
-        badge:
-          "hover:bg-primary hover:text-primary-foreground border px-2.5 py-0.5 text-xs",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+import { Link } from "@/components/link";
 
 export const BookDetails: React.FC<
   {
@@ -62,14 +44,9 @@ export const BookDetails: React.FC<
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Series
           </h4>
-          <div className="text-muted-foreground inline-flex items-baseline gap-1">
-            <span className="text-lg">#</span>
-            <Link
-              className={cn(linkVariants(), "text-lg")}
-              href={`/series/${book.series.id}`}
-            >
-              {book.series.name}
-            </Link>
+          <div className="text-muted-foreground inline-flex items-baseline gap-1 text-lg">
+            <span>#</span>
+            <Link href={`/series/${book.series.id}`}>{book.series.name}</Link>
           </div>
         </div>
       )}
@@ -106,9 +83,7 @@ export const BookDetails: React.FC<
                   <td className="font-semibold">{name}</td>
                   <td className="text-muted-foreground text-sm capitalize">
                     {baseUrl ? (
-                      <Link className={linkVariants()} href={baseUrl + value}>
-                        {value}
-                      </Link>
+                      <Link href={baseUrl + value}>{value}</Link>
                     ) : (
                       <span>{value}</span>
                     )}
@@ -128,7 +103,7 @@ export const BookDetails: React.FC<
             <Link
               key={`keyword-${tag.id}`}
               href={`/tag/${tag.id}`}
-              className={linkVariants({ variant: "badge" })}
+              variant="badge"
             >
               {tag.name}
             </Link>
