@@ -227,7 +227,7 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
           return {
             score: {
               create: {
-                rate: faker.number.int({ min: 0, max: 10 }),
+                rate: faker.number.int({ min: 1, max: 10 }),
                 book: { connect: target },
               },
             },

@@ -1,22 +1,31 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+
 import { prisma } from "@/lib/database";
 
-export const scoreFilter = {
-  comment: {
-    select: {
-      id: true,
-      commentator: {
-        select: { id: true, avatar: true, name: true },
+export async function setComment(
+  { bookId, userId }: { bookId: number; userId: number },
+  { content, rate }: { content: string; rate: number }
+) {
+  try {
+    await prisma.score.create({
+      data: {
+        book: {
+          connect: { id: bookId },
+        },
+        comment: {
+          create: {
+            commentator: { connect: { id: userId } },
+            content: content,
+          },
+        },
+        rate: rate,
       },
-      createdAt: true,
-      content: true,
-    },
-  },
-  rate: true,
-} as const;
+    });
 
-export async function getComments(bookId: number) {
-  return await prisma.score.findMany({
-    where: { bookId: bookId },
-    select: scoreFilter,
-  });
+    return revalidatePath(`/book/${bookId}`), {};
+  } catch (error: any) {
+    return { error: error.message };
+  }
 }

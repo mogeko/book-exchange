@@ -2,28 +2,46 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/components/link";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
 import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
 import { CommentContextProvider } from "@/app/(core)/book/[bid]/_components/comment-context";
+import { CommentEditor } from "@/app/(core)/book/[bid]/_components/comment-editor";
 import { CommentFeeds } from "@/app/(core)/book/[bid]/_components/comment-feeds";
 import { Description } from "@/app/(core)/book/[bid]/_components/header-description";
 import { Language } from "@/app/(core)/book/[bid]/_components/header-language";
 import { PublishDate } from "@/app/(core)/book/[bid]/_components/header-publish-date";
 import { Publisher } from "@/app/(core)/book/[bid]/_components/header-publisher";
 import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistics";
-import { scoreFilter } from "@/app/(core)/book/[bid]/comment-actions";
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
+  const { uid } = await loginedUserStatus();
+  const loginedUser = await prisma.user.findUnique({ where: { id: uid } });
   const { authors, translators, scores, ...book } =
     (await prisma.book.findUnique({
       where: { id: parseInt(params.bid) },
       include: {
         authors: true,
         translators: true,
-        scores: { select: scoreFilter },
+        scores: {
+          select: {
+            comment: {
+              select: {
+                id: true,
+                commentator: {
+                  select: { id: true, avatar: true, name: true },
+                },
+                createdAt: true,
+                content: true,
+              },
+            },
+            rate: true,
+          },
+          orderBy: { comment: { createdAt: "desc" } },
+        },
         series: true,
         publisher: true,
         tags: true,
@@ -99,8 +117,9 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
             <h2 className="text-2xl font-semibold tracking-tight">
               Comments ({scores.length})
             </h2>
-            <div className="relative">
+            <div className="flex flex-col items-stretch justify-start">
               <CommentContextProvider initialScores={scores}>
+                <CommentEditor user={loginedUser} bid={parseInt(params.bid)} />
                 <CommentFeeds />
               </CommentContextProvider>
             </div>

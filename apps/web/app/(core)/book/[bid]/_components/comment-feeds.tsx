@@ -12,16 +12,16 @@ import { useComment } from "@/app/(core)/book/[bid]/_components/comment-context"
 export const CommentFeeds: React.FC<
   {} & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, ...props }) => {
-  const { scores } = useComment();
+  const { comments } = useComment();
 
   return (
     <div
       className={cn("flex flex-col items-stretch justify-center", className)}
       {...props}
     >
-      {scores.map(({ comment: { commentator, ...comment }, rate }, i) => {
+      {comments.map(({ comment: { commentator, ...comment }, rate }, i) => {
         return (
-          <div key={`book-comment-${i}-${comment.id}`}>
+          <div key={`book-comment-${i}-${comment.id ?? ""}`}>
             <Separator />
             <section>
               <header className="flex flex-row items-center justify-between space-y-0 p-6 pb-2">

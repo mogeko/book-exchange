@@ -9,9 +9,9 @@ import {
 import type { Comment, Score as ScoreType, User } from "@/lib/database";
 
 const CommentContext = createContext<{
-  scores: Score[];
-  addScore: (score: Score) => void;
-}>({ scores: [], addScore: (_) => {} });
+  comments: Score[];
+  addComment: (score: Score) => void;
+}>({ comments: [], addComment: (_) => {} });
 
 export const CommentContextProvider: React.FC<
   React.PropsWithChildren<{ initialScores: Score[] }>
@@ -19,13 +19,13 @@ export const CommentContextProvider: React.FC<
   const [optimistic, addOptimistic] = useOptimistic(
     initialScores,
     (scores: Score[], newScore: Score) => {
-      return scores.concat(newScore);
+      return [newScore].concat(scores);
     }
   );
 
   return (
     <CommentContext.Provider
-      value={{ scores: optimistic, addScore: addOptimistic }}
+      value={{ comments: optimistic, addComment: addOptimistic }}
       {...props}
     />
   );
@@ -36,5 +36,6 @@ export const useComment = () => use(CommentContext);
 export type Score = {
   comment: {
     commentator: Pick<User, "avatar" | "name" | "id">;
-  } & Pick<Comment, "content" | "createdAt" | "id">;
+    id?: number;
+  } & Pick<Comment, "content" | "createdAt">;
 } & Pick<ScoreType, "rate">;
