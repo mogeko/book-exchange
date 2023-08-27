@@ -19,7 +19,7 @@ import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistic
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
   const { uid } = await loginedUserStatus();
-  const loginedUser = await prisma.user.findUnique({ where: { id: uid } });
+  const user = await prisma.user.findUnique({ where: { id: uid } });
   const { authors, translators, scores, ...book } =
     (await prisma.book.findUnique({
       where: { id: parseInt(params.bid) },
@@ -38,6 +38,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                 content: true,
               },
             },
+            bookId: true,
             rate: true,
           },
           orderBy: { comment: { createdAt: "desc" } },
@@ -47,6 +48,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
         tags: true,
       },
     })) ?? notFound();
+  const bid = parseInt(params.bid);
 
   return (
     <div className="flex flex-col">
@@ -118,8 +120,8 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
               Comments ({scores.length})
             </h2>
             <div className="flex flex-col items-stretch justify-start">
-              <CommentContextProvider initialScores={scores}>
-                <CommentEditor user={loginedUser} bid={parseInt(params.bid)} />
+              <CommentContextProvider initialValue={{ scores, user }}>
+                <CommentEditor />
                 <CommentFeeds />
               </CommentContextProvider>
             </div>

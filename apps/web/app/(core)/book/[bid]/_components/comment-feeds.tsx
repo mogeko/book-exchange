@@ -1,18 +1,53 @@
 "use client";
 
+import { useCallback, useTransition } from "react";
+import { LuTrash2, LuX } from "react-icons/lu";
 import { TiStarFullOutline } from "react-icons/ti";
 
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/components/link";
 import { useComment } from "@/app/(core)/book/[bid]/_components/comment-context";
+import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
 
 export const CommentFeeds: React.FC<
   {} & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, ...props }) => {
-  const { comments } = useComment();
+  const [_, startTransition] = useTransition();
+  const { toast } = useToast();
+  const { comments, user, bid } = useComment();
+
+  const handleDeleteComment = useCallback(
+    (cid: number) => {
+      startTransition(async () => {
+        const { error } = await removeComment({ bid, cid });
+
+        if (error) {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
+      });
+    },
+    [removeComment, startTransition, toast, bid]
+  );
 
   return (
     <div
@@ -21,9 +56,9 @@ export const CommentFeeds: React.FC<
     >
       {comments.map(({ comment: { commentator, ...comment }, rate }, i) => {
         return (
-          <div key={`book-comment-${i}-${comment.id ?? ""}`}>
+          <div key={`book-comment-${i}-${comment.id || ""}`}>
             <Separator />
-            <section>
+            <section className="group">
               <header className="flex flex-row items-center justify-between space-y-0 p-6 pb-2">
                 <div className="flex flex-row items-center justify-start gap-2">
                   <Avatar>
@@ -45,6 +80,39 @@ export const CommentFeeds: React.FC<
                     </div>
                   </div>
                 </div>
+                {user?.id === commentator.id && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        className="hover:text-destructive hidden rounded-full group-hover:inline-flex"
+                        variant={null}
+                        size="sm"
+                      >
+                        <LuX className="h-3 w-3" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          Are you absolutely sure?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete the comment you have made.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={(_) => handleDeleteComment(comment.id)}
+                        >
+                          <LuTrash2 className="mr-1 h-4 w-4" />
+                          Yes, Delete it
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
               </header>
               <main className="p-6 pt-0">
                 <p className="leading-7 [&:not(:first-child)]:mt-6">

@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { LuPencil } from "react-icons/lu";
 import { number, object, string, type infer as zInfer } from "zod";
 
-import type { User } from "@/lib/database";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -53,11 +52,8 @@ const schema = object({
     .max(10),
 });
 
-export const CommentEditor: React.FC<{
-  user: User | null;
-  bid: number;
-}> = ({ user, bid }) => {
-  const { addComment } = useComment();
+export const CommentEditor: React.FC = () => {
+  const { addOptimistic, user, bid } = useComment();
   const [_, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const form = useForm<zInfer<typeof schema>>({
@@ -73,25 +69,19 @@ export const CommentEditor: React.FC<{
   }, []);
 
   const onSubmit = useCallback(
-    ({ content, rate }: zInfer<typeof schema>) => {
+    (data: zInfer<typeof schema>) => {
+      addOptimistic(data), setOpen(false);
       startTransition(async () => {
         if (user) {
-          addComment({
-            comment: { commentator: user, content, createdAt: new Date() },
-            rate,
-          });
-          setTimeout(() => setOpen(false), 200);
+          const { error } = await setComment(data, { uid: user.id, bid });
 
-          const { error } = await setComment(
-            { userId: user.id, bookId: bid },
-            { content, rate }
-          );
-
-          toast({
-            variant: "destructive",
-            title: "Oooooops! Something went wrong.",
-            description: error.message,
-          });
+          if (error) {
+            toast({
+              variant: "destructive",
+              title: "Oooooops! Something went wrong.",
+              description: error,
+            });
+          }
         } else {
           toast({
             variant: "destructive",
@@ -101,7 +91,7 @@ export const CommentEditor: React.FC<{
         }
       });
     },
-    [startTransition, addComment, user, bid, toast]
+    [startTransition, addOptimistic, user, bid, toast]
   );
 
   if (!user) {

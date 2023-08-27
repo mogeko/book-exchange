@@ -5,18 +5,18 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/database";
 
 export async function setComment(
-  { bookId, userId }: { bookId: number; userId: number },
-  { content, rate }: { content: string; rate: number }
+  { content, rate }: { content: string; rate: number },
+  { bid, uid }: { bid: number; uid: number }
 ) {
   try {
     await prisma.score.create({
       data: {
         book: {
-          connect: { id: bookId },
+          connect: { id: bid },
         },
         comment: {
           create: {
-            commentator: { connect: { id: userId } },
+            commentator: { connect: { id: uid } },
             content: content,
           },
         },
@@ -24,8 +24,20 @@ export async function setComment(
       },
     });
 
-    return revalidatePath(`/book/${bookId}`), {};
+    return revalidatePath(`/book/${bid}`), {};
   } catch (error: any) {
+    console.error(error);
+    return { error: error.message };
+  }
+}
+
+export async function removeComment(props: { bid: number; cid: number }) {
+  try {
+    await prisma.score.delete({ where: { commentId: props.cid } });
+
+    return revalidatePath(`/book/${props.bid}`), {};
+  } catch (error: any) {
+    console.error(error);
     return { error: error.message };
   }
 }

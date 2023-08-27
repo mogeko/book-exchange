@@ -10,22 +10,40 @@ import type { Comment, Score as ScoreType, User } from "@/lib/database";
 
 const CommentContext = createContext<{
   comments: Score[];
-  addComment: (score: Score) => void;
-}>({ comments: [], addComment: (_) => {} });
+  addOptimistic: React.Dispatch<OptimisticData>;
+  bid: number;
+  user: User | null;
+}>({ comments: [], addOptimistic: (_) => {}, user: null, bid: NaN });
 
 export const CommentContextProvider: React.FC<
-  React.PropsWithChildren<{ initialScores: Score[] }>
-> = ({ initialScores, ...props }) => {
+  React.PropsWithChildren<{
+    initialValue: { scores: Score[]; user: User | null };
+  }>
+> = ({ initialValue: { user, scores: initialScores }, ...props }) => {
+  const bid = initialScores[0].bookId;
   const [optimistic, addOptimistic] = useOptimistic(
     initialScores,
-    (scores: Score[], newScore: Score) => {
+    (scores: Score[], data: OptimisticData) => {
+      if (!user) return scores;
+
+      const newScore: Score = {
+        comment: {
+          commentator: user,
+          content: data.content,
+          createdAt: new Date(),
+          id: NaN,
+        },
+        rate: data.rate,
+        bookId: bid,
+      };
+
       return [newScore].concat(scores);
     }
   );
 
   return (
     <CommentContext.Provider
-      value={{ comments: optimistic, addComment: addOptimistic }}
+      value={{ comments: optimistic, addOptimistic, user, bid }}
       {...props}
     />
   );
@@ -33,9 +51,9 @@ export const CommentContextProvider: React.FC<
 
 export const useComment = () => use(CommentContext);
 
+type OptimisticData = { content: string; rate: number };
 export type Score = {
   comment: {
     commentator: Pick<User, "avatar" | "name" | "id">;
-    id?: number;
-  } & Pick<Comment, "content" | "createdAt">;
-} & Pick<ScoreType, "rate">;
+  } & Pick<Comment, "content" | "createdAt" | "id">;
+} & Pick<ScoreType, "rate" | "bookId">;
