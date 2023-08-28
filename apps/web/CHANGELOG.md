@@ -1,5 +1,40 @@
 # @mogeko/bookworm-web
 
+## 0.9.0
+
+### Minor Changes
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`ba985a3`](https://github.com/mogeko/bookworm/commit/ba985a30b0b8bd91978be30957a0cb4a63b0a63e) Thanks [@mogeko](https://github.com/mogeko)! - Display user comments on the book page.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`258ab44`](https://github.com/mogeko/bookworm/commit/258ab441804487889f4fb163b11b14c66f7f13f3) Thanks [@mogeko](https://github.com/mogeko)! - Complete the display of statistical information.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`30dc4cf`](https://github.com/mogeko/bookworm/commit/30dc4cfe5eba974168b10fe398b1fb24287a88e6) Thanks [@mogeko](https://github.com/mogeko)! - Create an editor to add comments.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`321a6c5`](https://github.com/mogeko/bookworm/commit/321a6c566b7083ce9ddd6b2d8c3ae11a4b86ff91) Thanks [@mogeko](https://github.com/mogeko)! - Allow users to delete their own comments.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`cb9dc4f`](https://github.com/mogeko/bookworm/commit/cb9dc4f53aebf97733821dc5b942b33429a5f894) Thanks [@mogeko](https://github.com/mogeko)! - Use literal values (`LIKE`/`DISLIKE`) to represent voting.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`e39deb5`](https://github.com/mogeko/bookworm/commit/e39deb5c95f6463c167e57bd283fcc89a1aaaf71) Thanks [@mogeko](https://github.com/mogeko)! - Display information authors and translators.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`56dc40b`](https://github.com/mogeko/bookworm/commit/56dc40bc03b952586f1969ebba43a7c84400c19d) Thanks [@mogeko](https://github.com/mogeko)! - Complete the UI part of `BookDetails`.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`dc2a5b9`](https://github.com/mogeko/bookworm/commit/dc2a5b982944326366abba021484dc157b866e8d) Thanks [@mogeko](https://github.com/mogeko)! - Create headers for book pages.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`c529468`](https://github.com/mogeko/bookworm/commit/c5294682b7ad550ccb72a33eae3e05056bd19838) Thanks [@mogeko](https://github.com/mogeko)! - Allow users to vote (`like`/`dislike`) on comments.
+
+### Patch Changes
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`428b14e`](https://github.com/mogeko/bookworm/commit/428b14ecd4af31bc6598e79c9f096a26197efa8f) Thanks [@mogeko](https://github.com/mogeko)! - Wrap the illustrations into components.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`9c7a0d1`](https://github.com/mogeko/bookworm/commit/9c7a0d167b2db447d80395e74995a2c97b6270c5) Thanks [@mogeko](https://github.com/mogeko)! - Set different illustrations for the login page and registration page.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`c1276f3`](https://github.com/mogeko/bookworm/commit/c1276f30e32d0bc7cab14822d13f6a924933dd0f) Thanks [@mogeko](https://github.com/mogeko)! - Redesign the illustrations.
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`2c7bb8c`](https://github.com/mogeko/bookworm/commit/2c7bb8c007186592eaf7fceedfe3b61bbcc5186f) Thanks [@mogeko](https://github.com/mogeko)! - Nowadays, `ThemeProvider` can set the forced `mode` (`light` or `dark`).
+
+- Updated dependencies [[`cb9dc4f`](https://github.com/mogeko/bookworm/commit/cb9dc4f53aebf97733821dc5b942b33429a5f894)]:
+  - @mogeko/bookworm-db@0.12.0
+
 ## 0.8.4
 
 ### Patch Changes
