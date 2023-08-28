@@ -1,41 +1,34 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { LuTrash2, LuX } from "react-icons/lu";
 import { TiStarFullOutline } from "react-icons/ti";
 
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { DeleteButton } from "@/components/comment-delete";
+import {
+  LikeDislikeButton,
+  type VoteState,
+} from "@/components/comment-like-dislike";
 import { Link } from "@/components/link";
 import { useComment } from "@/app/(core)/book/[bid]/_components/comment-context";
 import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
+import { likeDislike } from "@/app/(core)/book/[bid]/like-dislike-actions";
 
 export const CommentFeeds: React.FC<
   {} & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
-  const { comments, user, bid } = useComment();
+  const { comments, user } = useComment();
 
   const handleDeleteComment = useCallback(
     (cid: number) => {
       startTransition(async () => {
-        const { error } = await removeComment({ bid, cid });
+        const { error } = await removeComment(cid);
 
         if (error) {
           toast({
@@ -46,7 +39,26 @@ export const CommentFeeds: React.FC<
         }
       });
     },
-    [removeComment, startTransition, toast, bid]
+    [startTransition, toast]
+  );
+
+  const handleLikeDislike = useCallback(
+    (state: VoteState, cid: number) => {
+      startTransition(async () => {
+        if (user) {
+          const { error } = await likeDislike(state, { uid: user.id, cid });
+
+          if (error) {
+            toast({
+              variant: "destructive",
+              title: "Oooooops! Something went wrong.",
+              description: error,
+            });
+          }
+        }
+      });
+    },
+    [startTransition, toast]
   );
 
   return (
@@ -80,44 +92,23 @@ export const CommentFeeds: React.FC<
                     </div>
                   </div>
                 </div>
-                {user?.id === commentator.id && (
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        className="hover:text-destructive hidden rounded-full group-hover:inline-flex"
-                        variant={null}
-                        size="sm"
-                      >
-                        <LuX className="h-3 w-3" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          Are you absolutely sure?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently
-                          delete the comment you have made.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={(_) => handleDeleteComment(comment.id)}
-                        >
-                          <LuTrash2 className="mr-1 h-4 w-4" />
-                          Yes, Delete it
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                )}
+                <DeleteButton
+                  className="hidden group-hover:inline-flex"
+                  onClick={(_) => handleDeleteComment(comment.id)}
+                  disabled={commentator.id !== user?.id}
+                />
               </header>
-              <main className="p-6 pt-0">
+              <main className="flex flex-col items-stretch justify-center gap-3 p-6 pt-0">
                 <p className="leading-7 [&:not(:first-child)]:mt-6">
                   {comment.content}
                 </p>
+                <LikeDislikeButton
+                  onStateChange={(s) => handleLikeDislike(s, comment.id)}
+                  defaultPressed={
+                    comment.votes.find((v) => v.voterId === user?.id)?.vote
+                  }
+                  likeCount={comment.votes.filter((v) => v.vote).length}
+                />
               </main>
             </section>
           </div>

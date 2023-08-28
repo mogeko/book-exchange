@@ -9,7 +9,7 @@ export async function setComment(
   { bid, uid }: { bid: number; uid: number }
 ) {
   try {
-    await prisma.score.create({
+    const { bookId } = await prisma.score.create({
       data: {
         book: {
           connect: { id: bid },
@@ -24,20 +24,18 @@ export async function setComment(
       },
     });
 
-    return revalidatePath(`/book/${bid}`), {};
+    return revalidatePath(`/book/${bookId}`), {};
   } catch (error: any) {
-    console.error(error);
     return { error: error.message };
   }
 }
 
-export async function removeComment(props: { bid: number; cid: number }) {
+export async function removeComment(cid: number) {
   try {
-    await prisma.score.delete({ where: { commentId: props.cid } });
+    const { bookId } = await prisma.score.delete({ where: { commentId: cid } });
 
-    return revalidatePath(`/book/${props.bid}`), {};
+    return revalidatePath(`/book/${bookId}`), {};
   } catch (error: any) {
-    console.error(error);
     return { error: error.message };
   }
 }

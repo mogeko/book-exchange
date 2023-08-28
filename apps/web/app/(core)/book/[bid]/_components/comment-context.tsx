@@ -6,7 +6,7 @@ import {
   experimental_useOptimistic as useOptimistic,
 } from "react";
 
-import type { Comment, Score as ScoreType, User } from "@/lib/database";
+import type { Comment, Score as ScoreType, User, Voter } from "@/lib/database";
 
 const CommentContext = createContext<{
   comments: Score[];
@@ -31,6 +31,7 @@ export const CommentContextProvider: React.FC<
           commentator: user,
           content: data.content,
           createdAt: new Date(),
+          votes: [],
           id: NaN,
         },
         rate: data.rate,
@@ -55,5 +56,6 @@ type OptimisticData = { content: string; rate: number };
 export type Score = {
   comment: {
     commentator: Pick<User, "avatar" | "name" | "id">;
+    votes: Pick<Voter, "voterId" | "vote">[];
   } & Pick<Comment, "content" | "createdAt" | "id">;
 } & Pick<ScoreType, "rate" | "bookId">;

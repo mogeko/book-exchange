@@ -34,6 +34,9 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                 commentator: {
                   select: { id: true, avatar: true, name: true },
                 },
+                votes: {
+                  select: { voterId: true, vote: true },
+                },
                 createdAt: true,
                 content: true,
               },
