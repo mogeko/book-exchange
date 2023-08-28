@@ -1,12 +1,17 @@
+import { Illustration } from "@/app/login/_components/illustration";
 import { SwitchButton } from "@/app/login/_components/switch-button";
+import cover from "@/app/login/_images/books_with_head.jpg";
 
 const SignupLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        {children}
+      <Illustration src={cover} invert />
+      <div className="lg:p-8">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+          {children}
+        </div>
+        <SwitchButton href="/login">Sign in</SwitchButton>
       </div>
-      <SwitchButton href="/login">Sign in</SwitchButton>
     </>
   );
 };

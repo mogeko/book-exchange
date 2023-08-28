@@ -33,8 +33,10 @@
     "fmt": "next lint --fix"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.2.0",
+    "@hookform/resolvers": "^3.3.0",
     "@mogeko/bookworm-db": "workspace:^",
+    "@radix-ui/react-alert-dialog": "^1.0.4",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -48,6 +50,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
+    "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.6",
     "@tanstack/react-table": "^8.9.3",
     "class-variance-authority": "^0.7.0",
@@ -58,7 +61,7 @@
     "js-base64": "^3.7.5",
     "next": "13.4.13",
     "react": "18.2.0",
-    "react-day-picker": "^8.8.0",
+    "react-day-picker": "^8.8.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
@@ -78,6 +81,6 @@
     "postcss": "8.4.28",
     "postcss-import": "^15.1.0",
     "tailwindcss": "3.3.3",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }

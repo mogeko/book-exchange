@@ -28,7 +28,7 @@ export const Search: React.FC<
   const [open, setOpen] = useState(false);
   const { history, setHistory } = useHistory<Book>();
   const { data } = useSearch(searchValue, history);
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme("mode");
   const router = useRouter();
 
   const jumpTo = useCallback(
@@ -46,7 +46,7 @@ export const Search: React.FC<
   );
   const clearHistory = useCallback(() => setHistory([]), [setHistory]);
   const changeThemeTo = useCallback(
-    (mode: string) => (setOpen(false), setTheme({ mode })),
+    (mode: string) => (setOpen(false), setTheme(mode)),
     [setOpen, setTheme]
   );
 
