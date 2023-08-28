@@ -9,56 +9,53 @@ import { Toggle } from "@/components/ui/toggle";
 export const LikeDislikeButton: React.FC<
   {
     onStateChange: React.Dispatch<VoteState>;
-    defaultState?: VoteState;
     likeCount?: number;
+    defaultState?: VoteState;
   } & React.ComponentPropsWithoutRef<typeof Toggle>
-> = ({ onStateChange, className, defaultPressed, likeCount, ...props }) => {
-  const [state, setState] = useState<VoteState>(
-    defaultPressed === true
-      ? "like"
-      : defaultPressed === false
-      ? "dislike"
-      : null
-  );
+> = ({ onStateChange, className, defaultState, likeCount, ...props }) => {
+  const [state, setState] = useState<VoteState>(defaultState ?? null);
   const classes = cn(
     "hover:bg-background hover:text-primary text-muted-foreground data-[state=on]:bg-background data-[state=on]:text-primary",
     className
   );
 
-  const setStateChange = useCallback((state: VoteState) => {
-    if (state === "like") {
-      setState("like"), onStateChange("like");
-    } else if (state === "dislike") {
-      setState("dislike"), onStateChange("dislike");
-    } else {
-      setState(null), onStateChange(null);
-    }
-  }, []);
+  const setStateChange = useCallback(
+    (state: VoteState) => {
+      if (state === "LIKE") {
+        setState("LIKE"), onStateChange("LIKE");
+      } else if (state === "DISLIKE") {
+        setState("DISLIKE"), onStateChange("DISLIKE");
+      } else {
+        setState(null), onStateChange(null);
+      }
+    },
+    [setState, onStateChange]
+  );
 
   return (
     <div className="flex flex-row items-center justify-start gap-6">
       <Toggle
-        pressed={state === "like"}
-        onPressedChange={(p) => setStateChange(p ? "like" : null)}
+        pressed={state === "LIKE"}
+        onPressedChange={(p) => setStateChange(p ? "LIKE" : null)}
         className={classes}
         {...props}
       >
-        {state === "like" ? (
+        {state === "LIKE" ? (
           <BiSolidLike className="h-4 w-4" />
         ) : (
           <BiLike className="h-4 w-4" />
         )}
         <span className="ml-2">
-          {"Like" + (likeCount ? ` (${likeCount})` : "")}
+          {"LIKE" + (likeCount ? ` (${likeCount})` : "")}
         </span>
       </Toggle>
       <Toggle
-        pressed={state === "dislike"}
-        onPressedChange={(p) => setStateChange(p ? "dislike" : null)}
+        pressed={state === "DISLIKE"}
+        onPressedChange={(p) => setStateChange(p ? "DISLIKE" : null)}
         className={classes}
         {...props}
       >
-        {state === "dislike" ? (
+        {state === "DISLIKE" ? (
           <BiSolidDislike className="h-4 w-4" />
         ) : (
           <BiDislike className="h-4 w-4" />
@@ -69,4 +66,4 @@ export const LikeDislikeButton: React.FC<
   );
 };
 
-export type VoteState = "like" | "dislike" | null;
+export type VoteState = "LIKE" | "DISLIKE" | null;

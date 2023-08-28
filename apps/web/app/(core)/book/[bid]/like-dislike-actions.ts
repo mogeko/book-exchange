@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/database";
 
 export async function likeDislike(
-  state: "like" | "dislike" | null,
+  state: "LIKE" | "DISLIKE" | null,
   { cid, uid }: { cid: number; uid: number }
 ) {
   try {
@@ -14,7 +14,7 @@ export async function likeDislike(
         comment: { score },
       } = await prisma.voter.update({
         where: { voterId_commentId: { commentId: cid, voterId: uid } },
-        data: { vote: state === "like" ? true : false },
+        data: { vote: state },
         include: {
           comment: { select: { score: { select: { bookId: true } } } },
         },

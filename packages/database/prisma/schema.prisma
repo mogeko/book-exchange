@@ -91,9 +91,14 @@ model Voter {
   commentId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  vote      Boolean
+  vote      Vote
 
   @@id([voterId, commentId])
+}
+
+enum Vote {
+  LIKE
+  DISLIKE
 }
 
 model Comment {

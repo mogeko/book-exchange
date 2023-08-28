@@ -256,7 +256,7 @@ async function seedCommends(commentators: Users, targets: TargetsProps) {
               (commentator) => {
                 return {
                   voter: { connect: commentator },
-                  vote: faker.datatype.boolean(0.6),
+                  vote: faker.helpers.arrayElement(["LIKE", "DISLIKE"]),
                 };
               }
             ),

@@ -58,7 +58,7 @@ export const CommentFeeds: React.FC<
         }
       });
     },
-    [startTransition, toast]
+    [startTransition, toast, user]
   );
 
   return (
@@ -104,7 +104,7 @@ export const CommentFeeds: React.FC<
                 </p>
                 <LikeDislikeButton
                   onStateChange={(s) => handleLikeDislike(s, comment.id)}
-                  defaultPressed={
+                  defaultState={
                     comment.votes.find((v) => v.voterId === user?.id)?.vote
                   }
                   likeCount={comment.votes.filter((v) => v.vote).length}
