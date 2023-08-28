@@ -1,5 +1,11 @@
 # @mogeko/bookworm-db
 
+## 0.12.0
+
+### Minor Changes
+
+- [#137](https://github.com/mogeko/bookworm/pull/137) [`cb9dc4f`](https://github.com/mogeko/bookworm/commit/cb9dc4f53aebf97733821dc5b942b33429a5f894) Thanks [@mogeko](https://github.com/mogeko)! - Use literal values (`LIKE`/`DISLIKE`) to represent voting.
+
 ## 0.11.0
 
 ### Minor Changes
