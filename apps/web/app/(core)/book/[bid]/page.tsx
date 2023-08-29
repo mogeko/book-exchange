@@ -75,17 +75,12 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                 <span>From: </span>
                 {authors.map((author, i, arr) => {
                   return (
-                    <>
-                      <Link
-                        key={`author-name-${author.id}-${author.name}`}
-                        href={`/author/${author.id}`}
-                      >
-                        {author.name}
-                      </Link>
+                    <span key={`author-name-${author.id}-${author.name}`}>
+                      <Link href={`/author/${author.id}`}>{author.name}</Link>
                       {i <= arr.length - 3 && <span>, </span>}
                       {i === arr.length - 2 && <span> and </span>}
                       {i === arr.length - 1 && <span>.</span>}
-                    </>
+                    </span>
                   );
                 })}
               </p>
