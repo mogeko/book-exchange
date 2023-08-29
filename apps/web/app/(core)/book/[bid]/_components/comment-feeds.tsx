@@ -108,9 +108,7 @@ export const CommentFeeds: React.FC<
                   defaultState={
                     comment.votes.find((v) => v.voterId === user?.id)?.vote
                   }
-                  likeCount={
-                    comment.votes.filter((v) => v.vote === "LIKE").length
-                  }
+                  votes={comment.votes}
                 />
               </main>
             </section>

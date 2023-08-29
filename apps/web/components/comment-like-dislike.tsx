@@ -13,34 +13,45 @@ import { Toggle } from "@/components/ui/toggle";
 export const LikeDislikeButton: React.FC<
   {
     onStateChange: React.Dispatch<VoteState>;
-    likeCount: number;
+    votes: { vote: VoteState }[];
     defaultState?: VoteState;
   } & React.ComponentPropsWithoutRef<typeof Toggle>
-> = ({ onStateChange, className, defaultState, likeCount, ...props }) => {
+> = ({ onStateChange, className, defaultState, votes, ...props }) => {
   const [state, setState] = useState<VoteState>(defaultState ?? null);
-  const [likeCountOptimistic, setLikeCount] = useOptimistic(likeCount);
 
-  const setStateChange = useCallback(
-    (state: VoteState) => {
-      if (state === "LIKE") {
-        setState("LIKE"), onStateChange("LIKE");
-        setLikeCount((x) => x + 1);
-      } else if (state === "DISLIKE") {
-        setState("DISLIKE"), onStateChange("DISLIKE");
-        setLikeCount((x) => Math.max(0, x - 1));
+  const [likeCount, addLikeCount] = useOptimistic(
+    votes.filter((v) => v.vote === "LIKE").length,
+    (count, x: number) => Math.max(0, count + x)
+  );
+
+  const handleLikeChange = useCallback(
+    (pressed: boolean) => {
+      if (pressed) {
+        setState("LIKE"), onStateChange("LIKE"), addLikeCount(1);
       } else {
-        setState(null), onStateChange(null);
-        setLikeCount((x) => Math.max(0, x - 1));
+        setState(null), onStateChange(null), addLikeCount(-1);
       }
     },
-    [setState, onStateChange]
+    [setState, onStateChange, addLikeCount]
+  );
+
+  const handleDislikeChange = useCallback(
+    (pressed: boolean) => {
+      if (pressed) {
+        if (state === "LIKE") addLikeCount(-1);
+        setState("DISLIKE"), onStateChange("DISLIKE");
+      } else {
+        setState(null), onStateChange(null);
+      }
+    },
+    [setState, onStateChange, addLikeCount, state]
   );
 
   return (
     <div className="flex flex-row items-center justify-start gap-6">
       <Toggle
         pressed={state === "LIKE"}
-        onPressedChange={(p) => setStateChange(p ? "LIKE" : null)}
+        onPressedChange={handleLikeChange}
         className={cn(
           "hover:bg-background hover:text-primary text-muted-foreground data-[state=on]:bg-background data-[state=on]:text-primary",
           className
@@ -53,12 +64,12 @@ export const LikeDislikeButton: React.FC<
           <BiLike className="h-4 w-4" />
         )}
         <span className="ml-2">
-          {"LIKE" + (likeCountOptimistic ? ` (${likeCountOptimistic})` : "")}
+          {"LIKE" + (likeCount ? ` (${likeCount})` : "")}
         </span>
       </Toggle>
       <Toggle
         pressed={state === "DISLIKE"}
-        onPressedChange={(p) => setStateChange(p ? "DISLIKE" : null)}
+        onPressedChange={handleDislikeChange}
         className={cn(
           "hover:bg-background hover:text-primary text-muted-foreground data-[state=on]:bg-background data-[state=on]:text-primary",
           className
