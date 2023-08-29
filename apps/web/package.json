@@ -33,7 +33,7 @@
     "fmt": "next lint --fix"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.0",
+    "@hookform/resolvers": "^3.3.1",
     "@mogeko/bookworm-db": "workspace:^",
     "@radix-ui/react-alert-dialog": "^1.0.4",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -68,7 +68,7 @@
     "server-only": "^0.0.1",
     "swr": "^2.2.2",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.6",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.2"
   },
   "devDependencies": {
