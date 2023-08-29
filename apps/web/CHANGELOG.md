@@ -1,5 +1,15 @@
 # @mogeko/bookworm-web
 
+## 0.9.1
+
+### Patch Changes
+
+- [#141](https://github.com/mogeko/bookworm/pull/141) [`a92ef49`](https://github.com/mogeko/bookworm/commit/a92ef49499a114e774169c83bda88208ba654373) Thanks [@mogeko](https://github.com/mogeko)! - Upgrade comment-context to a global component.
+
+- [#141](https://github.com/mogeko/bookworm/pull/141) [`27b39a6`](https://github.com/mogeko/bookworm/commit/27b39a6320b48daf520fcac94f83736136f8224d) Thanks [@mogeko](https://github.com/mogeko)! - Safer update `like`/`dislike` status.
+
+- [#141](https://github.com/mogeko/bookworm/pull/141) [`ef2a655`](https://github.com/mogeko/bookworm/commit/ef2a655b060c05eaaba885910ea59a4e499fb278) Thanks [@mogeko](https://github.com/mogeko)! - Optimistic update `likes`/`dislikes` state and count for comments.
+
 ## 0.9.0
 
 ### Minor Changes
