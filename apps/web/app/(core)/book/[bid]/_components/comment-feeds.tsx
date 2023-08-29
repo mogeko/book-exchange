@@ -8,13 +8,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useComment, useLoginedUser } from "@/components/comment-context";
 import { DeleteButton } from "@/components/comment-delete";
 import {
   LikeDislikeButton,
   type VoteState,
 } from "@/components/comment-like-dislike";
 import { Link } from "@/components/link";
-import { useComment } from "@/app/(core)/book/[bid]/_components/comment-context";
 import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
 import { likeDislike } from "@/app/(core)/book/[bid]/like-dislike-actions";
 
@@ -23,7 +23,8 @@ export const CommentFeeds: React.FC<
 > = ({ className, ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
-  const { comments, user } = useComment();
+  const { comments } = useComment();
+  const user = useLoginedUser();
 
   const handleDeleteComment = useCallback(
     (cid: number) => {
@@ -45,16 +46,16 @@ export const CommentFeeds: React.FC<
   const handleLikeDislike = useCallback(
     (state: VoteState, cid: number) => {
       startTransition(async () => {
-        if (user) {
-          const { error } = await likeDislike(state, { uid: user.id, cid });
+        if (!user) return;
 
-          if (error) {
-            toast({
-              variant: "destructive",
-              title: "Oooooops! Something went wrong.",
-              description: error,
-            });
-          }
+        const { error } = await likeDislike(state, user.id, cid);
+
+        if (error) {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
         }
       });
     },
