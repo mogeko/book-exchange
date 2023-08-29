@@ -5,10 +5,10 @@ import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
+import { Comment } from "@/components/comment-context";
 import { Link } from "@/components/link";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
 import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
-import { CommentContextProvider } from "@/app/(core)/book/[bid]/_components/comment-context";
 import { CommentEditor } from "@/app/(core)/book/[bid]/_components/comment-editor";
 import { CommentFeeds } from "@/app/(core)/book/[bid]/_components/comment-feeds";
 import { Description } from "@/app/(core)/book/[bid]/_components/header-description";
@@ -19,7 +19,7 @@ import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistic
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
   const { uid } = await loginedUserStatus();
-  const user = await prisma.user.findUnique({ where: { id: uid } });
+  const loginedUser = await prisma.user.findUnique({ where: { id: uid } });
   const { authors, translators, scores, ...book } =
     (await prisma.book.findUnique({
       where: { id: parseInt(params.bid) },
@@ -51,7 +51,6 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
         tags: true,
       },
     })) ?? notFound();
-  const bid = parseInt(params.bid);
 
   return (
     <div className="flex flex-col">
@@ -76,17 +75,12 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
                 <span>From: </span>
                 {authors.map((author, i, arr) => {
                   return (
-                    <>
-                      <Link
-                        key={`author-name-${author.id}-${author.name}`}
-                        href={`/author/${author.id}`}
-                      >
-                        {author.name}
-                      </Link>
+                    <span key={`author-name-${author.id}-${author.name}`}>
+                      <Link href={`/author/${author.id}`}>{author.name}</Link>
                       {i <= arr.length - 3 && <span>, </span>}
                       {i === arr.length - 2 && <span> and </span>}
                       {i === arr.length - 1 && <span>.</span>}
-                    </>
+                    </span>
                   );
                 })}
               </p>
@@ -123,10 +117,10 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
               Comments ({scores.length})
             </h2>
             <div className="flex flex-col items-stretch justify-start">
-              <CommentContextProvider initialValue={{ scores, user }}>
-                <CommentEditor />
+              <Comment initialValue={{ comments: scores, loginedUser }}>
+                <CommentEditor bid={parseInt(params.bid)} />
                 <CommentFeeds />
-              </CommentContextProvider>
+              </Comment>
             </div>
           </div>
         </div>

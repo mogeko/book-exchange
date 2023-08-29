@@ -34,9 +34,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useComment, useLoginedUser } from "@/components/comment-context";
 import { Link } from "@/components/link";
 import { RatingStars } from "@/components/rating-stars";
-import { useComment } from "@/app/(core)/book/[bid]/_components/comment-context";
 import { setComment } from "@/app/(core)/book/[bid]/comment-actions";
 
 const schema = object({
@@ -52,8 +52,9 @@ const schema = object({
     .max(10),
 });
 
-export const CommentEditor: React.FC = () => {
-  const { addOptimistic, user, bid } = useComment();
+export const CommentEditor: React.FC<{ bid: number }> = ({ bid }) => {
+  const { addComment } = useComment();
+  const user = useLoginedUser();
   const [_, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const form = useForm<zInfer<typeof schema>>({
@@ -70,7 +71,7 @@ export const CommentEditor: React.FC = () => {
 
   const onSubmit = useCallback(
     (data: zInfer<typeof schema>) => {
-      addOptimistic(data), setOpen(false);
+      addComment(data), setOpen(false);
       startTransition(async () => {
         if (user) {
           const { error } = await setComment(data, { uid: user.id, bid });
@@ -91,7 +92,7 @@ export const CommentEditor: React.FC = () => {
         }
       });
     },
-    [startTransition, addOptimistic, user, bid, toast]
+    [startTransition, addComment, user, bid, toast]
   );
 
   if (!user) {
