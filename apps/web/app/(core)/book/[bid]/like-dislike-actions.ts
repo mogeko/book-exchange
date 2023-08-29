@@ -5,14 +5,19 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/database";
 import type { VoteState } from "@/components/comment-like-dislike";
 
-export async function likeDislike(state: VoteState, cid: number, uid: number) {
+export async function likeDislike(state: VoteState, uid: number, cid: number) {
   try {
     if (state) {
       const {
         comment: { score },
-      } = await prisma.voter.update({
+      } = await prisma.voter.upsert({
         where: { voterId_commentId: { commentId: cid, voterId: uid } },
-        data: { vote: state },
+        update: { vote: state },
+        create: {
+          voter: { connect: { id: uid } },
+          comment: { connect: { id: cid } },
+          vote: state,
+        },
         include: {
           comment: { select: { score: { select: { bookId: true } } } },
         },
@@ -32,6 +37,7 @@ export async function likeDislike(state: VoteState, cid: number, uid: number) {
       return revalidatePath(`/book/${score?.bookId ?? ""}`), {};
     }
   } catch (error: any) {
+    console.error(error);
     return { error: error.message };
   }
 }
