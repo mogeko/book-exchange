@@ -13,11 +13,20 @@ export const LineClamp3: React.FC<
   const [isClamped, setClamped] = useState(false);
 
   useEffect(() => {
-    if (contentRef && contentRef.current) {
-      setClamped(
-        contentRef.current.scrollHeight > contentRef.current.clientHeight
-      );
-    }
+    const handleResize = () => {
+      if (contentRef && contentRef.current) {
+        setClamped(
+          contentRef.current.scrollHeight > contentRef.current.clientHeight
+        );
+        console.log(contentRef.current.scrollHeight);
+      }
+    };
+
+    handleResize(); // At least check once in case the content is already clamped
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
