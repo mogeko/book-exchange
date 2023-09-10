@@ -14,6 +14,7 @@ import {
   LikeDislikeButton,
   type VoteState,
 } from "@/components/comment-like-dislike";
+import { LineClamp3 } from "@/components/line-clamp";
 import { Link } from "@/components/link";
 import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
 import { likeDislike } from "@/app/(core)/book/[bid]/like-dislike-actions";
@@ -100,9 +101,9 @@ export const CommentFeeds: React.FC<
                 />
               </header>
               <main className="flex flex-col items-stretch justify-center gap-3 p-6 pt-0">
-                <p className="leading-7 [&:not(:first-child)]:mt-6">
+                <LineClamp3 className="[&:not(:first-child)]:mt-6">
                   {comment.content}
-                </p>
+                </LineClamp3>
                 <LikeDislikeButton
                   onStateChange={(s) => handleLikeDislike(s, comment.id)}
                   defaultState={
