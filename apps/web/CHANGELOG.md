@@ -1,5 +1,13 @@
 # @mogeko/bookworm-web
 
+## 0.9.2
+
+### Patch Changes
+
+- [#148](https://github.com/mogeko/bookworm/pull/148) [`709f18b`](https://github.com/mogeko/bookworm/commit/709f18b066aa96eda9ce8771a4b2f566c414a867) Thanks [@mogeko](https://github.com/mogeko)! - Check if content is clamped when window resized.
+
+- [#148](https://github.com/mogeko/bookworm/pull/148) [`939e366`](https://github.com/mogeko/bookworm/commit/939e366f2e687664f84f269a7e0c455fa4c24d6a) Thanks [@mogeko](https://github.com/mogeko)! - Collapse the content of comments.
+
 ## 0.9.1
 
 ### Patch Changes
