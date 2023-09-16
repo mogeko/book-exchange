@@ -25,7 +25,10 @@
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
-    "*"
+    "prisma/migrations",
+    "prisma/schema.prisma",
+    "CHANGELOG.md",
+    "index.ts"
   ],
   "scripts": {
     "db:generate": "prisma generate",
@@ -38,8 +41,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.2.0",
-    "prisma": "^5.2.0"
+    "@prisma/client": "^5.3.1",
+    "prisma": "^5.3.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
