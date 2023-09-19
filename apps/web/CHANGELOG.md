@@ -1,5 +1,15 @@
 # @mogeko/bookworm-web
 
+## 0.9.3
+
+### Patch Changes
+
+- [#160](https://github.com/mogeko/bookworm/pull/160) [`822fb5d`](https://github.com/mogeko/bookworm/commit/822fb5d1eeed9cb10cf28b402e3eb1c25dc30fdd) Thanks [@mogeko](https://github.com/mogeko)! - Setup Suspense fallback when loding for Sign in and Sign up page.
+
+- [#160](https://github.com/mogeko/bookworm/pull/160) [`895e68f`](https://github.com/mogeko/bookworm/commit/895e68f5f3359ab46a80d3d315954a6e840f3a58) Thanks [@mogeko](https://github.com/mogeko)! - Prevent the entire page deopted into client-side rendering.
+
+  See: https://nextjs.org/docs/messages/deopted-into-client-rendering
+
 ## 0.9.2
 
 ### Patch Changes
