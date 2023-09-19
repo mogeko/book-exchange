@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import { UserSignupForm } from "@/app/login/signup/signup-form";
 
 const SignupPage: React.FC<{
-  searchParams: ReadonlyURLSearchParams;
+  searchParams: { from?: string };
 }> = ({ searchParams }) => {
   return (
     <>
@@ -17,9 +16,7 @@ const SignupPage: React.FC<{
         </p>
       </div>
       <Suspense fallback={<UserSignupFormFallback />}>
-        <UserSignupForm
-          searchParams={new URLSearchParams(searchParams.toString())}
-        />
+        <UserSignupForm searchParams={searchParams} />
       </Suspense>
     </>
   );

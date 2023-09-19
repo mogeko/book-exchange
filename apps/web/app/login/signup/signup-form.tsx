@@ -27,7 +27,7 @@ const schema = object({
 
 export const UserSignupForm: React.FC<
   {
-    searchParams: URLSearchParams;
+    searchParams: { from?: string };
   } & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, searchParams, ...props }) => {
   const router = useRouter();
@@ -37,8 +37,10 @@ export const UserSignupForm: React.FC<
 
   const onSubmit = useCallback(
     (values: zInfer<typeof schema>) => {
-      searchParams.set("state", encode(JSON.stringify(values), true));
-      router.push("/login/signup/password?" + searchParams.toString());
+      const params = new URLSearchParams(searchParams);
+
+      params.set("state", encode(JSON.stringify(values), true));
+      router.push("/login/signup/password?" + params.toString());
     },
     [router, searchParams]
   );

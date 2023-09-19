@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import type { ReadonlyURLSearchParams } from "next/navigation";
 
+import { decode } from "@/lib/base64";
 import { UserPasswordForm } from "@/app/login/signup/password/password-form";
 
 const SignupPasswordPage: React.FC<{
-  searchParams: ReadonlyURLSearchParams;
+  searchParams: { state?: string; from?: string };
 }> = ({ searchParams }) => {
   return (
     <>
@@ -17,7 +17,10 @@ const SignupPasswordPage: React.FC<{
         </p>
       </div>
       <Suspense fallback={<UserPasswordFormFallback />}>
-        <UserPasswordForm searchParams={searchParams} />
+        <UserPasswordForm
+          state={JSON.parse(decode(searchParams.state ?? "e30="))}
+          searchParams={searchParams}
+        />
       </Suspense>
     </>
   );

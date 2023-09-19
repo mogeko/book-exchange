@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import { UserSigninForm } from "@/app/login/(signin)/signin-form";
 
 const SigninPage: React.FC<{
-  searchParams: ReadonlyURLSearchParams;
+  searchParams: { from?: string };
 }> = ({ searchParams }) => {
   return (
     <>
@@ -17,7 +16,7 @@ const SigninPage: React.FC<{
         </p>
       </div>
       <Suspense fallback={<UserSigninFormFallback />}>
-        <UserSigninForm redirectTo={searchParams.get("from") ?? "/"} />
+        <UserSigninForm redirectTo={searchParams.from ?? "/"} />
       </Suspense>
     </>
   );
