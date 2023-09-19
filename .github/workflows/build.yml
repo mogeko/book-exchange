@@ -47,5 +47,5 @@ jobs:
           key: ${{ runner.os }}-turbo-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-turbo-build-
       - run: pnpm install -rw
-      - run: pnpm run db:reset
+      - run: pnpm run db:migrate
       - run: pnpm run build

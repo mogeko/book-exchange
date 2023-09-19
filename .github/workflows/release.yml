@@ -34,6 +34,8 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm install -rw
+      - run: pnpm run db:migrate
+      - run: pnpm run build
       - name: Create Version PR or Publish to NPM
         id: changesets
         uses: changesets/action@v1.4.5
