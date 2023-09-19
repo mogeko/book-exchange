@@ -1,5 +1,9 @@
 import { Suspense } from "react";
+import { LuLoader2 } from "react-icons/lu";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { UserSignupForm } from "@/app/login/signup/signup-form";
 
 const SignupPage: React.FC<{
@@ -23,7 +27,18 @@ const SignupPage: React.FC<{
 };
 
 const UserSignupFormFallback: React.FC = () => {
-  return null;
+  return (
+    <div className="grid gap-2">
+      <div className="space-y-1">
+        <Label>Email</Label>
+        <Input type="email" placeholder="name@example.com" disabled />
+      </div>
+      <Button disabled>
+        <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+        Loading...
+      </Button>
+    </div>
+  );
 };
 
 export default SignupPage;
