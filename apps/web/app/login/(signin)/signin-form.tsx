@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -30,11 +29,11 @@ const schema = object({
 });
 
 export const UserSigninForm: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
+  {
+    redirectTo?: string;
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, redirectTo = "/", ...props }) => {
   const [_isPending, startTransition] = useTransition();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("from") ?? "/";
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -43,7 +42,7 @@ export const UserSigninForm: React.FC<
   const onSubmit = useCallback(
     (values: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const { error } = await login(values, { redirect });
+        const { error } = await login(values, { redirect: redirectTo });
 
         toast({
           variant: "destructive",
@@ -52,7 +51,7 @@ export const UserSigninForm: React.FC<
         });
       });
     },
-    [startTransition, toast, redirect]
+    [startTransition, toast, redirectTo]
   );
 
   return (

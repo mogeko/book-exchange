@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -26,9 +26,10 @@ const schema = object({
 });
 
 export const UserSignupForm: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
-  const searchParams = useSearchParams();
+  {
+    searchParams: URLSearchParams;
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, searchParams, ...props }) => {
   const router = useRouter();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -36,11 +37,8 @@ export const UserSignupForm: React.FC<
 
   const onSubmit = useCallback(
     (values: zInfer<typeof schema>) => {
-      const base64 = encode(JSON.stringify(values), true);
-      const params = new URLSearchParams(searchParams.toString());
-
-      params.set("state", base64);
-      router.push("/login/signup/password?" + params.toString());
+      searchParams.set("state", encode(JSON.stringify(values), true));
+      router.push("/login/signup/password?" + searchParams.toString());
     },
     [router, searchParams]
   );

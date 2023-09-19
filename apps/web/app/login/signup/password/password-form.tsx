@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import type { ReadonlyURLSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -31,9 +31,10 @@ const schema = object({
 });
 
 export const UserPasswordForm: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
-  const searchParams = useSearchParams();
+  {
+    searchParams: ReadonlyURLSearchParams;
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, searchParams, ...props }) => {
   const state = decode(searchParams.get("state") ?? "e30=");
   const [_, startTransition] = useTransition();
   const { toast } = useToast();

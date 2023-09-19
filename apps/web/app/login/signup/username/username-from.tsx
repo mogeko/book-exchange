@@ -2,7 +2,6 @@
 
 import { useCallback, useTransition } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
@@ -32,10 +31,8 @@ const schema = object({
 });
 
 export const UserUsernameFrom: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("from") ?? "/";
+  { redirectTo?: string } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, redirectTo = "/", ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
@@ -46,7 +43,7 @@ export const UserUsernameFrom: React.FC<
   const onSubmit = useCallback(
     ({ username }: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const { error } = await setUsername(username, redirect);
+        const { error } = await setUsername(username, redirectTo);
 
         toast({
           variant: "destructive",
@@ -55,7 +52,7 @@ export const UserUsernameFrom: React.FC<
         });
       });
     },
-    [startTransition, redirect, toast]
+    [startTransition, redirectTo, toast]
   );
 
   return (
@@ -87,7 +84,7 @@ export const UserUsernameFrom: React.FC<
         </Form>
         <Link
           className={buttonVariants({ variant: "secondary" })}
-          href={redirect}
+          href={redirectTo}
         >
           Set it up later
         </Link>

@@ -1,6 +1,11 @@
+import { Suspense } from "react";
+import type { ReadonlyURLSearchParams } from "next/navigation";
+
 import { UserSignupForm } from "@/app/login/signup/signup-form";
 
-const SignupPage: React.FC = () => {
+const SignupPage: React.FC<{
+  searchParams: ReadonlyURLSearchParams;
+}> = ({ searchParams }) => {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
@@ -11,9 +16,17 @@ const SignupPage: React.FC = () => {
           Enter your email below to create your account
         </p>
       </div>
-      <UserSignupForm />
+      <Suspense fallback={<UserSignupFormFallback />}>
+        <UserSignupForm
+          searchParams={new URLSearchParams(searchParams.toString())}
+        />
+      </Suspense>
     </>
   );
+};
+
+const UserSignupFormFallback: React.FC = () => {
+  return null;
 };
 
 export default SignupPage;
