@@ -33,7 +33,7 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-config-turbo": "^1.10.13",
+    "eslint-config-turbo": "^1.10.14",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
     "prettier-plugin-prisma": "^5.0.0",

@@ -25,7 +25,10 @@
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
-    "*"
+    "prisma/migrations",
+    "prisma/schema.prisma",
+    "CHANGELOG.md",
+    "index.ts"
   ],
   "scripts": {
     "db:generate": "prisma generate",

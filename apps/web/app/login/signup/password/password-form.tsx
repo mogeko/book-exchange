@@ -1,12 +1,10 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { object, string, type infer as zInfer } from "zod";
 
-import { decode } from "@/lib/base64";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -31,22 +29,24 @@ const schema = object({
 });
 
 export const UserPasswordForm: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
-  const searchParams = useSearchParams();
-  const state = decode(searchParams.get("state") ?? "e30=");
+  {
+    searchParams: { state?: string; from?: string };
+    state?: Record<string, unknown>;
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, searchParams, state, ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const form = useForm<zInfer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: JSON.parse(state),
+    defaultValues: state,
     mode: "onChange",
   });
 
   const onSubmit = useCallback(
     (value: zInfer<typeof schema>) => {
       startTransition(async () => {
-        const { error } = await register(value, searchParams.toString());
+        const params = new URLSearchParams(searchParams).toString();
+        const { error } = await register(value, params);
 
         toast({
           variant: "destructive",
