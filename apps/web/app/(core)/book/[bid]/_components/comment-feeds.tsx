@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
+import { format, formatDistanceToNow, isBefore, subDays } from "date-fns";
 import { TiStarFullOutline } from "react-icons/ti";
 
 import { cn } from "@/lib/utils";
@@ -89,7 +90,11 @@ export const CommentFeeds: React.FC<
                         {rate}
                       </Badge>
                       <p className="text-muted-foreground text-sm">
-                        {new Intl.DateTimeFormat().format(comment.createdAt)}
+                        {isBefore(comment.createdAt, subDays(new Date(), 7))
+                          ? format(comment.createdAt, "PPP")
+                          : formatDistanceToNow(comment.createdAt, {
+                              addSuffix: true,
+                            })}
                       </p>
                     </div>
                   </div>
