@@ -45,7 +45,7 @@
     "prisma": "^5.3.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
+    "@faker-js/faker": "^8.1.0",
     "@types/node": "20.6.2",
     "typescript": "^5.2.2",
     "vite-node": "^0.34.4"
