@@ -2,6 +2,12 @@ import { notFound } from "next/navigation";
 import { LuBan, LuMoreHorizontal } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { UserBooklists } from "@/app/(core)/user/[uid]/_components/booklists";
 import { FollowButton } from "@/app/(core)/user/[uid]/_components/follow-button";
 
 const UserPage: React.FC<{
@@ -17,12 +24,12 @@ const UserPage: React.FC<{
 }> = async ({ params: { uid } }) => {
   const user = await prisma.user.findUnique({
     where: { id: parseInt(uid) },
-    include: { profile: true },
+    include: { booklists: true },
   });
 
   if (!user) notFound();
   return (
-    <div className="flex flex-col items-stretch justify-stretch">
+    <div className="flex flex-col items-stretch justify-stretch gap-6">
       <section className="bg-secondary flex flex-col">
         <div className="flex h-[300px] flex-col items-center justify-center">
           <Avatar className="aspect-square h-[150px] w-[150px]">
@@ -55,7 +62,20 @@ const UserPage: React.FC<{
         </div>
       </section>
 
-      <div></div>
+      <div className="space-y-5 border-none p-0 outline-none">
+        <Accordion type="multiple" defaultValue={["item-2"]}>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>{user.name}&apos;s Booklists</AccordionTrigger>
+            <AccordionContent>
+              <UserBooklists booklists={user.booklists} />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>{user.name}&apos;s Bookshelf</AccordionTrigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
     </div>
   );
 };
