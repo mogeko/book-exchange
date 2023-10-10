@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UserBooklists } from "@/app/(core)/user/[uid]/_components/booklists";
+import { UserBookshelf } from "@/app/(core)/user/[uid]/_components/bookshelf";
 import { FollowButton } from "@/app/(core)/user/[uid]/_components/follow-button";
 
 const UserPage: React.FC<{
@@ -24,7 +25,7 @@ const UserPage: React.FC<{
 }> = async ({ params: { uid } }) => {
   const user = await prisma.user.findUnique({
     where: { id: parseInt(uid) },
-    include: { booklists: true },
+    include: { booklists: true, ownedBooks: true },
   });
 
   if (!user) notFound();
@@ -72,7 +73,9 @@ const UserPage: React.FC<{
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger>{user.name}&apos;s Bookshelf</AccordionTrigger>
-            <AccordionContent></AccordionContent>
+            <AccordionContent>
+              <UserBookshelf books={user.ownedBooks} />
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
