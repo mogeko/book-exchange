@@ -74,7 +74,7 @@ export const CommentEditor: React.FC<{ bid: number }> = ({ bid }) => {
       addComment(data), setOpen(false);
       startTransition(async () => {
         if (user) {
-          const { error } = await setComment(data, { uid: user.id, bid });
+          const { error } = await setComment(data, bid);
 
           if (error) {
             toast({

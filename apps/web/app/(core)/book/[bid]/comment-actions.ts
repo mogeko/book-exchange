@@ -1,14 +1,18 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/database";
 
 export async function setComment(
   { content, rate }: { content: string; rate: number },
-  { bid, uid }: { bid: number; uid: number }
+  bid: number
 ) {
   try {
+    const uid = parseInt(cookies().get("uid")?.value ?? redirect("/login"));
+
     const { bookId } = await prisma.score.create({
       data: {
         book: {

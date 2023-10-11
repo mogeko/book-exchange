@@ -1,12 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/database";
 import type { VoteState } from "@/components/comment-like-dislike";
 
-export async function likeDislike(state: VoteState, uid: number, cid: number) {
+export async function likeDislike(state: VoteState, cid: number) {
   try {
+    const uid = parseInt(cookies().get("uid")?.value ?? redirect("/login"));
+
     if (state) {
       const {
         comment: { score },
