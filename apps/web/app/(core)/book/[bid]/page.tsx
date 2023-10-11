@@ -6,16 +6,18 @@ import { loginedUserStatus } from "@/lib/user-actions";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { Comment } from "@/components/comment-context";
+import { CommentFeeds } from "@/components/comment-feeds";
 import { Link } from "@/components/link";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
 import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
 import { CommentEditor } from "@/app/(core)/book/[bid]/_components/comment-editor";
-import { CommentFeeds } from "@/app/(core)/book/[bid]/_components/comment-feeds";
 import { Description } from "@/app/(core)/book/[bid]/_components/header-description";
 import { Language } from "@/app/(core)/book/[bid]/_components/header-language";
 import { PublishDate } from "@/app/(core)/book/[bid]/_components/header-publish-date";
 import { Publisher } from "@/app/(core)/book/[bid]/_components/header-publisher";
 import { Statistics } from "@/app/(core)/book/[bid]/_components/header-statistics";
+import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
+import { likeDislike } from "@/app/(core)/book/[bid]/like-dislike-actions";
 
 const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
   const { uid } = await loginedUserStatus();
@@ -119,7 +121,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
             <div className="flex flex-col items-stretch justify-start">
               <Comment initialValue={{ comments: scores, loginedUser }}>
                 <CommentEditor bid={parseInt(params.bid)} />
-                <CommentFeeds />
+                <CommentFeeds actions={{ removeComment, likeDislike }} />
               </Comment>
             </div>
           </div>

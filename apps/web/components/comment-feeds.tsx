@@ -17,12 +17,15 @@ import {
 } from "@/components/comment-like-dislike";
 import { LineClamp3 } from "@/components/line-clamp";
 import { Link } from "@/components/link";
-import { removeComment } from "@/app/(core)/book/[bid]/comment-actions";
-import { likeDislike } from "@/app/(core)/book/[bid]/like-dislike-actions";
 
 export const CommentFeeds: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
+  {
+    actions: {
+      removeComment: (cid: number) => Promise<any>;
+      likeDislike: (state: VoteState, uid: number, cid: number) => Promise<any>;
+    };
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, actions: { removeComment, likeDislike }, ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
   const { comments } = useComment();
