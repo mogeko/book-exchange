@@ -1,5 +1,27 @@
 # @mogeko/bookworm-web
 
+## 0.10.0
+
+### Minor Changes
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`f6cbd61`](https://github.com/mogeko/bookworm/commit/f6cbd6189704e4d77b1095ab024fbdadc1d5c01b) Thanks [@mogeko](https://github.com/mogeko)! - Implement the function of "follow".
+
+  TODO: Additional details are needed
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`073b5c5`](https://github.com/mogeko/bookworm/commit/073b5c5944c82462f01b9dba2baf755057a204b1) Thanks [@mogeko](https://github.com/mogeko)! - Add a comment area to the User page.
+
+### Patch Changes
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`9773f1c`](https://github.com/mogeko/bookworm/commit/9773f1c62c464be12d4a50d214cfe6825ca08879) Thanks [@mogeko](https://github.com/mogeko)! - Optimize the creation time of comments in Book Details page.
+
+  Dynamically display the date (by [`format`](https://date-fns.org/v2.30.0/docs/format)) or distance from today (by [`formatDistanceToNow`](https://date-fns.org/v2.30.0/docs/formatDistanceToNow)) based on the comment time.
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`987d47c`](https://github.com/mogeko/bookworm/commit/987d47c200e963fb8ed33705b670914a9ba6dc7d) Thanks [@mogeko](https://github.com/mogeko)! - Read the `uid` of the logged-in user from the cookie.
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`9dc83a8`](https://github.com/mogeko/bookworm/commit/9dc83a8a6c70af72328d7a01885874159c487113) Thanks [@mogeko](https://github.com/mogeko)! - Display User's booklists.
+
+- [#174](https://github.com/mogeko/bookworm/pull/174) [`c32bc7a`](https://github.com/mogeko/bookworm/commit/c32bc7af3c9c62064da1afe1614add6a78ddaffd) Thanks [@mogeko](https://github.com/mogeko)! - Complete the `header` part of the user page.
+
 ## 0.9.3
 
 ### Patch Changes
