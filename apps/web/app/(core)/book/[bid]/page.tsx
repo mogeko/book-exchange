@@ -5,8 +5,7 @@ import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
-import { Comment } from "@/components/comment-context";
-import { CommentFeeds } from "@/components/comment-feeds";
+import { Comment, CommentFeeds } from "@/components/comment-context";
 import { Link } from "@/components/link";
 import { AuthorScrollArea } from "@/app/(core)/book/[bid]/_components/author-scroll-area";
 import { BookDetails } from "@/app/(core)/book/[bid]/_components/book-details";
@@ -53,6 +52,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
         tags: true,
       },
     })) ?? notFound();
+  const comments = scores.map(({ comment, rate }) => ({ ...comment, rate }));
 
   return (
     <div className="flex flex-col">
@@ -119,7 +119,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
               Comments ({scores.length})
             </h2>
             <div className="flex flex-col items-stretch justify-start">
-              <Comment initialValue={{ comments: scores, loginedUser }}>
+              <Comment initialValue={{ comments, loginedUser }}>
                 <CommentEditor bid={parseInt(params.bid)} />
                 <CommentFeeds actions={{ removeComment, likeDislike }} />
               </Comment>

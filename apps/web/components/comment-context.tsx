@@ -4,35 +4,22 @@ import {
   createContext,
   use,
   useCallback,
-  useMemo,
   experimental_useOptimistic as useOptimistic,
-  useState,
   useTransition,
 } from "react";
-import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
-import { LuTrash2, LuX } from "react-icons/lu";
+import { format, formatDistanceToNow, isBefore, subDays } from "date-fns";
 import { TiStarFullOutline } from "react-icons/ti";
 
 import { likeDislike, removeComment } from "@/lib/comment-actions";
 import type { Score, Comment as TComment, User, Voter } from "@/lib/database";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Toggle } from "@/components/ui/toggle";
+import { DeleteButton } from "@/components/comment-delete";
+import { LikeDislikeButton } from "@/components/comment-like-dislike";
+import { LineClamp3 } from "@/components/line-clamp";
 import { Link } from "@/components/link";
 
 const LoginedUserContext = createContext<User | null>(null);
@@ -53,13 +40,11 @@ export const Comment: React.FC<
       if (!initialValue.loginedUser) return comments;
 
       const newComment: CommentType = {
-        comment: {
-          content: data.content,
-          commentator: initialValue.loginedUser,
-          createdAt: new Date(),
-          votes: [],
-          id: NaN,
-        },
+        content: data.content,
+        commentator: initialValue.loginedUser,
+        createdAt: new Date(),
+        votes: [],
+        id: NaN,
         rate: data.rate,
       };
 
@@ -78,17 +63,60 @@ export const useLoginedUser = () => use(LoginedUserContext);
 export const useComment = () => use(CommentContext);
 
 export const CommentFeeds: React.FC<
-  {} & React.HTMLAttributes<HTMLDivElement>
-> = ({ className, ...props }) => {
+  {
+    actions?: {
+      removeComment: (cid: number) => Promise<any>;
+      likeDislike: (state: VoteState, uid: number, cid: number) => Promise<any>;
+    };
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ className, actions = { likeDislike, removeComment }, ...props }) => {
+  const [_, startTransition] = useTransition();
+  const { toast } = useToast();
   const { comments } = useComment();
   const user = useLoginedUser();
+
+  const handleDeleteComment = useCallback(
+    (cid: number) => {
+      startTransition(async () => {
+        const { error } = await actions.removeComment(cid);
+
+        if (error) {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
+      });
+    },
+    [startTransition, toast]
+  );
+
+  const handleLikeDislike = useCallback(
+    (state: VoteState, cid: number) => {
+      startTransition(async () => {
+        if (!user) return;
+
+        const { error } = await actions.likeDislike(state, user.id, cid);
+
+        if (error) {
+          toast({
+            variant: "destructive",
+            title: "Oooooops! Something went wrong.",
+            description: error,
+          });
+        }
+      });
+    },
+    [startTransition, toast, user]
+  );
 
   return (
     <div
       className={cn("flex flex-col items-stretch justify-center", className)}
       {...props}
     >
-      {comments.map(({ comment: { commentator, ...comment }, rate }, i) => {
+      {comments.map(({ commentator, rate, ...comment }, i) => {
         return (
           <div key={`book-comment-${i}-${comment.id || ""}`}>
             <Separator />
@@ -104,32 +132,38 @@ export const CommentFeeds: React.FC<
                       {commentator.name}
                     </Link>
                     <div className="inline-flex flex-row items-center justify-between gap-2">
-                      <Badge variant="outline">
-                        <TiStarFullOutline className="mr-1 h-4 w-4 text-[#FFAC2D]" />
-                        {rate}
-                      </Badge>
+                      {rate && (
+                        <Badge variant="outline">
+                          <TiStarFullOutline className="mr-1 h-4 w-4 text-[#FFAC2D]" />
+                          {rate}
+                        </Badge>
+                      )}
                       <p className="text-muted-foreground text-sm">
-                        {new Intl.DateTimeFormat().format(comment.createdAt)}
+                        {isBefore(comment.createdAt, subDays(new Date(), 7))
+                          ? format(comment.createdAt, "PPP")
+                          : formatDistanceToNow(comment.createdAt, {
+                              addSuffix: true,
+                            })}
                       </p>
                     </div>
                   </div>
                 </div>
                 <DeleteButton
                   className="hidden group-hover:inline-flex"
+                  onClick={(_) => handleDeleteComment(comment.id)}
                   disabled={commentator.id !== user?.id}
-                  cid={comment.id}
                 />
               </header>
               <main className="flex flex-col items-stretch justify-center gap-3 p-6 pt-0">
-                <p className="leading-7 [&:not(:first-child)]:mt-6">
+                <LineClamp3 className="[&:not(:first-child)]:mt-6">
                   {comment.content}
-                </p>
+                </LineClamp3>
                 <LikeDislikeButton
-                  votes={comment.votes}
+                  onStateChange={(s) => handleLikeDislike(s, comment.id)}
                   defaultState={
                     comment.votes.find((v) => v.voterId === user?.id)?.vote
                   }
-                  cid={comment.id}
+                  votes={comment.votes}
                 />
               </main>
             </section>
@@ -140,150 +174,10 @@ export const CommentFeeds: React.FC<
   );
 };
 
-export const DeleteButton: React.FC<
-  { cid: number } & React.ComponentPropsWithoutRef<typeof Button>
-> = ({ cid, className, variant = null, size = "sm", ...props }) => {
-  const [_, startTransition] = useTransition();
-  const { toast } = useToast();
-
-  const handleDeleteComment = useCallback(() => {
-    startTransition(async () => {
-      const { error } = await removeComment(cid);
-
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Oooooops! Something went wrong.",
-          description: error,
-        });
-      }
-    });
-  }, [startTransition, toast, cid]);
-
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button
-          className={cn("hover:text-destructive rounded-full", className)}
-          variant={variant}
-          size={size}
-          {...props}
-        >
-          <LuX className="h-3 w-3" />
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the
-            comment you have made.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteComment}>
-            <LuTrash2 className="mr-1 h-4 w-4" />
-            Yes, Delete it
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-};
-
-export const LikeDislikeButton: React.FC<
-  {
-    votes: Pick<Voter, "voterId" | "vote">[];
-    defaultState?: VoteState;
-    cid: number;
-  } & React.ComponentPropsWithoutRef<typeof Toggle>
-> = ({ cid, votes, className, defaultState, ...props }) => {
-  const [state, setState] = useState<VoteState>(defaultState ?? null);
-  const classes = cn(
-    "hover:bg-background hover:text-primary text-muted-foreground data-[state=on]:bg-background data-[state=on]:text-primary",
-    className
-  );
-  const [_, startTransition] = useTransition();
-  const { toast } = useToast();
-  const user = useLoginedUser();
-
-  const likeCount = useMemo(
-    () => votes.filter((v) => v.vote === "LIKE").length,
-    [votes]
-  );
-
-  const setLikeDislike = useCallback(
-    (state: VoteState) => {
-      startTransition(async () => {
-        if (!user) return;
-
-        const { error } = await likeDislike(state, user.id, cid);
-
-        if (error) {
-          toast({
-            variant: "destructive",
-            title: "Oooooops! Something went wrong.",
-            description: error,
-          });
-        }
-      });
-    },
-    [startTransition, toast, cid, user]
-  );
-
-  const handleStateChange = useCallback(
-    (state: VoteState) => {
-      if (state === "LIKE") {
-        setState("LIKE"), setLikeDislike("LIKE");
-      } else if (state === "DISLIKE") {
-        setState("DISLIKE"), setLikeDislike("DISLIKE");
-      } else {
-        setState(null), setLikeDislike(null);
-      }
-    },
-    [setState, setLikeDislike]
-  );
-
-  return (
-    <div className="flex flex-row items-center justify-start gap-6">
-      <Toggle
-        pressed={state === "LIKE"}
-        onPressedChange={(p) => handleStateChange(p ? "LIKE" : null)}
-        className={classes}
-        {...props}
-      >
-        {state === "LIKE" ? (
-          <BiSolidLike className="h-4 w-4" />
-        ) : (
-          <BiLike className="h-4 w-4" />
-        )}
-        <span className="ml-2">
-          {"LIKE" + (likeCount ? ` (${likeCount})` : "")}
-        </span>
-      </Toggle>
-      <Toggle
-        pressed={state === "DISLIKE"}
-        onPressedChange={(p) => handleStateChange(p ? "DISLIKE" : null)}
-        className={classes}
-        {...props}
-      >
-        {state === "DISLIKE" ? (
-          <BiSolidDislike className="h-4 w-4" />
-        ) : (
-          <BiDislike className="h-4 w-4" />
-        )}
-        <span className="ml-2">Dislike</span>
-      </Toggle>
-    </div>
-  );
-};
-
 type OptimisticData = { content: string; rate?: number };
 export type VoteState = "LIKE" | "DISLIKE" | null;
 export type CommentType = {
-  comment: {
-    commentator: Pick<User, "avatar" | "name" | "id">;
-    votes: Pick<Voter, "voterId" | "vote">[];
-  } & Pick<TComment, "content" | "createdAt" | "id">;
-} & Partial<Pick<Score, "rate">>;
+  commentator: Pick<User, "avatar" | "name" | "id">;
+  votes: Pick<Voter, "voterId" | "vote">[];
+} & Pick<TComment, "content" | "createdAt" | "id"> &
+  Partial<Pick<Score, "rate">>;

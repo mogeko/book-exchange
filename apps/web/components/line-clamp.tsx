@@ -18,7 +18,6 @@ export const LineClamp3: React.FC<
         setClamped(
           contentRef.current.scrollHeight > contentRef.current.clientHeight
         );
-        console.log(contentRef.current.scrollHeight);
       }
     };
 

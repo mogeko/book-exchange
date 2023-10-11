@@ -2,46 +2,58 @@
 
 import { revalidatePath } from "next/cache";
 
-import { prisma } from "@/lib/database";
+import { prisma, type Comment } from "@/lib/database";
 import type { VoteState } from "@/components/comment-context";
 
 export async function removeComment(cid: number) {
   try {
-    const { bookId } = await prisma.score.delete({ where: { commentId: cid } });
+    const comment = await prisma.comment.delete({ where: { id: cid } });
 
-    return revalidatePath(`/book/${bookId}`), {};
+    return revalidatePathHelper(comment);
   } catch (error: any) {
     return { error: error.message };
   }
 }
 
-export async function likeDislike(state: VoteState, cid: number, uid: number) {
+export async function likeDislike(state: VoteState, uid: number, cid: number) {
+  console.log(state, cid, uid);
   try {
     if (state) {
-      const {
-        comment: { score },
-      } = await prisma.voter.update({
+      const { comment } = await prisma.voter.upsert({
         where: { voterId_commentId: { commentId: cid, voterId: uid } },
-        data: { vote: state },
-        include: {
-          comment: { select: { score: { select: { bookId: true } } } },
+        update: { vote: state },
+        create: {
+          voter: { connect: { id: uid } },
+          comment: { connect: { id: cid } },
+          vote: state,
         },
+        include: { comment: true },
       });
 
-      return revalidatePath(`/book/${score?.bookId ?? ""}`), {};
+      return revalidatePathHelper(comment);
     } else {
-      const {
-        comment: { score },
-      } = await prisma.voter.delete({
+      const { comment } = await prisma.voter.delete({
         where: { voterId_commentId: { commentId: cid, voterId: uid } },
-        include: {
-          comment: { select: { score: { select: { bookId: true } } } },
-        },
+        include: { comment: true },
       });
 
-      return revalidatePath(`/book/${score?.bookId ?? ""}`), {};
+      return revalidatePathHelper(comment);
     }
   } catch (error: any) {
     return { error: error.message };
   }
 }
+
+const revalidatePathHelper = (comment: Comment) => {
+  if (comment.authorId) {
+    revalidatePath(`/auther/${comment.authorId}`);
+  } else if (comment.publisherId) {
+    revalidatePath(`/publisher/${comment.publisherId}`);
+  } else if (comment.seriesId) {
+    revalidatePath(`/series/${comment.seriesId}`);
+  } else if (comment.userId) {
+    revalidatePath(`/user/${comment.userId}`);
+  }
+
+  return {};
+};

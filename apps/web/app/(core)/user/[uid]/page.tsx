@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { LuBan, LuMoreHorizontal } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
+import { loginedUserStatus } from "@/lib/user-actions";
 import {
   Accordion,
   AccordionContent,
@@ -16,16 +17,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Comment, CommentFeeds } from "@/components/comment-context";
+import { CommentEditor } from "@/components/comment-editor";
 import { UserBooklists } from "@/app/(core)/user/[uid]/_components/booklists";
 import { UserBookshelf } from "@/app/(core)/user/[uid]/_components/bookshelf";
 import { FollowButton } from "@/app/(core)/user/[uid]/_components/follow-button";
+import { setComment } from "@/app/(core)/user/[uid]/comment-actions";
 
 const UserPage: React.FC<{
   params: { uid: string };
 }> = async ({ params: { uid } }) => {
+  const { uid: whoami } = await loginedUserStatus();
+  const loginedUser = await prisma.user.findUnique({ where: { id: whoami } });
   const user = await prisma.user.findUnique({
     where: { id: parseInt(uid) },
-    include: { booklists: true, ownedBooks: true },
+    include: {
+      commentes: {
+        include: { commentator: true, votes: true },
+        orderBy: { createdAt: "desc" },
+      },
+      ownedBooks: true,
+      booklists: true,
+    },
   });
 
   if (!user) notFound();
@@ -75,6 +88,21 @@ const UserPage: React.FC<{
             <AccordionTrigger>{user.name}&apos;s Bookshelf</AccordionTrigger>
             <AccordionContent>
               <UserBookshelf books={user.ownedBooks} />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>
+              Comments ({user.commentes.length})
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="flex max-w-[800px] flex-col items-stretch justify-start">
+                <Comment
+                  initialValue={{ comments: user.commentes, loginedUser }}
+                >
+                  <CommentEditor action={setComment} uid={parseInt(uid)} />
+                  <CommentFeeds />
+                </Comment>
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
