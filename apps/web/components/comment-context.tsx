@@ -66,7 +66,7 @@ export const CommentFeeds: React.FC<
   {
     actions?: {
       removeComment: (cid: number) => Promise<any>;
-      likeDislike: (state: VoteState, uid: number, cid: number) => Promise<any>;
+      likeDislike: (state: VoteState, cid: number) => Promise<any>;
     };
   } & React.HTMLAttributes<HTMLDivElement>
 > = ({ className, actions = { likeDislike, removeComment }, ...props }) => {
@@ -97,7 +97,7 @@ export const CommentFeeds: React.FC<
       startTransition(async () => {
         if (!user) return;
 
-        const { error } = await actions.likeDislike(state, user.id, cid);
+        const { error } = await actions.likeDislike(state, cid);
 
         if (error) {
           toast({

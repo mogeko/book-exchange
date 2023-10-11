@@ -20,7 +20,7 @@ const schema = object({
 });
 
 export const CommentEditor: React.FC<{
-  action: (context: string, meid: number, uid: number) => Promise<any>;
+  action: (context: string, uid: number) => Promise<any>;
   uid: number;
 }> = ({ action, uid }) => {
   const { addComment } = useComment();
@@ -36,7 +36,7 @@ export const CommentEditor: React.FC<{
       addComment({ content });
       startTransition(async () => {
         if (user) {
-          const { error } = await action(content, user.id, uid);
+          const { error } = await action(content, uid);
 
           if (error) {
             toast({
