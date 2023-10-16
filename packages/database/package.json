@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",
-    "@types/node": "20.6.2",
+    "@types/node": "20.8.6",
     "typescript": "^5.2.2",
     "vite-node": "^0.34.6"
   },
