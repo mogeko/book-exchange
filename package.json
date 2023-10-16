@@ -30,7 +30,7 @@
     "@changesets/cli": "^2.26.2",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "20.6.2",
-    "eslint": "8.50.0",
+    "eslint": "8.51.0",
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-turbo": "^1.10.15",
