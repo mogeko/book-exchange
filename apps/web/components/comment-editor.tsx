@@ -54,7 +54,7 @@ export const CommentEditor: React.FC<{
         }
       });
     },
-    [startTransition, addComment, user, toast, action]
+    [startTransition, addComment, user, toast, action, uid]
   );
 
   if (!user) {

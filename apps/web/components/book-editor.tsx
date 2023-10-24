@@ -246,8 +246,8 @@ export const BookEditor: React.FC<
                   <Input {...field} />
                 </FormControl>
                 <FormDescription>
-                  The name of the publisher's series. For example: The Story of
-                  Civilization, Part III
+                  The name of the publisher&apos;s series. For example: The
+                  Story of Civilization, Part III
                 </FormDescription>
                 <FormMessage />
               </FormItem>

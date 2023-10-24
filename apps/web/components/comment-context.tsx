@@ -89,7 +89,7 @@ export const CommentFeeds: React.FC<
         }
       });
     },
-    [startTransition, toast]
+    [startTransition, toast, actions]
   );
 
   const handleLikeDislike = useCallback(
@@ -108,7 +108,7 @@ export const CommentFeeds: React.FC<
         }
       });
     },
-    [startTransition, toast, user]
+    [startTransition, toast, user, actions]
   );
 
   return (
