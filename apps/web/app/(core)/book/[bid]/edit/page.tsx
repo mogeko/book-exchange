@@ -20,6 +20,8 @@ const BookEditPage: React.FC<{
       initialValues={{
         title: book?.title,
         description: book?.description ?? "",
+        subtitle: book?.subtitle ?? "",
+        cover: book?.cover ?? "",
         series: book?.series?.name,
         authors: book?.authors.map((author) => ({ value: author.name })),
         translators: book?.translators.map((translator) => ({
