@@ -1,5 +1,8 @@
+import OrginLink from "next/link";
+
 import type { Book, Series, Tag } from "@/lib/database";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/components/link";
 
 export const BookDetails: React.FC<
@@ -110,6 +113,12 @@ export const BookDetails: React.FC<
           ))}
         </div>
       </div>
+      <OrginLink
+        className={buttonVariants({ variant: "outline" })}
+        href={`/book/${book.id}/edit`}
+      >
+        Edit this book
+      </OrginLink>
     </aside>
   );
 };

@@ -22,7 +22,7 @@ export const FollowButton: React.FC<{ uid: number }> = ({ uid }) => {
         });
       }
     });
-  }, [uid]);
+  }, [uid, toast]);
 
   return (
     <Button className="rounded-full" onClick={handleFollow} size="sm">

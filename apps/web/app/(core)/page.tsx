@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { LuFrown, LuPlusCircle } from "react-icons/lu";
 
 import { prisma } from "@/lib/database";
 import { loginedUserStatus } from "@/lib/user-actions";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookScrollArea, ViewAll } from "@/components/book-scroll-area";
@@ -19,10 +20,10 @@ const ReadNowPage: React.FC = async () => {
           <TabsTrigger value="following">Following</TabsTrigger>
         </TabsList>
         <div className="ml-auto mr-4">
-          <Button>
+          <Link className={buttonVariants()} href="/book/new">
             <LuPlusCircle className="mr-2 h-4 w-4" />
             Add book
-          </Button>
+          </Link>
         </div>
       </div>
       <TabsContent className="border-none p-0 outline-none" value="for-you">

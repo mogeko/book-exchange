@@ -88,7 +88,7 @@ const BookPage: React.FC<{ params: { bid: string } }> = async ({ params }) => {
               </p>
             </div>
             <Statistics bid={book.id} />
-            <Description context={book.discription} />
+            <Description context={book.description} />
             <Separator />
             <div className="grid gap-4 md:grid-cols-3">
               <div className="flex flex-row">
