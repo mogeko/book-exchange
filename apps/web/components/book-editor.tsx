@@ -27,7 +27,7 @@ const schema = object({
   description: string().optional(),
   authors: array(object({ value: string() })).optional(),
   translators: array(object({ value: string() })).optional(),
-  // cover: string().optional(),
+  cover: string().optional(),
   isbn: string().optional(),
   publisher: string().optional(),
   publisherLocation: string().optional(),
@@ -184,6 +184,26 @@ export const BookEditor: React.FC<
               </Button>
             </div>
           </div>
+        </FormGroup>
+        <FormGroup title="Cover Image">
+          {/* TODO: Upload the cover picture to the server. */}
+          <FormField
+            name="cover"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cover Image URL</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormDescription>
+                  A URL to the cover image of this edition of the book. For
+                  example: https://example.com/image.jpg
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </FormGroup>
         <FormGroup title="Publishing Info">
           <FormField
