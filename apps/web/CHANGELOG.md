@@ -1,5 +1,19 @@
 # @mogeko/bookworm-web
 
+## 0.11.0
+
+### Minor Changes
+
+- [#188](https://github.com/mogeko/bookworm/pull/188) [`ead95bf`](https://github.com/mogeko/bookworm/commit/ead95bfef2541fabf2499ae5941a1114b8ba5f0a) Thanks [@mogeko](https://github.com/mogeko)! - Add a page to edit existing books.
+
+- [#188](https://github.com/mogeko/bookworm/pull/188) [`851672f`](https://github.com/mogeko/bookworm/commit/851672f5d6a74b5efb7db2c826a265cc67636b5c) Thanks [@mogeko](https://github.com/mogeko)! - Create an editor to edit book information.
+
+### Patch Changes
+
+- [#188](https://github.com/mogeko/bookworm/pull/188) [`3e7d9a9`](https://github.com/mogeko/bookworm/commit/3e7d9a9687dba139d91025bda82c85cd80ff4379) Thanks [@mogeko](https://github.com/mogeko)! - As a temporary plan, upload the URL of the cover picture.
+
+  TODO: Upload the cover picture to the server.
+
 ## 0.10.0
 
 ### Minor Changes
