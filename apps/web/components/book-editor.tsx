@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { array, object, string, type infer as zInfer } from "zod";
 
+import { updateBook } from "@/lib/book-editor-actions";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -37,12 +38,12 @@ const schema = object({
 
 export const BookEditor: React.FC<
   {
-    initialValues?: Partial<zInfer<typeof schema>>;
+    initialValues?: Partial<DataTypes>;
   } & React.HTMLAttributes<HTMLElement>
 > = ({ initialValues, className, ...props }) => {
   const [_, startTransition] = useTransition();
   const { toast } = useToast();
-  const form = useForm<zInfer<typeof schema>>({
+  const form = useForm<DataTypes>({
     resolver: zodResolver(schema),
     defaultValues: initialValues,
     mode: "onChange",
@@ -56,9 +57,18 @@ export const BookEditor: React.FC<
     name: "translators",
   });
 
-  const onSubmit = useCallback((data: zInfer<typeof schema>) => {
+  const onSubmit = useCallback((data: DataTypes) => {
     startTransition(async () => {
-      console.log(data); // TODO: Implement by calling API
+      const { error } = await updateBook(data);
+
+      if (!error) {
+        toast({ description: `✅ The book "${data.title}" has been updated` });
+      } else {
+        toast({
+          variant: "destructive",
+          description: `❌ Failed to update the book "${data.title}"`,
+        });
+      }
     });
   }, []);
 
@@ -293,3 +303,5 @@ const FormGroup: React.FC<
     </div>
   );
 };
+
+export type DataTypes = zInfer<typeof schema>;

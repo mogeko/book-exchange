@@ -19,7 +19,7 @@ const BookEditPage: React.FC<{
       className="lg:max-w-2xl"
       initialValues={{
         title: book?.title,
-        description: book?.discription ?? "",
+        description: book?.description ?? "",
         series: book?.series?.name,
         authors: book?.authors.map((author) => ({ value: author.name })),
         translators: book?.translators.map((translator) => ({

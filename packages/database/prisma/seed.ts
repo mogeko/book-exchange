@@ -110,7 +110,6 @@ async function seedSeries({ publiashers }: SeriesProps) {
         update: {},
         create: {
           name: faker.commerce.productName(),
-          discription: faker.lorem.paragraph({ min: 5, max: 10 }),
           cover: faker.image.urlLoremFlickr({
             category: "logo",
             width: 1114,
@@ -140,7 +139,7 @@ async function seedBooks(props: BooksProps) {
         update: {},
         create: {
           title: faker.lorem.sentence(5),
-          discription: faker.lorem.paragraph({ min: 5, max: 10 }),
+          description: faker.lorem.paragraph({ min: 5, max: 10 }),
           cover: faker.image.urlLoremFlickr({
             category: "book",
             width: 1114,
@@ -193,7 +192,7 @@ async function seedBooklists({ users, books }: BooklistsProps) {
         update: {},
         create: {
           title: faker.lorem.sentence(3),
-          discription: faker.lorem.paragraph({ min: 5, max: 10 }),
+          description: faker.lorem.paragraph({ min: 5, max: 10 }),
           user: { connect: faker.helpers.arrayElement(users) },
           books: {
             connect: arrayElements(books, { min: 1, max: 30 }).map((book) => {
